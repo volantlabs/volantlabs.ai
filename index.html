@@ -546,10 +546,10 @@ features:
     });
   }
 
-  function loop(){ if(!reduce){ step(); } t++; draw(); requestAnimationFrame(loop); }
+  function loop(){ if(!reduce){ step(); } t++; draw(); if(!reduce) requestAnimationFrame(loop); }
 
   function init(){ resize(); seed(); t=reduce?200:0; if(reduce){for(let i=0;i<120;i++)step();} loop(); }
-  window.addEventListener('resize',()=>{resize();seed();});
+  window.addEventListener('resize',()=>{resize();seed(); if(reduce){t=200; draw();}});
   init();
 })();
 </script>
