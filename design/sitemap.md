@@ -2,7 +2,7 @@
 
 **Status:** rebuilt 2026-06-16 · supersedes the lost v1 (Media `eb82e7f0`, bytes never published)
 **Spec:** `392e552b-5858-475e-a716-31d8f05bc5a6` (volant_base)
-**Source of truth for this rebuild:** the 6 wireframes on disk + the Open Engine handoff IA. Where v1 detail was unrecoverable, structure is re-derived from the wireframes, not invented.
+**Source of truth for this rebuild:** the 7 wireframes on disk + `volantlabs-sitemap-v2.svg` + the Open Engine handoff IA. Where v1 detail was unrecoverable, structure is re-derived from the wireframes, not invented.
 
 ---
 
@@ -150,6 +150,8 @@ Home  (/)
 
 - **thesis.html** — ✅ reworked into a cinematic story page; no longer functions as the primary content index.
 - **perspectives.html** — ✅ added as the growing content library with filters and provenance.
+- **wireframe-7-perspectives.svg** — ✅ added for the Perspectives library page.
+- **volantlabs-sitemap-v2.svg** — ✅ added as the 6-section IA diagram companion to this sitemap.
 - **home-midfi.html / index.html** — ✅ latest content strip now points to Perspectives.
 
 > Open hygiene item (not blocking): the sitemap Media nodes on spec `392e552b` (`sitemap-volantpartners-ai.md` + `.svg`) still have no published bytes in FileDrive — that's WorkItem `4e961008`. This rebuilt file should be the one published; if the public name stays `volantlabs.ai`, the graph/FileDrive labels should be renamed in the same governance pass.

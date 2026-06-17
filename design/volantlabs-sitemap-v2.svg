@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 740" font-family="'Montserrat','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#001E50"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1040" height="740" fill="#F5F5F5"/>
+
+  <!-- Title -->
+  <text x="40" y="48" fill="#001E50" font-size="28" font-weight="700">volantlabs.ai — Site Architecture</text>
+  <text x="40" y="74" fill="#333333" font-size="14">Information architecture · v2 · 2026-06-17 · 6-section spine · one-property principle</text>
+
+  <!-- OPEN band -->
+  <rect x="20" y="250" width="1000" height="170" rx="14" fill="#E6EAF2"/>
+  <text x="36" y="274" fill="#A8491A" font-size="12.5" font-weight="700" letter-spacing="0.5">OPEN — THE ENGINE SITE · RUN IT YOURSELF</text>
+
+  <!-- Home hub -->
+  <line x1="520" y1="158" x2="130" y2="288" stroke="#D15B21" stroke-width="1.6"/>
+  <line x1="520" y1="158" x2="325" y2="288" stroke="#D15B21" stroke-width="1.6"/>
+  <line x1="520" y1="158" x2="520" y2="288" stroke="#D15B21" stroke-width="1.6"/>
+  <line x1="520" y1="158" x2="715" y2="288" stroke="#D15B21" stroke-width="1.6"/>
+  <line x1="520" y1="158" x2="910" y2="288" stroke="#D15B21" stroke-width="1.6"/>
+  <rect x="445" y="110" width="150" height="48" rx="10" fill="#001E50"/>
+  <text x="520" y="133" fill="#FFFFFF" font-size="16" font-weight="700" text-anchor="middle">Home</text>
+  <text x="520" y="150" fill="#A9C0E6" font-size="10.5" text-anchor="middle">routes the four lanes</text>
+  <circle cx="520" cy="158" r="5" fill="#D15B21"/>
+
+  <!-- Open section cards -->
+  <!-- Engine -->
+  <circle cx="130" cy="288" r="5" fill="#D15B21"/>
+  <rect x="40" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
+  <text x="130" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Engine</text>
+  <text x="130" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">flagship · the one property</text>
+  <text x="130" y="362" fill="#333333" font-size="10.5" text-anchor="middle">quickstart · schema</text>
+  <text x="130" y="377" fill="#333333" font-size="10.5" text-anchor="middle">storage · export</text>
+
+  <!-- Domain Explorations -->
+  <circle cx="325" cy="288" r="5" fill="#D15B21"/>
+  <rect x="235" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
+  <text x="325" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Domain Explorations</text>
+  <text x="325" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">proof by worked models</text>
+  <text x="325" y="362" fill="#333333" font-size="10.5" text-anchor="middle">reference shapes</text>
+  <text x="325" y="377" fill="#333333" font-size="10.5" text-anchor="middle">bootstrap into your graph</text>
+
+  <!-- Thesis -->
+  <circle cx="520" cy="288" r="5" fill="#D15B21"/>
+  <rect x="430" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
+  <text x="520" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Thesis</text>
+  <text x="520" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">the story / manifesto</text>
+  <text x="520" y="362" fill="#333333" font-size="10.5" text-anchor="middle">who we are,</text>
+  <text x="520" y="377" fill="#333333" font-size="10.5" text-anchor="middle">what we stand for</text>
+
+  <!-- Perspectives -->
+  <circle cx="715" cy="288" r="5" fill="#D15B21"/>
+  <rect x="625" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
+  <text x="715" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Perspectives</text>
+  <text x="715" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">the library (blog)</text>
+  <text x="715" y="362" fill="#333333" font-size="10.5" text-anchor="middle">Essays · From the graph</text>
+  <text x="715" y="377" fill="#333333" font-size="10.5" text-anchor="middle">· Ratified (provenance)</text>
+
+  <!-- Community -->
+  <circle cx="910" cy="288" r="5" fill="#D15B21"/>
+  <rect x="820" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
+  <text x="910" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Community</text>
+  <text x="910" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">support + signal</text>
+  <text x="910" y="362" fill="#333333" font-size="10.5" text-anchor="middle">iceberg model</text>
+  <text x="910" y="377" fill="#333333" font-size="10.5" text-anchor="middle">roadmap · the bank</text>
+
+  <!-- graduate edge -->
+  <line x1="520" y1="390" x2="520" y2="486" stroke="#001E50" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <text x="532" y="440" fill="#001E50" font-size="11.5" font-style="italic">quiet graduation</text>
+
+  <!-- GOVERNED band -->
+  <rect x="300" y="500" width="440" height="150" rx="14" fill="#FBE6DB"/>
+  <text x="318" y="524" fill="#A8491A" font-size="12.5" font-weight="700" letter-spacing="0.5">GOVERNED — GRADUATE WHEN AUDIT MATTERS</text>
+
+  <!-- Platform -->
+  <rect x="430" y="536" width="180" height="74" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
+  <text x="520" y="563" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Platform</text>
+  <text x="520" y="583" fill="#333333" font-size="10.5" text-anchor="middle">"who changed this record,</text>
+  <text x="520" y="597" fill="#333333" font-size="10.5" text-anchor="middle">under what policy?"</text>
+
+  <!-- cross-property -->
+  <line x1="610" y1="573" x2="700" y2="573" stroke="#001E50" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="708" y="551" width="300" height="44" rx="22" fill="#001E50"/>
+  <text x="858" y="571" fill="#FFFFFF" font-size="12.5" font-weight="700" text-anchor="middle">volantpartners.com</text>
+  <text x="858" y="586" fill="#A9C0E6" font-size="10.5" text-anchor="middle">consulting + Kesher (governed) · cross-linked</text>
+
+  <!-- notes -->
+  <text x="40" y="676" fill="#333333" font-size="11.5">Audience lanes:  Engineer → Engine   ·   Curious/builder → Domain Explorations   ·   Thinker → Thesis / Perspectives   ·   Champion → Platform</text>
+  <text x="40" y="697" fill="#333333" font-size="11.5">"Graphcasting" cut as a public term — provenance lives in Perspectives.  Platform is a quiet strip, never a sales rail.</text>
+  <text x="40" y="724" fill="#001E50" font-size="11" font-weight="600">Canonical: client_packs/volant/published_apps/volantlabs.ai/design/  ·  governed by Spec 392e552b  ·  boundary: /public/documents/open-engine-governed-boundary.md</text>
+</svg>
