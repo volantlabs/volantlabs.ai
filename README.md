@@ -15,6 +15,8 @@ volantlabs.ai/
 ├── perspectives.html       # Essays / From the graph / Ratified (provenance-tagged)
 ├── community.html          # Iceberg model — support + telemetry, roadmap "the bank"
 ├── platform.html           # Quiet graduation path to the governed platform
+├── assets/
+│   └── site.css            # Shared shell — tokens + chrome (nav/buttons/sections/footer) + global reduced-motion
 ├── README.md
 └── design/
     ├── sitemap.md          # Full IA / site architecture (the spec)
@@ -29,9 +31,9 @@ Each page is a single self-contained HTML file with the tokens inline (no build 
 - **Color:** navy `#001E50` (headers/trust/dark surfaces), orange `#D15B21` (emphasis/active nodes), orange-600 `#A8491A` (CTA fills and small orange text on white, for AA), orange-50 `#FEF3ED` (tints and dark-footer accents), warm white `#F5F5F5`, charcoal `#333333`, blue-50 `#E6EAF2`.
 - **Motif:** node-and-edge graph visuals only. No pie/donut/3D/clipart/stock photos.
 - **Spacing:** 4px scale, 12-col grid, 1200px max content width.
-- **Accessibility:** WCAG AA contrast, visible focus states, ≥44px touch targets.
+- **Accessibility:** WCAG AA contrast, visible focus states, ≥44px touch targets, skip-to-content links, one `<main>` landmark per page, `aria-current="page"` on the active nav link, and a global `prefers-reduced-motion` rule (all in `assets/site.css`).
 
-The nav + footer + token block are currently **duplicated per file** (mid-fi tradeoff). Factoring them into a shared component/partial is a known next step when this moves toward build.
+The **token block + chrome** (nav, buttons, section scaffolding, footer) now live once in **`assets/site.css`**, linked by every page — which also enforces a global `prefers-reduced-motion` rule for consistent motion safety. Page-specific styles stay inline per page. Nav/footer **markup** is still inline per page (robust for a no-build static prototype); folding that into a templated/JS-injected partial is the remaining shell step for when a build pipeline lands.
 
 ## Conventions & decisions baked in
 
@@ -46,4 +48,4 @@ The nav + footer + token block are currently **duplicated per file** (mid-fi tra
 
 ## Status & next
 
-Fidelity: **mid**. Status: published app bundle. Next: hi-fi polish + real content, extract the shared shell into a partial/component, and wire a build/deploy path when the static prototype grows into the public site.
+Fidelity: **mid→hi**. Status: published app bundle. Done: shared CSS shell extracted to `assets/site.css`; Home hero reframed outcome-first (lead with the capability, demote the mechanism). Next: real content, per-page hi-fi polish, fold nav/footer markup into a partial when a build lands, and wire a build/deploy path.

@@ -7,74 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  /* ---- Brand tokens (volant_base BrandGuideline) — shared with home-midfi ---- */
-  :root{
-    --navy:#001E50; --orange:#D15B21; --orange-600:#A8491A; --orange-50:#FEF3ED;
-    --white:#F5F5F5; --charcoal:#333333; --blue-50:#E6EAF2; --line:#E2E6EE;
-    --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-    --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
-    --maxw:1200px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:var(--font);font-weight:400;line-height:1.5;color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased}
-  h1,h2,h3{line-height:1.2;color:var(--navy);font-weight:600}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
-  @media(max-width:760px){.wrap{padding:0 20px}}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
-
-  /* ---- Nav ---- */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
-  nav{display:flex;align-items:center;gap:var(--s8);height:64px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:-.01em}
-  .brand .glyph{width:22px;height:22px;flex:none}
-  .navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
-  .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
-  .navlinks a:hover{color:var(--navy)}
-  .navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--orange);transition:right .2s ease}
-  .navlinks a:hover::after,.navlinks a.active::after{right:0}
-  .navlinks a.active{color:var(--navy);font-weight:600}
-  .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
-  .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
-  .btn-primary{background:var(--orange-600);color:#fff}
-  .btn-primary:hover{background:var(--navy)}
-  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
-  .btn-ghost:hover{border-color:var(--navy)}
-  .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
-  .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
-  .btn-sm{height:38px;padding:0 14px;font-size:13px}
-  @media(max-width:880px){
-    nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
-    .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
-    .navlinks a{white-space:nowrap}
-  }
-  @media(max-width:560px){
-    .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
-    .navlinks a{font-size:14px}
-  }
-  @media(max-width:520px){
-    .brand{font-size:16px;gap:8px}
-    .brand .glyph{width:20px;height:20px}
-    .navright{width:auto;margin-left:auto}
-    .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
-    .navright .btn-primary{padding:0 12px}
-  }
-
   /* ---- Section scaffolding ---- */
-  section.band{padding:var(--s24) 0}
-  @media(max-width:760px){section.band{padding:var(--s16) 0}}
-  .band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
-  .band-head h2{font-size:clamp(24px,3vw,32px);font-weight:700}
-  .band-head .lane{font-size:13px;font-weight:600;color:var(--orange-600)}
-
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:var(--s3)}
   .chip{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--navy);background:var(--blue-50);padding:5px 10px;border-radius:6px}
   .more{font-weight:600;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center}
   .more .arr{transition:transform .15s ease}
-
   /* ---- Page header band (light) ---- */
   .pagehead{background:var(--white);border-bottom:1px solid var(--line)}
   .pagehead .wrap{padding:var(--s16) var(--s12) var(--s12)}
@@ -82,7 +21,6 @@
   .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
   .pagehead h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:var(--s3)}
   .pagehead p.sub{font-size:18px;color:#52596b;max-width:54ch}
-
   /* ---- Filter row ---- */
   .filters{background:#fff;border-bottom:1px solid var(--line)}
   .filters .wrap{padding:var(--s6) var(--s12);display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
@@ -94,7 +32,6 @@
   .tab.active .star{color:#fff}
   .filters .cap{margin-left:auto;font-size:13px;color:#52596b}
   @media(max-width:760px){.filters .cap{margin-left:0;width:100%}}
-
   /* ---- Featured callout ---- */
   .featured .wrap{padding-top:var(--s12)}
   .feat{background:var(--navy);color:var(--white);border-radius:16px;padding:var(--s12);display:grid;grid-template-columns:1.4fr auto;gap:var(--s8);align-items:center;overflow:hidden}
@@ -104,7 +41,6 @@
   .feat p{font-size:16px;color:#c7d0e0;max-width:54ch}
   .feat .act{display:flex;justify-content:flex-end}
   @media(max-width:760px){.feat{grid-template-columns:1fr;gap:var(--s6);padding:var(--s8)}.feat .act{justify-content:flex-start}}
-
   /* ---- Card grid ---- */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
   @media(max-width:880px){.grid{grid-template-columns:1fr 1fr}}
@@ -123,26 +59,15 @@
   .fresh{margin-top:auto;padding-top:var(--s3);display:flex;align-items:center;gap:7px;font-size:12px;color:#52596b}
   .fresh .pip{width:7px;height:7px;border-radius:50%;background:var(--orange);flex:none}
   .fresh .pip.stale{background:#9aa0ab}
-
   /* ---- Propose CTA band ---- */
   .propose{background:var(--white)}
   .propose .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:flex;align-items:center;justify-content:space-between;gap:var(--s8);flex-wrap:wrap}
   .propose h3{font-size:clamp(20px,2.4vw,26px);font-weight:700;margin-bottom:var(--s2)}
   .propose p{font-size:15px;color:#52596b;max-width:52ch}
-
-  /* ---- Footer ---- */
-  footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
-  .foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);border-bottom:1px solid #474747}
-  footer .brand{color:#fff}
-  .foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
-  .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
-  .foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
-  .foot-col a:hover{color:#fff}
-  .foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);font-size:13px;color:#9aa0ab}
-  .foot-bottom .nrp{color:var(--orange-50)}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- ============ NAV ============ -->
 <header>
@@ -160,7 +85,7 @@
       </a>
       <div class="navlinks">
         <a href="engine.html">Engine</a>
-        <a href="domain-explorations.html" class="active">Domain Explorations</a>
+        <a href="domain-explorations.html" class="active" aria-current="page">Domain Explorations</a>
         <a href="thesis.html">Thesis</a>
         <a href="perspectives.html">Perspectives</a>
         <a href="community.html">Community</a>
@@ -175,6 +100,7 @@
     </nav>
   </div>
 </header>
+<main id="main">
 
 <!-- ============ PAGE HEADER ============ -->
 <section class="pagehead">
@@ -389,6 +315,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer>

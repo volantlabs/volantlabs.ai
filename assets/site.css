@@ -1,0 +1,97 @@
+/* ============================================================
+   volantlabs.ai — shared shell (design system)
+   Single source of truth for tokens + chrome (nav, buttons, section
+   scaffolding, footer). Linked by every page; page-specific styles
+   stay inline per page.
+
+   Resolved from volant_base BrandGuideline nodes:
+     Typography fb9db6b0 · Color 35b2b2cd · Spacing d1e2f3a4
+     Accessibility e2f3a4b5 · Data-Viz b7d8862a · Motion a904a972
+   ============================================================ */
+
+/* ---- Brand tokens ---- */
+:root{
+  --navy:#001E50; --orange:#D15B21; --orange-600:#A8491A; --orange-50:#FEF3ED;
+  --white:#F5F5F5; --charcoal:#333333; --blue-50:#E6EAF2; --line:#E2E6EE;
+  --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+  --maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);font-weight:400;line-height:1.5;color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased}
+h1,h2,h3{line-height:1.2;color:var(--navy);font-weight:600}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
+@media(max-width:760px){.wrap{padding:0 20px}}
+
+/* focus states — WCAG AA (e2f3a4b5) */
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
+
+/* skip-to-content link — a11y bypass block (e2f3a4b5) */
+.skip{position:absolute;left:var(--s4);top:-48px;background:var(--navy);color:#fff;padding:var(--s3) var(--s4);border-radius:6px;z-index:100;transition:top .15s}
+.skip:focus{top:var(--s4);text-decoration:none}
+@media (prefers-reduced-motion:reduce){.skip{transition:none}}
+
+/* ---- Nav ---- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;gap:var(--s8);height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:-.01em}
+.brand .glyph{width:22px;height:22px;flex:none}
+.navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
+.navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
+.navlinks a:hover{color:var(--navy)}
+.navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--orange);transition:right .2s ease}
+.navlinks a:hover::after,.navlinks a.active::after{right:0}
+.navlinks a.active{color:var(--navy);font-weight:600}
+.navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
+.btn-primary{background:var(--orange-600);color:#fff}
+.btn-primary:hover{background:var(--navy)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--navy)}
+.btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
+.btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
+.btn-sm{height:38px;padding:0 14px;font-size:13px}
+@media(max-width:880px){
+  nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
+  .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
+  .navlinks a{white-space:nowrap}
+}
+@media(max-width:560px){
+  .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
+  .navlinks a{font-size:14px}
+}
+@media(max-width:520px){
+  .brand{font-size:16px;gap:8px}
+  .brand .glyph{width:20px;height:20px}
+  .navright{width:auto;margin-left:auto}
+  .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+  .navright .btn-primary{padding:0 12px}
+}
+
+/* ---- Section scaffolding ---- */
+section.band{padding:var(--s24) 0}
+@media(max-width:760px){section.band{padding:var(--s16) 0}}
+.band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
+.band-head h2{font-size:clamp(24px,3vw,32px);font-weight:700}
+.band-head .lane{font-size:13px;font-weight:600;color:var(--orange-600)}
+.lead{font-size:17px;color:#52596b;max-width:62ch;margin-top:var(--s2)}
+
+/* ---- Footer ---- */
+footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
+.foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);border-bottom:1px solid #474747}
+footer .brand{color:#fff}
+.foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
+.foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
+.foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
+.foot-col a:hover{color:#fff}
+.foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);font-size:13px;color:#9aa0ab}
+.foot-bottom .nrp{color:var(--orange-50)}
+
+/* ---- Global reduced-motion (a11y e2f3a4b5 · Motion a904a972) ----
+   Applied site-wide so motion safety is consistent on every page. */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
