@@ -85,7 +85,7 @@
   .band-head .lane{font-size:13px;font-weight:700;color:var(--orange-600)}
 
   .feed{display:grid;grid-template-columns:1fr;gap:var(--s4)}
-  .post{display:grid;grid-template-columns:150px 1fr auto;gap:var(--s6);align-items:start;border:1px solid var(--line);border-radius:8px;padding:var(--s6);background:#fff;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .post{display:grid;grid-template-columns:150px 1fr auto;gap:var(--s6);align-items:start;border:1px solid var(--line);border-radius:8px;padding:var(--s6);background:#fff;scroll-margin-top:96px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
   .post[hidden]{display:none}
   .post:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,30,80,.10);border-color:#c4ccda}
   .lanepill{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;padding:5px 10px;border-radius:6px;white-space:nowrap;display:inline-flex}
@@ -102,7 +102,7 @@
   .post:hover .read .arr{transform:translateX(3px)}
   .read .arr{transition:transform .15s ease}
   @media(max-width:760px){
-    .post{grid-template-columns:1fr;gap:var(--s3)}
+    .post{grid-template-columns:1fr;gap:var(--s3);scroll-margin-top:190px}
     .post .read{justify-self:start}
   }
 
@@ -200,7 +200,7 @@
               <span class="prov"><span class="gdot"></span>human-written</span>
             </div>
           </div>
-          <a class="read" href="#" aria-label="Read: The graph is a theory">Read <span class="arr">-></span></a>
+          <a class="read" href="#graph-theory" aria-label="Open note: The graph is a theory">Open note <span class="arr">-></span></a>
         </article>
 
         <article class="post" id="runtime-controls" data-lane="graph">
@@ -213,7 +213,7 @@
               <span class="prov"><span class="gdot"></span>from the graph</span>
             </div>
           </div>
-          <a class="read" href="#" aria-label="Read: Runtime-native controls">Read <span class="arr">-></span></a>
+          <a class="read" href="#runtime-controls" aria-label="Open note: Runtime-native controls">Open note <span class="arr">-></span></a>
         </article>
 
         <article class="post" id="open-data" data-lane="ratified">
@@ -226,10 +226,10 @@
               <span class="prov ok">ratified</span>
             </div>
           </div>
-          <a class="read" href="#" aria-label="Read: Open data, proprietary intelligence">Read <span class="arr">-></span></a>
+          <a class="read" href="#open-data" aria-label="Open note: Open data, proprietary intelligence">Open note <span class="arr">-></span></a>
         </article>
 
-        <article class="post" data-lane="essays">
+        <article class="post" id="legibility-wedge" data-lane="essays">
           <div><span class="lanepill essays">Essays</span></div>
           <div>
             <h3>Legibility is the wedge for agentic software</h3>
@@ -239,10 +239,10 @@
               <span class="prov"><span class="gdot"></span>human-written</span>
             </div>
           </div>
-          <a class="read" href="#" aria-label="Read: Legibility is the wedge for agentic software">Read <span class="arr">-></span></a>
+          <a class="read" href="#legibility-wedge" aria-label="Open note: Legibility is the wedge for agentic software">Open note <span class="arr">-></span></a>
         </article>
 
-        <article class="post" data-lane="graph">
+        <article class="post" id="domain-explorations-matter" data-lane="graph">
           <div><span class="lanepill graph">From the graph</span></div>
           <div>
             <h3>Why domain explorations matter</h3>
@@ -252,10 +252,10 @@
               <span class="prov"><span class="gdot"></span>from the graph</span>
             </div>
           </div>
-          <a class="read" href="#" aria-label="Read: Why domain explorations matter">Read <span class="arr">-></span></a>
+          <a class="read" href="#domain-explorations-matter" aria-label="Open note: Why domain explorations matter">Open note <span class="arr">-></span></a>
         </article>
 
-        <article class="post" data-lane="ratified">
+        <article class="post" id="no-rug-pull-license" data-lane="ratified">
           <div><span class="lanepill ratified">Ratified</span></div>
           <div>
             <h3>No rug-pull means more than a license</h3>
@@ -265,7 +265,7 @@
               <span class="prov ok">ratified</span>
             </div>
           </div>
-          <a class="read" href="#" aria-label="Read: No rug-pull means more than a license">Read <span class="arr">-></span></a>
+          <a class="read" href="#no-rug-pull-license" aria-label="Open note: No rug-pull means more than a license">Open note <span class="arr">-></span></a>
         </article>
       </div>
     </div>
