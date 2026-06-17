@@ -122,8 +122,8 @@ Home  (/)
 │   ├─ operating loop
 │   └─ latest perspectives strip
 ├─ Perspectives  (/perspectives)              ← growing content library
-│   ├─ lanes: All · Essays · From the graph · Ratified
-│   ├─ posts (with provenance tags)
+│   ├─ Kind filter: All · Essays · From the graph
+│   ├─ posts (with one provenance line)
 │   └─ Subscribe (email + RSS)
 ├─ Community  (/community)
 │   ├─ Contribute · Showcase · Release notes · Discussions
@@ -141,7 +141,7 @@ Home  (/)
 1. **Middle story section name** → **Thesis** (kept; not renamed).
 2. **Graphcasting** → **cut entirely for v1.** No public-facing use anywhere. Revisit only if the term lands internally.
 3. **Growing content library** → **Perspectives**.
-4. **Perspective lane labels** → *All · Essays · From the graph · Ratified*.
+4. **Perspective Kind filters** → *All · Essays · From the graph*. Ratified is status, not a filter.
 
 ---
 
