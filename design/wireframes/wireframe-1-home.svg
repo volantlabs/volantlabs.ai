@@ -54,5 +54,5 @@
   <text x="660" y="1066" font-size="10" font-style="italic" fill="#5B7FA6">annotation: graduation path present but not a loud sales pillar</text>
 
   <!-- footer -->
-  <rect x="40" y="1090" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="1120" font-size="10" fill="#888">About · Open by Design · License + no-rug-pull · Trademark · GitHub · RSS / subscribe · Contact</text><rect x="60" y="1136" width="120" height="10" fill="#e0e0e0"/>
+  <rect x="40" y="1090" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="1120" font-size="10" fill="#888">About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe · Contact</text><rect x="60" y="1136" width="120" height="10" fill="#e0e0e0"/>
 </svg>

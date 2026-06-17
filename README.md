@@ -1,6 +1,6 @@
 # volantlabs.ai
 
-Mid-fidelity prototype of **volantlabs.ai** — the public, open-source site for the Open Engine. Seven cross-linked pages sharing one design system.
+Mid-fidelity prototype of **volantlabs.ai** — the public story site for the Open Engine. Seven cross-linked pages sharing one design system.
 
 ## View it
 

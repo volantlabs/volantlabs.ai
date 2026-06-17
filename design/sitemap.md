@@ -29,7 +29,7 @@
 `volantlabs.ai` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `GitHub` (ghost button) · `Platform` (quiet button)
 
 **Footer (every page):**
-About · Open by Design · License + no-rug-pull · Trademark · GitHub · RSS / subscribe · Contact
+About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe · Contact
 
 ---
 
@@ -58,10 +58,10 @@ About · Open by Design · License + no-rug-pull · Trademark · GitHub · RSS /
 
 ### 3.1 Engine  *(wireframe-2)* — the flagship, the one property
 **Job:** get an engineer from landing to "running it tonight."
-- **Hero** — "The Engine — the open-source typed graph"; CTAs *Quickstart*, *Download*.
+- **Hero** — "The Engine — the typed graph you can run locally"; CTAs *Quickstart*, *Download*.
 - **Two-column** — *What it is* (typed graph · schema language · storage · export) | *Terminal* quickstart snippet (`$ run it tonight`).
 - **Capabilities** — Schema language · Open-standards export (JSON-LD · RDF · CSV) · Public docs.
-- **Why open · license** — Apache-2.0 + no-rug-pull covenant, stated up front as a trust signal.
+- **Why open · promise** — public repository + no-rug-pull covenant, stated up front as a trust signal.
 
 ### 3.2 Domain Explorations  *(wireframe-3)* — proof by worked models
 **Job:** show what the engine can model; let people bootstrap a real graph.
@@ -112,7 +112,7 @@ Home  (/)
 ├─ Engine  (/engine)                         ← flagship · one property
 │   ├─ Quickstart / terminal
 │   ├─ Capabilities (schema · export · docs)
-│   └─ Why open · license (Apache-2.0 + no-rug-pull)
+│   └─ Why open · promise (public repo + no-rug-pull)
 ├─ Domain Explorations  (/explorations)
 │   ├─ filter: packs · reference builds · over-the-air ★
 │   ├─ exploration cards (type + freshness)
