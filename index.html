@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!--
+@app-docs
+name: volantlabs.ai
+purpose: Public story site for the Open Engine, with a cinematic thesis page, growing perspectives library, quickstart-oriented engine page, domain examples, community support, and a quiet path to the governed Volant platform.
+
+writes: None (static public site prototype)
+
+features:
+  - Home page with animated node-edge hero and audience-lane routing
+  - Cinematic Thesis page that tells the Open Engine story
+  - Perspectives library for essays, graph-sourced dispatches, and ratified artifacts
+  - Engine quickstart page with open-source positioning
+  - Domain Explorations, Community, and Platform pages
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>volantlabs.ai — governed intelligence you can run tonight</title>
+<meta name="description" content="Public story site for the Open Engine: run the open graph engine, explore worked models, read the thesis, and graduate to governed intelligence when needed.">
+<meta name="kesher:name" content="volantlabs.ai">
+<meta name="kesher:description" content="Public story site for the Open Engine, with a cinematic thesis page, perspectives library, quickstart-oriented engine page, and quiet path to the governed Volant platform.">
+<meta name="kesher:type" content="content">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---- Brand tokens (resolved from volant_base BrandGuideline nodes) ---- */
+  :root{
+    --navy:#001E50;       /* secondary — headers, trust, dark surfaces */
+    --orange:#D15B21;     /* primary — CTAs, emphasis, active nodes    */
+    --orange-600:#A8491A; /* hover */
+    --orange-50:#FEF3ED;
+    --white:#F5F5F5;       /* warm white */
+    --charcoal:#333333;
+    --blue-50:#E6EAF2;
+    --line:#E2E6EE;
+
+    --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    /* 4px spacing scale */
+    --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font);font-weight:400;line-height:1.5;
+    color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{line-height:1.2;color:var(--navy);font-weight:600}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
+  @media(max-width:760px){.wrap{padding:0 20px}}
+
+  /* focus states — WCAG AA */
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
+
+  /* ---- Nav ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:var(--s8);height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);
+    font-size:18px;letter-spacing:-.01em}
+  .brand .glyph{width:22px;height:22px;flex:none}
+  .navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
+  .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;
+    background:var(--orange);transition:right .2s ease}
+  .navlinks a:hover::after{right:0}
+  .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;
+    font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;
+    transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .btn-primary{background:var(--orange-600);color:#fff}
+  .btn-primary:hover{background:var(--navy)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--navy)}
+  .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
+  .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
+  .btn-sm{height:38px;padding:0 14px;font-size:13px}
+  @media(max-width:880px){
+    nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
+    .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
+    .navlinks a{white-space:nowrap}
+  }
+  @media(max-width:560px){
+    .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
+    .navlinks a{font-size:14px}
+  }
+  @media(max-width:520px){
+    .brand{font-size:16px;gap:8px}
+    .brand .glyph{width:20px;height:20px}
+    .navright{width:auto;margin-left:auto}
+    .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+    .navright .btn-primary{padding:0 12px}
+  }
+
+  /* ---- Hero ---- */
+  .hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s12);align-items:center;
+    padding-top:var(--s24);padding-bottom:var(--s24);min-height:540px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
+  h1.headline{font-size:clamp(34px,4.6vw,60px);font-weight:800;color:#fff;letter-spacing:-.02em;margin:var(--s4) 0 var(--s6)}
+  .hero p.sub{font-size:18px;font-weight:400;color:#c7d0e0;max-width:30ch}
+  .meta-row{display:flex;flex-wrap:wrap;gap:var(--s6);margin-top:var(--s6);font-size:13px;color:#9fb0cc}
+  .meta-row span{display:inline-flex;align-items:center;gap:7px}
+  .meta-row .tick{color:var(--orange-600);font-weight:700}
+  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
+  .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
+  .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .hero-figure{position:relative;height:420px}
+  #graph{width:100%;height:100%;display:block}
+  .figcap{position:absolute;bottom:-6px;left:0;font-size:12px;color:#7f90ad;font-weight:300}
+  @media(max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;gap:var(--s8);min-height:0}
+    .hero-figure{height:300px;order:-1}
+  }
+
+  /* ---- Section scaffolding ---- */
+  section.band{padding:var(--s24) 0}
+  @media(max-width:760px){section.band{padding:var(--s16) 0}}
+  .band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
+  .band-head h2{font-size:clamp(24px,3vw,32px);font-weight:700}
+  .band-head .lane{font-size:13px;font-weight:600;color:var(--orange-600)}
+  .lead{font-size:17px;color:#52596b;max-width:62ch;margin-top:var(--s2)}
+
+  /* ---- Featured trio ---- */
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+  @media(max-width:880px){.trio{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;
+    transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,30,80,.10)}
+  .card.flagship{border-color:#c9d3e6;box-shadow:0 8px 24px rgba(0,30,80,.07)}
+  .card .thumb{height:150px;position:relative;background:var(--navy);overflow:hidden}
+  .card .thumb svg{position:absolute;inset:0;width:100%;height:100%}
+  .card .body{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s2);flex:1}
+  .tag{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;background:var(--orange-50);color:var(--orange-600)}
+  .tag.flag{background:var(--blue-50);color:var(--navy)}
+  .card h3{font-size:18px;font-weight:600}
+  .card p{font-size:14px;color:#5a6275}
+  .card .more{margin-top:auto;font-weight:600;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center}
+  .card:hover .more .arr{transform:translateX(3px)}
+  .more .arr{transition:transform .15s ease}
+
+  /* ---- Perspectives feed ---- */
+  .feed{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .feed a.row{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s6);align-items:center;
+    padding:18px var(--s6);border-bottom:1px solid var(--line);transition:background .12s ease}
+  .feed a.row:last-child{border-bottom:0}
+  .feed a.row:hover{background:#fafbfd}
+  .feed .pill{font-size:11px;font-weight:600;color:var(--navy);background:var(--blue-50);
+    padding:5px 10px;border-radius:6px;white-space:nowrap}
+  .feed .pill .lane{color:var(--orange-600)}
+  .feed .ftitle{font-weight:500;font-size:15px;color:var(--charcoal)}
+  .feed .read{font-size:13px;font-weight:600;color:var(--orange-600);white-space:nowrap}
+  @media(max-width:620px){.feed a.row{grid-template-columns:1fr;gap:8px}.feed .read{justify-self:start}}
+
+  /* ---- Flywheel ---- */
+  .flywheel{background:var(--white);border-radius:16px;padding:var(--s12) var(--s8)}
+  .fly-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);
+    text-align:center;margin-bottom:var(--s8)}
+  .steps{display:flex;align-items:stretch;gap:var(--s2);justify-content:center;flex-wrap:wrap}
+  .step{flex:1;min-width:150px;max-width:210px;background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:var(--s6) var(--s4);text-align:center;position:relative}
+  .step .num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;
+    font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto var(--s3)}
+  .step h4{color:var(--navy);font-size:15px;font-weight:600;margin-bottom:4px}
+  .step p{font-size:12.5px;color:#5a6275;line-height:1.45}
+  .step.compound .num{background:var(--orange)}
+  .step .conn{position:absolute;right:-14px;top:42px;color:#c4ccda;font-size:18px;font-weight:700;z-index:2}
+  .step:last-child .conn{display:none}
+  @media(max-width:880px){.step .conn{display:none}.step{max-width:none}}
+
+  /* ---- Community + quiet platform ---- */
+  .duo{display:grid;grid-template-columns:1.7fr 1fr;gap:var(--s6)}
+  @media(max-width:880px){.duo{grid-template-columns:1fr}}
+  .community{background:var(--navy);color:#fff;border-radius:16px;padding:var(--s12);position:relative;overflow:hidden}
+  .community h2{color:#fff;font-size:28px}
+  .community p{color:#c7d0e0;margin:var(--s3) 0 var(--s6);max-width:46ch}
+  .community .ghosts{position:absolute;right:-40px;top:-40px;opacity:.5}
+  .platform{border:1px dashed #c4ccda;border-radius:16px;padding:var(--s8);background:#fff;
+    display:flex;flex-direction:column;gap:var(--s3)}
+  .platform .kicker{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a93a6}
+  .platform h3{font-size:20px}
+  .platform p{font-size:14px;color:#5a6275}
+  .platform a.go{margin-top:auto;font-weight:600;color:var(--navy);display:inline-flex;gap:7px;align-items:center}
+  .platform a.go:hover{color:var(--orange-600)}
+
+  /* ---- Footer ---- */
+  footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
+  .foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);
+    border-bottom:1px solid #474747}
+  footer .brand{color:#fff}
+  .foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
+  .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
+  .foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;
+    padding-top:var(--s6);font-size:13px;color:#9aa0ab}
+  .foot-bottom .nrp{color:var(--orange-50)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html" aria-label="volantlabs.ai home">
+        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="5" y1="6" x2="19" y2="6" stroke="#F5F5F5" stroke-width="0"/>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <circle cx="6" cy="6" r="3" fill="#001E50"/>
+          <circle cx="18" cy="18" r="3" fill="#001E50"/>
+          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+        </svg>
+        volantlabs.ai
+      </a>
+      <div class="navlinks">
+        <a href="engine.html">Engine</a>
+        <a href="domain-explorations.html">Domain Explorations</a>
+        <a href="thesis.html">Thesis</a>
+        <a href="perspectives.html">Perspectives</a>
+        <a href="community.html">Community</a>
+      </div>
+      <div class="navright">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/volantpartners/kesher">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-quiet" href="platform.html">Platform</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Open source · Apache-2.0</span>
+      <h1 class="headline">Run the open engine tonight.</h1>
+      <p class="sub">A typed, agent-native knowledge graph you can clone, seed, and query before morning — no account, no lock-in.</p>
+      <div class="meta-row">
+        <span><span class="tick">✓</span> No lock-in</span>
+        <span><span class="tick">✓</span> Full-fidelity export</span>
+        <span><span class="tick">✓</span> Governed when you graduate</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="engine.html">Quickstart
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/volantpartners/kesher">View on GitHub</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <canvas id="graph" aria-label="Animated node-and-edge knowledge graph"></canvas>
+      <span class="figcap">Live graph — meaning enforced where execution happens.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED TRIO ============ -->
+<section class="band" id="engine">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Start here</h2>
+      <span class="lane">For engineers · run it tonight</span>
+    </div>
+    <div class="trio">
+      <!-- flagship -->
+      <article class="card flagship">
+        <div class="thumb"><svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <line x1="60" y1="40" x2="160" y2="75" stroke="#F5F5F5" stroke-opacity=".4" stroke-width="1.4"/>
+          <line x1="160" y1="75" x2="250" y2="45" stroke="#F5F5F5" stroke-opacity=".4" stroke-width="1.4"/>
+          <line x1="160" y1="75" x2="120" y2="120" stroke="#F5F5F5" stroke-opacity=".4" stroke-width="1.4"/>
+          <line x1="160" y1="75" x2="230" y2="115" stroke="#F5F5F5" stroke-opacity=".4" stroke-width="1.4"/>
+          <circle cx="60" cy="40" r="7" fill="#E6EAF2"/><circle cx="250" cy="45" r="7" fill="#E6EAF2"/>
+          <circle cx="120" cy="120" r="6" fill="#E6EAF2"/><circle cx="230" cy="115" r="6" fill="#E6EAF2"/>
+          <circle cx="160" cy="75" r="11" fill="#D15B21"/>
+        </svg></div>
+        <div class="body">
+          <span class="tag flag">Flagship</span>
+          <h3>The Open Engine</h3>
+          <p>The typed graph, traversal layer, and agent runtime — the substrate, open and yours to run.</p>
+          <a class="more" href="#">Read the quickstart <span class="arr">→</span></a>
+        </div>
+      </article>
+      <!-- satellite 1 -->
+      <article class="card">
+        <div class="thumb"><svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <line x1="90" y1="50" x2="170" y2="55" stroke="#F5F5F5" stroke-opacity=".35" stroke-width="1.2"/>
+          <line x1="170" y1="55" x2="240" y2="95" stroke="#F5F5F5" stroke-opacity=".35" stroke-width="1.2"/>
+          <line x1="170" y1="55" x2="110" y2="105" stroke="#F5F5F5" stroke-opacity=".35" stroke-width="1.2"/>
+          <circle cx="90" cy="50" r="6" fill="#E6EAF2"/><circle cx="240" cy="95" r="6" fill="#E6EAF2"/>
+          <circle cx="110" cy="105" r="6" fill="#D15B21"/><circle cx="170" cy="55" r="9" fill="#E6EAF2"/>
+        </svg></div>
+        <div class="body">
+          <span class="tag">Domain exploration</span>
+          <h3>The aerospace supply graph</h3>
+          <p>A worked model: parts, suppliers, and obligations as one queryable, governed structure.</p>
+          <a class="more" href="domain-explorations.html">Explore the model <span class="arr">→</span></a>
+        </div>
+      </article>
+      <!-- satellite 2 -->
+      <article class="card">
+        <div class="thumb"><svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <line x1="70" y1="75" x2="150" y2="45" stroke="#F5F5F5" stroke-opacity=".35" stroke-width="1.2"/>
+          <line x1="150" y1="45" x2="150" y2="110" stroke="#F5F5F5" stroke-opacity=".35" stroke-width="1.2"/>
+          <line x1="150" y1="45" x2="245" y2="70" stroke="#F5F5F5" stroke-opacity=".35" stroke-width="1.2"/>
+          <circle cx="70" cy="75" r="6" fill="#E6EAF2"/><circle cx="150" cy="110" r="6" fill="#E6EAF2"/>
+          <circle cx="245" cy="70" r="6" fill="#E6EAF2"/><circle cx="150" cy="45" r="9" fill="#D15B21"/>
+        </svg></div>
+        <div class="body">
+          <span class="tag">Thesis</span>
+          <h3>Why the graph is a theory</h3>
+          <p>The thesis in 12 minutes: why agents need a substrate that carries meaning, not just text.</p>
+          <a class="more" href="thesis.html">Read the story <span class="arr">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSPECTIVES FEED ============ -->
+<section class="band" id="thesis" style="padding-top:0">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Latest perspectives</h2>
+      <a class="lane" href="perspectives.html">View library →</a>
+    </div>
+    <div class="feed">
+      <a class="row" href="perspectives.html#graph-theory">
+        <span class="pill">Jun 12 · <span class="lane">Substrate</span></span>
+        <span class="ftitle">The graph is a theory: legibility as the wedge for agentic software</span>
+        <span class="read">Read →</span>
+      </a>
+      <a class="row" href="perspectives.html#runtime-controls">
+        <span class="pill">Jun 05 · <span class="lane">Governance</span></span>
+        <span class="ftitle">Runtime-native controls: why policy belongs where execution happens</span>
+        <span class="read">Read →</span>
+      </a>
+      <a class="row" href="perspectives.html#open-data">
+        <span class="pill">May 28 · <span class="lane">Open data</span></span>
+        <span class="ftitle">Open data, proprietary intelligence — drawing the line that compounds</span>
+        <span class="read">Read →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLYWHEEL ============ -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="flywheel">
+      <div class="fly-title">How it works — the flywheel</div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h4>Seed</h4><p>Clone the engine and load your first nodes and edges.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">2</div><h4>Meaning</h4><p>Types and traversals make the data legible to agents.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">3</div><h4>Governance</h4><p>Attach controls at runtime, where execution actually happens.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">4</div><h4>Graduate</h4><p>Move to the governed platform when you need scale — full export, no rewrite.</p><span class="conn">→</span></div>
+        <div class="step compound"><div class="num">5</div><h4>Compound</h4><p>Coherence holds as the system grows. Meaning accrues.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY + QUIET PLATFORM ============ -->
+<section class="band" id="community" style="padding-top:0">
+  <div class="wrap">
+    <div class="duo">
+      <div class="community">
+        <svg class="ghosts" width="220" height="220" viewBox="0 0 220 220" fill="none" aria-hidden="true">
+          <line x1="40" y1="60" x2="130" y2="40" stroke="#F5F5F5" stroke-opacity=".25"/>
+          <line x1="130" y1="40" x2="180" y2="120" stroke="#F5F5F5" stroke-opacity=".25"/>
+          <line x1="130" y1="40" x2="90" y2="140" stroke="#F5F5F5" stroke-opacity=".25"/>
+          <circle cx="40" cy="60" r="6" fill="#E6EAF2" fill-opacity=".7"/>
+          <circle cx="180" cy="120" r="6" fill="#E6EAF2" fill-opacity=".7"/>
+          <circle cx="90" cy="140" r="6" fill="#D15B21"/>
+          <circle cx="130" cy="40" r="9" fill="#E6EAF2" fill-opacity=".7"/>
+        </svg>
+        <h2>Build in the open with us</h2>
+        <p>Contributors, model-builders, and the curious. Star the repo, open an issue, or bring your domain and model it out loud.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#">Get started</a>
+          <a class="btn btn-ghost" href="#">Join the discussion</a>
+        </div>
+      </div>
+      <div class="platform" id="platform">
+        <span class="kicker">Need governance?</span>
+        <h3>The governed platform</h3>
+        <p>When integrity, multi-tenant scale, and audit matter, graduate to the commercial platform. Your graph comes with you.</p>
+        <a class="go" href="platform.html">See the Platform <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand" style="font-size:20px">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
+            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+          </svg>
+          volantlabs.ai
+        </div>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="engine.html">Engine</a><a href="domain-explorations.html">Domain Explorations</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
+        </div>
+        <div class="foot-col">
+          <h5>Open</h5>
+          <a href="#">Open by Design</a><a href="#">License + no-rug-pull</a><a href="#">Trademark policy</a><a href="https://github.com/volantpartners/kesher">GitHub</a>
+        </div>
+        <div class="foot-col">
+          <h5>Stay close</h5>
+          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="#">Contact</a><a href="platform.html">Platform</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Volant Partners · Apache-2.0</span>
+      <span class="nrp">No rug-pull: the open engine stays open.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- Animated force-directed hero graph ----
+   Brand motion: deliberate, edges draw before nodes fill, navy field,
+   warm-white/light-blue nodes, orange active accents. */
+(function(){
+  const canvas=document.getElementById('graph');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  let W,H,DPR;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=canvas.clientWidth; H=canvas.clientHeight;
+    canvas.width=W*DPR; canvas.height=H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  // Build a small typed graph: 1 hub, ring of primaries, a few leaves.
+  const N=14, nodes=[], edges=[];
+  function seed(){
+    nodes.length=0; edges.length=0;
+    const cx=W*0.5, cy=H*0.5, R=Math.min(W,H)*0.32;
+    nodes.push({x:cx,y:cy,r:9,active:true,vx:0,vy:0,hub:true}); // hub (orange)
+    const ring=7;
+    for(let i=0;i<ring;i++){
+      const a=(i/ring)*Math.PI*2 - Math.PI/2;
+      nodes.push({x:cx+Math.cos(a)*R,y:cy+Math.sin(a)*R,r:5.5,
+        active:(i%4===0),vx:0,vy:0});
+      edges.push([0,i+1]);
+    }
+    // leaves hung off ring nodes
+    let idx=ring+1;
+    for(let i=0;i<N-ring-1;i++){
+      const parent=1+(i%ring);
+      const p=nodes[parent];
+      const a=Math.random()*Math.PI*2;
+      nodes.push({x:p.x+Math.cos(a)*R*0.55,y:p.y+Math.sin(a)*R*0.55,r:4,
+        active:(i===2),vx:0,vy:0});
+      edges.push([parent,idx]); idx++;
+    }
+  }
+
+  function step(){
+    // light force sim: repulsion + spring on edges + gentle centering
+    const cx=W*0.5, cy=H*0.5;
+    for(let i=0;i<nodes.length;i++){
+      const a=nodes[i];
+      for(let j=i+1;j<nodes.length;j++){
+        const b=nodes[j];
+        let dx=a.x-b.x, dy=a.y-b.y; let d2=dx*dx+dy*dy+0.01;
+        const f=380/d2;
+        const d=Math.sqrt(d2);
+        a.vx+=(dx/d)*f; a.vy+=(dy/d)*f;
+        b.vx-=(dx/d)*f; b.vy-=(dy/d)*f;
+      }
+      a.vx+=(cx-a.x)*0.0016; a.vy+=(cy-a.y)*0.0016;
+    }
+    edges.forEach(([i,j])=>{
+      const a=nodes[i],b=nodes[j];
+      let dx=b.x-a.x, dy=b.y-a.y; const d=Math.sqrt(dx*dx+dy*dy)||1;
+      const target=Math.min(W,H)*0.30;
+      const f=(d-target)*0.012;
+      a.vx+=(dx/d)*f; a.vy+=(dy/d)*f;
+      b.vx-=(dx/d)*f; b.vy-=(dy/d)*f;
+    });
+    nodes.forEach(n=>{
+      if(n.hub){return;}
+      n.vx*=0.86; n.vy*=0.86;
+      n.x+=n.vx*0.5; n.y+=n.vy*0.5;
+      const m=18;
+      n.x=Math.max(m,Math.min(W-m,n.x)); n.y=Math.max(m,Math.min(H-m,n.y));
+    });
+  }
+
+  let t=0; // reveal clock
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const edgeReveal=Math.min(1,t/60);          // edges draw first
+    const nodeReveal=Math.max(0,Math.min(1,(t-40)/70)); // nodes fill after
+    // edges
+    edges.forEach(([i,j],k)=>{
+      const a=nodes[i],b=nodes[j];
+      const prog=Math.max(0,Math.min(1,edgeReveal*edges.length - k))/1;
+      const p=Math.max(0,Math.min(1,(edgeReveal*1.2)-(k/edges.length)*0.5));
+      ctx.globalAlpha=0.42*p;
+      ctx.strokeStyle='#F5F5F5'; ctx.lineWidth=1.2;
+      ctx.beginPath(); ctx.moveTo(a.x,a.y);
+      ctx.lineTo(a.x+(b.x-a.x)*p, a.y+(b.y-a.y)*p); ctx.stroke();
+    });
+    ctx.globalAlpha=1;
+    // nodes
+    nodes.forEach(n=>{
+      const r=n.r*nodeReveal;
+      if(r<=0.2) return;
+      if(n.active){
+        ctx.beginPath(); ctx.arc(n.x,n.y,r+5,0,Math.PI*2);
+        ctx.fillStyle='rgba(209,91,33,0.16)'; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(n.x,n.y,r,0,Math.PI*2);
+      ctx.fillStyle=n.active?'#D15B21':'#E6EAF2'; ctx.fill();
+    });
+  }
+
+  function loop(){ if(!reduce){ step(); } t++; draw(); requestAnimationFrame(loop); }
+
+  function init(){ resize(); seed(); t=reduce?200:0; if(reduce){for(let i=0;i<120;i++)step();} loop(); }
+  window.addEventListener('resize',()=>{resize();seed();});
+  init();
+})();
+</script>
+</body>
+</html>

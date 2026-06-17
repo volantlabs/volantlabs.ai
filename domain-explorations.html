@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domain Explorations — worked models you can open · volantlabs.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---- Brand tokens (volant_base BrandGuideline) — shared with home-midfi ---- */
+  :root{
+    --navy:#001E50; --orange:#D15B21; --orange-600:#A8491A; --orange-50:#FEF3ED;
+    --white:#F5F5F5; --charcoal:#333333; --blue-50:#E6EAF2; --line:#E2E6EE;
+    --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);font-weight:400;line-height:1.5;color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.2;color:var(--navy);font-weight:600}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
+  @media(max-width:760px){.wrap{padding:0 20px}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
+
+  /* ---- Nav ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:var(--s8);height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:-.01em}
+  .brand .glyph{width:22px;height:22px;flex:none}
+  .navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
+  .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--orange);transition:right .2s ease}
+  .navlinks a:hover::after,.navlinks a.active::after{right:0}
+  .navlinks a.active{color:var(--navy);font-weight:600}
+  .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .btn-primary{background:var(--orange-600);color:#fff}
+  .btn-primary:hover{background:var(--navy)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--navy)}
+  .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
+  .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
+  .btn-sm{height:38px;padding:0 14px;font-size:13px}
+  @media(max-width:880px){
+    nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
+    .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
+    .navlinks a{white-space:nowrap}
+  }
+  @media(max-width:560px){
+    .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
+    .navlinks a{font-size:14px}
+  }
+  @media(max-width:520px){
+    .brand{font-size:16px;gap:8px}
+    .brand .glyph{width:20px;height:20px}
+    .navright{width:auto;margin-left:auto}
+    .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+    .navright .btn-primary{padding:0 12px}
+  }
+
+  /* ---- Section scaffolding ---- */
+  section.band{padding:var(--s24) 0}
+  @media(max-width:760px){section.band{padding:var(--s16) 0}}
+  .band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
+  .band-head h2{font-size:clamp(24px,3vw,32px);font-weight:700}
+  .band-head .lane{font-size:13px;font-weight:600;color:var(--orange-600)}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:var(--s3)}
+  .chip{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--navy);background:var(--blue-50);padding:5px 10px;border-radius:6px}
+  .more{font-weight:600;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center}
+  .more .arr{transition:transform .15s ease}
+
+  /* ---- Page header band (light) ---- */
+  .pagehead{background:var(--white);border-bottom:1px solid var(--line)}
+  .pagehead .wrap{padding:var(--s16) var(--s12) var(--s12)}
+  .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
+  .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
+  .pagehead h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:var(--s3)}
+  .pagehead p.sub{font-size:18px;color:#52596b;max-width:54ch}
+
+  /* ---- Filter row ---- */
+  .filters{background:#fff;border-bottom:1px solid var(--line)}
+  .filters .wrap{padding:var(--s6) var(--s12);display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+  .tabs{display:flex;gap:var(--s2);flex-wrap:wrap}
+  .tab{font-family:var(--font);font-weight:600;font-size:13px;color:#52596b;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .tab:hover{border-color:#c4ccda;color:var(--navy)}
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .tab .star{color:var(--orange)}
+  .tab.active .star{color:#fff}
+  .filters .cap{margin-left:auto;font-size:13px;color:#52596b}
+  @media(max-width:760px){.filters .cap{margin-left:0;width:100%}}
+
+  /* ---- Featured callout ---- */
+  .featured .wrap{padding-top:var(--s12)}
+  .feat{background:var(--navy);color:var(--white);border-radius:16px;padding:var(--s12);display:grid;grid-template-columns:1.4fr auto;gap:var(--s8);align-items:center;overflow:hidden}
+  .feat .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:var(--s3)}
+  .feat .kicker .star{color:var(--orange);font-size:15px}
+  .feat h3{font-size:clamp(22px,2.6vw,30px);font-weight:800;color:#fff;letter-spacing:-.01em;margin-bottom:var(--s3)}
+  .feat p{font-size:16px;color:#c7d0e0;max-width:54ch}
+  .feat .act{display:flex;justify-content:flex-end}
+  @media(max-width:760px){.feat{grid-template-columns:1fr;gap:var(--s6);padding:var(--s8)}.feat .act{justify-content:flex-start}}
+
+  /* ---- Card grid ---- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+  @media(max-width:880px){.grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,30,80,.10)}
+  .thumb{background:var(--navy);display:block;width:100%}
+  .thumb svg{display:block;width:100%;height:auto}
+  .card-body{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s2);flex:1}
+  .tag{align-self:flex-start;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.02em;text-transform:uppercase;padding:4px 9px;border-radius:5px}
+  .tag.pack{color:var(--navy);background:var(--blue-50)}
+  .tag.ref{color:#52596b;background:#eef0f4}
+  .tag.ota{color:var(--orange-600);background:var(--orange-50)}
+  .card h3{font-size:18px;font-weight:600;margin-top:6px}
+  .card p{font-size:14px;color:#52596b}
+  .fresh{margin-top:auto;padding-top:var(--s3);display:flex;align-items:center;gap:7px;font-size:12px;color:#52596b}
+  .fresh .pip{width:7px;height:7px;border-radius:50%;background:var(--orange);flex:none}
+  .fresh .pip.stale{background:#9aa0ab}
+
+  /* ---- Propose CTA band ---- */
+  .propose{background:var(--white)}
+  .propose .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:flex;align-items:center;justify-content:space-between;gap:var(--s8);flex-wrap:wrap}
+  .propose h3{font-size:clamp(20px,2.4vw,26px);font-weight:700;margin-bottom:var(--s2)}
+  .propose p{font-size:15px;color:#52596b;max-width:52ch}
+
+  /* ---- Footer ---- */
+  footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
+  .foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);border-bottom:1px solid #474747}
+  footer .brand{color:#fff}
+  .foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
+  .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
+  .foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);font-size:13px;color:#9aa0ab}
+  .foot-bottom .nrp{color:var(--orange-50)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html" aria-label="volantlabs.ai home">
+        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
+          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+        </svg>
+        volantlabs.ai
+      </a>
+      <div class="navlinks">
+        <a href="engine.html">Engine</a>
+        <a href="domain-explorations.html" class="active">Domain Explorations</a>
+        <a href="thesis.html">Thesis</a>
+        <a href="perspectives.html">Perspectives</a>
+        <a href="community.html">Community</a>
+      </div>
+      <div class="navright">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/volantpartners/kesher">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-quiet" href="platform.html">Platform</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="pagehead">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Worked models</span>
+    <h2>Domain Explorations</h2>
+    <p class="sub">Worked models you can open, read, and bootstrap into your own graph.</p>
+  </div>
+</section>
+
+<!-- ============ FILTER ROW ============ -->
+<section class="filters">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="Filter explorations">
+      <button class="tab active" type="button" role="tab" aria-selected="true" data-filter="all" aria-controls="exploration-grid">All</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="pack" aria-controls="exploration-grid">Domain packs</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="ref" aria-controls="exploration-grid">Reference builds</button>
+      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="ota" aria-controls="exploration-grid">Over-the-air <span class="star" aria-hidden="true">★</span></button>
+    </div>
+    <span class="cap">Freshness shown per card.</span>
+  </div>
+</section>
+
+<!-- ============ FEATURED CALLOUT ============ -->
+<section class="band featured">
+  <div class="wrap">
+    <div class="feat">
+      <div class="feat-copy">
+        <span class="kicker"><span class="star" aria-hidden="true">★</span>Over-the-air graphs</span>
+        <h3>Bootstrap a live graph that stays current</h3>
+        <p>Pick an over-the-air model and clone it into your engine with a single command. The model keeps receiving updates over the air, so the topology and reference data stay current without a manual re-import.</p>
+      </div>
+      <div class="act">
+        <a class="btn btn-primary" href="#">Bootstrap it
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARD GRID ============ -->
+<section class="band" style="padding-top:0">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Browse the library</h2>
+      <span class="lane">6 models</span>
+    </div>
+    <div class="grid" id="exploration-grid">
+
+      <!-- Card 1 — Aerospace supply graph -->
+      <article class="card" data-kind="pack">
+        <div class="thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Node-and-edge diagram for the aerospace supply graph.">
+            <g stroke="#5b7bb5" stroke-width="1.4" stroke-opacity=".7">
+              <line x1="80" y1="60" x2="200" y2="100"/><line x1="80" y1="140" x2="200" y2="100"/>
+              <line x1="200" y1="100" x2="320" y2="55"/><line x1="200" y1="100" x2="320" y2="145"/>
+              <line x1="320" y1="55" x2="320" y2="145"/>
+            </g>
+            <circle cx="80" cy="60" r="9" fill="#A9C0E6"/>
+            <circle cx="80" cy="140" r="9" fill="#A9C0E6"/>
+            <circle cx="320" cy="55" r="9" fill="#A9C0E6"/>
+            <circle cx="320" cy="145" r="9" fill="#A9C0E6"/>
+            <circle cx="200" cy="100" r="12" fill="#D15B21"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="tag pack">Domain pack</span>
+          <h3>Aerospace supply graph</h3>
+          <p>Tier-1 suppliers, sub-assemblies, and part lineage mapped end to end.</p>
+          <div class="fresh"><span class="pip"></span>Updated 9 days ago</div>
+        </div>
+      </article>
+
+      <!-- Card 2 — Clinical trial ontology -->
+      <article class="card" data-kind="ref">
+        <div class="thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Node-and-edge diagram for the clinical trial ontology.">
+            <g stroke="#5b7bb5" stroke-width="1.4" stroke-opacity=".7">
+              <line x1="200" y1="50" x2="110" y2="120"/><line x1="200" y1="50" x2="290" y2="120"/>
+              <line x1="110" y1="120" x2="290" y2="120"/><line x1="110" y1="120" x2="160" y2="165"/>
+              <line x1="290" y1="120" x2="240" y2="165"/>
+            </g>
+            <circle cx="200" cy="50" r="12" fill="#D15B21"/>
+            <circle cx="110" cy="120" r="9" fill="#A9C0E6"/>
+            <circle cx="290" cy="120" r="9" fill="#A9C0E6"/>
+            <circle cx="160" cy="165" r="9" fill="#A9C0E6"/>
+            <circle cx="240" cy="165" r="9" fill="#A9C0E6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="tag ref">Reference build</span>
+          <h3>Clinical trial ontology</h3>
+          <p>Protocols, arms, endpoints, and adverse-event links in one typed model.</p>
+          <div class="fresh"><span class="pip stale"></span>Updated 6 weeks ago</div>
+        </div>
+      </article>
+
+      <!-- Card 3 — Defense logistics network -->
+      <article class="card" data-kind="ota">
+        <div class="thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Node-and-edge diagram for the defense logistics network.">
+            <g stroke="#5b7bb5" stroke-width="1.4" stroke-opacity=".7">
+              <line x1="70" y1="100" x2="160" y2="60"/><line x1="70" y1="100" x2="160" y2="140"/>
+              <line x1="160" y1="60" x2="250" y2="100"/><line x1="160" y1="140" x2="250" y2="100"/>
+              <line x1="250" y1="100" x2="340" y2="100"/>
+            </g>
+            <circle cx="70" cy="100" r="9" fill="#A9C0E6"/>
+            <circle cx="160" cy="60" r="9" fill="#A9C0E6"/>
+            <circle cx="160" cy="140" r="9" fill="#A9C0E6"/>
+            <circle cx="250" cy="100" r="12" fill="#D15B21"/>
+            <circle cx="340" cy="100" r="9" fill="#A9C0E6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="tag ota">Over-the-air</span>
+          <h3>Defense logistics network</h3>
+          <p>Depots, lift assets, and resupply routes that refresh over the air.</p>
+          <div class="fresh"><span class="pip"></span>Updated 2 days ago</div>
+        </div>
+      </article>
+
+      <!-- Card 4 — Manufacturing BOM -->
+      <article class="card" data-kind="pack">
+        <div class="thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Node-and-edge diagram for the manufacturing bill of materials.">
+            <g stroke="#5b7bb5" stroke-width="1.4" stroke-opacity=".7">
+              <line x1="200" y1="45" x2="120" y2="105"/><line x1="200" y1="45" x2="280" y2="105"/>
+              <line x1="120" y1="105" x2="85" y2="160"/><line x1="120" y1="105" x2="165" y2="160"/>
+              <line x1="280" y1="105" x2="315" y2="160"/>
+            </g>
+            <circle cx="200" cy="45" r="12" fill="#D15B21"/>
+            <circle cx="120" cy="105" r="9" fill="#A9C0E6"/>
+            <circle cx="280" cy="105" r="9" fill="#A9C0E6"/>
+            <circle cx="85" cy="160" r="8" fill="#A9C0E6"/>
+            <circle cx="165" cy="160" r="8" fill="#A9C0E6"/>
+            <circle cx="315" cy="160" r="8" fill="#A9C0E6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="tag pack">Domain pack</span>
+          <h3>Manufacturing BOM</h3>
+          <p>Multi-level bill of materials with parts, variants, and substitution links.</p>
+          <div class="fresh"><span class="pip stale"></span>Updated 3 weeks ago</div>
+        </div>
+      </article>
+
+      <!-- Card 5 — Healthcare claims graph -->
+      <article class="card" data-kind="ref">
+        <div class="thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Node-and-edge diagram for the healthcare claims graph.">
+            <g stroke="#5b7bb5" stroke-width="1.4" stroke-opacity=".7">
+              <line x1="90" y1="70" x2="190" y2="100"/><line x1="90" y1="130" x2="190" y2="100"/>
+              <line x1="190" y1="100" x2="290" y2="70"/><line x1="190" y1="100" x2="290" y2="130"/>
+              <line x1="290" y1="70" x2="290" y2="130"/>
+            </g>
+            <circle cx="90" cy="70" r="9" fill="#A9C0E6"/>
+            <circle cx="90" cy="130" r="9" fill="#A9C0E6"/>
+            <circle cx="190" cy="100" r="12" fill="#D15B21"/>
+            <circle cx="290" cy="70" r="9" fill="#A9C0E6"/>
+            <circle cx="290" cy="130" r="9" fill="#A9C0E6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="tag ref">Reference build</span>
+          <h3>Healthcare claims graph</h3>
+          <p>Members, providers, claims, and coverage edges modelled for traversal.</p>
+          <div class="fresh"><span class="pip stale"></span>Updated 5 weeks ago</div>
+        </div>
+      </article>
+
+      <!-- Card 6 — Energy grid topology -->
+      <article class="card" data-kind="ota">
+        <div class="thumb">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Node-and-edge diagram for the energy grid topology.">
+            <g stroke="#5b7bb5" stroke-width="1.4" stroke-opacity=".7">
+              <line x1="70" y1="100" x2="150" y2="70"/><line x1="150" y1="70" x2="230" y2="100"/>
+              <line x1="230" y1="100" x2="310" y2="70"/><line x1="230" y1="100" x2="310" y2="135"/>
+              <line x1="150" y1="70" x2="150" y2="140"/><line x1="150" y1="140" x2="230" y2="100"/>
+            </g>
+            <circle cx="70" cy="100" r="9" fill="#A9C0E6"/>
+            <circle cx="150" cy="70" r="9" fill="#A9C0E6"/>
+            <circle cx="150" cy="140" r="9" fill="#A9C0E6"/>
+            <circle cx="230" cy="100" r="12" fill="#D15B21"/>
+            <circle cx="310" cy="70" r="9" fill="#A9C0E6"/>
+            <circle cx="310" cy="135" r="9" fill="#A9C0E6"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="tag ota">Over-the-air</span>
+          <h3>Energy grid topology</h3>
+          <p>Substations, lines, and load nodes that re-sync over the air as the grid shifts.</p>
+          <div class="fresh"><span class="pip"></span>Updated 4 days ago</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROPOSE CTA ============ -->
+<section class="band propose">
+  <div class="wrap">
+    <div class="panel">
+      <div>
+        <h3>Don't see your domain?</h3>
+        <p>Tell us what you'd model. Good proposals become the next worked exploration in this library.</p>
+      </div>
+      <a class="btn btn-primary" href="#">Submit an idea
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand" style="font-size:20px">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
+            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+          </svg>
+          volantlabs.ai
+        </div>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="engine.html">Engine</a><a href="domain-explorations.html">Explorations</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
+        </div>
+        <div class="foot-col">
+          <h5>Open</h5>
+          <a href="#">Open by Design</a><a href="#">License + no-rug-pull</a><a href="#">Trademark policy</a><a href="https://github.com/volantpartners/kesher">GitHub</a>
+        </div>
+        <div class="foot-col">
+          <h5>Stay close</h5>
+          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="#">Contact</a><a href="platform.html">Platform</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Volant Partners · Apache-2.0</span>
+      <span class="nrp">No rug-pull: the open engine stays open.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const explorationTabs = document.querySelectorAll('.tabs [data-filter]');
+  const explorationCards = document.querySelectorAll('#exploration-grid .card');
+
+  explorationTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter;
+
+      explorationTabs.forEach((candidate) => {
+        const isActive = candidate === tab;
+        candidate.classList.toggle('active', isActive);
+        candidate.setAttribute('aria-selected', String(isActive));
+      });
+
+      explorationCards.forEach((card) => {
+        card.hidden = filter !== 'all' && card.dataset.kind !== filter;
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — support and signal · volantlabs.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---- Brand tokens (volant_base BrandGuideline) — shared with home-midfi ---- */
+  :root{
+    --navy:#001E50; --orange:#D15B21; --orange-600:#A8491A; --orange-50:#FEF3ED;
+    --white:#F5F5F5; --charcoal:#333333; --blue-50:#E6EAF2; --line:#E2E6EE;
+    --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);font-weight:400;line-height:1.5;color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.2;color:var(--navy);font-weight:600}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
+  @media(max-width:760px){.wrap{padding:0 20px}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
+
+  /* ---- Nav ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:var(--s8);height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:-.01em}
+  .brand .glyph{width:22px;height:22px;flex:none}
+  .navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
+  .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--orange);transition:right .2s ease}
+  .navlinks a:hover::after,.navlinks a.active::after{right:0}
+  .navlinks a.active{color:var(--navy);font-weight:600}
+  .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .btn-primary{background:var(--orange-600);color:#fff}
+  .btn-primary:hover{background:var(--navy)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--navy)}
+  .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
+  .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
+  .btn-sm{height:38px;padding:0 14px;font-size:13px}
+  @media(max-width:880px){
+    nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
+    .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
+    .navlinks a{white-space:nowrap}
+  }
+  @media(max-width:560px){
+    .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
+    .navlinks a{font-size:14px}
+  }
+  @media(max-width:520px){
+    .brand{font-size:16px;gap:8px}
+    .brand .glyph{width:20px;height:20px}
+    .navright{width:auto;margin-left:auto}
+    .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+    .navright .btn-primary{padding:0 12px}
+  }
+
+  /* ---- Page header band (light) ---- */
+  .pagehead{background:var(--white);border-bottom:1px solid var(--line)}
+  .pagehead .wrap{padding-top:var(--s16);padding-bottom:var(--s16)}
+  .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
+  .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
+  .pagehead h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.02em;margin-bottom:var(--s4)}
+  .pagehead p.sub{font-size:18px;font-weight:400;color:#52596b;max-width:58ch}
+
+  /* ---- Section scaffolding ---- */
+  section.band{padding:var(--s24) 0}
+  @media(max-width:760px){section.band{padding:var(--s16) 0}}
+  .band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
+  .band-head h2{font-size:clamp(24px,3vw,32px);font-weight:700}
+  .band-head .lane{font-size:13px;font-weight:600;color:var(--orange-600)}
+
+  /* community cards — 2x2 */
+  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s6)}
+  @media(max-width:760px){.caps{grid-template-columns:1fr}}
+  .cap{border:1px solid var(--line);border-radius:12px;padding:var(--s6);background:#fff;transition:transform .18s ease,box-shadow .18s ease}
+  .cap:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,30,80,.10)}
+  .cap .ico{width:40px;height:40px;margin-bottom:var(--s3)}
+  .cap h3{font-size:18px;font-weight:600;margin-bottom:6px}
+  .cap p{font-size:14px;color:#5a6275}
+  .cap .more{margin-top:var(--s3);font-weight:600;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center}
+  .cap:hover .more .arr{transform:translateX(3px)}
+  .more .arr{transition:transform .15s ease}
+
+  /* ---- Roadmap · the bank ---- */
+  .roadmap{background:var(--white)}
+  .road-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+  @media(max-width:760px){.road-grid{grid-template-columns:1fr}}
+  .col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:var(--s6)}
+  .col .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s4)}
+  .col .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block}
+  .col ul{list-style:none}
+  .col li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#52596b;padding:7px 0;border-top:1px solid var(--line)}
+  .col li:first-child{border-top:0}
+  .col li .node{width:8px;height:8px;border-radius:50%;flex:none;margin-top:6px;background:var(--navy)}
+  .road-caption{font-size:14px;color:#52596b;margin-top:var(--s8);max-width:64ch}
+
+  /* ---- Footer ---- */
+  footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
+  .foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);border-bottom:1px solid #474747}
+  footer .brand{color:#fff}
+  .foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
+  .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
+  .foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);font-size:13px;color:#9aa0ab}
+  .foot-bottom .nrp{color:var(--orange-50)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html" aria-label="volantlabs.ai home">
+        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
+          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+        </svg>
+        volantlabs.ai
+      </a>
+      <div class="navlinks">
+        <a href="engine.html">Engine</a>
+        <a href="domain-explorations.html">Domain Explorations</a>
+        <a href="thesis.html">Thesis</a>
+        <a href="perspectives.html">Perspectives</a>
+        <a href="community.html" class="active">Community</a>
+      </div>
+      <div class="navright">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/volantpartners/kesher">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-quiet" href="platform.html">Platform</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ PAGE HEADER ============ -->
+<section class="pagehead">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Community</span>
+    <h2>Community</h2>
+    <p class="sub">Most people pull and build. We surface support and signal — not a noisy contributor bazaar.</p>
+  </div>
+</section>
+
+<!-- ============ CARDS · 2x2 ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Ways in</h2>
+      <span class="lane">Support &amp; signal</span>
+    </div>
+    <div class="caps">
+
+      <!-- Contribute · DCO -->
+      <article class="cap">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="12" cy="13" r="3" fill="#001E50"/>
+          <circle cx="28" cy="13" r="3" fill="#001E50"/>
+          <circle cx="20" cy="28" r="3" fill="#D15B21"/>
+          <path d="M12 13l8 15M28 13l-8 15M12 13h16" stroke="#001E50" stroke-width="1.6" stroke-opacity=".55"/>
+        </svg>
+        <h3>Contribute · DCO</h3>
+        <p>Patches welcome. Sign off your commits under the Developer Certificate of Origin and follow the contribution guide.</p>
+        <a class="more" href="#">Read the contribution guide <span class="arr">→</span></a>
+      </article>
+
+      <!-- Showcase · register your graph -->
+      <article class="cap">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="11" r="3" fill="#001E50"/>
+          <circle cx="10" cy="27" r="3" fill="#001E50"/>
+          <circle cx="30" cy="27" r="3" fill="#001E50"/>
+          <circle cx="20" cy="20" r="2.6" fill="#D15B21"/>
+          <path d="M20 11v6M20 20l-9 7M20 20l9 7M10 27h20" stroke="#001E50" stroke-width="1.6" stroke-opacity=".55"/>
+        </svg>
+        <h3>Showcase · register your graph</h3>
+        <p>Tell us what you built. Registration doubles as adoption telemetry — the quietest, truest signal we have.</p>
+        <a class="more" href="#">Register your graph <span class="arr">→</span></a>
+      </article>
+
+      <!-- Release notes · cadence -->
+      <article class="cap">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="13" stroke="#001E50" stroke-width="1.6"/>
+          <path d="M20 12v8l6 4" stroke="#001E50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="20" r="2.4" fill="#D15B21"/>
+        </svg>
+        <h3>Release notes · cadence</h3>
+        <p>Quarterly drops on a 90-day freshness window. Read what changed, what's deprecated, and what's next.</p>
+        <a class="more" href="#">See release notes <span class="arr">→</span></a>
+      </article>
+
+      <!-- Discussions -->
+      <article class="cap">
+        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M9 11h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H16l-5 5v-5H9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" stroke="#001E50" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="14" cy="17.5" r="1.6" fill="#001E50"/>
+          <circle cx="20" cy="17.5" r="1.6" fill="#001E50"/>
+          <circle cx="26" cy="17.5" r="1.6" fill="#D15B21"/>
+        </svg>
+        <h3>Discussions</h3>
+        <p>GitHub Discussions is the lowest-overhead place to ask a question, share a pattern, or surface an edge case.</p>
+        <a class="more" href="#">Open Discussions <span class="arr">→</span></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP · THE BANK ============ -->
+<section class="band roadmap">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Roadmap · the bank</h2>
+      <span class="lane">What's moving</span>
+    </div>
+    <div class="road-grid">
+
+      <div class="col">
+        <span class="kicker"><span class="dot"></span>Next drop</span>
+        <ul>
+          <li><span class="node"></span>Schema diff &amp; migration preview</li>
+          <li><span class="node"></span>Faster bulk node load</li>
+          <li><span class="node"></span>Export round-trip test suite</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <span class="kicker"><span class="dot"></span>Planned</span>
+        <ul>
+          <li><span class="node"></span>Typed traversal query planner</li>
+          <li><span class="node"></span>Constraint annotations in schema</li>
+          <li><span class="node"></span>Read-only graph snapshots</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <span class="kicker"><span class="dot"></span>Banked</span>
+        <ul>
+          <li><span class="node"></span>Pluggable storage backends</li>
+          <li><span class="node"></span>Temporal / versioned edges</li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="road-caption">These items are drawn from the module bank and the domain exploration bank — candidates that have earned a place in line, not promises with dates.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand" style="font-size:20px">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
+            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+          </svg>
+          volantlabs.ai
+        </div>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="engine.html">Engine</a><a href="domain-explorations.html">Explorations</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
+        </div>
+        <div class="foot-col">
+          <h5>Open</h5>
+          <a href="#">Open by Design</a><a href="#">License + no-rug-pull</a><a href="#">Trademark policy</a><a href="https://github.com/volantpartners/kesher">GitHub</a>
+        </div>
+        <div class="foot-col">
+          <h5>Stay close</h5>
+          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="#">Contact</a><a href="platform.html">Platform</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Volant Partners · Apache-2.0</span>
+      <span class="nrp">No rug-pull: the open engine stays open.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

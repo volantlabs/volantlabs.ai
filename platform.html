@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform — the governed graduation path · volantlabs.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---- Brand tokens (volant_base BrandGuideline) — shared with home-midfi ---- */
+  :root{
+    --navy:#001E50; --orange:#D15B21; --orange-600:#A8491A; --orange-50:#FEF3ED;
+    --white:#F5F5F5; --charcoal:#333333; --blue-50:#E6EAF2; --line:#E2E6EE;
+    --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);font-weight:400;line-height:1.5;color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.2;color:var(--navy);font-weight:600}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
+  @media(max-width:760px){.wrap{padding:0 20px}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
+
+  /* ---- Nav ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:var(--s8);height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:-.01em}
+  .brand .glyph{width:22px;height:22px;flex:none}
+  .navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
+  .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--orange);transition:right .2s ease}
+  .navlinks a:hover::after,.navlinks a.active::after{right:0}
+  .navlinks a.active{color:var(--navy);font-weight:600}
+  .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+  .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .btn-primary{background:var(--orange-600);color:#fff}
+  .btn-primary:hover{background:var(--navy)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--navy)}
+  .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
+  .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
+  .btn-sm{height:38px;padding:0 14px;font-size:13px}
+  @media(max-width:880px){
+    nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
+    .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
+    .navlinks a{white-space:nowrap}
+  }
+  @media(max-width:560px){
+    .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
+    .navlinks a{font-size:14px}
+  }
+  @media(max-width:520px){
+    .brand{font-size:16px;gap:8px}
+    .brand .glyph{width:20px;height:20px}
+    .navright{width:auto;margin-left:auto}
+    .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+    .navright .btn-primary{padding:0 12px}
+  }
+
+  /* ---- Hero ---- */
+  .hero{background:var(--navy);color:var(--white);overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s12);align-items:center;padding-top:var(--s24);padding-bottom:var(--s24)}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
+  h1.headline{font-size:clamp(32px,4.2vw,54px);font-weight:800;color:#fff;letter-spacing:-.02em;margin:var(--s4) 0 var(--s6)}
+  .hero p.sub{font-size:18px;font-weight:400;color:#c7d0e0;max-width:46ch}
+  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
+  .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
+  .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+
+  /* hero node-and-edge motif */
+  .heromotif{display:flex;justify-content:center}
+  .heromotif svg{width:100%;max-width:440px;height:auto}
+  @media(max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;gap:var(--s8)}
+    .heromotif{order:2}
+  }
+
+  /* ---- Section scaffolding ---- */
+  section.band{padding:var(--s24) 0}
+  @media(max-width:760px){section.band{padding:var(--s16) 0}}
+  .band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
+  .band-head h2{font-size:clamp(24px,3vw,32px);font-weight:700}
+  .band-head .lane{font-size:13px;font-weight:600;color:var(--orange-600)}
+  .band-sub{color:#52596b;font-size:15px;max-width:54ch;margin-top:calc(-1 * var(--s4));margin-bottom:var(--s8)}
+
+  /* ---- Before / After comparison ---- */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6)}
+  @media(max-width:760px){.compare{grid-template-columns:1fr}}
+  .pane{border-radius:16px;padding:var(--s12);display:flex;flex-direction:column;gap:var(--s4)}
+  .pane.open{background:#fff;border:1px solid var(--line)}
+  .pane.gov{background:var(--navy);border:1px solid var(--navy);position:relative;overflow:hidden}
+  .pane.gov::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
+  .pane .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .pane.open .kicker{color:#5a6275}
+  .pane.gov .kicker{color:#e6c9b6}
+  .pane h3{font-size:22px;font-weight:700}
+  .pane.gov h3{color:#fff}
+  .pane.open h3{color:var(--navy)}
+  .rows{display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s2)}
+  .row{display:flex;align-items:flex-start;gap:var(--s3);font-size:15px}
+  .row .gl{flex:none;width:20px;height:20px;margin-top:1px}
+  .pane.open .row{color:#52596b}
+  .pane.gov .row{color:#dbe3f1}
+  .pane.gov .row strong{color:#fff;font-weight:600}
+  .pane.open .row strong{color:var(--navy);font-weight:600}
+
+  /* ---- Final calm CTA band ---- */
+  .endcta{background:var(--navy);color:var(--white)}
+  .endcta .wrap{text-align:center;padding-top:var(--s24);padding-bottom:var(--s24);display:flex;flex-direction:column;align-items:center;gap:var(--s6)}
+  .endcta h2{font-size:clamp(26px,3.2vw,38px);font-weight:700;color:#fff}
+  .endcta p{font-size:16px;color:#c7d0e0;max-width:48ch}
+  .endcta .note{font-size:13px;color:#8d9ab5;margin-top:calc(-1 * var(--s2))}
+
+  /* ---- Footer ---- */
+  footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
+  .foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);border-bottom:1px solid #474747}
+  footer .brand{color:#fff}
+  .foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
+  .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
+  .foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);font-size:13px;color:#9aa0ab}
+  .foot-bottom .nrp{color:var(--orange-50)}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html" aria-label="volantlabs.ai home">
+        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
+          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+        </svg>
+        volantlabs.ai
+      </a>
+      <div class="navlinks">
+        <a href="engine.html">Engine</a>
+        <a href="domain-explorations.html">Domain Explorations</a>
+        <a href="thesis.html">Thesis</a>
+        <a href="perspectives.html">Perspectives</a>
+        <a href="community.html">Community</a>
+      </div>
+      <div class="navright">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/volantpartners/kesher">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-quiet" href="platform.html">Platform</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Graduation path</span>
+      <h1 class="headline">When you need governance.</h1>
+      <p class="sub">Which agent changed this record, under what policy, approved by whom? — the one question the open engine can't answer alone.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://volantpartners.com">Book a conversation
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="heromotif" role="img" aria-label="A node-and-edge diagram: agent writes flow into a record, gated by a governance checkpoint that records who, what policy, and approval.">
+      <svg viewBox="0 0 440 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- edges -->
+        <path d="M70 70 L210 150" stroke="#3a4c70" stroke-width="1.6"/>
+        <path d="M70 150 L210 150" stroke="#3a4c70" stroke-width="1.6"/>
+        <path d="M70 230 L210 150" stroke="#3a4c70" stroke-width="1.6"/>
+        <path d="M210 150 L370 150" stroke="#D15B21" stroke-width="2"/>
+        <!-- agent nodes -->
+        <circle cx="70" cy="70" r="14" fill="none" stroke="#9fb0d0" stroke-width="1.8"/>
+        <circle cx="70" cy="150" r="14" fill="none" stroke="#9fb0d0" stroke-width="1.8"/>
+        <circle cx="70" cy="230" r="14" fill="none" stroke="#9fb0d0" stroke-width="1.8"/>
+        <text x="70" y="48" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="11" font-weight="600" fill="#c7d0e0">agents</text>
+        <!-- governance gate -->
+        <rect x="184" y="124" width="52" height="52" rx="10" fill="#01163a" stroke="#D15B21" stroke-width="2"/>
+        <path d="M210 138 l11 6 v9 c0 7 -5 11 -11 13 c-6 -2 -11 -6 -11 -13 v-9 z" fill="none" stroke="#D15B21" stroke-width="1.8" stroke-linejoin="round"/>
+        <text x="210" y="200" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="11" font-weight="600" fill="#fff">gate · policy · approval</text>
+        <!-- record node -->
+        <circle cx="370" cy="150" r="16" fill="#D15B21"/>
+        <text x="370" y="186" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="11" font-weight="600" fill="#c7d0e0">record</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEFORE / AFTER ============ -->
+<section class="band">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Same graph. One more layer.</h2>
+      <span class="lane">Open → governed</span>
+    </div>
+    <p class="band-sub">The open engine runs your operations. The governed platform adds the answer to who-did-what — without changing how your graph works.</p>
+    <div class="compare">
+
+      <!-- Open engine -->
+      <div class="pane open">
+        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:#9fb0d0;display:inline-block"></span>On the open engine</span>
+        <h3>Runs the work.</h3>
+        <div class="rows">
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
+            <span><strong>Agents write</strong> directly to the graph.</span>
+          </div>
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
+            <span><strong>Graphs run real operations</strong> end to end.</span>
+          </div>
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
+            <span><strong>No audit answer</strong> when something changes.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Governed platform -->
+      <div class="pane gov">
+        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>On the governed platform</span>
+        <h3>Runs the work — and answers for it.</h3>
+        <div class="rows">
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>Write-back gates</strong> hold every change at the boundary.</span>
+          </div>
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>Audit traces</strong> record who changed what, and when.</span>
+          </div>
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>Approval policies</strong> decide what an agent may commit.</span>
+          </div>
+          <div class="row">
+            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>Accumulated intelligence</strong> compounds across the operation.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="endcta">
+  <div class="wrap">
+    <h2>Ready to graduate?</h2>
+    <p>When the open engine has carried you as far as it can, the governed platform is the next step — at your pace, when the audit question matters.</p>
+    <a class="btn btn-primary" href="https://volantpartners.com">Book a conversation
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <span class="note">Opens the commercial site, volantpartners.com.</span>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand" style="font-size:20px">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
+            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+          </svg>
+          volantlabs.ai
+        </div>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="engine.html">Engine</a><a href="domain-explorations.html">Explorations</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
+        </div>
+        <div class="foot-col">
+          <h5>Open</h5>
+          <a href="#">Open by Design</a><a href="#">License + no-rug-pull</a><a href="#">Trademark policy</a><a href="https://github.com/volantpartners/kesher">GitHub</a>
+        </div>
+        <div class="foot-col">
+          <h5>Stay close</h5>
+          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="#">Contact</a><a href="platform.html">Platform</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Volant Partners · Apache-2.0</span>
+      <span class="nrp">No rug-pull: the open engine stays open.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

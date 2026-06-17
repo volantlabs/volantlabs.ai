@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perspectives — essays, dispatches, and ratified work · volantlabs.ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#001E50; --orange:#D15B21; --orange-600:#A8491A; --orange-50:#FEF3ED;
+    --white:#F5F5F5; --paper:#FAFBFD; --charcoal:#333333; --blue-50:#E6EAF2; --line:#E2E6EE;
+    --font:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);font-weight:400;line-height:1.5;color:var(--charcoal);background:#fff;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.16;color:var(--navy);font-weight:700;letter-spacing:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--s12)}
+  @media(max-width:760px){.wrap{padding:0 20px}}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;gap:var(--s8);min-height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:0}
+  .brand .glyph{width:22px;height:22px;flex:none}
+  .navlinks{display:flex;gap:var(--s6);margin-left:var(--s6)}
+  .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative;white-space:nowrap}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--orange);transition:right .2s ease}
+  .navlinks a:hover::after,.navlinks a.active::after{right:0}
+  .navlinks a.active{color:var(--navy);font-weight:700}
+  .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .btn-primary{background:var(--orange-600);color:#fff}
+  .btn-primary:hover{background:var(--navy)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--navy)}
+  .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);min-height:38px;font-size:13px;font-weight:600}
+  .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
+  .btn-sm{min-height:38px;padding:0 14px;font-size:13px}
+  @media(max-width:980px){
+    nav{height:auto;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
+    .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}
+  }
+  @media(max-width:520px){
+    .brand{font-size:16px;gap:8px}
+    .brand .glyph{width:20px;height:20px}
+    .navright{width:auto;margin-left:auto}
+    .navright .btn{flex:0 0 auto}
+    .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+    .navright .btn-primary{padding:0 12px}
+    .navlinks{overflow:visible;flex-wrap:wrap;gap:var(--s3) var(--s4)}
+    .navlinks a{font-size:14px}
+  }
+
+  .pagehead{background:var(--paper);border-bottom:1px solid var(--line)}
+  .pagehead .wrap{padding-top:var(--s16);padding-bottom:var(--s16);display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:var(--s12);align-items:end}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
+  .pagehead h1{font-size:44px;font-weight:800;margin-bottom:var(--s3)}
+  .pagehead .sub{font-size:18px;color:#52596b;max-width:58ch}
+  .library-note{border:1px solid var(--line);border-radius:8px;background:#fff;padding:var(--s4);font-size:13px;color:#5b6476}
+  .library-note strong{display:block;color:var(--navy);font-size:14px;margin-bottom:4px}
+  @media(max-width:840px){.pagehead .wrap{grid-template-columns:1fr;gap:var(--s4)}.pagehead h1{font-size:36px}}
+
+  .filters{background:#fff;border-bottom:1px solid var(--line)}
+  .filters .wrap{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);padding-bottom:var(--s6)}
+  .tabs{display:flex;gap:var(--s2);flex-wrap:wrap}
+  .tab{font-family:var(--font);font-weight:700;font-size:14px;color:#52596b;background:#fff;border:1px solid var(--line);border-radius:999px;min-height:38px;padding:0 16px;cursor:pointer;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .tab:hover{color:var(--navy);border-color:#c4ccda}
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .filters .caption{margin-left:auto;font-size:13px;color:#52596b}
+  @media(max-width:760px){.filters .caption{margin-left:0;width:100%}}
+
+  section.band{padding:var(--s24) 0}
+  @media(max-width:760px){section.band{padding:var(--s16) 0}}
+  .band-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);margin-bottom:var(--s8)}
+  .band-head h2{font-size:32px}
+  .band-head .lane{font-size:13px;font-weight:700;color:var(--orange-600)}
+
+  .feed{display:grid;grid-template-columns:1fr;gap:var(--s4)}
+  .post{display:grid;grid-template-columns:150px 1fr auto;gap:var(--s6);align-items:start;border:1px solid var(--line);border-radius:8px;padding:var(--s6);background:#fff;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .post[hidden]{display:none}
+  .post:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,30,80,.10);border-color:#c4ccda}
+  .lanepill{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;padding:5px 10px;border-radius:6px;white-space:nowrap;display:inline-flex}
+  .lanepill.essays{color:var(--navy);background:var(--blue-50)}
+  .lanepill.graph{color:var(--orange-600);background:var(--orange-50)}
+  .lanepill.ratified{color:#fff;background:var(--navy)}
+  .post h3{font-size:21px;margin-bottom:6px}
+  .post p{font-size:14px;color:#5f6879;max-width:70ch;margin-bottom:var(--s3)}
+  .post .meta{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;font-size:13px;color:#52596b}
+  .post .prov{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:#52596b}
+  .post .prov .gdot{width:7px;height:7px;border-radius:50%;background:var(--orange);flex:none}
+  .post .prov.ok{color:var(--orange-600)}
+  .post .read{align-self:center;font-weight:700;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+  .post:hover .read .arr{transform:translateX(3px)}
+  .read .arr{transition:transform .15s ease}
+  @media(max-width:760px){
+    .post{grid-template-columns:1fr;gap:var(--s3)}
+    .post .read{justify-self:start}
+  }
+
+  .subscribe{background:var(--paper)}
+  .subscribe .panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:var(--s12);text-align:center}
+  .subscribe h2{font-size:32px;margin-bottom:var(--s2)}
+  .subscribe p{font-size:15px;color:#52596b;max-width:52ch;margin:0 auto var(--s6)}
+  .subform{display:flex;gap:var(--s2);justify-content:center;align-items:center;flex-wrap:wrap}
+  .subform input[type=email]{font-family:var(--font);font-size:14px;color:var(--charcoal);min-height:44px;padding:0 14px;width:300px;max-width:100%;border:1px solid var(--line);border-radius:6px;background:#fff}
+  .subform input[type=email]::placeholder{color:#8b92a3}
+  .subform .rss{font-weight:700;font-size:14px;color:var(--orange-600);display:inline-flex;align-items:center;gap:6px;padding:0 6px}
+  .subform .rss:hover{color:var(--navy)}
+
+  footer{background:var(--charcoal);color:#c9ccd2;padding:var(--s16) 0 var(--s8)}
+  .foot-top{display:flex;justify-content:space-between;gap:var(--s12);flex-wrap:wrap;padding-bottom:var(--s8);border-bottom:1px solid #474747}
+  footer .brand{color:#fff}
+  .foot-cols{display:flex;gap:var(--s16);flex-wrap:wrap}
+  .foot-col h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa0ab;font-weight:700;margin-bottom:var(--s3)}
+  .foot-col a{display:block;font-size:14px;color:#c9ccd2;padding:4px 0}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding-top:var(--s6);font-size:13px;color:#9aa0ab}
+  .foot-bottom .nrp{color:var(--orange-50)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html" aria-label="volantlabs.ai home">
+        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
+          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
+          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+        </svg>
+        volantlabs.ai
+      </a>
+      <div class="navlinks">
+        <a href="engine.html">Engine</a>
+        <a href="domain-explorations.html">Domain Explorations</a>
+        <a href="thesis.html">Thesis</a>
+        <a href="perspectives.html" class="active">Perspectives</a>
+        <a href="community.html">Community</a>
+      </div>
+      <div class="navright">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/volantpartners/kesher">GitHub</a>
+        <a class="btn btn-quiet" href="platform.html">Platform</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="pagehead">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Perspectives</span>
+        <h1>Essays, dispatches, and ratified work.</h1>
+        <p class="sub">The growing content library for the Open Engine: human-written essays, graph-sourced notes, and ratified artifacts with provenance kept visible.</p>
+      </div>
+      <aside class="library-note">
+        <strong>The Thesis is the story.</strong>
+        Perspectives is the library. The thinking can grow here without turning the Thesis page back into a blog index.
+      </aside>
+    </div>
+  </section>
+
+  <section class="filters">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Filter perspectives by lane">
+        <button class="tab active" type="button" role="tab" aria-selected="true" data-filter="all" aria-controls="perspective-feed">All</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="essays" aria-controls="perspective-feed">Essays</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="graph" aria-controls="perspective-feed">From the graph</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="ratified" aria-controls="perspective-feed">Ratified</button>
+      </div>
+      <span class="caption">every item carries a provenance tag</span>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="band-head">
+        <h2>Library</h2>
+        <span class="lane">6 pieces and growing</span>
+      </div>
+      <div class="feed" id="perspective-feed">
+        <article class="post" id="graph-theory" data-lane="essays">
+          <div><span class="lanepill essays">Essays</span></div>
+          <div>
+            <h3>The graph is a theory</h3>
+            <p>Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.</p>
+            <div class="meta">
+              <span>June 11, 2026</span>
+              <span class="prov"><span class="gdot"></span>human-written</span>
+            </div>
+          </div>
+          <a class="read" href="#" aria-label="Read: The graph is a theory">Read <span class="arr">-></span></a>
+        </article>
+
+        <article class="post" id="runtime-controls" data-lane="graph">
+          <div><span class="lanepill graph">From the graph</span></div>
+          <div>
+            <h3>Runtime-native controls: policy where execution happens</h3>
+            <p>A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.</p>
+            <div class="meta">
+              <span>June 4, 2026</span>
+              <span class="prov"><span class="gdot"></span>from the graph</span>
+            </div>
+          </div>
+          <a class="read" href="#" aria-label="Read: Runtime-native controls">Read <span class="arr">-></span></a>
+        </article>
+
+        <article class="post" id="open-data" data-lane="ratified">
+          <div><span class="lanepill ratified">Ratified</span></div>
+          <div>
+            <h3>Open data, proprietary intelligence</h3>
+            <p>The line that lets an open engine stay open while proprietary operational intelligence compounds inside each organization.</p>
+            <div class="meta">
+              <span>May 27, 2026</span>
+              <span class="prov ok">ratified</span>
+            </div>
+          </div>
+          <a class="read" href="#" aria-label="Read: Open data, proprietary intelligence">Read <span class="arr">-></span></a>
+        </article>
+
+        <article class="post" data-lane="essays">
+          <div><span class="lanepill essays">Essays</span></div>
+          <div>
+            <h3>Legibility is the wedge for agentic software</h3>
+            <p>Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.</p>
+            <div class="meta">
+              <span>May 19, 2026</span>
+              <span class="prov"><span class="gdot"></span>human-written</span>
+            </div>
+          </div>
+          <a class="read" href="#" aria-label="Read: Legibility is the wedge for agentic software">Read <span class="arr">-></span></a>
+        </article>
+
+        <article class="post" data-lane="graph">
+          <div><span class="lanepill graph">From the graph</span></div>
+          <div>
+            <h3>Why domain explorations matter</h3>
+            <p>A graph-sourced note on worked models as the bridge between abstract infrastructure and practical adoption.</p>
+            <div class="meta">
+              <span>May 8, 2026</span>
+              <span class="prov"><span class="gdot"></span>from the graph</span>
+            </div>
+          </div>
+          <a class="read" href="#" aria-label="Read: Why domain explorations matter">Read <span class="arr">-></span></a>
+        </article>
+
+        <article class="post" data-lane="ratified">
+          <div><span class="lanepill ratified">Ratified</span></div>
+          <div>
+            <h3>No rug-pull means more than a license</h3>
+            <p>A ratified note on trust signals: permissive license, export path, and a commercial platform that does not compete with the open engine.</p>
+            <div class="meta">
+              <span>April 29, 2026</span>
+              <span class="prov ok">ratified</span>
+            </div>
+          </div>
+          <a class="read" href="#" aria-label="Read: No rug-pull means more than a license">Read <span class="arr">-></span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band subscribe" id="subscribe">
+    <div class="wrap">
+      <div class="panel">
+        <h2>Stay close to the thinking</h2>
+        <p>New essays, graph dispatches, and ratified notes as they land. No noise, just the ideas behind the engine.</p>
+        <form class="subform" onsubmit="return false">
+          <input type="email" name="email" placeholder="you@company.com" aria-label="Email address">
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <a class="rss" href="#" aria-label="Subscribe via RSS">RSS</a>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand" style="font-size:20px">
+          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
+            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+          </svg>
+          volantlabs.ai
+        </div>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h5>Project</h5>
+          <a href="engine.html">Engine</a><a href="domain-explorations.html">Explorations</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
+        </div>
+        <div class="foot-col">
+          <h5>Open</h5>
+          <a href="#">Open by Design</a><a href="#">License + no-rug-pull</a><a href="#">Trademark policy</a><a href="https://github.com/volantpartners/kesher">GitHub</a>
+        </div>
+        <div class="foot-col">
+          <h5>Stay close</h5>
+          <a href="#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="#">Contact</a><a href="platform.html">Platform</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Volant Partners · Apache-2.0</span>
+      <span class="nrp">No rug-pull: the open engine stays open.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const perspectiveTabs = document.querySelectorAll(".tabs [data-filter]");
+  const perspectivePosts = document.querySelectorAll("#perspective-feed .post");
+
+  function filterPerspectivePosts(activeTab) {
+    const filter = activeTab.dataset.filter;
+    perspectiveTabs.forEach((tab) => {
+      const isActive = tab === activeTab;
+      tab.classList.toggle("active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+    });
+    perspectivePosts.forEach((post) => {
+      post.hidden = filter !== "all" && post.dataset.lane !== filter;
+    });
+  }
+
+  perspectiveTabs.forEach((tab) => {
+    tab.addEventListener("click", () => filterPerspectivePosts(tab));
+  });
+
+  const initialPerspectiveTab = document.querySelector(".tabs [aria-selected=\"true\"]");
+  if (initialPerspectiveTab) filterPerspectivePosts(initialPerspectiveTab);
+</script>
+</body>
+</html>

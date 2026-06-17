@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif">
+  <rect x="0" y="0" width="1000" height="1200" fill="#ffffff"/>
+  <text x="40" y="34" font-size="18" font-weight="700" fill="#333">Wireframe — Home  <tspan font-size="12" font-weight="400" fill="#999">· low-fi · volantlabs.ai</tspan></text>
+  <rect x="40" y="48" width="920" height="1130" fill="#ffffff" stroke="#cccccc"/>
+
+  <!-- nav -->
+  <rect x="40" y="48" width="920" height="56" fill="#F2F2F2" stroke="#cccccc"/>
+  <rect x="64" y="68" width="90" height="20" rx="3" fill="#ddd"/><text x="109" y="82" font-size="11" text-anchor="middle" fill="#666">logo</text>
+  <text x="360" y="82" font-size="12" fill="#666">Engine</text><text x="440" y="82" font-size="12" fill="#666">Explorations</text><text x="545" y="82" font-size="12" fill="#666">Thesis</text><text x="615" y="82" font-size="12" fill="#666">Community</text>
+  <rect x="800" y="64" width="60" height="26" rx="4" fill="#ddd"/><text x="830" y="81" font-size="11" text-anchor="middle" fill="#666">GitHub</text>
+  <rect x="872" y="64" width="74" height="26" rx="4" fill="#444"/><text x="909" y="81" font-size="11" text-anchor="middle" fill="#fff">Platform</text>
+
+  <!-- hero -->
+  <rect x="40" y="104" width="920" height="280" fill="#FAFAFA" stroke="#cccccc"/>
+  <rect x="80" y="150" width="430" height="34" rx="3" fill="#e2e2e2"/><text x="92" y="173" font-size="15" font-weight="700" fill="#555">Run the open engine tonight.</text>
+  <rect x="80" y="196" width="380" height="16" rx="3" fill="#ececec"/><rect x="80" y="218" width="340" height="16" rx="3" fill="#ececec"/>
+  <text x="80" y="210" font-size="10" fill="#aaa"></text>
+  <rect x="80" y="252" width="150" height="40" rx="5" fill="#444"/><text x="155" y="277" font-size="12" text-anchor="middle" fill="#fff">Quickstart</text>
+  <rect x="244" y="252" width="130" height="40" rx="5" fill="#fff" stroke="#888"/><text x="309" y="277" font-size="12" text-anchor="middle" fill="#666">View on GitHub</text>
+  <text x="80" y="330" font-size="11" fill="#999">subhead: no lock-in · full-fidelity export · governed when you graduate</text>
+  <rect x="560" y="150" width="360" height="200" fill="#EAEAEA" stroke="#cccccc"/><path d="M560,150 L920,350 M920,150 L560,350" stroke="#dcdcdc"/><text x="740" y="254" font-size="12" text-anchor="middle" fill="#999">node-edge graph viz</text>
+  <text x="700" y="372" font-size="10" font-style="italic" fill="#5B7FA6">annotation: hero answers "what is it / can I run it" in one screen</text>
+
+  <!-- featured trio -->
+  <text x="40" y="416" font-size="13" font-weight="700" fill="#333">Featured trio</text>
+  <text x="200" y="416" font-size="10" font-style="italic" fill="#5B7FA6">launch flagship + 2 satellites</text>
+  <g>
+    <rect x="40" y="428" width="296" height="170" fill="#F2F2F2" stroke="#cccccc"/><rect x="56" y="444" width="264" height="80" fill="#E6E6E6"/><text x="188" y="488" font-size="11" text-anchor="middle" fill="#999">img</text><rect x="56" y="534" width="180" height="14" fill="#e0e0e0"/><rect x="56" y="556" width="240" height="10" fill="#ececec"/><rect x="56" y="572" width="220" height="10" fill="#ececec"/>
+    <rect x="352" y="428" width="296" height="170" fill="#F2F2F2" stroke="#cccccc"/><rect x="368" y="444" width="264" height="80" fill="#E6E6E6"/><text x="500" y="488" font-size="11" text-anchor="middle" fill="#999">img</text><rect x="368" y="534" width="180" height="14" fill="#e0e0e0"/><rect x="368" y="556" width="240" height="10" fill="#ececec"/><rect x="368" y="572" width="220" height="10" fill="#ececec"/>
+    <rect x="664" y="428" width="296" height="170" fill="#F2F2F2" stroke="#cccccc"/><rect x="680" y="444" width="264" height="80" fill="#E6E6E6"/><text x="812" y="488" font-size="11" text-anchor="middle" fill="#999">img</text><rect x="680" y="534" width="180" height="14" fill="#e0e0e0"/><rect x="680" y="556" width="240" height="10" fill="#ececec"/><rect x="680" y="572" width="220" height="10" fill="#ececec"/>
+  </g>
+
+  <!-- perspectives feed -->
+  <text x="40" y="636" font-size="13" font-weight="700" fill="#333">Latest perspectives</text>
+  <text x="230" y="636" font-size="10" font-style="italic" fill="#5B7FA6">content library strip (essays &amp; dispatches)</text>
+  <g>
+    <rect x="40" y="648" width="920" height="44" fill="#F7F7F7" stroke="#ddd"/><rect x="56" y="662" width="70" height="16" fill="#e6e6e6"/><text x="91" y="675" font-size="9" text-anchor="middle" fill="#999">date·lane</text><rect x="140" y="662" width="520" height="16" fill="#ececec"/><text x="900" y="675" font-size="10" fill="#888">read →</text>
+    <rect x="40" y="696" width="920" height="44" fill="#F7F7F7" stroke="#ddd"/><rect x="56" y="710" width="70" height="16" fill="#e6e6e6"/><rect x="140" y="710" width="480" height="16" fill="#ececec"/><text x="900" y="723" font-size="10" fill="#888">read →</text>
+    <rect x="40" y="744" width="920" height="44" fill="#F7F7F7" stroke="#ddd"/><rect x="56" y="758" width="70" height="16" fill="#e6e6e6"/><rect x="140" y="758" width="500" height="16" fill="#ececec"/><text x="900" y="771" font-size="10" fill="#888">read →</text>
+  </g>
+
+  <!-- flywheel / how it works -->
+  <rect x="40" y="812" width="920" height="120" fill="#FAFAFA" stroke="#cccccc"/>
+  <text x="56" y="836" font-size="12" font-weight="700" fill="#555">How it works — the flywheel (5 steps)</text>
+  <g>
+    <rect x="60" y="852" width="150" height="56" fill="#eee" stroke="#ddd"/><rect x="240" y="852" width="150" height="56" fill="#eee" stroke="#ddd"/><rect x="420" y="852" width="150" height="56" fill="#eee" stroke="#ddd"/><rect x="600" y="852" width="150" height="56" fill="#eee" stroke="#ddd"/><rect x="780" y="852" width="160" height="56" fill="#eee" stroke="#ddd"/>
+    <text x="135" y="884" font-size="9" text-anchor="middle" fill="#888">seed</text><text x="315" y="884" font-size="9" text-anchor="middle" fill="#888">meaning</text><text x="495" y="884" font-size="9" text-anchor="middle" fill="#888">governance</text><text x="675" y="884" font-size="9" text-anchor="middle" fill="#888">graduate</text><text x="860" y="884" font-size="9" text-anchor="middle" fill="#888">compound</text>
+  </g>
+
+  <!-- community CTA -->
+  <rect x="40" y="948" width="600" height="100" fill="#F2F2F2" stroke="#cccccc"/><text x="60" y="978" font-size="12" font-weight="700" fill="#555">Join the community</text><rect x="60" y="992" width="380" height="12" fill="#ececec"/><rect x="60" y="1014" width="150" height="32" rx="4" fill="#444"/><text x="135" y="1035" font-size="11" text-anchor="middle" fill="#fff">Get started</text>
+  <!-- quiet platform strip -->
+  <rect x="660" y="948" width="300" height="100" fill="#FAFAFA" stroke="#ddd" stroke-dasharray="4 3"/><text x="680" y="978" font-size="11" font-weight="700" fill="#777">Need governance?</text><rect x="680" y="992" width="240" height="10" fill="#ececec"/><text x="680" y="1034" font-size="10" fill="#888">→ Platform (quiet)</text>
+  <text x="660" y="1066" font-size="10" font-style="italic" fill="#5B7FA6">annotation: graduation path present but not a loud sales pillar</text>
+
+  <!-- footer -->
+  <rect x="40" y="1090" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="1120" font-size="10" fill="#888">About · Open by Design · License + no-rug-pull · Trademark · GitHub · RSS / subscribe · Contact</text><rect x="60" y="1136" width="120" height="10" fill="#e0e0e0"/>
+</svg>
