@@ -90,5 +90,5 @@
   <!-- notes -->
   <text x="40" y="676" fill="#333333" font-size="11.5">Audience lanes:  Engineer → Engine   ·   Curious/builder → Domain Explorations   ·   Thinker → Thesis / Perspectives   ·   Champion → Platform</text>
   <text x="40" y="697" fill="#333333" font-size="11.5">"Graphcasting" cut as a public term — provenance lives in Perspectives.  Platform is a quiet strip, never a sales rail.</text>
-  <text x="40" y="724" fill="#001E50" font-size="11" font-weight="600">Canonical: client_packs/volant/published_apps/volantlabs.ai/design/  ·  governed by Spec 392e552b  ·  boundary: /public/documents/open-engine-governed-boundary.md</text>
+  <text x="40" y="724" fill="#001E50" font-size="11" font-weight="600">Canonical: client_packs/volant/published_apps/volantlabs.ai/design/  ·  governed by Spec 392e552b  ·  boundary: design/sitemap.md §3.6</text>
 </svg>
