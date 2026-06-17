@@ -80,15 +80,14 @@ About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe �
 - **Latest perspectives** — small strip linking into the content library, not the primary page job.
 
 ### 3.4 Perspectives  *(new 2026-06-17)* — content library
-**Job:** hold the growing body of essays, graph dispatches, and ratified artifacts without turning Thesis into a blog index.
+**Job:** hold the growing body of essays and graph dispatches, with ratification shown per piece, without turning Thesis into a blog index.
 
 - **Header** — "Essays, dispatches, and ratified work"; calls out that Thesis is the story and Perspectives is the library.
-- **Lanes / filter** — four content views:
+- **Kind filter** — three content views:
   - *All*
   - *Essays* (was "Human Essays")
   - *From the graph* (was "Graph Dispatches")
-  - *Ratified* (was "Ratified Artifacts")
-- **Provenance tag** — each post keeps a small provenance mark (human-written / from-the-graph / ratified). No "graphcasting" label attached.
+- **Provenance line** — each post keeps one provenance line (byline for essays; exploration or ratification status for graph-drafted pieces). No "graphcasting" label attached.
 - **Subscribe band** — email + RSS.
 
 ### 3.5 Community  *(wireframe-5)* — support + telemetry, iceberg model
