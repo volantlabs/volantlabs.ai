@@ -54,6 +54,7 @@ nav{display:flex;align-items:center;gap:var(--s8);height:64px}
 .btn-quiet{background:transparent;color:#5a6478;border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
 .btn-quiet:hover{color:var(--navy);border-color:#c4ccda}
 .btn-sm{height:38px;padding:0 14px;font-size:13px}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:880px){
   nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
   .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}

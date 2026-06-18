@@ -16,6 +16,7 @@ volantlabs.ai/
 ├── community.html          # Iceberg model — support + telemetry, roadmap "the bank"
 ├── platform.html           # Quiet graduation path to the governed platform
 ├── assets/
+│   ├── images/             # Generated graph-native bitmap visuals for tiles and hero motifs
 │   └── site.css            # Shared shell — tokens + chrome (nav/buttons/sections/footer) + global reduced-motion
 ├── README.md
 └── design/
@@ -30,6 +31,7 @@ Each page is a single self-contained HTML file with the tokens inline (no build 
 - **Type:** Montserrat (300–800).
 - **Color:** navy `#001E50` (headers/trust/dark surfaces), orange `#D15B21` (emphasis/active nodes), orange-600 `#A8491A` (CTA fills and small orange text on white, for AA), orange-50 `#FEF3ED` (tints and dark-footer accents), warm white `#F5F5F5`, charcoal `#333333`, blue-50 `#E6EAF2`.
 - **Motif:** node-and-edge graph visuals only. No pie/donut/3D/clipart/stock photos.
+- **Generated imagery:** site-local WebP assets in `assets/images/` follow the `Flat Design Knowledge Graph` prompt template, `Infographic Dark` visual style, and Volant imagery/color/data-viz guidelines from `volant_base`.
 - **Spacing:** 4px scale, 12-col grid, 1200px max content width.
 - **Accessibility:** WCAG AA contrast, visible focus states, ≥44px touch targets, skip-to-content links, one `<main>` landmark per page, `aria-current="page"` on the active nav link, and a global `prefers-reduced-motion` rule (all in `assets/site.css`).
 
