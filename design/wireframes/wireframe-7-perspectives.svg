@@ -11,7 +11,7 @@
   <text x="472" y="82" font-size="12" fill="#666">Thesis</text>
   <text x="543" y="82" font-size="12" font-weight="700" fill="#333">Perspectives</text>
   <text x="650" y="82" font-size="12" fill="#666">Community</text>
-  <rect x="800" y="64" width="60" height="26" rx="4" fill="#ddd"/><text x="830" y="81" font-size="11" text-anchor="middle" fill="#666">GitHub</text>
+  <rect x="800" y="64" width="60" height="26" rx="4" fill="#ddd"/><text x="830" y="81" font-size="11" text-anchor="middle" fill="#666">Contact</text>
   <rect x="872" y="64" width="74" height="26" rx="4" fill="#444"/><text x="909" y="81" font-size="11" text-anchor="middle" fill="#fff">Platform</text>
 
   <!-- header -->
@@ -94,5 +94,5 @@
 
   <!-- footer -->
   <rect x="40" y="870" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/>
-  <text x="60" y="900" font-size="10" fill="#888">About · Open by Design · Open promise · Issues · GitHub · RSS · Contact</text>
+  <text x="60" y="900" font-size="10" fill="#888">About · Open by Design · Access model · Request access · RSS · Contact</text>
 </svg>

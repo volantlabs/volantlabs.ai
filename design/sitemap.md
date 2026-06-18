@@ -26,10 +26,10 @@
 ## 1. Global shell (every page)
 
 **Top nav (left → right):**
-`volantlabs.ai` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `GitHub` (ghost button) · `Platform` (quiet button)
+`volantlabs.ai` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `Contact` (ghost button) · `Platform` (quiet button)
 
 **Footer (every page):**
-About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe · Contact
+About · Open by Design · Access model · Request access · RSS / subscribe · Contact
 
 ---
 
@@ -37,7 +37,7 @@ About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe �
 
 | Reader | Wants | Primary path |
 |---|---|---|
-| **Engineer** | "Can I run it tonight?" | Home hero → **Engine** (quickstart + terminal) → GitHub |
+| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (preview + terminal-style access model) → request access |
 | **Curious / builder** | "What can it model?" | Home featured trio → **Domain Explorations** → bootstrap a pack |
 | **Thinker** | "What's the idea here?" | Home → **Thesis** (story) → **Perspectives** (library) → subscribe |
 | **Champion** | "When do we need the real thing?" | **Thesis / Engine** → **Platform** (graduation) → book a conversation |
@@ -47,8 +47,8 @@ About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe �
 ## 3. Section detail
 
 ### 3.0 Home  *(wireframe-1)*
-**Job:** answer "what is it / can I run it" in one screen; route the four lanes.
-- **Hero** — headline "Run the open engine tonight."; subhead: no lock-in · full-fidelity export · governed when you graduate; CTAs: *Quickstart* (primary), *View on GitHub*; animated node-edge graph.
+**Job:** answer "what is it / can I evaluate it" in one screen; route the four lanes.
+- **Hero** — headline "Run the open engine tonight."; subhead: no lock-in · full-fidelity export · governed when you graduate; CTAs: *Quickstart* (primary), *Request access*; animated node-edge graph.
 - **Featured trio** — flagship (the Engine) + 2 satellites (a domain exploration, a Thesis essay).
 - **Latest perspectives** — feed strip of recent essays/dispatches linking to the Perspectives library.
 - **Flywheel (5 steps)** — seed → meaning → governance → graduate → compound.
@@ -57,11 +57,11 @@ About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe �
 > Mid-fi update 2026-06-17: the home page keeps the Thesis entry point, and the latest-content strip now routes to Perspectives.
 
 ### 3.1 Engine  *(wireframe-2)* — the flagship, the one property
-**Job:** get an engineer from landing to "running it tonight."
-- **Hero** — "The Engine — the typed graph you can run locally"; CTAs *Quickstart*, *Download*.
-- **Two-column** — *What it is* (typed graph · schema language · storage · export) | *Terminal* quickstart snippet (`$ run it tonight`).
-- **Capabilities** — Schema language · Open-standards export (JSON-LD · RDF · CSV) · Public docs.
-- **Why open · promise** — public repository + no-rug-pull covenant, stated up front as a trust signal.
+**Job:** get an engineer from landing to a preview-access request.
+- **Hero** — "The Engine — the typed graph behind governed AI systems"; CTAs *Request access*, *See the platform*.
+- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style access model.
+- **Capabilities** — Schema language · Open-standards export (JSON-LD · RDF · CSV) · access-pack docs.
+- **Why open · promise** — portability + no-rug-pull covenant, stated up front as a trust signal.
 
 ### 3.2 Domain Explorations  *(wireframe-3)* — proof by worked models
 **Job:** show what the engine can model; let people bootstrap a real graph.
@@ -93,7 +93,7 @@ About · Open by Design · Open promise · Issues · GitHub · RSS / subscribe �
 ### 3.5 Community  *(wireframe-5)* — support + telemetry, iceberg model
 **Job:** support the silent majority who pull & build; capture adoption signal; avoid a noisy contributor bazaar.
 - **Header** — framing: most users pull & build; surface support + telemetry.
-- **Cards (2×2)** — Contribute · DCO (contribution guide) · Showcase · register your graph (= adoption telemetry) · Release notes · cadence (90-day freshness; quarterly drops) · Discussions (GitHub Discussions, lowest overhead).
+- **Cards (2×2)** — Collaborate · Showcase/register your graph (= adoption telemetry) · Release notes/cadence · Questions (email during the test period).
 - **Roadmap · the bank** — next drop / planned / banked (from the module + exploration bank).
 
 ### 3.6 Platform  *(wireframe-6)* — the quiet graduation path
@@ -111,7 +111,7 @@ Home  (/)
 ├─ Engine  (/engine)                         ← flagship · one property
 │   ├─ Quickstart / terminal
 │   ├─ Capabilities (schema · export · docs)
-│   └─ Why open · promise (public repo + no-rug-pull)
+│   └─ Why open · promise (portability + no-rug-pull)
 ├─ Domain Explorations  (/explorations)
 │   ├─ filter: packs · reference builds · over-the-air ★
 │   ├─ exploration cards (type + freshness)
