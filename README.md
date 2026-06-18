@@ -15,9 +15,16 @@ volantlabs.ai/
 ├── perspectives.html       # Essays / From the graph / Ratified (provenance-tagged)
 ├── community.html          # Iceberg model — support + telemetry, roadmap "the bank"
 ├── platform.html           # Quiet graduation path to the governed platform
+├── perspectives/           # Static article detail pages for the Perspectives library
 ├── assets/
 │   ├── images/             # Generated graph-native bitmap visuals for tiles and hero motifs
+│   ├── perspective-article.css # Shared article detail template styles
+│   ├── perspective-article.js  # Shared article detail renderer
+│   ├── perspectives-data.js    # Runtime post manifest + article body/provenance content
 │   └── site.css            # Shared shell — tokens + chrome (nav/buttons/sections/footer) + global reduced-motion
+├── content/
+│   └── perspectives.schema.json # Contract for the Perspectives post manifest shape
+├── feed.xml                # Static RSS feed for Perspectives
 ├── README.md
 └── design/
     ├── sitemap.md          # Full IA / site architecture (the spec)
@@ -41,6 +48,7 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 
 - **"Graphcasting" is cut from v1** — it does not appear anywhere public-facing. The story section is named **Thesis**.
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
+- **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each article page carries the full provenance footer from the approved Kind × Status model. New posts should be added to `assets/perspectives-data.js`, given a stable URL in `perspectives/`, linked from `perspectives.html`, and mirrored into `feed.xml` until a build step automates those copies.
 - **One-property principle:** the site sells the open engine. The commercial **Platform** appears only as a *quiet* graduation path, never a competing pillar.
 - **Audience lanes:** engineer (→ Engine), curious/builder (→ Domain Explorations), thinker (→ Thesis / Perspectives), champion (→ Platform).
 

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://volantlabs.ai/content/perspectives.schema.json",
+  "title": "volantlabs.ai Perspectives post manifest",
+  "type": "object",
+  "required": ["slug", "url", "kind", "kindLabel", "title", "dek", "published", "displayDate", "readingTime", "provenanceLine", "statusLabel", "tags", "body", "provenance", "related"],
+  "properties": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "url": { "type": "string" },
+    "kind": { "type": "string", "enum": ["essays", "graph", "artifact"] },
+    "kindLabel": { "type": "string", "enum": ["Essay", "From the graph", "Artifact"] },
+    "title": { "type": "string", "minLength": 1 },
+    "shortTitle": { "type": "string" },
+    "dek": { "type": "string", "minLength": 1 },
+    "published": { "type": "string", "format": "date" },
+    "displayDate": { "type": "string" },
+    "readingTime": { "type": "string" },
+    "author": { "type": ["string", "null"] },
+    "provenanceLine": { "type": "string" },
+    "statusLabel": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "body": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["heading", "paragraphs"],
+        "properties": {
+          "heading": { "type": "string" },
+          "paragraphs": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      },
+      "minItems": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source", "reasoningLayer", "humanRatifier", "status", "knownUncertainty", "dissent", "nextFalsifier"],
+      "properties": {
+        "source": { "type": "string" },
+        "reasoningLayer": { "type": "string" },
+        "humanRatifier": { "type": "string" },
+        "status": { "type": "string" },
+        "knownUncertainty": { "type": "string" },
+        "dissent": { "type": "string" },
+        "nextFalsifier": { "type": "string" }
+      }
+    },
+    "related": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  }
+}
