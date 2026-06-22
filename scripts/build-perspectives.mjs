@@ -9,6 +9,12 @@ const sourceDir = path.join(siteRoot, "content", "perspectives");
 const articleDir = path.join(siteRoot, "perspectives");
 const assetsDir = path.join(siteRoot, "assets");
 const checkOnly = process.argv.includes("--check");
+const contentSourceName = process.env.PERSPECTIVES_SOURCE || "json";
+const kindLabelsByKind = new Map([
+  ["essays", "Essay"],
+  ["graph", "From the graph"],
+  ["artifact", "Artifact"]
+]);
 
 const manifest = {
   schemaVersion: "2026-06-22.perspectives.v2",
@@ -48,21 +54,37 @@ function toRssDate(isoDate) {
   return date.toUTCString();
 }
 
-async function readPosts() {
-  const files = (await readdir(sourceDir))
-    .filter((file) => file.endsWith(".json") && file !== "schema.json")
-    .sort();
-  const posts = await Promise.all(
-    files.map(async (file) => JSON.parse(await readFile(path.join(sourceDir, file), "utf8")))
-  );
-  posts.sort((a, b) => b.published.localeCompare(a.published));
-  validatePosts(posts);
-  return posts;
+function toShortDate(isoDate) {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  if (!year || !month || !day || !monthNames[month - 1]) throw new Error(`invalid date ${isoDate}`);
+  return `${monthNames[month - 1]} ${day}`;
 }
 
-function validatePosts(posts) {
-  const slugs = new Set();
-  const requiredPostFields = [
+function requireValue(rawPost, field, sourceRef) {
+  const value = rawPost[field];
+  if (value === undefined || value === null || value === "") {
+    throw new Error(`${sourceRef} missing required field ${field}`);
+  }
+  return value;
+}
+
+function requireString(rawPost, field, sourceRef) {
+  const value = requireValue(rawPost, field, sourceRef);
+  if (typeof value !== "string") throw new Error(`${sourceRef} field ${field} must be a string`);
+  return value;
+}
+
+function requireStringArray(rawPost, field, sourceRef) {
+  const value = requireValue(rawPost, field, sourceRef);
+  if (!Array.isArray(value) || !value.length || value.some((item) => typeof item !== "string" || !item)) {
+    throw new Error(`${sourceRef} field ${field} must be a non-empty string array`);
+  }
+  return value;
+}
+
+function normalizePerspectivePost(rawPost, sourceRef) {
+  const requiredPostFields = new Set([
     "slug",
     "url",
     "kind",
@@ -79,7 +101,31 @@ function validatePosts(posts) {
     "body",
     "provenance",
     "related"
-  ];
+  ]);
+  for (const field of requiredPostFields) requireValue(rawPost, field, sourceRef);
+
+  const body = rawPost.body;
+  if (!Array.isArray(body) || !body.length) throw new Error(`${sourceRef} requires body sections`);
+  const normalizedBody = body.map((section, index) => {
+    if (!section || typeof section !== "object") throw new Error(`${sourceRef} body section ${index + 1} must be an object`);
+    if (typeof section.heading !== "string" || !section.heading) {
+      throw new Error(`${sourceRef} body section ${index + 1} requires heading`);
+    }
+    if (
+      !Array.isArray(section.paragraphs) ||
+      !section.paragraphs.length ||
+      section.paragraphs.some((paragraph) => typeof paragraph !== "string" || !paragraph)
+    ) {
+      throw new Error(`${sourceRef} body section ${section.heading} requires paragraphs`);
+    }
+    return {
+      heading: section.heading,
+      paragraphs: [...section.paragraphs]
+    };
+  });
+
+  const provenance = rawPost.provenance;
+  if (!provenance || typeof provenance !== "object") throw new Error(`${sourceRef} requires provenance`);
   const requiredProvenanceFields = [
     "source",
     "reasoningLayer",
@@ -89,34 +135,93 @@ function validatePosts(posts) {
     "dissent",
     "nextFalsifier"
   ];
+  const normalizedProvenance = {};
+  for (const field of requiredProvenanceFields) {
+    if (typeof provenance[field] !== "string" || !provenance[field]) {
+      throw new Error(`${sourceRef} provenance missing ${field}`);
+    }
+    normalizedProvenance[field] = provenance[field];
+  }
+  const author = rawPost.author ?? null;
+  if (author !== null && typeof author !== "string") {
+    throw new Error(`${sourceRef} author must be a string or null`);
+  }
+
+  return {
+    slug: requireString(rawPost, "slug", sourceRef),
+    url: requireString(rawPost, "url", sourceRef),
+    kind: requireString(rawPost, "kind", sourceRef),
+    kindLabel: requireString(rawPost, "kindLabel", sourceRef),
+    title: requireString(rawPost, "title", sourceRef),
+    shortTitle: requireString(rawPost, "shortTitle", sourceRef),
+    dek: requireString(rawPost, "dek", sourceRef),
+    published: requireString(rawPost, "published", sourceRef),
+    displayDate: requireString(rawPost, "displayDate", sourceRef),
+    readingTime: requireString(rawPost, "readingTime", sourceRef),
+    author,
+    provenanceLine: requireString(rawPost, "provenanceLine", sourceRef),
+    statusLabel: requireString(rawPost, "statusLabel", sourceRef),
+    tags: requireStringArray(rawPost, "tags", sourceRef),
+    body: normalizedBody,
+    provenance: normalizedProvenance,
+    related: requireStringArray(rawPost, "related", sourceRef)
+  };
+}
+
+class JsonFilePerspectiveSource {
+  constructor(directory) {
+    this.name = "json";
+    this.directory = directory;
+  }
+
+  async loadPosts() {
+    const files = (await readdir(this.directory))
+      .filter((file) => file.endsWith(".json") && file !== "schema.json")
+      .sort();
+    return Promise.all(
+      files.map(async (file) => {
+        const sourceRef = `content/perspectives/${file}`;
+        const rawPost = JSON.parse(await readFile(path.join(this.directory, file), "utf8"));
+        return normalizePerspectivePost(rawPost, sourceRef);
+      })
+    );
+  }
+}
+
+function createPerspectiveSource(name) {
+  if (name === "json") return new JsonFilePerspectiveSource(sourceDir);
+  throw new Error(`unsupported Perspectives content source ${name}; add an adapter that returns normalized Perspective posts`);
+}
+
+async function readPosts() {
+  const source = createPerspectiveSource(contentSourceName);
+  const posts = await source.loadPosts();
+  posts.sort((a, b) => b.published.localeCompare(a.published));
+  validatePosts(posts, source.name);
+  return posts;
+}
+
+function validatePosts(posts, sourceName) {
+  const slugs = new Set();
 
   for (const post of posts) {
-    for (const field of requiredPostFields) {
-      if (post[field] === undefined || post[field] === null || post[field] === "") {
-        throw new Error(`${post.slug || "post"} missing required field ${field}`);
-      }
-    }
     if (slugs.has(post.slug)) throw new Error(`duplicate perspective slug ${post.slug}`);
     slugs.add(post.slug);
     if (post.url !== `perspectives/${post.slug}.html`) {
       throw new Error(`${post.slug} url must be perspectives/${post.slug}.html`);
     }
-    if (!Array.isArray(post.tags) || !post.tags.length) throw new Error(`${post.slug} requires tags`);
-    if (!Array.isArray(post.body) || !post.body.length) throw new Error(`${post.slug} requires body sections`);
-    for (const section of post.body) {
-      if (!section.heading) throw new Error(`${post.slug} has body section without heading`);
-      if (!Array.isArray(section.paragraphs) || !section.paragraphs.length) {
-        throw new Error(`${post.slug} section ${section.heading} requires paragraphs`);
-      }
+    const expectedKindLabel = kindLabelsByKind.get(post.kind);
+    if (!expectedKindLabel) {
+      throw new Error(`${post.slug} has unsupported kind ${post.kind}`);
     }
-    for (const field of requiredProvenanceFields) {
-      if (!post.provenance[field]) throw new Error(`${post.slug} provenance missing ${field}`);
+    if (post.kindLabel !== expectedKindLabel) {
+      throw new Error(`${post.slug} kind ${post.kind} must use label ${expectedKindLabel}`);
     }
   }
 
   for (const post of posts) {
     for (const related of post.related) {
-      if (!slugs.has(related)) throw new Error(`${post.slug} related post ${related} not found`);
+      if (!slugs.has(related)) throw new Error(`${post.slug} related post ${related} not found in ${sourceName} source`);
     }
   }
 }
@@ -286,6 +391,41 @@ function renderDataBundle(posts) {
   return `window.PERSPECTIVE_POSTS = ${JSON.stringify(posts, null, 2)};\n\nwindow.PERSPECTIVE_MANIFEST = ${JSON.stringify(manifest, null, 2)};\n`;
 }
 
+function renderPerspectiveCount(posts) {
+  return `        <span class="lane">${posts.length} pieces and growing</span>`;
+}
+
+function renderPerspectiveIndexFeed(posts) {
+  return posts
+    .map((post) => {
+      const provenanceClass = post.provenanceLine.includes("Ratified") ? "prov ok" : "prov";
+      return `        <article class="post" id="${escapeHtml(post.slug)}" data-lane="${escapeHtml(post.kind)}">
+          <div><span class="lanepill ${escapeHtml(post.kind)}">${escapeHtml(post.kindLabel)}</span></div>
+          <div>
+            <h3>${escapeHtml(post.title)}</h3>
+            <p>${escapeHtml(post.dek)}</p>
+            <div class="meta">
+              <span>${escapeHtml(post.displayDate)}</span>
+              <span class="${provenanceClass}">${escapeHtml(post.provenanceLine)}</span>
+            </div>
+          </div>
+          <a class="read" href="${escapeHtml(post.url)}" aria-label="Open perspective: ${escapeHtml(post.title)}">Open note <span class="arr">-&gt;</span></a>
+        </article>`;
+    })
+    .join("\n\n");
+}
+
+function renderHomeLatestRows(posts) {
+  return posts
+    .slice(0, 3)
+    .map((post) => `      <a class="row" href="${escapeHtml(post.url)}">
+        <span class="pill">${escapeHtml(toShortDate(post.published))} · <span class="lane">${escapeHtml(post.tags[0])}</span></span>
+        <span class="ftitle">${escapeHtml(post.title)}</span>
+        <span class="read">Read -&gt;</span>
+      </a>`)
+    .join("\n");
+}
+
 function renderFeed(posts) {
   const items = posts
     .map((post) => `    <item>
@@ -323,6 +463,25 @@ async function writeGenerated(filePath, content) {
   await writeFile(filePath, content);
 }
 
+function replaceGeneratedBlock(current, blockName, content) {
+  const start = `<!-- GENERATED:${blockName}:start -->`;
+  const end = `<!-- GENERATED:${blockName}:end -->`;
+  const startIndex = current.indexOf(start);
+  const endIndex = current.indexOf(end);
+  if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) {
+    throw new Error(`generated block ${blockName} not found`);
+  }
+  const lineStart = current.lastIndexOf("\n", startIndex) + 1;
+  const indentation = current.slice(lineStart, startIndex);
+  return `${current.slice(0, startIndex)}${start}\n${content}\n${indentation}${end}${current.slice(endIndex + end.length)}`;
+}
+
+async function writeGeneratedBlock(filePath, blockName, content) {
+  const current = existsSync(filePath) ? await readFile(filePath, "utf8") : null;
+  if (current === null) throw new Error(`generated block target is missing: ${path.relative(siteRoot, filePath)}`);
+  await writeGenerated(filePath, replaceGeneratedBlock(current, blockName, content));
+}
+
 async function reconcileArticleOrphans(posts) {
   if (!existsSync(articleDir)) return;
 
@@ -346,5 +505,8 @@ for (const post of posts) {
 }
 await writeGenerated(path.join(assetsDir, "perspectives-data.js"), renderDataBundle(posts));
 await writeGenerated(path.join(siteRoot, "feed.xml"), renderFeed(posts));
+await writeGeneratedBlock(path.join(siteRoot, "perspectives.html"), "perspectives-count", renderPerspectiveCount(posts));
+await writeGeneratedBlock(path.join(siteRoot, "perspectives.html"), "perspectives-feed", renderPerspectiveIndexFeed(posts));
+await writeGeneratedBlock(path.join(siteRoot, "index.html"), "home-latest-perspectives", renderHomeLatestRows(posts));
 
-console.log(`${checkOnly ? "checked" : "built"} ${posts.length} Perspectives posts`);
+console.log(`${checkOnly ? "checked" : "built"} ${posts.length} Perspectives posts from ${contentSourceName}`);
