@@ -1,0 +1,56 @@
+{
+  "slug": "open-data",
+  "url": "perspectives/open-data.html",
+  "kind": "graph",
+  "kindLabel": "From the graph",
+  "title": "Open data, proprietary intelligence",
+  "shortTitle": "Open data, proprietary intelligence",
+  "dek": "The line that lets an open engine stay open while proprietary operational intelligence compounds inside each organization.",
+  "published": "2026-05-27",
+  "displayDate": "May 27, 2026",
+  "readingTime": "4 min read",
+  "author": null,
+  "provenanceLine": "Drafted from the graph · Ratified by Eddie Austin",
+  "statusLabel": "Ratified",
+  "tags": [
+    "Open engine",
+    "Portability",
+    "Compounding intelligence"
+  ],
+  "body": [
+    {
+      "heading": "Open does not mean undifferentiated",
+      "paragraphs": [
+        "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. The engine can be open because the engine is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
+        "The proprietary value appears in the work an organization does with it. Their domain model, policy choices, operating history, ratified decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
+      ]
+    },
+    {
+      "heading": "Portability is the trust signal",
+      "paragraphs": [
+        "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? The Open Engine answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
+        "That is also why the commercial platform should not compete with the engine. The platform can add governed write-back, audit traces, approvals, and enterprise controls. It should not make the open substrate feel like bait."
+      ]
+    },
+    {
+      "heading": "The line makes both sides stronger",
+      "paragraphs": [
+        "When the open layer is real, more people can inspect, run, and extend the basic model. When the proprietary layer is respected, organizations can invest in their own operational graph without feeling that their intelligence is being laundered into a vendor moat.",
+        "The result is a healthier bargain: open data mechanics, proprietary intelligence where it actually belongs, and a graduation path that adds governance without rewriting the user's world."
+      ]
+    }
+  ],
+  "provenance": {
+    "source": "Drafted from graph-held site architecture and open/governed boundary notes.",
+    "reasoningLayer": "Model-synthesized dispatch from approved Volant graph context.",
+    "humanRatifier": "Eddie Austin.",
+    "status": "Ratified.",
+    "knownUncertainty": "The boundary will need sharper examples as real deployments create edge cases.",
+    "dissent": "Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.",
+    "nextFalsifier": "A platform path that requires proprietary lock-in or lossy export would invalidate the promise."
+  },
+  "related": [
+    "no-rug-pull-license",
+    "runtime-controls"
+  ]
+}

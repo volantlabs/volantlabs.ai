@@ -1,0 +1,56 @@
+{
+  "slug": "domain-explorations-matter",
+  "url": "perspectives/domain-explorations-matter.html",
+  "kind": "graph",
+  "kindLabel": "From the graph",
+  "title": "Why domain explorations matter",
+  "shortTitle": "Why domain explorations matter",
+  "dek": "A graph-sourced note on worked models as the bridge between abstract infrastructure and practical adoption.",
+  "published": "2026-05-08",
+  "displayDate": "May 8, 2026",
+  "readingTime": "3 min read",
+  "author": null,
+  "provenanceLine": "Drafted from the graph · Exploration",
+  "statusLabel": "Exploration",
+  "tags": [
+    "Domain packs",
+    "Adoption",
+    "Worked models"
+  ],
+  "body": [
+    {
+      "heading": "Infrastructure is hard to believe in until it models something",
+      "paragraphs": [
+        "A graph engine can sound abstract very quickly. Types, edges, export, governance, provenance: all of it is important, and none of it tells a visitor what they can do next.",
+        "Domain explorations solve that problem by making the substrate tangible. Aerospace supply lineage, clinical trial ontology, manufacturing bills of materials, energy topology: each one gives the engine a concrete surface where the reader can see what becomes possible."
+      ]
+    },
+    {
+      "heading": "A worked model is a bridge",
+      "paragraphs": [
+        "The best exploration is not a demo frozen in amber. It is a bridge from curiosity to use. It shows the shape of the domain, names the first useful nodes and links, and gives a builder enough confidence to bootstrap their own version.",
+        "That matters because adoption rarely starts with a platform argument. It starts with recognition: this is my mess, and this model can hold it."
+      ]
+    },
+    {
+      "heading": "The bank keeps the site alive",
+      "paragraphs": [
+        "A growing exploration bank also creates a cadence. New domains become new proof, new perspective pieces, and new entry points for communities that would not have arrived through the engine page alone.",
+        "That is the role of domain explorations: not decoration, but translation."
+      ]
+    }
+  ],
+  "provenance": {
+    "source": "Drafted from graph-held site architecture and domain exploration positioning.",
+    "reasoningLayer": "Model-synthesized dispatch from approved Volant graph context.",
+    "humanRatifier": "Not ratified.",
+    "status": "Exploration.",
+    "knownUncertainty": "The note describes the site strategy rather than measuring exploration-to-adoption conversion.",
+    "dissent": "Some builders will prefer raw docs and code before worked domain narratives.",
+    "nextFalsifier": "If visitors adopt the engine without using any domain exploration path, the strategic weight of explorations should be reduced."
+  },
+  "related": [
+    "open-data",
+    "legibility-wedge"
+  ]
+}

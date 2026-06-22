@@ -1,0 +1,56 @@
+{
+  "slug": "legibility-wedge",
+  "url": "perspectives/legibility-wedge.html",
+  "kind": "essays",
+  "kindLabel": "Essay",
+  "title": "Legibility is the wedge for agentic software",
+  "shortTitle": "Legibility is the wedge",
+  "dek": "Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.",
+  "published": "2026-05-19",
+  "displayDate": "May 19, 2026",
+  "readingTime": "3 min read",
+  "author": "Eddie Austin",
+  "provenanceLine": "By Eddie Austin",
+  "statusLabel": "Human essay",
+  "tags": [
+    "Agents",
+    "Legibility",
+    "Human judgment"
+  ],
+  "body": [
+    {
+      "heading": "The hard problem is not generation",
+      "paragraphs": [
+        "Generation keeps getting cheaper. The harder problem is knowing what a generated action would mean inside a real operating system. Which customer does it affect? Which policy applies? Which record would become authoritative if this write succeeds?",
+        "Without that legibility, agents remain impressive at the edge and awkward near the core. They can suggest, summarize, and draft, but they struggle to operate where the consequences are connected."
+      ]
+    },
+    {
+      "heading": "Legibility changes the shape of delegation",
+      "paragraphs": [
+        "When the system can expose meaning, delegation becomes more precise. An agent can be allowed to draft one kind of change, blocked from another, and asked to collect human ratification when a boundary is crossed.",
+        "That is a better model than treating autonomy as a slider. The useful question is not how much freedom the agent has in the abstract. It is whether the system can tell what the agent is trying to touch."
+      ]
+    },
+    {
+      "heading": "The wedge is narrow on purpose",
+      "paragraphs": [
+        "Legibility is not the whole product. It is the first crack in the wall. Once a graph can name the domain, carry constraints, and make context traversable, the other pieces have somewhere to attach: policy, memory, approval, audit, and learning.",
+        "That is why the Open Engine begins with structure. The graph makes software more readable to agents and more accountable to humans."
+      ]
+    }
+  ],
+  "provenance": {
+    "source": "Human-written essay for volantlabs.ai Perspectives.",
+    "reasoningLayer": "No graph synthesis layer; the essay reflects the Open Engine positioning.",
+    "humanRatifier": "Byline accountability: Eddie Austin.",
+    "status": "Published essay.",
+    "knownUncertainty": "The essay emphasizes legibility and does not exhaust other prerequisites for useful agents.",
+    "dissent": "Tool quality, evaluation, and interface design can each be the wedge in narrower deployments.",
+    "nextFalsifier": "A durable agent system that safely acts in opaque business context would weaken the claim."
+  },
+  "related": [
+    "graph-theory",
+    "runtime-controls"
+  ]
+}

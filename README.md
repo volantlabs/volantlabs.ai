@@ -4,7 +4,7 @@ Mid-fidelity prototype of **volantlabs.ai** — the public story site for the Op
 
 ## View it
 
-Open `index.html` in a browser. The nav, logo, and footers link to every page, so you can click through the whole site locally. All links are relative filenames — it's a static prototype, not a deployed/build-step site (yet).
+Open `index.html` in a browser. The nav, logo, and footers link to every page, so you can click through the whole site locally. All links are relative filenames. The checked-in files are static; Perspectives article pages and RSS are generated from source JSON before commit.
 
 ```
 volantlabs.ai/
@@ -19,12 +19,14 @@ volantlabs.ai/
 ├── assets/
 │   ├── images/             # Generated graph-native bitmap visuals for tiles and hero motifs
 │   ├── perspective-article.css # Shared article detail template styles
-│   ├── perspective-article.js  # Shared article detail renderer
-│   ├── perspectives-data.js    # Runtime post manifest + article body/provenance content
+│   ├── perspectives-data.js    # Generated post manifest for future client-side affordances
 │   └── site.css            # Shared shell — tokens + chrome (nav/buttons/sections/footer) + global reduced-motion
 ├── content/
+│   ├── perspectives/       # Source JSON files for Perspectives articles
 │   └── perspectives.schema.json # Contract for the Perspectives post manifest shape
 ├── feed.xml                # Static RSS feed for Perspectives
+├── scripts/
+│   └── build-perspectives.mjs # Generates article HTML, post manifest, and RSS
 ├── README.md
 └── design/
     ├── sitemap.md          # Full IA / site architecture (the spec)
@@ -42,13 +44,27 @@ Each page is a single self-contained HTML file with the tokens inline (no build 
 - **Spacing:** 4px scale, 12-col grid, 1200px max content width.
 - **Accessibility:** WCAG AA contrast, visible focus states, ≥44px touch targets, skip-to-content links, one `<main>` landmark per page, `aria-current="page"` on the active nav link, and a global `prefers-reduced-motion` rule (all in `assets/site.css`).
 
-The **token block + chrome** (nav, buttons, section scaffolding, footer) now live once in **`assets/site.css`**, linked by every page — which also enforces a global `prefers-reduced-motion` rule for consistent motion safety. Page-specific styles stay inline per page. Nav/footer **markup** is still inline per page (robust for a no-build static prototype); folding that into a templated/JS-injected partial is the remaining shell step for when a build pipeline lands.
+The **token block + chrome** (nav, buttons, section scaffolding, footer) now live once in **`assets/site.css`**, linked by every page — which also enforces a global `prefers-reduced-motion` rule for consistent motion safety. Page-specific styles stay inline per page. Nav/footer **markup** is still inline per page; folding that into a shared generator partial is the remaining shell step.
+
+## Perspectives publishing
+
+Perspectives article source lives in `content/perspectives/*.json`. To rebuild generated article HTML, `assets/perspectives-data.js`, and `feed.xml`, run:
+
+```bash
+node scripts/build-perspectives.mjs
+```
+
+Before committing, verify generated files are current:
+
+```bash
+node scripts/build-perspectives.mjs --check
+```
 
 ## Conventions & decisions baked in
 
 - **"Graphcasting" is cut from v1** — it does not appear anywhere public-facing. The story section is named **Thesis**.
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
-- **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each article page carries the full provenance footer from the approved Kind × Status model. New posts should be added to `assets/perspectives-data.js`, given a stable URL in `perspectives/`, linked from `perspectives.html`, and mirrored into `feed.xml` until a build step automates those copies.
+- **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each generated article page carries the full provenance footer from the approved Kind × Status model. New posts should be added to `content/perspectives/*.json`, linked from `perspectives.html` / latest-content strips as needed, and regenerated with `node scripts/build-perspectives.mjs`.
 - **One-property principle:** the site sells the open engine. The commercial **Platform** appears only as a *quiet* graduation path, never a competing pillar.
 - **Audience lanes:** engineer (→ Engine), curious/builder (→ Domain Explorations), thinker (→ Thesis / Perspectives), champion (→ Platform).
 
@@ -58,4 +74,4 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 
 ## Status & next
 
-Fidelity: **mid→hi**. Status: published app bundle. Done: shared CSS shell extracted to `assets/site.css`; Home hero reframed outcome-first (lead with the capability, demote the mechanism). Next: real content, per-page hi-fi polish, fold nav/footer markup into a partial when a build lands, and wire a build/deploy path.
+Fidelity: **mid→hi**. Status: published app bundle. Done: shared CSS shell extracted to `assets/site.css`; Home hero reframed outcome-first (lead with the capability, demote the mechanism); Perspectives article pages and RSS generated from source JSON. Next: real content polish, per-page hi-fi polish, fold nav/footer markup into a partial, and wire a build/deploy path.

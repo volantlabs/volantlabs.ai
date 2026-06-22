@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://volantlabs.ai/content/perspectives.schema.json",
-  "title": "volantlabs.ai Perspectives post manifest",
+  "title": "volantlabs.ai Perspectives post source",
   "type": "object",
   "required": ["slug", "url", "kind", "kindLabel", "title", "dek", "published", "displayDate", "readingTime", "provenanceLine", "statusLabel", "tags", "body", "provenance", "related"],
   "properties": {

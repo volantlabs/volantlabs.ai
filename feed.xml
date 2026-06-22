@@ -6,47 +6,47 @@
     <atom:link href="https://volantlabs.ai/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Essays, graph dispatches, and ratified notes behind the Open Engine.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jun 2026 00:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 13:00:00 GMT</lastBuildDate>
     <item>
       <title>The graph is a theory</title>
       <link>https://volantlabs.ai/perspectives/graph-theory.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/graph-theory.html</guid>
-      <pubDate>Thu, 11 Jun 2026 09:00:00 -0400</pubDate>
+      <pubDate>Thu, 11 Jun 2026 13:00:00 GMT</pubDate>
       <description>Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.</description>
     </item>
     <item>
       <title>Runtime-native controls: policy where execution happens</title>
       <link>https://volantlabs.ai/perspectives/runtime-controls.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/runtime-controls.html</guid>
-      <pubDate>Thu, 04 Jun 2026 09:00:00 -0400</pubDate>
+      <pubDate>Thu, 04 Jun 2026 13:00:00 GMT</pubDate>
       <description>A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.</description>
     </item>
     <item>
       <title>Open data, proprietary intelligence</title>
       <link>https://volantlabs.ai/perspectives/open-data.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/open-data.html</guid>
-      <pubDate>Wed, 27 May 2026 09:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 May 2026 13:00:00 GMT</pubDate>
       <description>The line that lets an open engine stay open while proprietary operational intelligence compounds inside each organization.</description>
     </item>
     <item>
       <title>Legibility is the wedge for agentic software</title>
       <link>https://volantlabs.ai/perspectives/legibility-wedge.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/legibility-wedge.html</guid>
-      <pubDate>Tue, 19 May 2026 09:00:00 -0400</pubDate>
+      <pubDate>Tue, 19 May 2026 13:00:00 GMT</pubDate>
       <description>Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.</description>
     </item>
     <item>
       <title>Why domain explorations matter</title>
       <link>https://volantlabs.ai/perspectives/domain-explorations-matter.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/domain-explorations-matter.html</guid>
-      <pubDate>Fri, 08 May 2026 09:00:00 -0400</pubDate>
+      <pubDate>Fri, 08 May 2026 13:00:00 GMT</pubDate>
       <description>A graph-sourced note on worked models as the bridge between abstract infrastructure and practical adoption.</description>
     </item>
     <item>
       <title>No rug-pull means more than a license</title>
       <link>https://volantlabs.ai/perspectives/no-rug-pull-license.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/no-rug-pull-license.html</guid>
-      <pubDate>Wed, 29 Apr 2026 09:00:00 -0400</pubDate>
+      <pubDate>Wed, 29 Apr 2026 13:00:00 GMT</pubDate>
       <description>A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with the engine.</description>
     </item>
   </channel>
