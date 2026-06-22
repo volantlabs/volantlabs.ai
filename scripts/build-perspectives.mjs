@@ -287,7 +287,6 @@ function renderDataBundle(posts) {
 }
 
 function renderFeed(posts) {
-  const latest = posts[0] ? toRssDate(posts[0].published) : new Date().toUTCString();
   const items = posts
     .map((post) => `    <item>
       <title>${escapeXml(post.title)}</title>
@@ -306,7 +305,6 @@ function renderFeed(posts) {
     <atom:link href="${manifest.siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Essays, graph dispatches, and ratified notes behind the Open Engine.</description>
     <language>en-us</language>
-    <lastBuildDate>${escapeXml(latest)}</lastBuildDate>
 ${items}
   </channel>
 </rss>
