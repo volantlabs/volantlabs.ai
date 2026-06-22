@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -323,7 +323,24 @@ async function writeGenerated(filePath, content) {
   await writeFile(filePath, content);
 }
 
+async function reconcileArticleOrphans(posts) {
+  if (!existsSync(articleDir)) return;
+
+  const expectedArticles = new Set(posts.map((post) => path.basename(post.url)));
+  const orphanFiles = (await readdir(articleDir, { withFileTypes: true }))
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".html") && !expectedArticles.has(entry.name))
+    .map((entry) => path.join(articleDir, entry.name));
+
+  if (!orphanFiles.length) return;
+
+  const orphanList = orphanFiles.map((filePath) => path.relative(siteRoot, filePath)).join(", ");
+  if (checkOnly) throw new Error(`generated article orphan found: ${orphanList}`);
+
+  await Promise.all(orphanFiles.map((filePath) => rm(filePath)));
+}
+
 const posts = await readPosts();
+await reconcileArticleOrphans(posts);
 for (const post of posts) {
   await writeGenerated(path.join(siteRoot, post.url), renderArticle(post, posts));
 }
