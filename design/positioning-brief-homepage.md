@@ -6,7 +6,7 @@
 
 > One-line ask: the hero should make a smart first-time visitor *want the thing* before we reassure them they can leave with it. Today it does the reverse.
 
-> **Update — 2026-06-22 (ratified):** Hero **candidate A** adopted (*"One memory your agents share — and you own."*) and implemented in `index.html`. The harness/MCP claim is **confirmed** by the product owner (the Open Engine works with Claude and Codex, or will), so the "works with Claude/Codex" chip ships without the earlier "pending confirmation" hedge. Hero CTAs use final language (*Request preview access* / *See a worked model*) with **inert placeholder links** (`#`) — wire them to the real request-access and worked-model destinations before launch. The open items in §8 are retained for history.
+> **Update — 2026-06-22 (ratified):** Hero **candidate A** adopted (*"One memory your agents share — and you own."*) and implemented in `index.html`. The harness/MCP claim is **confirmed** by the product owner (the Open Engine works with Claude and Codex, or will), so the "works with Claude/Codex" chip ships without the earlier "pending confirmation" hedge. Hero CTAs use final language (*Request preview access* / *See a worked model*) and currently route to the existing preview-access mailto and `domain-explorations.html`; dedicated request-access and worked-model flows remain a follow-up. The open items in §8 are retained for history.
 
 ---
 
@@ -92,7 +92,7 @@ Replace the three risk-reversal ticks (`No lock-in / Full-fidelity export / Gove
 1. Label the existing animated graph with 3–4 real type names (e.g. `Supplier → Part → Obligation`) so "typed graph" becomes concrete in the first screen.
 2. Or a 4-line schema/traversal snippet in the established terminal device (already styled on the Engine page) — e.g. declare two types, one link, one traversal.
 
-**CTAs:** primary should match reality — `Request preview access`; secondary should give an *ungated* payoff click — `See a worked model →` (to Domain Explorations), so a curious visitor gets something immediately without an email gate.
+**CTAs:** primary should match reality — `Request preview access`; secondary should give an *ungated* payoff click — `See a worked model →` (to Domain Explorations), so a curious visitor gets something immediately without an email gate. Until dedicated flows exist, the primary CTA uses the existing preview-access mailto and the secondary routes to `domain-explorations.html`.
 
 ---
 
