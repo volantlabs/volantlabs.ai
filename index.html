@@ -17,8 +17,8 @@ features:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>volantlabs.ai - shared memory for AI agents</title>
-<meta name="description" content="The Open Engine is a typed, exportable knowledge graph for AI agents: model a domain, preserve context across sessions, explore worked graphs, and request preview access.">
+<title>volantlabs.ai — one memory your agents share, and you own</title>
+<meta name="description" content="The Open Engine is a typed knowledge graph that gives your AI agents a shared memory they can reason over — model your domain once, let Claude, Codex, and MCP-capable tools build on it, and export everything. Request preview access.">
 <meta name="kesher:name" content="volantlabs.ai">
 <meta name="kesher:description" content="Public story site for the Open Engine, with a cinematic thesis page, perspectives library, preview-access engine page, and quiet path to the governed Volant platform.">
 <meta name="kesher:type" content="content">
@@ -32,19 +32,19 @@ features:
   .navlinks a:hover::after{right:0}
   /* ---- Hero ---- */
   .hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s12);align-items:center;
-    padding-top:var(--s16);padding-bottom:var(--s16);min-height:560px}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:var(--s10);align-items:center;
+    padding-top:var(--s12);padding-bottom:var(--s12);min-height:520px}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
-  h1.headline{font-size:56px;font-weight:800;color:#fff;letter-spacing:0;margin:var(--s3) 0 var(--s4)}
-  .hero p.sub{font-size:17px;font-weight:400;color:#c7d0e0;max-width:54ch}
-  .capability-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s6);max-width:56ch}
-  .cap-chip{display:inline-flex;align-items:center;min-height:30px;padding:6px 10px;border-radius:6px;
-    background:rgba(230,234,242,.12);border:1px solid rgba(245,245,245,.16);color:#e4ebf7;font-size:12px;
-    font-weight:600}
-  .trust-line{margin-top:var(--s4);font-size:12px;color:#9fb0cc}
-  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s6);flex-wrap:wrap}
+  h1.headline{font-size:48px;line-height:1.08;font-weight:800;color:#fff;letter-spacing:0;margin:var(--s3) 0 var(--s4)}
+  .hero p.sub{font-size:17px;line-height:1.55;font-weight:400;color:#c7d0e0;max-width:58ch}
+  /* capability strip — what the engine does before trust/risk-reversal copy */
+  .cap-strip{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-top:var(--s5);padding:0;max-width:58ch}
+  .cap-strip li{position:relative;padding-left:20px;font-size:13px;color:#c7d0e0;line-height:1.35}
+  .cap-strip li::before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--orange)}
+  .trust-line{margin-top:var(--s3);font-size:12.5px;color:#9fb0cc}
+  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s5);flex-wrap:wrap}
   .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
   .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
   .hero-figure{position:relative;height:420px}
@@ -62,13 +62,18 @@ features:
     .hero .wrap{grid-template-columns:1fr;gap:var(--s4);min-height:0;padding-top:var(--s8);padding-bottom:var(--s8)}
     h1.headline{font-size:32px;margin:var(--s2) 0 var(--s3)}
     .hero p.sub{font-size:15px}
-    .capability-row{gap:6px;margin-top:var(--s4)}
-    .cap-chip{min-height:26px;padding:5px 8px;font-size:11px}
+    .cap-strip{grid-template-columns:1fr;gap:10px;margin-top:var(--s4)}
     .cta-row{gap:8px;margin-top:20px}
     .hero-figure{height:140px;order:-1}
     .graph-label{font-size:10px;padding:4px 7px}
     .graph-label.supplier{left:7%;top:22%}
     .graph-label.obligation{right:6%;top:55%}
+  }
+  @media(max-width:620px){
+    .hero .wrap{padding-top:var(--s6);padding-bottom:var(--s6)}
+    .hero-figure{display:none}
+    .hero p.sub{font-size:14px;line-height:1.45}
+    .cap-strip li{font-size:12.5px;line-height:1.3}
   }
   @media(max-width:1080px) and (min-width:881px){h1.headline{font-size:48px}}
   /* ---- Featured trio ---- */
@@ -170,31 +175,33 @@ features:
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Open engine · agent-readable memory</span>
-      <h1 class="headline">One memory every agent can share.</h1>
-      <p class="sub">Model a domain once in a typed graph. Agents stop starting from zero; you can export the memory anytime.</p>
-      <div class="capability-row" aria-label="Open Engine capabilities">
-        <span class="cap-chip">Memory across sessions</span>
-        <span class="cap-chip">Typed domains</span>
-        <span class="cap-chip">Full export</span>
-      </div>
+      <span class="eyebrow"><span class="dot"></span>Open engine · harness-agnostic memory for AI</span>
+      <h1 class="headline">One memory your agents share — and you own.</h1>
+      <p class="sub">The Open Engine is a typed knowledge graph that turns scattered context into a living model your AI can reason over. Model your domain once; let Claude, Codex, and MCP-capable tools build on the same graph — and export everything, anytime.</p>
+      <ul class="cap-strip" aria-label="Open Engine capabilities">
+        <li>Harness-agnostic memory — works with Claude, Codex &amp; MCP-capable tools</li>
+        <li>Carry context across agents and sessions</li>
+        <li>Model your domain as a typed, queryable graph</li>
+        <li>Yours to export in open formats — no lock-in</li>
+      </ul>
+      <!-- CTA copy is final; hrefs are intentionally inert placeholders (#) until the request-access flow and worked-model destination are wired. -->
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Open%20Engine%20preview%20access">Request access
+        <a class="btn btn-primary" href="#">Request preview access
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn-ghost" href="domain-explorations.html">See a model</a>
+        <a class="btn btn-ghost" href="#">See a worked model</a>
       </div>
       <p class="trust-line">Open by design · full-fidelity export · no rug-pull.</p>
     </div>
     <div class="hero-figure">
-      <canvas id="graph" aria-label="Animated node-and-edge knowledge graph"></canvas>
+      <canvas id="graph" aria-label="Animated typed knowledge graph — one shared memory your agents read and write"></canvas>
       <div class="graph-labels" aria-hidden="true">
         <span class="graph-label supplier">Supplier</span>
         <span class="graph-label part">Part</span>
         <span class="graph-label obligation">Obligation</span>
         <span class="graph-label traversal">Traversal</span>
       </div>
-      <span class="figcap">Typed graph preview - Supplier -&gt; Part -&gt; Obligation.</span>
+      <span class="figcap">One typed graph — every agent reads and writes the same memory.</span>
     </div>
   </div>
 </section>
