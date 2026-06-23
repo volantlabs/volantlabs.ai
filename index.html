@@ -384,8 +384,10 @@ features:
   function resize(){
     DPR=Math.min(window.devicePixelRatio||1,2);
     W=canvas.clientWidth; H=canvas.clientHeight;
+    if(!W||!H){canvas.width=0;canvas.height=0;return false;}
     canvas.width=W*DPR; canvas.height=H*DPR;
     ctx.setTransform(DPR,0,0,DPR,0,0);
+    return true;
   }
 
   // Build a small typed graph: 1 hub, ring of primaries, a few leaves.
@@ -474,10 +476,26 @@ features:
     });
   }
 
-  function loop(){ if(!reduce){ step(); } t++; draw(); if(!reduce) requestAnimationFrame(loop); }
+  let running=false;
+  function loop(){
+    if(!W||!H){running=false;return;}
+    if(!reduce){ step(); }
+    t++; draw();
+    if(!reduce&&running) requestAnimationFrame(loop);
+  }
 
-  function init(){ resize(); seed(); t=reduce?200:0; if(reduce){for(let i=0;i<120;i++)step();} loop(); }
-  window.addEventListener('resize',()=>{resize();seed(); if(reduce){t=200; draw();}});
+  function init(){
+    if(!resize()) return;
+    seed(); t=reduce?200:0;
+    if(reduce){for(let i=0;i<120;i++)step(); draw(); return;}
+    running=true; loop();
+  }
+  window.addEventListener('resize',()=>{
+    if(!resize()){running=false;return;}
+    seed();
+    if(reduce){t=200; draw(); return;}
+    if(!running){running=true; loop();}
+  });
   init();
 })();
 </script>
