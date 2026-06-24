@@ -11,5 +11,5 @@
   <!-- single CTA -->
   <rect x="40" y="520" width="920" height="120" fill="#FAFAFA" stroke="#cccccc"/><text x="60" y="552" font-size="13" font-weight="700" fill="#555">Ready for governed operations?</text><rect x="60" y="568" width="420" height="12" fill="#ececec"/><rect x="60" y="592" width="200" height="36" rx="5" fill="#444"/><text x="160" y="616" font-size="12" text-anchor="middle" fill="#fff">Book a conversation</text><text x="600" y="600" font-size="10" font-style="italic" fill="#5B7FA6">one calm CTA — links out to the commercial site</text>
   <!-- footer -->
-  <rect x="40" y="744" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="774" font-size="10" fill="#888">About · Open by Design · Access model · Run locally · RSS · Contact</text>
+  <rect x="40" y="744" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="774" font-size="10" fill="#888">About · Open by Design · Access model · Preview access · RSS · Contact</text>
 </svg>

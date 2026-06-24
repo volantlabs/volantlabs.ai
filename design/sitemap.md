@@ -29,7 +29,7 @@
 `Vellis` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `Contact` (ghost button) · `Platform` (quiet button)
 
 **Footer (every page):**
-Open by Design · Access model · Run locally · RSS / subscribe · Contact · Platform
+Open by Design · Access model · Preview access · RSS / subscribe · Contact · Platform
 
 ---
 
@@ -37,7 +37,7 @@ Open by Design · Access model · Run locally · RSS / subscribe · Contact · P
 
 | Reader | Wants | Primary path |
 |---|---|---|
-| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (local quickstart + terminal-style access model) → run locally |
+| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (preview access + terminal-style access model) → preview access |
 | **Curious / builder** | "What can it model?" | Home featured trio → **Domain Explorations** → bootstrap a pack |
 | **Thinker** | "What's the idea here?" | Home → **Thesis** (story) → **Perspectives** (library) → subscribe |
 | **Champion** | "When do we need governance?" | **Thesis / Engine** → **Platform** (Kesher graduation) → book a conversation |
@@ -48,7 +48,7 @@ Open by Design · Access model · Run locally · RSS / subscribe · Contact · P
 
 ### 3.0 Home  *(wireframe-1)*
 **Job:** answer "what is it / can I evaluate it" in one screen; route the four lanes.
-- **Hero** — headline "One memory your agents share — and you own."; subhead: typed knowledge graph, shared AI context, full-fidelity export; CTAs: *Run Vellis locally* (primary), *See a worked model*; animated node-edge graph.
+- **Hero** — headline "One memory your agents share — and you own."; subhead: typed knowledge graph, shared AI context, full-fidelity export; CTAs: *Request Vellis preview* (primary), *See a worked model*; animated node-edge graph.
 - **Featured trio** — flagship (Vellis) + 2 satellites (worked domain models, Thesis essay).
 - **Latest perspectives** — feed strip of recent essays/dispatches linking to the Perspectives library.
 - **Flywheel (5 steps)** — seed → meaning → governance → graduate to Kesher → compound.
@@ -57,9 +57,9 @@ Open by Design · Access model · Run locally · RSS / subscribe · Contact · P
 > Mid-fi update 2026-06-17: the home page keeps the Thesis entry point, and the latest-content strip now routes to Perspectives.
 
 ### 3.1 Engine  *(wireframe-2)* — the flagship, the one property
-**Job:** get an engineer from landing to a local quickstart.
-- **Hero** — "Vellis is the typed context graph for AI-native work"; CTAs *Run Vellis locally*, *See the platform*.
-- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style local quickstart.
+**Job:** get an engineer from landing to a preview access.
+- **Hero** — "Vellis is the typed context graph for AI-native work"; CTAs *Request Vellis preview*, *See the platform*.
+- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style preview access.
 - **Capabilities** — Schema language · Open-standards export (JSON-LD · RDF · CSV) · access-pack docs.
 - **Why open · promise** — portability + no-rug-pull covenant, stated up front as a trust signal.
 
@@ -109,7 +109,7 @@ Open by Design · Access model · Run locally · RSS / subscribe · Contact · P
 ```
 Home  (/)
 ├─ Engine  (/engine)                         ← Vellis flagship · one property
-│   ├─ Quickstart / terminal
+│   ├─ Preview access / terminal
 │   ├─ Capabilities (schema · export · docs)
 │   └─ Why open · promise (portability + no-rug-pull)
 ├─ Domain Explorations  (/explorations)

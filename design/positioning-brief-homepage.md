@@ -6,7 +6,7 @@
 
 > One-line ask: the hero should make a smart first-time visitor *want the thing* before we reassure them they can leave with it. Today it does the reverse.
 
-> **Update — 2026-06-24:** Hero **candidate A** adopted (*"One memory your agents share — and you own."*) and implemented in `index.html`. The harness/MCP claim is **confirmed** by the product owner (Vellis works with Claude and Codex, or will), so the "works with Claude/Codex" chip ships without the earlier "pending confirmation" hedge. Hero CTAs now use *Run Vellis locally* / *See a worked model*, pointing to the Engine quickstart and Domain Explorations. The open items in §8 are retained as launch checks.
+> **Update — 2026-06-24:** Hero **candidate A** adopted (*"One memory your agents share — and you own."*) and implemented in `index.html`. The harness/MCP claim is **confirmed** by the product owner (Vellis works with Claude and Codex, or will), so the "works with Claude/Codex" chip ships without the earlier "pending confirmation" hedge. Codex review caught that the public repo/download path is not live yet, so hero CTAs now use *Request Vellis preview* / *See a worked model*, pointing to a gated preview-access path and Domain Explorations. The open items in §8 are retained as launch checks.
 
 ---
 
@@ -27,7 +27,7 @@
 
 **Confusion a first-time visitor will have**
 - *What category is this?* The hero says "memory," the Engine page says "typed graph infrastructure," the footer says "coordination and integrity substrate." Three different nouns in three places.
-- *Can I actually use it now?* The hero now implies self-serve/local evaluation. Before launch, the public repo or release artifact behind the Engine quickstart must be real.
+- *Can I actually use it now?* The hero now promises preview access, not a public self-serve download. Before switching back to self-serve language, the public repo or release artifact behind the Engine access path must be real.
 - *What does this have to do with my AI agents?* The link between "typed graph" and the visitor's actual agent stack is never drawn.
 - *Is it open source?* "Vellis," "Open by design," "no rug-pull" are asserted, but no license, no repo, and gated access. Openness is claimed, not demonstrated.
 
@@ -42,9 +42,9 @@ Vellis is a typed, governable knowledge graph that gives your AI agents a shared
 Agents, chats, and tools keep forgetting context and disagreeing with each other; Vellis turns that scattered context into one durable, queryable model of your domain that every tool can build on instead of re-explaining from scratch.
 
 **What can I do with it this week?**
-Run Vellis locally, model one real domain in a readable schema, load your first nodes, and run a traversal your agents can reason over — with full-fidelity export from day one.
+Request Vellis preview access, model one real domain in a readable schema, load your first nodes, and run a traversal your agents can reason over — with full-fidelity export from day one.
 
-> Note on the "this week" line: it now assumes the public/local quickstart is real before launch. If access becomes gated again, swap the CTA and this line back to a request-access flow.
+> Note on the "this week" line: it now assumes gated preview access, not public self-serve access. Swap the CTA to `Run Vellis locally` only after the public repo or release artifact is live.
 
 ---
 
@@ -92,7 +92,7 @@ Replace the three risk-reversal ticks (`No lock-in / Full-fidelity export / Gove
 1. Label the existing animated graph with 3–4 real type names (e.g. `Supplier → Part → Obligation`) so "typed graph" becomes concrete in the first screen.
 2. Or a 4-line schema/traversal snippet in the established terminal device (already styled on the Engine page) — e.g. declare two types, one link, one traversal.
 
-**CTAs:** primary should match reality — `Run Vellis locally`; secondary should give an immediate proof click — `See a worked model →` (to Domain Explorations).
+**CTAs:** primary should match reality — `Request Vellis preview`; secondary should give an immediate proof click — `See a worked model →` (to Domain Explorations).
 
 ---
 
@@ -102,9 +102,9 @@ Current order: hero → "Start here" trio → latest perspectives → flywheel �
 
 **Recommended order — capability and proof before the upsell:**
 
-1. **Hero** — capability promise (§3A) + a demonstrative graph/schema snippet (§4). Primary CTA *Run Vellis locally*, secondary *See a worked model*.
+1. **Hero** — capability promise (§3A) + a demonstrative graph/schema snippet (§4). Primary CTA *Request Vellis preview*, secondary *See a worked model*.
 2. **The stakes, in one band** — borrow the Thesis line: *"Capability is abundant. Coherence is scarce."* Three quick without-it / with-it beats. This is the "why care," and it's already written — reuse it.
-3. **What you actually do** — reframe the flywheel as a concrete 3–4 step path: *Run Vellis locally → Model a domain → Connect your agents → Query & reason → Export anytime.*
+3. **What you actually do** — reframe the flywheel as a concrete 3–4 step path: *Request Vellis preview → Model a domain → Connect your agents → Query & reason → Export anytime.*
 4. **Pathways** — the four audience lanes as explicit cards (Engineer → Engine · Builder → Domain Explorations · Thinker → Thesis/Perspectives · Evaluator → Platform). This replaces the undifferentiated "Start here" trio with intentional routing the IA already calls for.
 5. **Proof by worked models** — a strip of 2–3 Domain Explorations (aerospace supply, clinical-trial ontology…). "Here's a real typed graph," not an abstract claim.
 6. **Trust / governance (quiet)** — the open promise + the calm Platform graduation strip. Keep it understated; it's the safety net, not the pitch.
@@ -127,7 +127,7 @@ This is the strongest unmade argument on the site and the most direct answer to 
 - *How it connects* — MCP endpoint and/or open-standard export; a diagram of multiple agents reading/writing one graph.
 - *What carries across* — context, schema, and provenance persist across tools and sessions.
 - *Honest boundaries* — what's live in preview vs. planned (no overclaiming).
-- CTA: *Run Vellis locally.*
+- CTA: *Request Vellis preview.*
 
 **Sequencing recommendation:** if the public engine exposes an MCP/agent interface to external collaborators, build it as its own page and link it from the hero chip. If only export formats are live today, ship it first as a **"Connect" section on the Engine page** (framed roadmap-honest), and promote it to a standalone page once the interface is publicly demonstrable. Either way, this is the page that makes the homepage hero's harness-agnostic promise land.
 
@@ -153,7 +153,7 @@ This is the strongest unmade argument on the site and the most direct answer to 
 **Exact edit points in `index.html`**
 - Hero block ~lines 151–174. Replace: H1 (line 155), subhead (156), the `.meta-row` ticks (157–161), and adjust the `.cta-row` verbs (162–167).
 - `.meta-row` (three ✓ ticks) → convert to capability chips (§4). Reuse existing chip styling — `.chip` exists on `engine.html`/`domain-explorations.html` (`var(--blue-50)` bg, `var(--navy)` text); for small orange text on white use `var(--orange-600)` `#A8491A` for AA.
-- Hero CTAs: primary `Run Vellis locally` pointing to `engine.html#quickstart`; secondary `See a worked model →` pointing to `domain-explorations.html`.
+- Hero CTAs: primary `Request Vellis preview` pointing to the gated contact path; secondary `See a worked model →` pointing to `domain-explorations.html`.
 - `<title>` and meta description (lines 20–21) currently say "governed intelligence you can run tonight" — update to match the new hero and the gated-access reality.
 - If the hero category noun changes, align the footer tagline (line 315) and keep one category word across Home + Engine + footer.
 
@@ -163,7 +163,7 @@ This is the strongest unmade argument on the site and the most direct answer to 
 - Keep the no-rug-pull line and the quiet Platform strip — just demote them below capability.
 
 **Honesty constraints (must stay accurate — these are load-bearing)**
-- **Access must match the CTA.** `engine.html` (quickstart block) is the source of truth. If the public repo/release is live, the hero may say `Run Vellis locally`; if access is gated, the hero must revert to a request-access verb.
+- **Access must match the CTA.** `engine.html` (preview-access block) is the source of truth. If the public repo/release is live, the hero may say `Run Vellis locally`; while access is gated, the hero must use a preview-access verb.
 - **The "Works with Claude / Codex / MCP" chip needs product confirmation before it ships as a literal claim.** Kesher itself is MCP-native (the platform runs over MCP; Codex already reviews this repo), so the claim is *true of the platform*. Confirm the **public preview engine** exposes an MCP/agent interface to external collaborators. If it doesn't yet, ship the softer, still-true version — "open, agent-readable memory (JSON-LD · RDF · CSV)" — and stage the explicit harness claim for the §6 page when the interface is public.
 - **Over-the-air refresh is "planned," not live** (`domain-explorations.html`). Don't imply it's shipping.
 - Keep the Provenance Display Model intact where referenced (Spec `9c3d7e21`: Kind = Essay / From the graph / Artifact; Status = Exploration / Ratified / Superseded).

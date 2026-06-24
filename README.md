@@ -9,7 +9,7 @@ Open `index.html` in a browser. The nav, logo, and footers link to every page, s
 ```
 volantlabs.ai/
 ├── index.html              # Home — animated node-edge hero
-├── engine.html             # Vellis Engine (flagship / "one property") — terminal quickstart
+├── engine.html             # Vellis Engine (flagship / "one property") — terminal preview path
 ├── domain-explorations.html# Worked models — filter + card grid + OTA
 ├── thesis.html             # Cinematic story page — Volant's point of view
 ├── perspectives.html       # Essays / From the graph / Ratified (provenance-tagged)

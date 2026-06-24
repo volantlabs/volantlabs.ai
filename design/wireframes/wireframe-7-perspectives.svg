@@ -94,5 +94,5 @@
 
   <!-- footer -->
   <rect x="40" y="870" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/>
-  <text x="60" y="900" font-size="10" fill="#888">About · Open by Design · Access model · Run locally · RSS · Contact</text>
+  <text x="60" y="900" font-size="10" fill="#888">About · Open by Design · Access model · Preview access · RSS · Contact</text>
 </svg>

@@ -17,5 +17,5 @@
   </g>
   <!-- subscribe band -->
   <rect x="40" y="652" width="920" height="80" fill="#FAFAFA" stroke="#cccccc"/><text x="60" y="684" font-size="12" font-weight="700" fill="#555">Subscribe</text><rect x="60" y="696" width="300" height="30" rx="4" fill="#fff" stroke="#bbb"/><text x="72" y="715" font-size="10" fill="#aaa">email…</text><rect x="372" y="696" width="110" height="30" rx="4" fill="#444"/><text x="427" y="715" font-size="10" text-anchor="middle" fill="#fff">Subscribe</text><text x="520" y="715" font-size="10" fill="#888">· RSS</text>
-  <rect x="40" y="870" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="900" font-size="10" fill="#888">About · Open by Design · Access model · Run locally · RSS · Contact</text>
+  <rect x="40" y="870" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="900" font-size="10" fill="#888">About · Open by Design · Access model · Preview access · RSS · Contact</text>
 </svg>

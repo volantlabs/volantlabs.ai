@@ -20,5 +20,5 @@
   </g>
   <!-- propose CTA -->
   <rect x="40" y="724" width="920" height="64" fill="#FAFAFA" stroke="#ccc" stroke-dasharray="4 3"/><text x="60" y="752" font-size="12" font-weight="700" fill="#777">Propose a domain</text><rect x="60" y="764" width="360" height="10" fill="#ececec"/><rect x="800" y="740" width="140" height="32" rx="4" fill="#444"/><text x="870" y="761" font-size="10" text-anchor="middle" fill="#fff">Submit an idea</text>
-  <rect x="40" y="890" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="920" font-size="10" fill="#888">About · Open by Design · Access model · Run locally · RSS · Contact</text>
+  <rect x="40" y="890" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="920" font-size="10" fill="#888">About · Open by Design · Access model · Preview access · RSS · Contact</text>
 </svg>
