@@ -36,13 +36,13 @@
       "heading": "The wedge is narrow on purpose",
       "paragraphs": [
         "Legibility is not the whole product. It is the first crack in the wall. Once a graph can name the domain, carry constraints, and make context traversable, the other pieces have somewhere to attach: policy, memory, approval, audit, and learning.",
-        "That is why the Open Engine begins with structure. The graph makes software more readable to agents and more accountable to humans."
+        "That is why Vellis begins with structure. The graph makes software more readable to agents and more accountable to humans."
       ]
     }
   ],
   "provenance": {
     "source": "Human-written essay for volantlabs.ai Perspectives.",
-    "reasoningLayer": "No graph synthesis layer; the essay reflects the Open Engine positioning.",
+    "reasoningLayer": "No graph synthesis layer; the essay reflects Vellis positioning.",
     "humanRatifier": "Byline accountability: Eddie Austin.",
     "status": "Published essay.",
     "knownUncertainty": "The essay emphasizes legibility and does not exhaust other prerequisites for useful agents.",

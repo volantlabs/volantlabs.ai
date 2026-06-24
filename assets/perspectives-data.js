@@ -29,7 +29,7 @@ window.PERSPECTIVE_POSTS = [
       {
         "heading": "Theory becomes executable when the system can test it",
         "paragraphs": [
-          "The Open Engine is interesting because it lets the graph carry a point of view. Types, links, and constraints are not a diagram about the system. They are a theory the system can execute against: this node may connect to that one, this edge carries this implication, this proposed change has to pass this rule.",
+          "Vellis is interesting because it lets the graph carry a point of view. Types, links, and constraints are not a diagram about the system. They are a theory the system can execute against: this node may connect to that one, this edge carries this implication, this proposed change has to pass this rule.",
           "That is the wedge for agentic software. Agents do not need a larger pile of text. They need a world where the important distinctions are already named, where traversals reveal context, and where uncertain changes have somewhere to slow down."
         ]
       },
@@ -118,7 +118,7 @@ window.PERSPECTIVE_POSTS = [
     "kindLabel": "From the graph",
     "title": "Open data, proprietary intelligence",
     "shortTitle": "Open data, proprietary intelligence",
-    "dek": "The line that lets an open engine stay open while proprietary operational intelligence compounds inside each organization.",
+    "dek": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
     "published": "2026-05-27",
     "displayDate": "May 27, 2026",
     "readingTime": "4 min read",
@@ -126,7 +126,7 @@ window.PERSPECTIVE_POSTS = [
     "provenanceLine": "Drafted from the graph · Ratified by Eddie Austin",
     "statusLabel": "Ratified",
     "tags": [
-      "Open engine",
+      "Vellis",
       "Portability",
       "Compounding intelligence"
     ],
@@ -134,15 +134,15 @@ window.PERSPECTIVE_POSTS = [
       {
         "heading": "Open does not mean undifferentiated",
         "paragraphs": [
-          "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. The engine can be open because the engine is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
+          "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. Vellis can stay open because the substrate is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
           "The proprietary value appears in the work an organization does with it. Their domain model, policy choices, operating history, ratified decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
         ]
       },
       {
         "heading": "Portability is the trust signal",
         "paragraphs": [
-          "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? The Open Engine answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
-          "That is also why the commercial platform should not compete with the engine. The platform can add governed write-back, audit traces, approvals, and enterprise controls. It should not make the open substrate feel like bait."
+          "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? Vellis answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
+          "That is also why Kesher should not compete with Vellis. The governed platform can add write-back controls, audit traces, approvals, and enterprise controls. It should not make the open substrate feel like bait."
         ]
       },
       {
@@ -205,13 +205,13 @@ window.PERSPECTIVE_POSTS = [
         "heading": "The wedge is narrow on purpose",
         "paragraphs": [
           "Legibility is not the whole product. It is the first crack in the wall. Once a graph can name the domain, carry constraints, and make context traversable, the other pieces have somewhere to attach: policy, memory, approval, audit, and learning.",
-          "That is why the Open Engine begins with structure. The graph makes software more readable to agents and more accountable to humans."
+          "That is why Vellis begins with structure. The graph makes software more readable to agents and more accountable to humans."
         ]
       }
     ],
     "provenance": {
       "source": "Human-written essay for volantlabs.ai Perspectives.",
-      "reasoningLayer": "No graph synthesis layer; the essay reflects the Open Engine positioning.",
+      "reasoningLayer": "No graph synthesis layer; the essay reflects Vellis positioning.",
       "humanRatifier": "Byline accountability: Eddie Austin.",
       "status": "Published essay.",
       "knownUncertainty": "The essay emphasizes legibility and does not exhaust other prerequisites for useful agents.",
@@ -247,7 +247,7 @@ window.PERSPECTIVE_POSTS = [
         "heading": "Infrastructure is hard to believe in until it models something",
         "paragraphs": [
           "A graph engine can sound abstract very quickly. Types, edges, export, governance, provenance: all of it is important, and none of it tells a visitor what they can do next.",
-          "Domain explorations solve that problem by making the substrate tangible. Aerospace supply lineage, clinical trial ontology, manufacturing bills of materials, energy topology: each one gives the engine a concrete surface where the reader can see what becomes possible."
+          "Domain explorations solve that problem by making the substrate tangible. Aerospace supply lineage, clinical trial ontology, manufacturing bills of materials, energy topology: each one gives Vellis a concrete surface where the reader can see what becomes possible."
         ]
       },
       {
@@ -260,7 +260,7 @@ window.PERSPECTIVE_POSTS = [
       {
         "heading": "The bank keeps the site alive",
         "paragraphs": [
-          "A growing exploration bank also creates a cadence. New domains become new proof, new perspective pieces, and new entry points for communities that would not have arrived through the engine page alone.",
+          "A growing exploration bank also creates a cadence. New domains become new proof, new perspective pieces, and new entry points for communities that would not have arrived through the Vellis Engine page alone.",
           "That is the role of domain explorations: not decoration, but translation."
         ]
       }
@@ -272,7 +272,7 @@ window.PERSPECTIVE_POSTS = [
       "status": "Exploration.",
       "knownUncertainty": "The note describes the site strategy rather than measuring exploration-to-adoption conversion.",
       "dissent": "Some builders will prefer raw docs and code before worked domain narratives.",
-      "nextFalsifier": "If visitors adopt the engine without using any domain exploration path, the strategic weight of explorations should be reduced."
+      "nextFalsifier": "If visitors adopt Vellis without using any domain exploration path, the strategic weight of explorations should be reduced."
     },
     "related": [
       "open-data",
@@ -286,7 +286,7 @@ window.PERSPECTIVE_POSTS = [
     "kindLabel": "From the graph",
     "title": "No rug-pull means more than a license",
     "shortTitle": "No rug-pull means more than a license",
-    "dek": "A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with the engine.",
+    "dek": "A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with Vellis.",
     "published": "2026-04-29",
     "displayDate": "April 29, 2026",
     "readingTime": "3 min read",
@@ -310,14 +310,14 @@ window.PERSPECTIVE_POSTS = [
         "heading": "The exit path has to be real",
         "paragraphs": [
           "Full-fidelity export is the operational version of trust. It tells a team that the work they put into modeling their domain is not trapped inside a vendor's future pricing decision.",
-          "That promise is strongest when it is boring and visible: open formats, clear docs, and no mysterious downgrade between what the engine stores and what the user can take with them."
+          "That promise is strongest when it is boring and visible: open formats, clear docs, and no mysterious downgrade between what Vellis stores and what the user can take with them."
         ]
       },
       {
         "heading": "The platform should graduate, not replace",
         "paragraphs": [
-          "The governed platform has a real job: write-back gates, audit traces, approvals, and operational controls. Those capabilities can justify a commercial relationship without undermining the open engine.",
-          "That is the clean bargain. The engine stays runnable. The platform adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
+          "Kesher has a real job: write-back gates, audit traces, approvals, and operational controls. Those capabilities can justify a commercial relationship without undermining Vellis.",
+          "That is the clean bargain. Vellis stays runnable. Kesher adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
         ]
       }
     ],
@@ -328,7 +328,7 @@ window.PERSPECTIVE_POSTS = [
       "status": "Ratified.",
       "knownUncertainty": "The promise should be revisited whenever packaging, access, or deployment mechanics change.",
       "dissent": "A project can be trustworthy with a stronger commercial boundary if it communicates that boundary early and honestly.",
-      "nextFalsifier": "Any change that makes the engine non-runnable or export lossy would break the no-rug-pull claim."
+      "nextFalsifier": "Any change that makes Vellis non-runnable or export lossy would break the no-rug-pull claim."
     },
     "related": [
       "open-data",

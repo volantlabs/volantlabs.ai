@@ -4,7 +4,7 @@
     <title>volantlabs.ai Perspectives</title>
     <link>https://volantlabs.ai/perspectives.html</link>
     <atom:link href="https://volantlabs.ai/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Essays, graph dispatches, and ratified notes behind the Open Engine.</description>
+    <description>Essays, graph dispatches, and ratified notes behind Vellis.</description>
     <language>en-us</language>
     <item>
       <title>The graph is a theory</title>
@@ -25,7 +25,7 @@
       <link>https://volantlabs.ai/perspectives/open-data.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/open-data.html</guid>
       <pubDate>Wed, 27 May 2026 13:00:00 GMT</pubDate>
-      <description>The line that lets an open engine stay open while proprietary operational intelligence compounds inside each organization.</description>
+      <description>The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.</description>
     </item>
     <item>
       <title>Legibility is the wedge for agentic software</title>
@@ -46,7 +46,7 @@
       <link>https://volantlabs.ai/perspectives/no-rug-pull-license.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/no-rug-pull-license.html</guid>
       <pubDate>Wed, 29 Apr 2026 13:00:00 GMT</pubDate>
-      <description>A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with the engine.</description>
+      <description>A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with Vellis.</description>
     </item>
   </channel>
 </rss>

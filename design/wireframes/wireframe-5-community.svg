@@ -15,5 +15,5 @@
   <!-- roadmap / the bank -->
   <rect x="40" y="534" width="920" height="150" fill="#FAFAFA" stroke="#cccccc"/><text x="60" y="560" font-size="12" font-weight="700" fill="#555">Roadmap · the bank</text><text x="60" y="582" font-size="10" fill="#999">what's coming from the module / exploration bank</text>
   <g><rect x="60" y="596" width="280" height="64" fill="#eee" stroke="#ddd"/><rect x="360" y="596" width="280" height="64" fill="#eee" stroke="#ddd"/><rect x="660" y="596" width="280" height="64" fill="#eee" stroke="#ddd"/><text x="200" y="632" font-size="9" text-anchor="middle" fill="#888">next drop</text><text x="500" y="632" font-size="9" text-anchor="middle" fill="#888">planned</text><text x="800" y="632" font-size="9" text-anchor="middle" fill="#888">banked</text></g>
-  <rect x="40" y="830" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="860" font-size="10" fill="#888">About · Open by Design · Access model · Request access · RSS · Contact</text>
+  <rect x="40" y="830" width="920" height="88" fill="#EFEFEF" stroke="#cccccc"/><text x="60" y="860" font-size="10" fill="#888">About · Open by Design · Access model · Run locally · RSS · Contact</text>
 </svg>

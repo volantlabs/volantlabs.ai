@@ -1,8 +1,8 @@
 # volantlabs.ai — Site Architecture (Sitemap)
 
-**Status:** rebuilt 2026-06-16 · supersedes the lost v1 (Media `eb82e7f0`, bytes never published)
+**Status:** rebuilt 2026-06-16 · Vellis/FileDrive hygiene refreshed 2026-06-24
 **Spec:** `392e552b-5858-475e-a716-31d8f05bc5a6` (volant_base)
-**Source of truth for this rebuild:** the 7 wireframes on disk + `volantlabs-sitemap-v2.svg` + the Open Engine handoff IA. Where v1 detail was unrecoverable, structure is re-derived from the wireframes, not invented.
+**Source of truth for this rebuild:** the 7 wireframes on disk + `volantlabs-sitemap-v2.svg` + Vellis handoff IA. Where v1 detail was unrecoverable, structure is re-derived from the wireframes, not invented.
 
 ---
 
@@ -16,7 +16,7 @@
 
 ## Governing principles (carried forward)
 
-- **One-property principle.** This site sells one thing: the open engine. The commercial platform is present only as a *quiet* graduation path, never a competing pillar.
+- **One-property principle.** This site sells one thing: Vellis. The commercial platform is present only as a *quiet* graduation path, never a competing pillar.
 - **Quiet graduation path.** Platform lives in the nav and in one calm strip per page — never a loud sales rail.
 - **Audience lanes.** Four readers move through the site on different paths (see §2). The IA serves all four without four separate sites.
 - **Iceberg model of community.** Most users pull and build; the site surfaces support + adoption telemetry, not a PR bazaar.
@@ -26,10 +26,10 @@
 ## 1. Global shell (every page)
 
 **Top nav (left → right):**
-`volantlabs.ai` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `Contact` (ghost button) · `Platform` (quiet button)
+`Vellis` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `Contact` (ghost button) · `Platform` (quiet button)
 
 **Footer (every page):**
-About · Open by Design · Access model · Request access · RSS / subscribe · Contact
+Open by Design · Access model · Run locally · RSS / subscribe · Contact · Platform
 
 ---
 
@@ -37,10 +37,10 @@ About · Open by Design · Access model · Request access · RSS / subscribe · 
 
 | Reader | Wants | Primary path |
 |---|---|---|
-| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (preview + terminal-style access model) → request access |
+| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (local quickstart + terminal-style access model) → run locally |
 | **Curious / builder** | "What can it model?" | Home featured trio → **Domain Explorations** → bootstrap a pack |
 | **Thinker** | "What's the idea here?" | Home → **Thesis** (story) → **Perspectives** (library) → subscribe |
-| **Champion** | "When do we need the real thing?" | **Thesis / Engine** → **Platform** (graduation) → book a conversation |
+| **Champion** | "When do we need governance?" | **Thesis / Engine** → **Platform** (Kesher graduation) → book a conversation |
 
 ---
 
@@ -48,23 +48,23 @@ About · Open by Design · Access model · Request access · RSS / subscribe · 
 
 ### 3.0 Home  *(wireframe-1)*
 **Job:** answer "what is it / can I evaluate it" in one screen; route the four lanes.
-- **Hero** — headline "Run the open engine tonight."; subhead: no lock-in · full-fidelity export · governed when you graduate; CTAs: *Quickstart* (primary), *Request access*; animated node-edge graph.
-- **Featured trio** — flagship (the Engine) + 2 satellites (a domain exploration, a Thesis essay).
+- **Hero** — headline "One memory your agents share — and you own."; subhead: typed knowledge graph, shared AI context, full-fidelity export; CTAs: *Run Vellis locally* (primary), *See a worked model*; animated node-edge graph.
+- **Featured trio** — flagship (Vellis) + 2 satellites (worked domain models, Thesis essay).
 - **Latest perspectives** — feed strip of recent essays/dispatches linking to the Perspectives library.
-- **Flywheel (5 steps)** — seed → meaning → governance → graduate → compound.
+- **Flywheel (5 steps)** — seed → meaning → governance → graduate to Kesher → compound.
 - **Community CTA** + **quiet Platform strip** ("Need governance? → Platform").
 
 > Mid-fi update 2026-06-17: the home page keeps the Thesis entry point, and the latest-content strip now routes to Perspectives.
 
 ### 3.1 Engine  *(wireframe-2)* — the flagship, the one property
-**Job:** get an engineer from landing to a preview-access request.
-- **Hero** — "The Engine — the typed graph behind governed AI systems"; CTAs *Request access*, *See the platform*.
-- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style access model.
+**Job:** get an engineer from landing to a local quickstart.
+- **Hero** — "Vellis is the typed context graph for AI-native work"; CTAs *Run Vellis locally*, *See the platform*.
+- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style local quickstart.
 - **Capabilities** — Schema language · Open-standards export (JSON-LD · RDF · CSV) · access-pack docs.
 - **Why open · promise** — portability + no-rug-pull covenant, stated up front as a trust signal.
 
 ### 3.2 Domain Explorations  *(wireframe-3)* — proof by worked models
-**Job:** show what the engine can model; let people bootstrap a real graph.
+**Job:** show what Vellis can model; let people bootstrap a real graph.
 - **Header + filter** — All · Domain packs · Reference builds · Over-the-air ★ (filter by type; freshness shown per card).
 - **Featured OTA callout** — "★ Over-the-air graphs" → *Bootstrap it*.
 - **Card grid (3×2)** — each card: type tag + freshness date.
@@ -97,10 +97,10 @@ About · Open by Design · Access model · Request access · RSS / subscribe · 
 - **Roadmap · the bank** — next drop / planned / banked (from the module + exploration bank).
 
 ### 3.6 Platform  *(wireframe-6)* — the quiet graduation path
-**Job:** for the "champion," name the one thing the open engine can't do alone, and offer a calm exit to the commercial product.
-- **Hero** — "When you need governance"; "which agent changed this record, under what policy, approved by whom?"; "the one question the open engine can't answer alone."
-- **Before / after** — *On the open engine* (agents write · graphs run real ops · no audit answer) vs *On the governed platform* (write-back gates · audit traces · approval policies · accumulated intelligence).
-- **Single CTA** — "Ready to graduate? → Book a conversation" (links out to the commercial site). One calm CTA only.
+**Job:** for the "champion," name the one thing Vellis should not pretend to solve alone, and offer a calm exit to Kesher.
+- **Hero** — "When AI context work needs governed operations"; names Kesher as Volant Partners' governed platform.
+- **Before / after** — *On Vellis* (agents write · graphs run real ops · no audit answer) vs *On Kesher* (write-back gates · audit traces · approval policies · accumulated intelligence).
+- **Single CTA** — "Ready for governed operations? → Book a conversation" (links out to the commercial site). One calm CTA only.
 
 ---
 
@@ -108,7 +108,7 @@ About · Open by Design · Access model · Request access · RSS / subscribe · 
 
 ```
 Home  (/)
-├─ Engine  (/engine)                         ← flagship · one property
+├─ Engine  (/engine)                         ← Vellis flagship · one property
 │   ├─ Quickstart / terminal
 │   ├─ Capabilities (schema · export · docs)
 │   └─ Why open · promise (portability + no-rug-pull)
@@ -128,9 +128,9 @@ Home  (/)
 ├─ Community  (/community)
 │   ├─ Contribute · Showcase · Release notes · Discussions
 │   └─ Roadmap · the bank
-└─ Platform  (/platform)                      ← quiet graduation path
+└─ Platform  (/platform)                      ← quiet Kesher graduation path
     ├─ the governance question
-    ├─ open engine vs governed platform
+    ├─ Vellis vs Kesher
     └─ Book a conversation  → commercial site
 ```
 
@@ -153,4 +153,4 @@ Home  (/)
 - **volantlabs-sitemap-v2.svg** — ✅ added as the 6-section IA diagram companion to this sitemap.
 - **home-midfi.html / index.html** — ✅ latest content strip now points to Perspectives.
 
-> Open hygiene item (not blocking): the sitemap Media nodes on spec `392e552b` (`sitemap-volantpartners-ai.md` + `.svg`) still have no published bytes in FileDrive — that's WorkItem `4e961008`. This rebuilt file should be the one published; if the public name stays `volantlabs.ai`, the graph/FileDrive labels should be renamed in the same governance pass.
+> Graph/FileDrive hygiene 2026-06-24: the current Vellis site bundle is published under `/public/vellis/website/volantlabs-ai-vellis-site-20260624.zip`. Older `/public/open-engine/website/` sitemap, wireframe, and mid-fi Media records remain linked as legacy/pre-Vellis snapshots.

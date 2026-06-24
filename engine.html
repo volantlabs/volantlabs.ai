@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Engine — typed graph infrastructure · volantlabs.ai</title>
+<title>Vellis Engine — typed context graph infrastructure · volantlabs.ai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
   .hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s12);align-items:center;padding-top:var(--s24);padding-bottom:var(--s24)}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
-  h1.headline{font-size:clamp(32px,4.2vw,54px);font-weight:800;color:#fff;letter-spacing:-.02em;margin:var(--s4) 0 var(--s6)}
+  h1.headline{font-size:clamp(32px,4.2vw,54px);font-weight:800;color:#fff;letter-spacing:0;margin:var(--s4) 0 var(--s6)}
   .hero p.sub{font-size:18px;font-weight:400;color:#c7d0e0;max-width:42ch}
   .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
   .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
@@ -85,7 +85,7 @@
 <header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="index.html" aria-label="volantlabs.ai home">
+      <a class="brand" href="index.html" aria-label="Vellis home">
         <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
           <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
@@ -93,7 +93,7 @@
           <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
           <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
         </svg>
-        volantlabs.ai
+        Vellis
       </a>
       <div class="navlinks">
         <a href="engine.html" class="active" aria-current="page">Engine</a>
@@ -103,7 +103,7 @@
         <a href="community.html">Community</a>
       </div>
       <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=volantlabs.ai%20access">Contact</a>
+        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=Vellis%20access">Contact</a>
         <a class="btn btn-quiet" href="platform.html">Platform</a>
       </div>
     </nav>
@@ -115,25 +115,26 @@
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>The flagship · preview access</span>
-      <h1 class="headline">The Engine — the typed graph behind governed AI systems.</h1>
-      <p class="sub">Explore the model, then request access for a guided preview. During the test period, source and local run instructions are shared directly with approved collaborators.</p>
+      <span class="eyebrow"><span class="dot"></span>Vellis Engine · Local quickstart</span>
+      <h1 class="headline">Vellis is the typed context graph for AI-native work.</h1>
+      <p class="sub">Run Vellis locally and model one real domain as a typed context graph your agents can reason over.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Open%20Engine%20access">Request access
+        <a class="btn btn-primary" href="#quickstart">Run Vellis locally
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a class="btn btn-ghost" href="platform.html">See the platform</a>
       </div>
     </div>
-    <div class="term" id="quickstart" role="img" aria-label="Terminal-style preview describing request-gated engine access.">
-      <div class="term-bar"><i></i><i></i><i class="r"></i><span>~/open-engine — preview access</span></div>
+    <div class="term" id="quickstart" role="img" aria-label="Terminal-style quickstart describing local engine setup.">
+      <div class="term-bar"><i></i><i></i><i class="r"></i><span>~/vellis — local quickstart</span></div>
       <div class="term-body">
-<span class="c"># access is request-based during the test period</span><br>
-<span class="p">$</span> <span class="k">request access</span> <span class="o">hello@volantpartners.com</span><br>
-<span class="p">$</span> <span class="k">receive</span> <span class="o">local setup + schema walkthrough</span><br>
-<span class="o">→ preview packet shared directly with approved collaborators</span><br>
+<span class="c"># draft public quickstart</span><br>
+<span class="p">$</span> <span class="k">git clone</span> <span class="o">https://github.com/volantlabs/vellis</span><br>
+<span class="p">$</span> <span class="k">cd</span> <span class="o">vellis</span><br>
+<span class="p">$</span> <span class="k">just setup</span> && <span class="k">just run</span><br>
+<span class="o">→ local typed graph running with schema and example data</span><br>
 <br>
-<span class="c"># what the preview covers</span><br>
+<span class="c"># what Vellis covers</span><br>
 <span class="p">›</span> typed graph storage<br>
 <span class="p">›</span> schema-enforced writes<br>
 <span class="p">›</span> export and governance path<span class="cursor"></span>
@@ -148,7 +149,7 @@
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="9" cy="10" r="3" fill="#001E50"/><circle cx="27" cy="9" r="3" fill="#001E50"/><circle cx="18" cy="26" r="3" fill="#D15B21"/><path d="M9 10l9 16M27 9L18 26M9 10h18" stroke="#001E50" stroke-width="1.4" stroke-opacity=".55"/></svg>
       <h4>Typed graph</h4>
-      <p>Nodes and edges with enforced types — meaning the engine can reason about, not just store.</p>
+      <p>Nodes and edges with enforced types — meaning agents can reason with them, not just store them.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="7" y="7" width="22" height="22" rx="3" stroke="#001E50" stroke-width="1.6"/><path d="M12 14h12M12 18h12M12 22h7" stroke="#001E50" stroke-width="1.6" stroke-linecap="round"/><circle cx="25" cy="22" r="2" fill="#D15B21"/></svg>
@@ -180,7 +181,7 @@
         <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="8" y="8" width="24" height="24" rx="4" stroke="#001E50" stroke-width="1.8"/><path d="M14 16h12M14 20h12M14 24h8" stroke="#001E50" stroke-width="1.8" stroke-linecap="round"/><circle cx="27" cy="24" r="2.4" fill="#D15B21"/></svg>
         <h3>Schema language</h3>
         <p>A first-class, version-controlled schema. Types and links are declarations the graph validates — not conventions you hope hold.</p>
-        <a class="more" href="mailto:hello@volantpartners.com?subject=Open%20Engine%20schema%20access">Request schema notes <span class="arr">→</span></a>
+        <a class="more" href="mailto:hello@volantpartners.com?subject=Vellis%20schema%20access">Request schema notes <span class="arr">→</span></a>
       </article>
       <article class="cap">
         <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="13" stroke="#001E50" stroke-width="1.8"/><path d="M7 20h26M20 7c3.5 3.6 3.5 22.4 0 26M20 7c-3.5 3.6-3.5 22.4 0 26" stroke="#001E50" stroke-width="1.4" stroke-opacity=".6"/><circle cx="20" cy="20" r="2.6" fill="#D15B21"/></svg>
@@ -191,8 +192,8 @@
       <article class="cap">
         <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M12 9h12l5 5v17a1 1 0 0 1-1 1H12a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1Z" stroke="#001E50" stroke-width="1.8" stroke-linejoin="round"/><path d="M23 9v6h6" stroke="#001E50" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 22h10M15 26h7" stroke="#D15B21" stroke-width="1.8" stroke-linecap="round"/></svg>
         <h3>Access-pack docs</h3>
-        <p>Quickstart, schema reference, and traversal guides are shared directly with approved preview collaborators.</p>
-        <a class="more" href="mailto:hello@volantpartners.com?subject=Open%20Engine%20docs%20access">Request docs <span class="arr">→</span></a>
+        <p>Quickstart, schema reference, and traversal guides live with the runnable engine so the docs travel with the code.</p>
+        <a class="more" href="#quickstart">Read the quickstart <span class="arr">→</span></a>
       </article>
     </div>
   </div>
@@ -208,13 +209,13 @@
     <div class="panel">
       <div class="lic">
         <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>Access</span>
-        <h3>Preview by request</h3>
-        <p>Source access and local run paths are shared directly during the test period, while the portability and export model remains the center of the promise.</p>
+        <h3>Run Vellis locally</h3>
+        <p>Source access and local run paths are part of the Vellis promise: the graph stays runnable, portable, and yours.</p>
       </div>
       <div class="lic">
         <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>The covenant</span>
         <h3>No rug-pull</h3>
-        <p>The engine remains a standalone path you can run locally. Graduation to the governed platform is a choice, never a forced march.</p>
+        <p>Vellis remains a standalone path you can run locally. Graduation to Kesher is a choice, never a forced march.</p>
       </div>
     </div>
   </div>
@@ -235,9 +236,9 @@
             <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
             <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
           </svg>
-          volantlabs.ai
+          Vellis
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. Typed context infrastructure for AI-native work.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
@@ -246,7 +247,7 @@
         </div>
         <div class="foot-col">
           <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="#open-promise">Access model</a><a href="mailto:hello@volantpartners.com?subject=Open%20Engine%20access">Request access</a><a href="platform.html">Platform</a>
+          <a href="thesis.html">Open by Design</a><a href="#open-promise">Access model</a><a href="#quickstart">Run locally</a><a href="platform.html">Platform</a>
         </div>
         <div class="foot-col">
           <h5>Stay close</h5>
@@ -256,7 +257,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Volant Partners</span>
-      <span class="nrp">No rug-pull: the engine stays runnable.</span>
+      <span class="nrp">No rug-pull: Vellis stays runnable.</span>
     </div>
   </div>
 </footer>

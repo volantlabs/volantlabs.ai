@@ -37,7 +37,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 /* ---- Nav ---- */
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
 nav{display:flex;align-items:center;gap:var(--s8);height:64px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:-.01em}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:18px;letter-spacing:0}
 .brand .glyph{width:22px;height:22px;flex:none}
 .navlinks{display:flex;gap:var(--s8);margin-left:var(--s8)}
 .navlinks a{font-weight:500;font-size:15px;color:var(--charcoal);padding:6px 0;position:relative}
@@ -68,7 +68,7 @@ nav{display:flex;align-items:center;gap:var(--s8);height:64px}
   .brand{font-size:16px;gap:8px}
   .brand .glyph{width:20px;height:20px}
   .navright{width:auto;margin-left:auto}
-  .navright .btn-ghost{width:40px;padding:0;font-size:0;gap:0}
+  .navright .btn-ghost{width:auto;min-width:72px;padding:0 12px;font-size:13px;gap:8px}
   .navright .btn-primary{padding:0 12px}
 }
 

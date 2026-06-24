@@ -203,7 +203,6 @@ async function readPosts() {
 
 function validatePosts(posts, sourceName) {
   const slugs = new Set();
-
   for (const post of posts) {
     if (slugs.has(post.slug)) throw new Error(`duplicate perspective slug ${post.slug}`);
     slugs.add(post.slug);
@@ -237,15 +236,15 @@ function renderHeader() {
   return `<header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="../index.html" aria-label="volantlabs.ai home">
+      <a class="brand" href="../index.html" aria-label="Vellis home">
         ${renderLogo()}
-        volantlabs.ai
+        Vellis
       </a>
       <div class="navlinks">
         <a href="../engine.html">Engine</a><a href="../domain-explorations.html">Domain Explorations</a><a href="../thesis.html">Thesis</a><a href="../perspectives.html" class="active" aria-current="page">Perspectives</a><a href="../community.html">Community</a>
       </div>
       <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=volantlabs.ai%20access" aria-label="Contact Volant">Contact</a>
+        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=Vellis%20access" aria-label="Contact Volant">Contact</a>
         <a class="btn btn-quiet" href="../platform.html">Platform</a>
       </div>
     </nav>
@@ -257,14 +256,14 @@ function renderFooter() {
   return `<footer>
   <div class="wrap">
     <div class="foot-top">
-      <div><div class="brand" style="font-size:20px">volantlabs.ai</div><p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. The coordination and integrity substrate for the agentic era.</p></div>
+      <div><div class="brand" style="font-size:20px">Vellis</div><p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. Typed context infrastructure for AI-native work.</p></div>
       <div class="foot-cols">
         <div class="foot-col"><h5>Project</h5><a href="../engine.html">Engine</a><a href="../domain-explorations.html">Explorations</a><a href="../thesis.html">Thesis</a><a href="../perspectives.html">Perspectives</a><a href="../community.html">Community</a></div>
-        <div class="foot-col"><h5>Open</h5><a href="../thesis.html">Open by Design</a><a href="../engine.html#open-promise">Access model</a><a href="mailto:hello@volantpartners.com?subject=Open%20Engine%20access">Request access</a><a href="../platform.html">Platform</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="../thesis.html">Open by Design</a><a href="../engine.html#open-promise">Access model</a><a href="../engine.html#quickstart">Run locally</a><a href="../platform.html">Platform</a></div>
         <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 Volant Partners</span><span class="nrp">No rug-pull: the engine stays runnable.</span></div>
+    <div class="foot-bottom"><span>&copy; 2026 Volant Partners</span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
   </div>
 </footer>`;
 }
@@ -443,7 +442,7 @@ function renderFeed(posts) {
     <title>volantlabs.ai Perspectives</title>
     <link>${manifest.siteUrl}/perspectives.html</link>
     <atom:link href="${manifest.siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Essays, graph dispatches, and ratified notes behind the Open Engine.</description>
+    <description>Essays, graph dispatches, and ratified notes behind Vellis.</description>
     <language>en-us</language>
 ${items}
   </channel>

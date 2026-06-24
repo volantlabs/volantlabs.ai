@@ -2,13 +2,13 @@
 <!--
 @app-docs
 name: volantlabs.ai
-purpose: Public story site for the Open Engine, with a cinematic thesis page, growing perspectives library, preview-access engine page, domain examples, community support, and a quiet path to the governed Volant platform.
+purpose: Public story site for Vellis, with a cinematic thesis page, growing perspectives library, quickstart-oriented engine page, domain examples, community support, and a quiet path to the governed Kesher platform.
 
 writes: None (static public site prototype)
 
 features:
   - Home page with animated node-edge hero and audience-lane routing
-  - Cinematic Thesis page that tells the Open Engine story
+  - Cinematic Thesis page that tells Vellis story
   - Perspectives library for essays, graph-sourced dispatches, and ratified artifacts
   - Engine preview-access page with gated source positioning
   - Domain Explorations, Community, and Platform pages
@@ -17,10 +17,10 @@ features:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>volantlabs.ai — one memory your agents share, and you own</title>
-<meta name="description" content="The Open Engine is a typed knowledge graph that gives your AI agents a shared memory they can reason over — model your domain once, let Claude, Codex, and MCP-capable tools build on it, and export everything. Request preview access.">
+<title>Vellis — one memory your agents share, and you own · volantlabs.ai</title>
+<meta name="description" content="Vellis is a typed knowledge graph that gives your AI agents a shared memory they can reason over — model your domain once, let Claude, Codex, and MCP-capable tools build on it, and export everything. Run it locally.">
 <meta name="kesher:name" content="volantlabs.ai">
-<meta name="kesher:description" content="Public story site for the Open Engine, with a cinematic thesis page, perspectives library, preview-access engine page, and quiet path to the governed Volant platform.">
+<meta name="kesher:description" content="Public story site for Vellis, with a cinematic thesis page, perspectives library, quickstart-oriented engine page, and quiet path to the governed Kesher platform.">
 <meta name="kesher:type" content="content">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,50 +32,32 @@ features:
   .navlinks a:hover::after{right:0}
   /* ---- Hero ---- */
   .hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:var(--s10);align-items:center;
-    padding-top:var(--s12);padding-bottom:var(--s12);min-height:520px}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s12);align-items:center;
+    padding-top:var(--s24);padding-bottom:var(--s24);min-height:540px}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
     letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
-  h1.headline{font-size:48px;line-height:1.08;font-weight:800;color:#fff;letter-spacing:0;margin:var(--s3) 0 var(--s4)}
-  .hero p.sub{font-size:17px;line-height:1.55;font-weight:400;color:#c7d0e0;max-width:58ch}
-  /* capability strip — what the engine does before trust/risk-reversal copy */
-  .cap-strip{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-top:var(--s5);padding:0;max-width:58ch}
-  .cap-strip li{position:relative;padding-left:20px;font-size:13px;color:#c7d0e0;line-height:1.35}
+  h1.headline{font-size:clamp(34px,4.6vw,60px);font-weight:800;color:#fff;letter-spacing:0;margin:var(--s4) 0 var(--s6)}
+  .hero p.sub{font-size:18px;font-weight:400;color:#c7d0e0;max-width:48ch}
+  .meta-row{display:flex;flex-wrap:wrap;gap:var(--s6);margin-top:var(--s6);font-size:13px;color:#9fb0cc}
+  .meta-row span{display:inline-flex;align-items:center;gap:7px}
+  .meta-row .tick{color:var(--orange-600);font-weight:700}
+  /* capability strip — what Vellis does (replaces risk-reversal ticks) */
+  .cap-strip{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:var(--s6);padding:0;max-width:54ch}
+  .cap-strip li{position:relative;padding-left:20px;font-size:13.5px;color:#c7d0e0;line-height:1.45}
   .cap-strip li::before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--orange)}
-  .trust-line{margin-top:var(--s3);font-size:12.5px;color:#9fb0cc}
-  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s5);flex-wrap:wrap}
+  @media(max-width:880px){.cap-strip{grid-template-columns:1fr;gap:10px}}
+  .trust-line{margin-top:var(--s6);font-size:12.5px;color:#8fa0bd;letter-spacing:.02em}
+  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
   .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
   .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
   .hero-figure{position:relative;height:420px}
   #graph{width:100%;height:100%;display:block}
   .figcap{position:absolute;bottom:-6px;left:0;font-size:12px;color:#7f90ad;font-weight:300}
-  .graph-labels{position:absolute;inset:0;pointer-events:none}
-  .graph-label{position:absolute;padding:5px 8px;border-radius:6px;background:rgba(230,234,242,.92);color:var(--navy);
-    border:1px solid rgba(255,255,255,.32);font-family:var(--mono);font-size:11px;font-weight:600;
-    box-shadow:0 10px 26px rgba(0,0,0,.18)}
-  .graph-label.supplier{left:13%;top:25%}
-  .graph-label.part{left:47%;top:40%;background:var(--orange-50);color:var(--orange-600)}
-  .graph-label.obligation{right:10%;top:53%}
-  .graph-label.traversal{left:28%;bottom:17%}
   @media(max-width:880px){
-    .hero .wrap{grid-template-columns:1fr;gap:var(--s4);min-height:0;padding-top:var(--s8);padding-bottom:var(--s8)}
-    h1.headline{font-size:32px;margin:var(--s2) 0 var(--s3)}
-    .hero p.sub{font-size:15px}
-    .cap-strip{grid-template-columns:1fr;gap:10px;margin-top:var(--s4)}
-    .cta-row{gap:8px;margin-top:20px}
-    .hero-figure{height:140px;order:-1}
-    .graph-label{font-size:10px;padding:4px 7px}
-    .graph-label.supplier{left:7%;top:22%}
-    .graph-label.obligation{right:6%;top:55%}
+    .hero .wrap{grid-template-columns:1fr;gap:var(--s8);min-height:0}
+    .hero-figure{height:300px;order:-1}
   }
-  @media(max-width:620px){
-    .hero .wrap{padding-top:var(--s6);padding-bottom:var(--s6)}
-    .hero-figure{display:none}
-    .hero p.sub{font-size:14px;line-height:1.45}
-    .cap-strip li{font-size:12.5px;line-height:1.3}
-  }
-  @media(max-width:1080px) and (min-width:881px){h1.headline{font-size:48px}}
   /* ---- Featured trio ---- */
   .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
   @media(max-width:880px){.trio{grid-template-columns:1fr}}
@@ -143,7 +125,7 @@ features:
 <header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="index.html" aria-label="volantlabs.ai home" aria-current="page">
+      <a class="brand" href="index.html" aria-label="Vellis home" aria-current="page">
         <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <line x1="5" y1="6" x2="19" y2="6" stroke="#F5F5F5" stroke-width="0"/>
           <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
@@ -153,7 +135,7 @@ features:
           <circle cx="18" cy="18" r="3" fill="#001E50"/>
           <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
         </svg>
-        volantlabs.ai
+        Vellis
       </a>
       <div class="navlinks">
         <a href="engine.html">Engine</a>
@@ -163,7 +145,7 @@ features:
         <a href="community.html">Community</a>
       </div>
       <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=volantlabs.ai%20access">Contact</a>
+        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=Vellis%20access">Contact</a>
         <a class="btn btn-quiet" href="platform.html">Platform</a>
       </div>
     </nav>
@@ -175,17 +157,18 @@ features:
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Open engine · harness-agnostic memory for AI</span>
+      <span class="eyebrow"><span class="dot"></span>Vellis · open context engine for AI</span>
       <h1 class="headline">One memory your agents share — and you own.</h1>
-      <p class="sub">The Open Engine is a typed knowledge graph that turns scattered context into a living model your AI can reason over. Model your domain once; let Claude, Codex, and MCP-capable tools build on the same graph — and export everything, anytime.</p>
-      <ul class="cap-strip" aria-label="Open Engine capabilities">
+      <p class="sub">Vellis is a typed knowledge graph that turns scattered context into a living model your AI can reason over. Model your domain once; let Claude, Codex, and MCP-capable tools build on the same graph — and export everything, anytime.</p>
+      <ul class="cap-strip">
         <li>Harness-agnostic memory — works with Claude, Codex &amp; MCP-capable tools</li>
         <li>Carry context across agents and sessions</li>
         <li>Model your domain as a typed, queryable graph</li>
         <li>Yours to export in open formats — no lock-in</li>
       </ul>
+      <!-- Draft launch CTA; wire to the real public repo/download target before launch. -->
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Open%20Engine%20preview%20access">Request preview access
+        <a class="btn btn-primary" href="engine.html#quickstart">Run Vellis locally
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a class="btn btn-ghost" href="domain-explorations.html">See a worked model</a>
@@ -194,12 +177,6 @@ features:
     </div>
     <div class="hero-figure">
       <canvas id="graph" aria-label="Animated typed knowledge graph — one shared memory your agents read and write"></canvas>
-      <div class="graph-labels" aria-hidden="true">
-        <span class="graph-label supplier">Supplier</span>
-        <span class="graph-label part">Part</span>
-        <span class="graph-label obligation">Obligation</span>
-        <span class="graph-label traversal">Traversal</span>
-      </div>
       <span class="figcap">One typed graph — every agent reads and writes the same memory.</span>
     </div>
   </div>
@@ -209,32 +186,32 @@ features:
 <section class="band" id="engine">
   <div class="wrap">
     <div class="band-head">
-      <h2>What you can do first</h2>
-      <span class="lane">Preview access · worked models</span>
+      <h2>Start here</h2>
+      <span class="lane">For engineers · model a domain</span>
     </div>
     <div class="trio">
       <!-- flagship -->
       <article class="card flagship">
         <div class="thumb">
-          <img src="assets/images/open-engine-graph.webp" alt="Abstract typed knowledge graph with schema, storage, and export paths around an active orange node." width="960" height="540" loading="lazy" decoding="async">
+          <img src="assets/images/vellis-context-graph.webp" alt="Abstract typed knowledge graph with schema, storage, and export paths around an active orange node." width="960" height="540" loading="lazy" decoding="async">
         </div>
         <div class="body">
           <span class="tag flag">Flagship</span>
-          <h3>Request the Open Engine preview</h3>
-          <p>See the typed graph, schema language, storage, and export path before you model your first real domain.</p>
-          <a class="more" href="engine.html#quickstart">See the access path <span class="arr">→</span></a>
+          <h3>Vellis</h3>
+          <p>The typed graph, schema language, storage, and full-fidelity export — the substrate, visible and yours to run.</p>
+          <a class="more" href="engine.html#quickstart">Read the quickstart <span class="arr">→</span></a>
         </div>
       </article>
       <!-- satellite 1 -->
       <article class="card">
         <div class="thumb">
-          <img src="assets/images/aerospace-supply-graph.webp" alt="Aerospace supply graph showing supplier tiers converging into an active orange part-lineage path." width="960" height="540" loading="lazy" decoding="async">
+          <img src="assets/images/manufacturing-bom.webp" alt="Manufacturing bill-of-materials graph showing assemblies, part variants, and an active orange substitution branch." width="960" height="540" loading="lazy" decoding="async">
         </div>
         <div class="body">
           <span class="tag">Domain exploration</span>
-          <h3>Explore a worked domain graph</h3>
-          <p>Parts, suppliers, and obligations as one typed, queryable structure - not another prompt full of pasted context.</p>
-          <a class="more" href="domain-explorations.html">See the model <span class="arr">→</span></a>
+          <h3>Worked domain models</h3>
+          <p>See Vellis model parts, protocols, claims, grids, and logistics as typed, queryable context graphs.</p>
+          <a class="more" href="domain-explorations.html">Explore the models <span class="arr">→</span></a>
         </div>
       </article>
       <!-- satellite 2 -->
@@ -273,7 +250,7 @@ features:
         <span class="read">Read -&gt;</span>
       </a>
       <a class="row" href="perspectives/open-data.html">
-        <span class="pill">May 27 · <span class="lane">Open engine</span></span>
+        <span class="pill">May 27 · <span class="lane">Vellis</span></span>
         <span class="ftitle">Open data, proprietary intelligence</span>
         <span class="read">Read -&gt;</span>
       </a>
@@ -288,10 +265,10 @@ features:
     <div class="flywheel">
       <div class="fly-title">How it works — the flywheel</div>
       <div class="steps">
-        <div class="step"><div class="num">1</div><h4>Seed</h4><p>Request preview access and load your first nodes and edges.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">1</div><h4>Seed</h4><p>Run Vellis locally and load your first nodes and edges.</p><span class="conn">→</span></div>
         <div class="step"><div class="num">2</div><h4>Meaning</h4><p>Types and traversals make the data legible to agents.</p><span class="conn">→</span></div>
         <div class="step"><div class="num">3</div><h4>Governance</h4><p>Attach controls at runtime, where execution actually happens.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">4</div><h4>Graduate</h4><p>Move to the governed platform when you need scale — full export, no rewrite.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">4</div><h4>Graduate</h4><p>Move to Kesher when audit and scale matter — full export, no rewrite.</p><span class="conn">→</span></div>
         <div class="step compound"><div class="num">5</div><h4>Compound</h4><p>Coherence holds as the system grows. Meaning accrues.</p></div>
       </div>
     </div>
@@ -313,16 +290,16 @@ features:
           <circle cx="130" cy="40" r="9" fill="#E6EAF2" fill-opacity=".7"/>
         </svg>
         <h2>Build in the open with us</h2>
-        <p>Contributors, model-builders, and the curious. Request access, bring your domain, and model it out loud with us.</p>
+        <p>Contributors, model-builders, and the curious. Run Vellis locally, bring your domain, and model it out loud with us.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="engine.html#quickstart">Get started</a>
-          <a class="btn btn-ghost" href="mailto:hello@volantpartners.com?subject=Open%20Engine%20access">Request access</a>
+          <a class="btn btn-primary" href="engine.html#quickstart">Run Vellis locally</a>
+          <a class="btn btn-ghost" href="community.html">Join the community</a>
         </div>
       </div>
       <div class="platform" id="platform">
         <span class="kicker">Need governance?</span>
-        <h3>The governed platform</h3>
-        <p>When integrity, multi-tenant scale, and audit matter, graduate to the commercial platform. Your graph comes with you.</p>
+        <h3>Kesher, the governed platform</h3>
+        <p>When integrity, multi-tenant scale, and audit matter, graduate to Kesher, Volant Partners' commercial platform. Your graph comes with you.</p>
         <a class="go" href="platform.html">See the Platform <span aria-hidden="true">→</span></a>
       </div>
     </div>
@@ -344,9 +321,9 @@ features:
             <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
             <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
           </svg>
-          volantlabs.ai
+          Vellis
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. A typed graph memory for AI agents, with full export and a quiet path to governance.</p>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. Typed context infrastructure for AI-native work.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
@@ -355,7 +332,7 @@ features:
         </div>
         <div class="foot-col">
           <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="engine.html#open-promise">Access model</a><a href="mailto:hello@volantpartners.com?subject=Open%20Engine%20access">Request access</a><a href="platform.html">Platform</a>
+          <a href="thesis.html">Open by Design</a><a href="engine.html#open-promise">Access model</a><a href="engine.html#quickstart">Run locally</a><a href="platform.html">Platform</a>
         </div>
         <div class="foot-col">
           <h5>Stay close</h5>
@@ -365,7 +342,7 @@ features:
     </div>
     <div class="foot-bottom">
       <span>© 2026 Volant Partners</span>
-      <span class="nrp">No rug-pull: the engine stays runnable.</span>
+      <span class="nrp">No rug-pull: Vellis stays runnable.</span>
     </div>
   </div>
 </footer>
@@ -384,10 +361,8 @@ features:
   function resize(){
     DPR=Math.min(window.devicePixelRatio||1,2);
     W=canvas.clientWidth; H=canvas.clientHeight;
-    if(!W||!H){canvas.width=0;canvas.height=0;return false;}
     canvas.width=W*DPR; canvas.height=H*DPR;
     ctx.setTransform(DPR,0,0,DPR,0,0);
-    return true;
   }
 
   // Build a small typed graph: 1 hub, ring of primaries, a few leaves.
@@ -476,26 +451,10 @@ features:
     });
   }
 
-  let running=false;
-  function loop(){
-    if(!W||!H){running=false;return;}
-    if(!reduce){ step(); }
-    t++; draw();
-    if(!reduce&&running) requestAnimationFrame(loop);
-  }
+  function loop(){ if(!reduce){ step(); } t++; draw(); if(!reduce) requestAnimationFrame(loop); }
 
-  function init(){
-    if(!resize()) return;
-    seed(); t=reduce?200:0;
-    if(reduce){for(let i=0;i<120;i++)step(); draw(); return;}
-    running=true; loop();
-  }
-  window.addEventListener('resize',()=>{
-    if(!resize()){running=false;return;}
-    seed();
-    if(reduce){t=200; draw(); return;}
-    if(!running){running=true; loop();}
-  });
+  function init(){ resize(); seed(); t=reduce?200:0; if(reduce){for(let i=0;i<120;i++)step();} loop(); }
+  window.addEventListener('resize',()=>{resize();seed(); if(reduce){t=200; draw();}});
   init();
 })();
 </script>

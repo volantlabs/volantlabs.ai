@@ -5,7 +5,7 @@
   "kindLabel": "From the graph",
   "title": "No rug-pull means more than a license",
   "shortTitle": "No rug-pull means more than a license",
-  "dek": "A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with the engine.",
+  "dek": "A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with Vellis.",
   "published": "2026-04-29",
   "displayDate": "April 29, 2026",
   "readingTime": "3 min read",
@@ -29,14 +29,14 @@
       "heading": "The exit path has to be real",
       "paragraphs": [
         "Full-fidelity export is the operational version of trust. It tells a team that the work they put into modeling their domain is not trapped inside a vendor's future pricing decision.",
-        "That promise is strongest when it is boring and visible: open formats, clear docs, and no mysterious downgrade between what the engine stores and what the user can take with them."
+        "That promise is strongest when it is boring and visible: open formats, clear docs, and no mysterious downgrade between what Vellis stores and what the user can take with them."
       ]
     },
     {
       "heading": "The platform should graduate, not replace",
       "paragraphs": [
-        "The governed platform has a real job: write-back gates, audit traces, approvals, and operational controls. Those capabilities can justify a commercial relationship without undermining the open engine.",
-        "That is the clean bargain. The engine stays runnable. The platform adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
+        "Kesher has a real job: write-back gates, audit traces, approvals, and operational controls. Those capabilities can justify a commercial relationship without undermining Vellis.",
+        "That is the clean bargain. Vellis stays runnable. Kesher adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
       ]
     }
   ],
@@ -47,7 +47,7 @@
     "status": "Ratified.",
     "knownUncertainty": "The promise should be revisited whenever packaging, access, or deployment mechanics change.",
     "dissent": "A project can be trustworthy with a stronger commercial boundary if it communicates that boundary early and honestly.",
-    "nextFalsifier": "Any change that makes the engine non-runnable or export lossy would break the no-rug-pull claim."
+    "nextFalsifier": "Any change that makes Vellis non-runnable or export lossy would break the no-rug-pull claim."
   },
   "related": [
     "open-data",

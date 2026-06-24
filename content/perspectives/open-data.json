@@ -5,7 +5,7 @@
   "kindLabel": "From the graph",
   "title": "Open data, proprietary intelligence",
   "shortTitle": "Open data, proprietary intelligence",
-  "dek": "The line that lets an open engine stay open while proprietary operational intelligence compounds inside each organization.",
+  "dek": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
   "published": "2026-05-27",
   "displayDate": "May 27, 2026",
   "readingTime": "4 min read",
@@ -13,7 +13,7 @@
   "provenanceLine": "Drafted from the graph · Ratified by Eddie Austin",
   "statusLabel": "Ratified",
   "tags": [
-    "Open engine",
+    "Vellis",
     "Portability",
     "Compounding intelligence"
   ],
@@ -21,15 +21,15 @@
     {
       "heading": "Open does not mean undifferentiated",
       "paragraphs": [
-        "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. The engine can be open because the engine is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
+        "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. Vellis can stay open because the substrate is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
         "The proprietary value appears in the work an organization does with it. Their domain model, policy choices, operating history, ratified decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
       ]
     },
     {
       "heading": "Portability is the trust signal",
       "paragraphs": [
-        "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? The Open Engine answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
-        "That is also why the commercial platform should not compete with the engine. The platform can add governed write-back, audit traces, approvals, and enterprise controls. It should not make the open substrate feel like bait."
+        "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? Vellis answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
+        "That is also why Kesher should not compete with Vellis. The governed platform can add write-back controls, audit traces, approvals, and enterprise controls. It should not make the open substrate feel like bait."
       ]
     },
     {
