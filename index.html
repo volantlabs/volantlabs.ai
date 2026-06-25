@@ -2,25 +2,25 @@
 <!--
 @app-docs
 name: volantlabs.ai
-purpose: Public story site for Vellis, with a cinematic thesis page, growing perspectives library, preview-access engine page, domain examples, community support, and a quiet path to the governed Kesher platform.
+purpose: Public story site for Volant Labs, with Vellis as the first open project, a cinematic thesis page, a growing perspectives library, community support, and a quiet path to Volant Partners for production help.
 
 writes: None (static public site prototype)
 
 features:
-  - Home page with animated node-edge hero and audience-lane routing
+  - Home page with animated node-edge hero and lab/project routing
   - Cinematic Thesis page that tells Vellis story
   - Perspectives library for essays, graph-sourced dispatches, and ratified artifacts
-  - Engine preview-access page with gated source positioning
-  - Domain Explorations, Community, and Platform pages
+  - Engine page for Vellis details
+  - Community and Platform pages
 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vellis — one memory your agents share, and you own · volantlabs.ai</title>
-<meta name="description" content="Vellis is a typed knowledge graph that gives your AI agents a shared memory they can reason over — model your domain once, let Claude, Codex, and MCP-capable tools build on it, and export everything. Run it locally.">
+<title>Volant Labs — open graph-native tools for AI-native work · volantlabs.ai</title>
+<meta name="description" content="Volant Labs publishes open graph-native infrastructure for AI-native work. Vellis is the first project: a typed context graph your agents can share, reason over, and export.">
 <meta name="kesher:name" content="volantlabs.ai">
-<meta name="kesher:description" content="Public story site for Vellis, with a cinematic thesis page, perspectives library, preview-access engine page, and quiet path to the governed Kesher platform.">
+<meta name="kesher:description" content="Public story site for Volant Labs, with Vellis as the first open project, a cinematic thesis page, perspectives library, and quiet path to Volant Partners production support.">
 <meta name="kesher:type" content="content">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,10 @@ features:
   /* focus states — WCAG AA */
   /* ---- Nav ---- */
   .navlinks a:hover::after{right:0}
+  .lab-note{background:#fff;border-bottom:1px solid var(--line)}
+  .lab-note .wrap{display:flex;gap:var(--s3);align-items:center;padding-top:10px;padding-bottom:10px;font-size:13px;color:#596276}
+  .lab-note strong{color:var(--navy);font-weight:700}
+  @media(max-width:720px){.lab-note .wrap{display:block;line-height:1.55}}
   /* ---- Hero ---- */
   .hero{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
   .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s12);align-items:center;
@@ -51,9 +55,9 @@ features:
   .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
   .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
   .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
-  .hero-figure{position:relative;height:420px}
-  #graph{width:100%;height:100%;display:block}
-  .figcap{position:absolute;bottom:-6px;left:0;font-size:12px;color:#7f90ad;font-weight:300}
+  .hero-figure{position:relative;height:420px;isolation:isolate}
+  #graph{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+  .figcap{position:absolute;bottom:-6px;left:0;z-index:2;font-size:12px;color:#7f90ad;font-weight:300}
   @media(max-width:880px){
     .hero .wrap{grid-template-columns:1fr;gap:var(--s8);min-height:0}
     .hero-figure{height:300px;order:-1}
@@ -125,7 +129,7 @@ features:
 <header>
   <div class="wrap">
     <nav>
-      <a class="brand" href="index.html" aria-label="Vellis home" aria-current="page">
+      <a class="brand" href="index.html" aria-label="Volant Labs home" aria-current="page">
         <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <line x1="5" y1="6" x2="19" y2="6" stroke="#F5F5F5" stroke-width="0"/>
           <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
@@ -135,47 +139,52 @@ features:
           <circle cx="18" cy="18" r="3" fill="#001E50"/>
           <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
         </svg>
-        Vellis
+        Volant Labs
       </a>
       <div class="navlinks">
         <a href="engine.html">Engine</a>
-        <a href="domain-explorations.html">Domain Explorations</a>
         <a href="thesis.html">Thesis</a>
         <a href="perspectives.html">Perspectives</a>
         <a href="community.html">Community</a>
       </div>
       <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="mailto:hello@volantpartners.com?subject=Vellis%20access">Contact</a>
+        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
         <a class="btn btn-quiet" href="platform.html">Platform</a>
       </div>
     </nav>
   </div>
 </header>
+<div class="lab-note" role="note">
+  <div class="wrap">
+    <strong>Volant Labs is maintained by Volant Partners.</strong>
+    <span>The lab publishes open tools and research for graph-native AI work; Volant Partners helps teams apply them in production.</span>
+  </div>
+</div>
 <main id="main">
 
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Vellis · open context engine for AI</span>
-      <h1 class="headline">One memory your agents share — and you own.</h1>
-      <p class="sub">Vellis is a typed knowledge graph that turns scattered context into a living model your AI can reason over. Model your domain once; let Claude, Codex, and MCP-capable tools build on the same graph — and export everything, anytime.</p>
+      <span class="eyebrow"><span class="dot"></span>Volant Labs · open graph-native AI infrastructure</span>
+      <h1 class="headline">Open tools for shared AI memory.</h1>
+      <p class="sub">Volant Labs publishes runnable infrastructure for AI-native work. Vellis is the first project: a typed context graph your agents can share, reason over, and export anytime.</p>
       <ul class="cap-strip">
-        <li>Harness-agnostic memory — works with Claude, Codex &amp; MCP-capable tools</li>
-        <li>Carry context across agents and sessions</li>
+        <li>Start with Vellis as a local-first engine</li>
+        <li>Carry context across agents, tools, and sessions</li>
         <li>Model your domain as a typed, queryable graph</li>
         <li>Yours to export in open formats — no lock-in</li>
       </ul>
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Vellis%20preview%20access">Request Vellis preview
+        <a class="btn btn-primary" href="engine.html#quickstart">Get Started
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn-ghost" href="domain-explorations.html">See a worked model</a>
+        <a class="btn btn-ghost" href="engine.html">Learn More</a>
       </div>
-      <p class="trust-line">Open by design · full-fidelity export · no rug-pull.</p>
+      <p class="trust-line">Maintained by Volant Partners · open by design · full-fidelity export.</p>
     </div>
     <div class="hero-figure">
-      <canvas id="graph" aria-label="Animated typed knowledge graph — one shared memory your agents read and write"></canvas>
+      <canvas id="graph" aria-label="Animated typed context graph — one shared memory your agents read and write"></canvas>
       <span class="figcap">One typed graph — every agent reads and writes the same memory.</span>
     </div>
   </div>
@@ -186,43 +195,43 @@ features:
   <div class="wrap">
     <div class="band-head">
       <h2>Start here</h2>
-      <span class="lane">For engineers · model a domain</span>
+      <span class="lane">Open project · public thinking · community</span>
     </div>
     <div class="trio">
       <!-- flagship -->
       <article class="card flagship">
         <div class="thumb">
-          <img src="assets/images/vellis-context-graph.webp" alt="Abstract typed knowledge graph with schema, storage, and export paths around an active orange node." width="960" height="540" loading="lazy" decoding="async">
+          <img src="assets/images/vellis-context-graph.webp" alt="Abstract typed context graph with schema, storage, and export paths around an active orange node." width="960" height="540" loading="lazy" decoding="async">
         </div>
         <div class="body">
-          <span class="tag flag">Flagship</span>
+          <span class="tag flag">Open project</span>
           <h3>Vellis</h3>
-          <p>The typed graph, schema language, storage, and full-fidelity export — the substrate, visible and yours to run.</p>
-          <a class="more" href="engine.html#quickstart">See the preview path <span class="arr">→</span></a>
+          <p>The typed graph, schema language, storage, and full-fidelity export path — visible, runnable, and yours to inspect.</p>
+          <a class="more" href="engine.html#quickstart">See local start <span class="arr">→</span></a>
         </div>
       </article>
       <!-- satellite 1 -->
       <article class="card">
         <div class="thumb">
-          <img src="assets/images/manufacturing-bom.webp" alt="Manufacturing bill-of-materials graph showing assemblies, part variants, and an active orange substitution branch." width="960" height="540" loading="lazy" decoding="async">
+          <img src="assets/images/graph-theory-thesis.webp" alt="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters." width="960" height="540" loading="lazy" decoding="async">
         </div>
         <div class="body">
-          <span class="tag">Domain exploration</span>
-          <h3>Worked domain models</h3>
-          <p>See Vellis model parts, protocols, claims, grids, and logistics as typed, queryable context graphs.</p>
-          <a class="more" href="domain-explorations.html">Explore the models <span class="arr">→</span></a>
+          <span class="tag">Engine</span>
+          <h3>How Vellis works</h3>
+          <p>Understand the typed graph, schema language, storage model, and export promise behind the first Volant Labs project.</p>
+          <a class="more" href="engine.html">Learn more <span class="arr">→</span></a>
         </div>
       </article>
       <!-- satellite 2 -->
       <article class="card">
         <div class="thumb">
-          <img src="assets/images/graph-theory-thesis.webp" alt="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters." width="960" height="540" loading="lazy" decoding="async">
+          <img src="assets/images/platform-governance-gate.webp" alt="Abstract graph clusters converging through a clear review gate along an orange path." width="960" height="540" loading="lazy" decoding="async">
         </div>
         <div class="body">
-          <span class="tag">Thesis</span>
-          <h3>Why the graph is a theory</h3>
-          <p>The thesis in 12 minutes: why agents need a substrate that carries meaning, not just text.</p>
-          <a class="more" href="thesis.html">Read the story <span class="arr">→</span></a>
+          <span class="tag">Perspectives</span>
+          <h3>Thinking in public</h3>
+          <p>Essays and graph-sourced notes on why agents need a substrate that carries meaning, not just text.</p>
+          <a class="more" href="perspectives.html">Browse notes <span class="arr">→</span></a>
         </div>
       </article>
     </div>
@@ -262,13 +271,13 @@ features:
 <section class="band" style="padding-top:0">
   <div class="wrap">
     <div class="flywheel">
-      <div class="fly-title">How it works — the flywheel</div>
+      <div class="fly-title">How it works — from local start to shared memory</div>
       <div class="steps">
-        <div class="step"><div class="num">1</div><h4>Seed</h4><p>Request preview access and load your first nodes and edges.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">2</div><h4>Meaning</h4><p>Types and traversals make the data legible to agents.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">3</div><h4>Governance</h4><p>Attach controls at runtime, where execution actually happens.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">4</div><h4>Graduate</h4><p>Move to Kesher when audit and scale matter — full export, no rewrite.</p><span class="conn">→</span></div>
-        <div class="step compound"><div class="num">5</div><h4>Compound</h4><p>Coherence holds as the system grows. Meaning accrues.</p></div>
+        <div class="step"><div class="num">1</div><h4>Start</h4><p>Request the current local-start path, then run the project on your machine.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">2</div><h4>Model</h4><p>Define typed nodes, links, and constraints for the work.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">3</div><h4>Connect</h4><p>Give agents and tools one shared graph-backed context.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">4</div><h4>Iterate</h4><p>Change the graph with schema checks and visible provenance.</p><span class="conn">→</span></div>
+        <div class="step compound"><div class="num">5</div><h4>Compound</h4><p>Each run leaves better context for the next one.</p></div>
       </div>
     </div>
   </div>
@@ -289,17 +298,17 @@ features:
           <circle cx="130" cy="40" r="9" fill="#E6EAF2" fill-opacity=".7"/>
         </svg>
         <h2>Build in the open with us</h2>
-        <p>Contributors, model-builders, and the curious. Request preview access, bring your domain, and model it out loud with us.</p>
+        <p>Contributors, model-builders, and the curious. Follow the project, read the thinking, and help shape open infrastructure for AI-native work.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Vellis%20preview%20access">Request Vellis preview</a>
+          <a class="btn btn-primary" href="engine.html#quickstart">Get Started</a>
           <a class="btn btn-ghost" href="community.html">Join the community</a>
         </div>
       </div>
       <div class="platform" id="platform">
-        <span class="kicker">Need governance?</span>
-        <h3>Kesher, the governed platform</h3>
-        <p>When integrity, multi-tenant scale, and audit matter, graduate to Kesher, Volant Partners' commercial platform. Your graph comes with you.</p>
-        <a class="go" href="platform.html">See the Platform <span aria-hidden="true">→</span></a>
+        <span class="kicker">Need production help?</span>
+        <h3>Volant Partners can help</h3>
+        <p>When a lab project needs to become a production system, Volant Partners helps teams apply the model with the right operating controls.</p>
+        <a class="go" href="platform.html">See the support path <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -320,18 +329,18 @@ features:
             <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
             <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
           </svg>
-          Vellis
+          Volant Labs
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open by design. Typed context infrastructure for AI-native work.</p>
+        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
           <h5>Project</h5>
-          <a href="engine.html">Engine</a><a href="domain-explorations.html">Domain Explorations</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
+          <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
         </div>
         <div class="foot-col">
           <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="engine.html#open-promise">Access model</a><a href="engine.html#quickstart">Preview access</a><a href="platform.html">Platform</a>
+          <a href="engine.html#quickstart">Local start</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Production support</a>
         </div>
         <div class="foot-col">
           <h5>Stay close</h5>
@@ -347,115 +356,157 @@ features:
 </footer>
 
 <script>
-/* ---- Animated force-directed hero graph ----
-   Brand motion: deliberate, edges draw before nodes fill, navy field,
-   warm-white/light-blue nodes, orange active accents. */
-(function(){
-  const canvas=document.getElementById('graph');
-  if(!canvas) return;
-  const ctx=canvas.getContext('2d');
-  let W,H,DPR;
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---- Evolving hero graph ----
+   Deterministic canvas motion: the graph morphs between two stable shapes,
+   then adds, ratifies, and prunes transient nodes in a quiet loop. */
+  (function(){
+    const canvas=document.getElementById('graph');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    let W=0,H=0,DPR=1,raf=0,start=0;
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function resize(){
-    DPR=Math.min(window.devicePixelRatio||1,2);
-    W=canvas.clientWidth; H=canvas.clientHeight;
-    canvas.width=W*DPR; canvas.height=H*DPR;
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-
-  // Build a small typed graph: 1 hub, ring of primaries, a few leaves.
-  const N=14, nodes=[], edges=[];
-  function seed(){
-    nodes.length=0; edges.length=0;
-    const cx=W*0.5, cy=H*0.5, R=Math.min(W,H)*0.32;
-    nodes.push({x:cx,y:cy,r:9,active:true,vx:0,vy:0,hub:true}); // hub (orange)
-    const ring=7;
-    for(let i=0;i<ring;i++){
-      const a=(i/ring)*Math.PI*2 - Math.PI/2;
-      nodes.push({x:cx+Math.cos(a)*R,y:cy+Math.sin(a)*R,r:5.5,
-        active:(i%4===0),vx:0,vy:0});
-      edges.push([0,i+1]);
+    function resize(){
+      DPR=Math.min(window.devicePixelRatio||1,2);
+      W=canvas.clientWidth; H=canvas.clientHeight;
+      canvas.width=W*DPR; canvas.height=H*DPR;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
     }
-    // leaves hung off ring nodes
-    let idx=ring+1;
-    for(let i=0;i<N-ring-1;i++){
-      const parent=1+(i%ring);
-      const p=nodes[parent];
-      const a=Math.random()*Math.PI*2;
-      nodes.push({x:p.x+Math.cos(a)*R*0.55,y:p.y+Math.sin(a)*R*0.55,r:4,
-        active:(i===2),vx:0,vy:0});
-      edges.push([parent,idx]); idx++;
+
+    const nodes=[
+      {id:'memory',ax:.50,ay:.51,bx:.43,by:.50,r:10,accent:true,seed:1.1},
+      {id:'schema',ax:.31,ay:.28,bx:.24,by:.36,r:6,seed:2.7},
+      {id:'policy',ax:.68,ay:.31,bx:.70,by:.21,r:6,seed:4.2},
+      {id:'agent',ax:.30,ay:.72,bx:.36,by:.77,r:6,seed:5.6},
+      {id:'export',ax:.73,ay:.68,bx:.80,by:.61,r:6,seed:7.4},
+      {id:'human',ax:.55,ay:.18,bx:.61,by:.32,r:5,seed:8.3},
+      {id:'session',ax:.19,ay:.52,bx:.17,by:.58,r:4.5,seed:9.1},
+      {id:'trace',ax:.84,ay:.50,bx:.77,by:.44,r:4.5,seed:10.5},
+      {id:'domain',ax:.42,ay:.36,bx:.34,by:.25,r:4.5,seed:12.2},
+      {id:'runtime',ax:.58,ay:.63,bx:.62,by:.72,r:4.5,seed:13.8},
+      {id:'ingest',ax:.12,ay:.28,bx:.22,by:.20,r:5,seed:15.1,enter:.06,life:.58},
+      {id:'draft',ax:.57,ay:.82,bx:.52,by:.70,r:5.5,accent:true,seed:16.4,enter:.22,life:.5},
+      {id:'ratify',ax:.87,ay:.25,bx:.78,by:.30,r:5.5,accent:true,seed:17.9,enter:.34,life:.38},
+      {id:'stale',ax:.88,ay:.78,bx:.68,by:.82,r:4.5,seed:19.2,enter:.0,life:.44,retire:true}
+    ];
+
+    const edges=[
+      ['memory','schema'],['memory','policy'],['memory','agent'],['memory','export'],
+      ['memory','human'],['schema','domain'],['schema','session'],['policy','trace'],
+      ['agent','runtime'],['export','runtime'],['human','policy'],['session','agent'],
+      ['ingest','schema'],['ingest','memory'],['draft','runtime'],['draft','agent'],
+      ['ratify','policy'],['ratify','human'],['stale','export'],['stale','trace']
+    ];
+
+    const lookup=new Map(nodes.map((node,index)=>[node.id,index]));
+
+    function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+    function smoothstep(a,b,v){
+      const x=clamp((v-a)/(b-a),0,1);
+      return x*x*(3-2*x);
     }
-  }
-
-  function step(){
-    // light force sim: repulsion + spring on edges + gentle centering
-    const cx=W*0.5, cy=H*0.5;
-    for(let i=0;i<nodes.length;i++){
-      const a=nodes[i];
-      for(let j=i+1;j<nodes.length;j++){
-        const b=nodes[j];
-        let dx=a.x-b.x, dy=a.y-b.y; let d2=dx*dx+dy*dy+0.01;
-        const f=380/d2;
-        const d=Math.sqrt(d2);
-        a.vx+=(dx/d)*f; a.vy+=(dy/d)*f;
-        b.vx-=(dx/d)*f; b.vy-=(dy/d)*f;
-      }
-      a.vx+=(cx-a.x)*0.0016; a.vy+=(cy-a.y)*0.0016;
+    function nodeAlpha(node,cycle){
+      if(node.enter===undefined) return 1;
+      const age=(cycle-node.enter+1)%1;
+      if(age>node.life) return 0;
+      const fade=Math.min(.13,node.life*.38);
+      return Math.min(smoothstep(0,fade,age),1-smoothstep(node.life-fade,node.life,age));
     }
-    edges.forEach(([i,j])=>{
-      const a=nodes[i],b=nodes[j];
-      let dx=b.x-a.x, dy=b.y-a.y; const d=Math.sqrt(dx*dx+dy*dy)||1;
-      const target=Math.min(W,H)*0.30;
-      const f=(d-target)*0.012;
-      a.vx+=(dx/d)*f; a.vy+=(dy/d)*f;
-      b.vx-=(dx/d)*f; b.vy-=(dy/d)*f;
-    });
-    nodes.forEach(n=>{
-      if(n.hub){return;}
-      n.vx*=0.86; n.vy*=0.86;
-      n.x+=n.vx*0.5; n.y+=n.vy*0.5;
-      const m=18;
-      n.x=Math.max(m,Math.min(W-m,n.x)); n.y=Math.max(m,Math.min(H-m,n.y));
-    });
-  }
 
-  let t=0; // reveal clock
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    const edgeReveal=Math.min(1,t/60);          // edges draw first
-    const nodeReveal=Math.max(0,Math.min(1,(t-40)/70)); // nodes fill after
-    // edges
-    edges.forEach(([i,j],k)=>{
-      const a=nodes[i],b=nodes[j];
-      const prog=Math.max(0,Math.min(1,edgeReveal*edges.length - k))/1;
-      const p=Math.max(0,Math.min(1,(edgeReveal*1.2)-(k/edges.length)*0.5));
-      ctx.globalAlpha=0.42*p;
-      ctx.strokeStyle='#F5F5F5'; ctx.lineWidth=1.2;
-      ctx.beginPath(); ctx.moveTo(a.x,a.y);
-      ctx.lineTo(a.x+(b.x-a.x)*p, a.y+(b.y-a.y)*p); ctx.stroke();
-    });
-    ctx.globalAlpha=1;
-    // nodes
-    nodes.forEach(n=>{
-      const r=n.r*nodeReveal;
-      if(r<=0.2) return;
-      if(n.active){
-        ctx.beginPath(); ctx.arc(n.x,n.y,r+5,0,Math.PI*2);
-        ctx.fillStyle='rgba(209,91,33,0.16)'; ctx.fill();
-      }
-      ctx.beginPath(); ctx.arc(n.x,n.y,r,0,Math.PI*2);
-      ctx.fillStyle=n.active?'#D15B21':'#E6EAF2'; ctx.fill();
-    });
-  }
+    function stateFor(node,elapsed,cycle,morph){
+      const drift=reduce?0:1;
+      const x=(node.ax+(node.bx-node.ax)*morph)*W + Math.sin(elapsed*.00055+node.seed)*7*drift;
+      const y=(node.ay+(node.by-node.ay)*morph)*H + Math.cos(elapsed*.00047+node.seed)*6*drift;
+      return {node,x,y,alpha:nodeAlpha(node,cycle)};
+    }
 
-  function loop(){ if(!reduce){ step(); } t++; draw(); if(!reduce) requestAnimationFrame(loop); }
+    function line(a,b,alpha,width,color){
+      ctx.globalAlpha=alpha;
+      ctx.strokeStyle=color;
+      ctx.lineWidth=width;
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y);
+      ctx.lineTo(b.x,b.y);
+      ctx.stroke();
+    }
 
-  function init(){ resize(); seed(); t=reduce?200:0; if(reduce){for(let i=0;i<120;i++)step();} loop(); }
-  window.addEventListener('resize',()=>{resize();seed(); if(reduce){t=200; draw();}});
-  init();
-})();
+    function drawPulse(a,b,alpha,elapsed,index){
+      const phase=(elapsed*.00009+index*.137)%1;
+      const len=.18;
+      const startT=clamp(phase-len,0,1);
+      const endT=clamp(phase,0,1);
+      const p0={x:a.x+(b.x-a.x)*startT,y:a.y+(b.y-a.y)*startT};
+      const p1={x:a.x+(b.x-a.x)*endT,y:a.y+(b.y-a.y)*endT};
+      const pulseAlpha=alpha*(.18+.42*Math.sin(Math.PI*phase));
+      line(p0,p1,pulseAlpha,2.1,'#D15B21');
+    }
+
+    function render(elapsed){
+      if(!W||!H) return;
+      const cycle=(elapsed%14000)/14000;
+      const morph=.5-.5*Math.cos(cycle*Math.PI*2);
+      const states=nodes.map(node=>stateFor(node,elapsed,cycle,morph));
+      ctx.clearRect(0,0,W,H);
+
+      ctx.globalCompositeOperation='source-over';
+      edges.forEach(([from,to],index)=>{
+        const a=states[lookup.get(from)];
+        const b=states[lookup.get(to)];
+        const alpha=Math.min(a.alpha,b.alpha);
+        if(alpha<=.02) return;
+        const isWrite=a.node.accent||b.node.accent||a.node.enter!==undefined||b.node.enter!==undefined;
+        line(a,b,alpha*(isWrite ? .2 : .14),isWrite ? 1.25 : 1,'#E6EAF2');
+        if(!reduce&&alpha>.46) drawPulse(a,b,alpha*(isWrite ? .75 : .38),elapsed,index);
+      });
+
+      states.forEach(({node,x,y,alpha})=>{
+        if(alpha<=.02) return;
+        const transient=node.enter!==undefined;
+        const scale=transient?(.78+.22*alpha):1;
+        const r=node.r*scale;
+        const glow=node.accent?'rgba(209,91,33,':'rgba(230,234,242,';
+        ctx.globalAlpha=alpha*(node.accent ? .2 : .11);
+        ctx.fillStyle=`${glow}${node.retire ? .06 : .16})`;
+        ctx.beginPath();
+        ctx.arc(x,y,r+10+(node.accent?2:0),0,Math.PI*2);
+        ctx.fill();
+
+        if(transient&&!node.retire){
+          ctx.globalAlpha=alpha*.45;
+          ctx.strokeStyle=node.accent?'#D15B21':'#E6EAF2';
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.arc(x,y,r+6,0,Math.PI*2);
+          ctx.stroke();
+        }
+
+        ctx.globalAlpha=alpha*(node.retire ? .42 : 1);
+        ctx.fillStyle=node.accent?'#D15B21':'#E6EAF2';
+        ctx.beginPath();
+        ctx.arc(x,y,r,0,Math.PI*2);
+        ctx.fill();
+      });
+
+      ctx.globalAlpha=1;
+    }
+
+    function loop(now){
+      if(!start) start=now;
+      render(now-start);
+      if(!reduce) raf=requestAnimationFrame(loop);
+    }
+
+    function init(){
+      resize();
+      if(raf) cancelAnimationFrame(raf);
+      start=0;
+      if(reduce) render(6200);
+      else raf=requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('resize',init);
+    init();
+  })();
 </script>
 </body>
 </html>

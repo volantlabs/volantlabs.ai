@@ -1,6 +1,6 @@
 # volantlabs.ai
 
-Mid-fidelity prototype of **volantlabs.ai** — the public story site for Vellis. Seven cross-linked pages sharing one design system.
+Mid-fidelity prototype of **volantlabs.ai** — the public story site for Volant Labs, with Vellis as the first open project. Core pages share one design system.
 
 ## View it
 
@@ -17,12 +17,12 @@ Then open `http://localhost:4173/`.
 ```
 volantlabs.ai/
 ├── index.html              # Home — animated node-edge hero
-├── engine.html             # Vellis Engine (flagship / "one property") — terminal preview path
-├── domain-explorations.html# Worked models — filter + card grid + OTA
+├── engine.html             # Vellis Engine (flagship / "one property") — local start path
+├── domain-explorations.html# Parked post-launch initiative — worked models
 ├── thesis.html             # Cinematic story page — Volant's point of view
 ├── perspectives.html       # Essays / From the graph / Ratified (provenance-tagged)
 ├── community.html          # Iceberg model — support + telemetry, roadmap "the bank"
-├── platform.html           # Quiet graduation path to Kesher
+├── platform.html           # Volant Partners production-support path
 ├── perspectives/           # Static article detail pages for the Perspectives library
 ├── assets/
 │   ├── images/             # Generated graph-native bitmap visuals for tiles and hero motifs
@@ -60,8 +60,9 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
 - **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each article page carries the full provenance footer from the approved Kind × Status model. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
 - **Repo scripts:** `npm run build` regenerates Perspectives outputs; `npm run check` verifies generated files are current.
-- **One-property principle:** the site sells Vellis. **Kesher**, Volant Partners' commercial platform, appears only as a *quiet* graduation path, never a competing pillar.
-- **Audience lanes:** engineer (→ Engine), curious/builder (→ Domain Explorations), thinker (→ Thesis / Perspectives), champion (→ Platform).
+- **Launch posture:** the site leads with Volant Labs and presents Vellis as the first open project. Users should see a clear `Get Started` path; until the public repo or guide is reachable, route that path through the local-start request/contact step.
+- **Domain Explorations:** demoted from global navigation for launch; keep the page as a parked post-launch initiative until the modeling story is resolved.
+- **Audience lanes:** engineer (→ Engine / local start), thinker (→ Thesis / Perspectives), contributor (→ Community), production champion (→ Platform).
 
 ## Source of truth
 
