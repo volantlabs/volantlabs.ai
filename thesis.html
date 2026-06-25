@@ -105,15 +105,37 @@
   .full-bleed::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 22%,rgba(209,91,33,.18),transparent 28%),linear-gradient(135deg,rgba(255,255,255,.04),transparent 34%)}
   .full-bleed .wrap{position:relative}
   .full-bleed h2,.full-bleed h3{color:#fff}
-  .flywheel{display:grid;grid-template-columns:1fr 1.2fr;gap:var(--s12);align-items:center}
+  .flywheel{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(520px,1.15fr);gap:var(--s12);align-items:center}
   .flywheel-copy p{color:#c7d0e0;font-size:17px;margin-top:var(--s4);max-width:52ch}
-  .loop{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s2)}
-  .loop-step{min-height:150px;border:1px solid rgba(245,245,245,.18);border-radius:8px;padding:var(--s4);background:rgba(255,255,255,.05)}
-  .loop-step span{display:block;font-family:var(--mono);font-size:11px;color:#f2b293;margin-bottom:var(--s4)}
-  .loop-step strong{display:block;color:#fff;font-size:16px;margin-bottom:var(--s2)}
-  .loop-step p{color:#bac6da;font-size:12.5px;line-height:1.45}
-  @media(max-width:960px){.flywheel{grid-template-columns:1fr}.loop{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.loop{grid-template-columns:1fr}}
+  .loop-graphic{position:relative;min-height:560px;display:grid;place-items:center;isolation:isolate}
+  .loop-ring{position:absolute;inset:20px;width:calc(100% - 40px);height:calc(100% - 40px);overflow:visible;z-index:0}
+  .loop-track{fill:none;stroke:rgba(245,245,245,.16);stroke-width:1.2}
+  .loop-flow{fill:none;stroke:var(--orange);stroke-width:2;stroke-linecap:round;stroke-dasharray:34 18;opacity:.8;animation:loopTravel 8s linear infinite}
+  .loop-spoke{stroke:rgba(245,245,245,.13);stroke-width:1}
+  .loop-center{position:relative;z-index:2;width:min(260px,48%);min-height:220px;border:1px solid rgba(245,245,245,.22);border-radius:999px;padding:var(--s8) var(--s6);display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(4,16,38,.78);box-shadow:0 22px 70px rgba(0,0,0,.26)}
+  .loop-center span{font-family:var(--mono);font-size:12px;color:#f2b293;margin-bottom:var(--s2)}
+  .loop-center h3{font-size:22px;margin-bottom:var(--s3)}
+  .loop-center p{color:#c7d0e0;font-size:13.5px;line-height:1.5}
+  .loop-node{position:absolute;z-index:3;width:144px;min-height:94px;transform:translate(-50%,-50%);border:1px solid rgba(245,245,245,.18);border-radius:8px;background:rgba(255,255,255,.06);color:#fff;padding:var(--s3);text-align:left;font-family:var(--font);cursor:pointer;transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+  .loop-node span{display:block;font-family:var(--mono);font-size:11px;color:#f2b293;margin-bottom:var(--s2)}
+  .loop-node strong{display:block;font-size:15px;line-height:1.25}
+  .loop-node p{display:none;color:#bac6da;font-size:12.5px;line-height:1.45}
+  .loop-node:hover,.loop-node:focus-visible,.loop-node.is-active{border-color:rgba(209,91,33,.78);background:rgba(209,91,33,.16);box-shadow:0 16px 38px rgba(0,0,0,.2);transform:translate(-50%,-50%) scale(1.03)}
+  .loop-node[data-step="0"]{left:50%;top:9%}
+  .loop-node[data-step="1"]{left:86%;top:31%}
+  .loop-node[data-step="2"]{left:73%;top:78%}
+  .loop-node[data-step="3"]{left:27%;top:78%}
+  .loop-node[data-step="4"]{left:14%;top:31%}
+  @keyframes loopTravel{to{stroke-dashoffset:-104}}
+  @media(max-width:1120px){.flywheel{grid-template-columns:1fr}.loop-graphic{width:min(620px,100%);margin:0 auto}}
+  @media(max-width:680px){
+    .loop-graphic{min-height:0;display:grid;grid-template-columns:1fr;gap:var(--s3);place-items:stretch}
+    .loop-ring,.loop-center{display:none}
+    .loop-node{position:static;transform:none;width:auto;min-height:auto;display:grid;grid-template-columns:auto 1fr;gap:4px var(--s3)}
+    .loop-node:hover,.loop-node:focus-visible,.loop-node.is-active{transform:none}
+    .loop-node span{grid-row:1 / span 2;margin:0}
+    .loop-node p{display:block;grid-column:2}
+  }
   .proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6)}
   .proof-card{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:var(--s8)}
   .proof-card h3{font-size:24px;margin-bottom:var(--s3)}
@@ -281,12 +303,36 @@
           <h2>Meaning gets better when work leaves structure behind.</h2>
           <p>Each useful run should leave typed context the next run can use. Vellis captures structure, agents work against it, humans review the important changes, and the graph becomes a stronger substrate for the next action.</p>
         </div>
-        <div class="loop" aria-label="Thesis flywheel">
-          <div class="loop-step"><span>01</span><strong>Capture</strong><p>Store typed nodes, links, provenance, and decisions.</p></div>
-          <div class="loop-step"><span>02</span><strong>Connect</strong><p>Let agents traverse relationships instead of guessing from loose text.</p></div>
-          <div class="loop-step"><span>03</span><strong>Use</strong><p>Run work against the current graph, not a stale pile of documents.</p></div>
-          <div class="loop-step"><span>04</span><strong>Review</strong><p>Keep human judgment visible where it changes shared context.</p></div>
-          <div class="loop-step"><span>05</span><strong>Carry forward</strong><p>Let the next pass start from the structure the last pass improved.</p></div>
+        <div class="loop-graphic" aria-label="Operating loop">
+          <svg class="loop-ring" viewBox="0 0 520 520" aria-hidden="true" focusable="false">
+            <circle class="loop-track" cx="260" cy="260" r="184"></circle>
+            <circle class="loop-flow" cx="260" cy="260" r="184" pathLength="100"></circle>
+            <line class="loop-spoke" x1="260" y1="260" x2="260" y2="78"></line>
+            <line class="loop-spoke" x1="260" y1="260" x2="432" y2="202"></line>
+            <line class="loop-spoke" x1="260" y1="260" x2="367" y2="410"></line>
+            <line class="loop-spoke" x1="260" y1="260" x2="153" y2="410"></line>
+            <line class="loop-spoke" x1="260" y1="260" x2="88" y2="202"></line>
+          </svg>
+          <div class="loop-center">
+            <span id="loop-index">01</span>
+            <h3 id="loop-title">Capture</h3>
+            <p id="loop-copy">Store typed nodes, links, provenance, and decisions.</p>
+          </div>
+          <button class="loop-node is-active" type="button" data-step="0" data-title="Capture" data-copy="Store typed nodes, links, provenance, and decisions." aria-pressed="true">
+            <span>01</span><strong>Capture</strong><p>Store typed nodes, links, provenance, and decisions.</p>
+          </button>
+          <button class="loop-node" type="button" data-step="1" data-title="Connect" data-copy="Let agents traverse relationships instead of guessing from loose text." aria-pressed="false">
+            <span>02</span><strong>Connect</strong><p>Let agents traverse relationships instead of guessing from loose text.</p>
+          </button>
+          <button class="loop-node" type="button" data-step="2" data-title="Use" data-copy="Run work against the current graph, not a stale pile of documents." aria-pressed="false">
+            <span>03</span><strong>Use</strong><p>Run work against the current graph, not a stale pile of documents.</p>
+          </button>
+          <button class="loop-node" type="button" data-step="3" data-title="Review" data-copy="Keep human judgment visible where it changes shared context." aria-pressed="false">
+            <span>04</span><strong>Review</strong><p>Keep human judgment visible where it changes shared context.</p>
+          </button>
+          <button class="loop-node" type="button" data-step="4" data-title="Carry forward" data-copy="Let the next pass start from the structure the last pass improved." aria-pressed="false">
+            <span>05</span><strong>Carry forward</strong><p>Let the next pass start from the structure the last pass improved.</p>
+          </button>
         </div>
       </div>
     </div>
@@ -497,6 +543,55 @@
     chapters.forEach((chapter) => observer.observe(chapter));
   } else {
     chapters.forEach((chapter) => chapter.classList.add("visible"));
+  }
+
+  const loopGraphic = document.querySelector(".loop-graphic");
+  const loopNodes = Array.from(document.querySelectorAll(".loop-node"));
+  const loopIndex = document.getElementById("loop-index");
+  const loopTitle = document.getElementById("loop-title");
+  const loopCopy = document.getElementById("loop-copy");
+  let activeLoop = 0;
+  let loopTimer = 0;
+
+  function setLoopStep(index){
+    if(!loopNodes.length) return;
+    activeLoop = index;
+    loopNodes.forEach((node, nodeIndex) => {
+      const isActive = nodeIndex === index;
+      node.classList.toggle("is-active", isActive);
+      node.setAttribute("aria-pressed", String(isActive));
+    });
+    const activeNode = loopNodes[index];
+    loopIndex.textContent = activeNode.querySelector("span").textContent;
+    loopTitle.textContent = activeNode.dataset.title;
+    loopCopy.textContent = activeNode.dataset.copy;
+  }
+
+  function stopLoop(){
+    if(loopTimer) window.clearInterval(loopTimer);
+    loopTimer = 0;
+  }
+
+  function startLoop(){
+    if(reduce || loopTimer || !loopNodes.length) return;
+    loopTimer = window.setInterval(() => {
+      setLoopStep((activeLoop + 1) % loopNodes.length);
+    }, 3200);
+  }
+
+  loopNodes.forEach((node, index) => {
+    node.addEventListener("mouseenter", () => { stopLoop(); setLoopStep(index); });
+    node.addEventListener("focus", () => { stopLoop(); setLoopStep(index); });
+    node.addEventListener("click", () => { stopLoop(); setLoopStep(index); });
+  });
+  if(loopGraphic){
+    loopGraphic.addEventListener("mouseenter", stopLoop);
+    loopGraphic.addEventListener("mouseleave", startLoop);
+    loopGraphic.addEventListener("focusin", stopLoop);
+    loopGraphic.addEventListener("focusout", (event) => {
+      if(!loopGraphic.contains(event.relatedTarget)) startLoop();
+    });
+    startLoop();
   }
 })();
 </script>
