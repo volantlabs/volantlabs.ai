@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="assets/site.css">
 <style>
   /* ---- Hero ---- */
-  .hero{background:var(--navy);color:var(--white);overflow:hidden}
+  .hero{background:var(--labs-base);color:var(--white);overflow:hidden}
   .hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s12);align-items:center;padding-top:var(--s24);padding-bottom:var(--s24)}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
@@ -27,29 +27,29 @@
     .heromotif{order:2}
   }
   /* ---- Section scaffolding ---- */
-  .band-sub{color:#52596b;font-size:15px;max-width:54ch;margin-top:calc(-1 * var(--s4));margin-bottom:var(--s8)}
+  .band-sub{color:var(--muted);font-size:15px;max-width:54ch;margin-top:calc(-1 * var(--s4));margin-bottom:var(--s8)}
   /* ---- Before / After comparison ---- */
   .compare{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6)}
   @media(max-width:760px){.compare{grid-template-columns:1fr}}
   .pane{border-radius:16px;padding:var(--s12);display:flex;flex-direction:column;gap:var(--s4)}
-  .pane.open{background:#fff;border:1px solid var(--line)}
-  .pane.gov{background:var(--navy);border:1px solid var(--navy);position:relative;overflow:hidden}
+  .pane.open{background:var(--surface);border:1px solid var(--line)}
+  .pane.gov{background:var(--labs-elevated);border:1px solid var(--line);position:relative;overflow:hidden}
   .pane.gov::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
   .pane .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-  .pane.open .kicker{color:#5a6275}
+  .pane.open .kicker{color:var(--muted)}
   .pane.gov .kicker{color:#e6c9b6}
   .pane h3{font-size:22px;font-weight:700}
   .pane.gov h3{color:#fff}
-  .pane.open h3{color:var(--navy)}
+  .pane.open h3{color:var(--text)}
   .rows{display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s2)}
   .row{display:flex;align-items:flex-start;gap:var(--s3);font-size:15px}
   .row .gl{flex:none;width:20px;height:20px;margin-top:1px}
-  .pane.open .row{color:#52596b}
+  .pane.open .row{color:var(--muted)}
   .pane.gov .row{color:#dbe3f1}
   .pane.gov .row strong{color:#fff;font-weight:600}
-  .pane.open .row strong{color:var(--navy);font-weight:600}
+  .pane.open .row strong{color:var(--text);font-weight:600}
   /* ---- Final calm CTA band ---- */
-  .endcta{background:var(--navy);color:var(--white)}
+  .endcta{background:var(--labs-elevated);color:var(--white)}
   .endcta .wrap{text-align:center;padding-top:var(--s24);padding-bottom:var(--s24);display:flex;flex-direction:column;align-items:center;gap:var(--s6)}
   .endcta h2{font-size:clamp(26px,3.2vw,38px);font-weight:700;color:#fff}
   .endcta p{font-size:16px;color:#c7d0e0;max-width:48ch}

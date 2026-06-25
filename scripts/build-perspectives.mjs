@@ -227,8 +227,8 @@ function validatePosts(posts, sourceName) {
 
 function renderLogo() {
   return `<svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/><line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/><line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/><circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
+          <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/><line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/><line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
+          <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/><circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
         </svg>`;
 }
 
