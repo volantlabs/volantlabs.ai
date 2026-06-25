@@ -33,6 +33,8 @@ features:
   .lab-note{background:var(--surface-soft);border-bottom:1px solid var(--line)}
   .lab-note .wrap{display:flex;gap:var(--s3);align-items:center;padding-top:10px;padding-bottom:10px;font-size:13px;color:var(--muted)}
   .lab-note strong{color:var(--text);font-weight:700}
+  .lab-note a{color:#f2b293;font-weight:700}
+  .lab-note a:hover{color:#fff}
   @media(max-width:720px){.lab-note .wrap{display:block;line-height:1.55}}
   /* ---- Hero ---- */
   .hero{background:var(--labs-base);color:var(--white);position:relative;overflow:hidden}
@@ -156,8 +158,8 @@ features:
 </header>
 <div class="lab-note" role="note">
   <div class="wrap">
-    <strong>Volant Labs is maintained by Volant Partners.</strong>
-    <span>The lab publishes open tools and research for graph-native AI work; Volant Partners helps teams apply them in production.</span>
+    <strong>Volant Labs is the open lab of <a href="https://www.volantpartners.com">Volant Partners</a>.</strong>
+    <span>We publish runnable tools and field notes for AI-native work; Volant Partners helps teams carry the work into production.</span>
   </div>
 </div>
 <main id="main">
@@ -166,20 +168,20 @@ features:
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Volant Labs · open graph-native AI infrastructure</span>
-      <h1 class="headline">Open tools for shared AI memory.</h1>
-      <p class="sub">Volant Labs publishes runnable infrastructure for AI-native work. Vellis is the first project: a typed context graph your agents can share, reason over, and export anytime.</p>
+      <span class="eyebrow"><span class="dot"></span>Volant Labs · open infrastructure and research</span>
+      <h1 class="headline">Open infrastructure for AI-native work.</h1>
+      <p class="sub">Volant Labs publishes practical, inspectable tools for teams building with agents. Vellis is the first project: a typed context graph your agents can share, reason over, and export anytime.</p>
       <ul class="cap-strip">
-        <li>Start with Vellis as a local-first engine</li>
+        <li>Start locally with Vellis as the first open project</li>
         <li>Carry context across agents, tools, and sessions</li>
-        <li>Model your domain as a typed, queryable graph</li>
-        <li>Yours to export in open formats — no lock-in</li>
+        <li>Model schemas, provenance, and decisions as a typed graph</li>
+        <li>Bring in Volant Partners when the graph needs production controls</li>
       </ul>
       <div class="cta-row">
-        <a class="btn btn-primary" href="engine.html#quickstart">Get Started
+        <a class="btn btn-primary" href="engine.html#quickstart">Quick start Vellis
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn-ghost" href="engine.html">Learn More</a>
+        <a class="btn btn-ghost" href="engine.html">How Vellis works</a>
       </div>
       <p class="trust-line">Maintained by Volant Partners · open by design · full-fidelity export.</p>
     </div>
@@ -204,7 +206,7 @@ features:
           <img src="assets/images/vellis-context-graph.webp" alt="Abstract typed context graph with schema, storage, and export paths around an active orange node." width="960" height="540" loading="lazy" decoding="async">
         </div>
         <div class="body">
-          <span class="tag flag">Open project</span>
+          <span class="tag flag">First project</span>
           <h3>Vellis</h3>
           <p>The typed graph, schema language, storage, and full-fidelity export path — visible, runnable, and yours to inspect.</p>
           <a class="more" href="engine.html#quickstart">See local start <span class="arr">→</span></a>
@@ -271,13 +273,13 @@ features:
 <section class="band" style="padding-top:0">
   <div class="wrap">
     <div class="flywheel">
-      <div class="fly-title">How it works — from local start to shared memory</div>
+      <div class="fly-title">How it works — from local start to shared context</div>
       <div class="steps">
-        <div class="step"><div class="num">1</div><h4>Start</h4><p>Request the current local-start path, then run the project on your machine.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">1</div><h4>Start</h4><p>Use the current local-start path, then run the project on your machine.</p><span class="conn">→</span></div>
         <div class="step"><div class="num">2</div><h4>Model</h4><p>Define typed nodes, links, and constraints for the work.</p><span class="conn">→</span></div>
         <div class="step"><div class="num">3</div><h4>Connect</h4><p>Give agents and tools one shared graph-backed context.</p><span class="conn">→</span></div>
         <div class="step"><div class="num">4</div><h4>Iterate</h4><p>Change the graph with schema checks and visible provenance.</p><span class="conn">→</span></div>
-        <div class="step compound"><div class="num">5</div><h4>Compound</h4><p>Each run leaves better context for the next one.</p></div>
+        <div class="step compound"><div class="num">5</div><h4>Reuse</h4><p>Each pass leaves better context for the next one.</p></div>
       </div>
     </div>
   </div>
@@ -297,18 +299,18 @@ features:
           <circle cx="90" cy="140" r="6" fill="#D15B21"/>
           <circle cx="130" cy="40" r="9" fill="#E6EAF2" fill-opacity=".7"/>
         </svg>
-        <h2>Build in the open with us</h2>
-        <p>Contributors, model-builders, and the curious. Follow the project, read the thinking, and help shape open infrastructure for AI-native work.</p>
+        <h2>Take the open graph into production</h2>
+        <p>Vellis can start locally. When a team needs operating controls, audit traces, approval paths, and implementation discipline, Volant Partners can help.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="engine.html#quickstart">Get Started</a>
-          <a class="btn btn-ghost" href="community.html">Join the community</a>
+          <a class="btn btn-primary" href="https://www.volantpartners.com/contact">Talk to Volant Partners</a>
+          <a class="btn btn-ghost" href="platform.html">See support path</a>
         </div>
       </div>
       <div class="platform" id="platform">
-        <span class="kicker">Need production help?</span>
-        <h3>Volant Partners can help</h3>
-        <p>When a lab project needs to become a production system, Volant Partners helps teams apply the model with the right operating controls.</p>
-        <a class="go" href="platform.html">See the support path <span aria-hidden="true">→</span></a>
+        <span class="kicker">Stay close</span>
+        <h3>Follow the lab work</h3>
+        <p>Read the thesis, browse Perspectives, or send a note if you want to shape the next open project.</p>
+        <a class="go" href="perspectives.html">Browse Perspectives <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -350,7 +352,7 @@ features:
     </div>
     <div class="foot-bottom">
       <span>© 2026 Volant Partners</span>
-      <span class="nrp">No rug-pull: Vellis stays runnable.</span>
+      <span class="nrp">Vellis stays runnable and exportable.</span>
     </div>
   </div>
 </footer>

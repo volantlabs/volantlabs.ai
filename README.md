@@ -60,7 +60,7 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
 - **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each article page carries the full provenance footer from the approved Kind × Status model. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
 - **Repo scripts:** `npm run build` regenerates Perspectives outputs; `npm run check` verifies generated files are current.
-- **Launch posture:** the site leads with Volant Labs and presents Vellis as the first open project. Users should see a clear `Get Started` path; until the public repo or guide is reachable, route that path through the local-start request/contact step.
+- **Launch posture:** the site leads with Volant Labs and presents Vellis as the first open project. Users should see a clear `Quick start` path; until the public repo or guide is reachable, route that path through the current local-start request/contact step.
 - **Domain Explorations:** demoted from global navigation for launch; keep the page as a parked post-launch initiative until the modeling story is resolved.
 - **Audience lanes:** engineer (→ Engine / local start), thinker (→ Thesis / Perspectives), contributor (→ Community), production champion (→ Platform).
 
