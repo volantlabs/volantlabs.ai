@@ -6,7 +6,7 @@ Mid-fidelity prototype of **volantlabs.ai** — the public story site for Vellis
 
 Open `index.html` in a browser. The nav, logo, and footers link to every page, so you can click through the whole site locally. All links are relative filenames; the site is static, with a small Perspectives generator that must be run before committing content changes.
 
-For a local HTTP preview:
+For the standard local review flow:
 
 ```
 npm run dev
@@ -66,21 +66,6 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 ## Source of truth
 
 **This repo is canonical for the site code.** It was extracted from the former Kesher source bundle at `client_packs/volant/published_apps/volantlabs.ai/`; the `volant_base` knowledge graph *governs/indexes* it — site-architecture Spec `392e552b-5858-475e-a716-31d8f05bc5a6` and WebsiteLaunch `6328b862-2d29-4500-bbe2-13c338b104fc`. Current FileDrive publication snapshots live under `/public/vellis/website/`; older `/public/open-engine/website/` assets are legacy/pre-Vellis snapshots, not the working copy — edit here, in git.
-
-## Kesher launcher bridge
-
-During migration, the Volant launcher still serves from Kesher's runtime app mirror. To refresh that local launcher copy from this repo:
-
-```
-KESHER_REPO=/path/to/kesher
-rsync -a --delete --exclude .git ./ "$KESHER_REPO/data/app_bundles/published_apps/volantlabs.ai/"
-KESHER_DATA_DIR="$KESHER_REPO/data" PYTHONPATH="$KESHER_REPO" python3 - <<'PY'
-import os
-from pathlib import Path
-from src.common.app_manifest import write_app_manifest
-write_app_manifest(Path(os.environ["KESHER_DATA_DIR"]))
-PY
-```
 
 ## Status & next
 
