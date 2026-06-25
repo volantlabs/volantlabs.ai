@@ -142,7 +142,7 @@ window.PERSPECTIVE_POSTS = [
         "heading": "Portability is the trust signal",
         "paragraphs": [
           "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? Vellis answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
-          "That is also why Kesher should not compete with Vellis. The governed platform can add write-back controls, audit traces, approvals, and enterprise controls. It should not make the open substrate feel like bait."
+          "That is also why production support should not compete with Vellis. Services can add write controls, audit traces, approvals, and enterprise controls. They should not make the open substrate feel like bait."
         ]
       },
       {
@@ -286,7 +286,7 @@ window.PERSPECTIVE_POSTS = [
     "kindLabel": "From the graph",
     "title": "No rug-pull means more than a license",
     "shortTitle": "No rug-pull means more than a license",
-    "dek": "A ratified note on trust signals: portability, export path, and a commercial platform that does not compete with Vellis.",
+    "dek": "A ratified note on trust signals: portability, export path, and production support that does not compete with Vellis.",
     "published": "2026-04-29",
     "displayDate": "April 29, 2026",
     "readingTime": "3 min read",
@@ -316,8 +316,8 @@ window.PERSPECTIVE_POSTS = [
       {
         "heading": "The platform should graduate, not replace",
         "paragraphs": [
-          "Kesher has a real job: write-back gates, audit traces, approvals, and operational controls. Those capabilities can justify a commercial relationship without undermining Vellis.",
-          "That is the clean bargain. Vellis stays runnable. Kesher adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
+          "Volant Partners support has a real job: write controls, audit traces, approvals, and operational discipline. Those capabilities can justify a commercial relationship without undermining Vellis.",
+          "That is the clean bargain. Vellis stays runnable. Production support adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
         ]
       }
     ],
