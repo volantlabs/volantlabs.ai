@@ -263,7 +263,7 @@ function renderFooter() {
         <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 Volant Partners</span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
+    <div class="foot-bottom"><span>&copy; 2026 Volant Partners</span><span class="nrp">Vellis stays runnable and exportable.</span></div>
   </div>
 </footer>`;
 }

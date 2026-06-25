@@ -9,60 +9,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* ---- Section scaffolding ---- */
-  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:var(--s3)}
-  .chip{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);background:var(--blue-50);padding:5px 10px;border-radius:6px}
-  .more{font-weight:600;font-size:14px;color:var(--orange);display:inline-flex;gap:6px;align-items:center}
-  .more .arr{transition:transform .15s ease}
-  /* ---- Page header band ---- */
   .pagehead{background:var(--surface-soft);border-bottom:1px solid var(--line)}
   .pagehead .wrap{padding:var(--s16) var(--s12) var(--s12)}
   .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
   .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
   .pagehead h1{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:0;margin-bottom:var(--s3)}
   .pagehead p.sub{font-size:18px;color:var(--muted);max-width:54ch}
-  /* ---- Filter row ---- */
-  .filters{background:var(--surface-soft);border-bottom:1px solid var(--line)}
-  .filters .wrap{padding:var(--s6) var(--s12);display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
-  .tabs{display:flex;gap:var(--s2);flex-wrap:wrap}
-  .tab{font-family:var(--font);font-weight:600;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s ease,color .15s ease,border-color .15s ease}
-  .tab:hover{border-color:var(--muted);color:var(--text)}
-  .tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
-  .tab .star{color:var(--orange)}
-  .tab.active .star{color:#fff}
-  .filters .cap{margin-left:auto;font-size:13px;color:var(--muted)}
-  @media(max-width:760px){.filters .cap{margin-left:0;width:100%}}
-  /* ---- Featured callout ---- */
-  .featured .wrap{padding-top:var(--s12)}
-  .feat{background:var(--labs-elevated);color:var(--white);border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:grid;grid-template-columns:1.4fr auto;gap:var(--s8);align-items:center;overflow:hidden}
-  .feat .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:var(--s3)}
-  .feat .kicker .star{color:var(--orange);font-size:15px}
-  .feat h3{font-size:clamp(22px,2.6vw,30px);font-weight:800;color:#fff;letter-spacing:0;margin-bottom:var(--s3)}
-  .feat p{font-size:16px;color:#c7d0e0;max-width:54ch}
-  .feat .act{display:flex;justify-content:flex-end}
-  @media(max-width:760px){.feat{grid-template-columns:1fr;gap:var(--s6);padding:var(--s8)}.feat .act{justify-content:flex-start}}
-  /* ---- Card grid ---- */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
-  @media(max-width:880px){.grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:600px){.grid{grid-template-columns:1fr}}
-  .card{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
-  .card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.24)}
-  .thumb{background:var(--navy);display:block;width:100%;aspect-ratio:2/1;overflow:hidden}
-  .card-body{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s2);flex:1}
-  .tag{align-self:flex-start;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.02em;text-transform:uppercase;padding:4px 9px;border-radius:5px}
-  .tag.pack{color:var(--text);background:var(--blue-50)}
-  .tag.ref{color:var(--muted);background:rgba(159,176,204,.12)}
-  .tag.ota{color:#f2b293;background:var(--orange-50)}
-  .card h3{font-size:18px;font-weight:600;margin-top:6px}
-  .card p{font-size:14px;color:var(--muted)}
-  .fresh{margin-top:auto;padding-top:var(--s3);display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
-  .fresh .pip{width:7px;height:7px;border-radius:50%;background:var(--orange);flex:none}
-  .fresh .pip.stale{background:#9aa0ab}
-  /* ---- Propose CTA band ---- */
-  .propose{background:var(--labs-base)}
-  .propose .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:flex;align-items:center;justify-content:space-between;gap:var(--s8);flex-wrap:wrap}
-  .propose h3{font-size:clamp(20px,2.4vw,26px);font-weight:700;margin-bottom:var(--s2)}
-  .propose p{font-size:15px;color:var(--muted);max-width:52ch}
+  .parking{background:var(--labs-base)}
+  .parking-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:var(--s8);align-items:start}
+  .parking-panel .kicker,.candidate .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
+  .parking-panel h2{font-size:clamp(24px,3vw,34px);margin-bottom:var(--s3)}
+  .parking-panel p{color:var(--muted);font-size:15px;max-width:62ch}
+  .parking-note{border:1px solid var(--line);border-radius:10px;background:var(--surface-soft);padding:var(--s6)}
+  .parking-note h3{font-size:18px;margin-bottom:var(--s2)}
+  .parking-note p{font-size:14px}
+  .candidate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6);margin-top:var(--s8)}
+  .candidate{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:var(--s6)}
+  .candidate h3{font-size:18px;margin-bottom:var(--s2)}
+  .candidate p{font-size:14px;color:var(--muted)}
+  .candidate .kicker{color:#f2b293}
+  @media(max-width:880px){.parking-panel{grid-template-columns:1fr}.candidate-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -100,145 +66,43 @@
 <!-- ============ PAGE HEADER ============ -->
 <section class="pagehead">
   <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span>Worked models</span>
+    <span class="eyebrow"><span class="dot"></span>Fast follow</span>
     <h1>Domain Explorations</h1>
-    <p class="sub">Worked models you can open, read, and bootstrap into your own graph.</p>
+    <p class="sub">Worked schemas and domain examples belong here, but the launch version should not imply finished ontology packs before the open boundary is settled.</p>
   </div>
 </section>
 
-<!-- ============ FILTER ROW ============ -->
-<section class="filters">
+<!-- ============ PARKED FAST FOLLOW ============ -->
+<section class="band parking">
   <div class="wrap">
-    <div class="tabs" role="tablist" aria-label="Filter explorations">
-      <button class="tab active" type="button" role="tab" aria-selected="true" data-filter="all" aria-controls="exploration-grid">All</button>
-      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="pack" aria-controls="exploration-grid">Domain packs</button>
-      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="ref" aria-controls="exploration-grid">Reference builds</button>
-      <button class="tab" type="button" role="tab" aria-selected="false" data-filter="ota" aria-controls="exploration-grid">Over-the-air <span class="star" aria-hidden="true">★</span></button>
-    </div>
-    <span class="cap">Model status shown per card.</span>
-  </div>
-</section>
-
-<!-- ============ FEATURED CALLOUT ============ -->
-<section class="band featured">
-  <div class="wrap">
-    <div class="feat">
-      <div class="feat-copy">
-        <span class="kicker"><span class="star" aria-hidden="true">★</span>Over-the-air graphs</span>
-        <h3>Bootstrap a graph, then keep it current</h3>
-        <p>Pick a model and bootstrap it into your engine. Over-the-air refresh keeps topology and reference data current — no manual re-import. (Planned.)</p>
-      </div>
-      <div class="act">
-        <a class="btn btn-primary" href="engine.html#quickstart">Bootstrap it
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CARD GRID ============ -->
-<section class="band" style="padding-top:0">
-  <div class="wrap">
-    <div class="band-head">
-      <h2>Browse the library</h2>
-      <span class="lane">6 models</span>
-    </div>
-    <div class="grid" id="exploration-grid">
-
-      <!-- Card 1 — Aerospace supply graph -->
-      <article class="card" data-kind="pack">
-        <div class="thumb">
-          <img src="assets/images/aerospace-supply-graph.webp" alt="Node-and-edge aerospace supply graph with supplier tiers converging into an active orange part-lineage path." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="card-body">
-          <span class="tag pack">Domain pack</span>
-          <h3>Aerospace supply graph</h3>
-          <p>Tier-1 suppliers, sub-assemblies, and part lineage mapped end to end.</p>
-          <div class="fresh"><span class="pip"></span>Reference model</div>
-        </div>
-      </article>
-
-      <!-- Card 2 — Clinical trial ontology -->
-      <article class="card" data-kind="ref">
-        <div class="thumb">
-          <img src="assets/images/clinical-trial-ontology.webp" alt="Clinical trial ontology graph linking protocols, arms, cohorts, endpoints, and an active orange safety signal." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="card-body">
-          <span class="tag ref">Reference build</span>
-          <h3>Clinical trial ontology</h3>
-          <p>Protocols, arms, endpoints, and adverse-event links in one typed model.</p>
-          <div class="fresh"><span class="pip stale"></span>Reference model</div>
-        </div>
-      </article>
-
-      <!-- Card 3 — Defense logistics network -->
-      <article class="card" data-kind="ota">
-        <div class="thumb">
-          <img src="assets/images/defense-logistics-network.webp" alt="Defense logistics network with depot, lift, and route nodes connected by an active orange resupply path." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="card-body">
-          <span class="tag ota">Over-the-air</span>
-          <h3>Defense logistics network</h3>
-          <p>Depots, lift assets, and resupply routes — designed to refresh over the air (planned).</p>
-          <div class="fresh"><span class="pip"></span>Planned · live refresh</div>
-        </div>
-      </article>
-
-      <!-- Card 4 — Manufacturing BOM -->
-      <article class="card" data-kind="pack">
-        <div class="thumb">
-          <img src="assets/images/manufacturing-bom.webp" alt="Manufacturing bill-of-materials hierarchy with assemblies, part variants, and an active orange substitution branch." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="card-body">
-          <span class="tag pack">Domain pack</span>
-          <h3>Manufacturing BOM</h3>
-          <p>Multi-level bill of materials with parts, variants, and substitution links.</p>
-          <div class="fresh"><span class="pip stale"></span>Reference model</div>
-        </div>
-      </article>
-
-      <!-- Card 5 — Healthcare claims graph -->
-      <article class="card" data-kind="ref">
-        <div class="thumb">
-          <img src="assets/images/healthcare-claims-graph.webp" alt="Healthcare claims graph connecting members, providers, claim events, coverage rules, and an active orange decision path." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="card-body">
-          <span class="tag ref">Reference build</span>
-          <h3>Healthcare claims graph</h3>
-          <p>Members, providers, claims, and coverage edges modelled for traversal.</p>
-          <div class="fresh"><span class="pip stale"></span>Reference model</div>
-        </div>
-      </article>
-
-      <!-- Card 6 — Energy grid topology -->
-      <article class="card" data-kind="ota">
-        <div class="thumb">
-          <img src="assets/images/energy-grid-topology.webp" alt="Energy grid topology with substations, load nodes, generation nodes, and an active orange load path." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="card-body">
-          <span class="tag ota">Over-the-air</span>
-          <h3>Energy grid topology</h3>
-          <p>Substations, lines, and load nodes — designed to re-sync over the air as the grid shifts (planned).</p>
-          <div class="fresh"><span class="pip"></span>Planned · live refresh</div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROPOSE CTA ============ -->
-<section class="band propose">
-  <div class="wrap">
-    <div class="panel">
+    <div class="parking-panel">
       <div>
-        <h3>Don't see your domain?</h3>
-        <p>Tell us what you'd model. The best proposals become the next worked exploration in this library.</p>
+        <span class="kicker">Not a launch blocker</span>
+        <h2>Domain packs need a sharper open boundary.</h2>
+        <p>The useful version of this page is not a generic gallery of examples. It should show how Vellis can start from a concrete schema or public standard without pretending that a downloaded ontology is enough to run a regulated workflow.</p>
+        <p>For launch, keep the core path simple: understand Vellis, request the current local-start path, and read the thinking behind the substrate.</p>
       </div>
-      <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Domain%20exploration%20idea">Submit an idea
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <aside class="parking-note">
+        <h3>Fast-follow shape</h3>
+        <p>When this returns, it should feel more like installable schema modules: public-standard mappings, narrow workflow examples, and community reference builds with clear boundaries.</p>
+      </aside>
+    </div>
+    <div class="candidate-grid" aria-label="Future domain exploration directions">
+      <article class="candidate">
+        <span class="kicker">01</span>
+        <h3>Public-standard mappings</h3>
+        <p>Turn an existing public ontology, specification, or filing structure into a Vellis-readable schema example.</p>
+      </article>
+      <article class="candidate">
+        <span class="kicker">02</span>
+        <h3>Narrow workflow packs</h3>
+        <p>Show enough of a real workflow to be useful without implying that Vellis alone operationalizes the whole domain.</p>
+      </article>
+      <article class="candidate">
+        <span class="kicker">03</span>
+        <h3>Community reference builds</h3>
+        <p>Let builders share patterns once the install and review story is ready.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -279,31 +143,10 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Volant Partners</span>
-      <span class="nrp">No rug-pull: Vellis stays runnable.</span>
+      <span class="nrp">Vellis stays runnable and exportable.</span>
     </div>
   </div>
 </footer>
-
-<script>
-  const explorationTabs = document.querySelectorAll('.tabs [data-filter]');
-  const explorationCards = document.querySelectorAll('#exploration-grid .card');
-
-  explorationTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const filter = tab.dataset.filter;
-
-      explorationTabs.forEach((candidate) => {
-        const isActive = candidate === tab;
-        candidate.classList.toggle('active', isActive);
-        candidate.setAttribute('aria-selected', String(isActive));
-      });
-
-      explorationCards.forEach((card) => {
-        card.hidden = filter !== 'all' && card.dataset.kind !== filter;
-      });
-    });
-  });
-</script>
 
 </body>
 </html>
