@@ -11,30 +11,30 @@
 <style>
   /* ---- Section scaffolding ---- */
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:var(--s3)}
-  .chip{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--navy);background:var(--blue-50);padding:5px 10px;border-radius:6px}
-  .more{font-weight:600;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center}
+  .chip{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);background:var(--blue-50);padding:5px 10px;border-radius:6px}
+  .more{font-weight:600;font-size:14px;color:var(--orange);display:inline-flex;gap:6px;align-items:center}
   .more .arr{transition:transform .15s ease}
-  /* ---- Page header band (light) ---- */
-  .pagehead{background:var(--white);border-bottom:1px solid var(--line)}
+  /* ---- Page header band ---- */
+  .pagehead{background:var(--surface-soft);border-bottom:1px solid var(--line)}
   .pagehead .wrap{padding:var(--s16) var(--s12) var(--s12)}
   .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
   .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
   .pagehead h1{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:0;margin-bottom:var(--s3)}
-  .pagehead p.sub{font-size:18px;color:#52596b;max-width:54ch}
+  .pagehead p.sub{font-size:18px;color:var(--muted);max-width:54ch}
   /* ---- Filter row ---- */
-  .filters{background:#fff;border-bottom:1px solid var(--line)}
+  .filters{background:var(--surface-soft);border-bottom:1px solid var(--line)}
   .filters .wrap{padding:var(--s6) var(--s12);display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
   .tabs{display:flex;gap:var(--s2);flex-wrap:wrap}
-  .tab{font-family:var(--font);font-weight:600;font-size:13px;color:#52596b;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s ease,color .15s ease,border-color .15s ease}
-  .tab:hover{border-color:#c4ccda;color:var(--navy)}
-  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .tab{font-family:var(--font);font-weight:600;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .tab:hover{border-color:var(--muted);color:var(--text)}
+  .tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
   .tab .star{color:var(--orange)}
   .tab.active .star{color:#fff}
-  .filters .cap{margin-left:auto;font-size:13px;color:#52596b}
+  .filters .cap{margin-left:auto;font-size:13px;color:var(--muted)}
   @media(max-width:760px){.filters .cap{margin-left:0;width:100%}}
   /* ---- Featured callout ---- */
   .featured .wrap{padding-top:var(--s12)}
-  .feat{background:var(--navy);color:var(--white);border-radius:16px;padding:var(--s12);display:grid;grid-template-columns:1.4fr auto;gap:var(--s8);align-items:center;overflow:hidden}
+  .feat{background:var(--labs-elevated);color:var(--white);border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:grid;grid-template-columns:1.4fr auto;gap:var(--s8);align-items:center;overflow:hidden}
   .feat .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:var(--s3)}
   .feat .kicker .star{color:var(--orange);font-size:15px}
   .feat h3{font-size:clamp(22px,2.6vw,30px);font-weight:800;color:#fff;letter-spacing:0;margin-bottom:var(--s3)}
@@ -45,24 +45,24 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
   @media(max-width:880px){.grid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.grid{grid-template-columns:1fr}}
-  .card{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
-  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,30,80,.10)}
+  .card{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.24)}
   .thumb{background:var(--navy);display:block;width:100%;aspect-ratio:2/1;overflow:hidden}
   .card-body{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s2);flex:1}
   .tag{align-self:flex-start;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.02em;text-transform:uppercase;padding:4px 9px;border-radius:5px}
-  .tag.pack{color:var(--navy);background:var(--blue-50)}
-  .tag.ref{color:#52596b;background:#eef0f4}
-  .tag.ota{color:var(--orange-600);background:var(--orange-50)}
+  .tag.pack{color:var(--text);background:var(--blue-50)}
+  .tag.ref{color:var(--muted);background:rgba(159,176,204,.12)}
+  .tag.ota{color:#f2b293;background:var(--orange-50)}
   .card h3{font-size:18px;font-weight:600;margin-top:6px}
-  .card p{font-size:14px;color:#52596b}
-  .fresh{margin-top:auto;padding-top:var(--s3);display:flex;align-items:center;gap:7px;font-size:12px;color:#52596b}
+  .card p{font-size:14px;color:var(--muted)}
+  .fresh{margin-top:auto;padding-top:var(--s3);display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
   .fresh .pip{width:7px;height:7px;border-radius:50%;background:var(--orange);flex:none}
   .fresh .pip.stale{background:#9aa0ab}
   /* ---- Propose CTA band ---- */
-  .propose{background:var(--white)}
-  .propose .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:flex;align-items:center;justify-content:space-between;gap:var(--s8);flex-wrap:wrap}
+  .propose{background:var(--labs-base)}
+  .propose .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s12);display:flex;align-items:center;justify-content:space-between;gap:var(--s8);flex-wrap:wrap}
   .propose h3{font-size:clamp(20px,2.4vw,26px);font-weight:700;margin-bottom:var(--s2)}
-  .propose p{font-size:15px;color:#52596b;max-width:52ch}
+  .propose p{font-size:15px;color:var(--muted);max-width:52ch}
 </style>
 </head>
 <body>

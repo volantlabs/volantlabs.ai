@@ -9,37 +9,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* ---- Page header band (light) ---- */
-  .pagehead{background:var(--white);border-bottom:1px solid var(--line)}
+  /* ---- Page header band ---- */
+  .pagehead{background:var(--surface-soft);border-bottom:1px solid var(--line)}
   .pagehead .wrap{padding-top:var(--s16);padding-bottom:var(--s16)}
   .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
   .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
   .pagehead h1{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:0;margin-bottom:var(--s4)}
-  .pagehead p.sub{font-size:18px;font-weight:400;color:#52596b;max-width:58ch}
+  .pagehead p.sub{font-size:18px;font-weight:400;color:var(--muted);max-width:58ch}
   /* ---- Section scaffolding ---- */
   /* community cards — 2x2 */
   .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s6)}
   @media(max-width:760px){.caps{grid-template-columns:1fr}}
-  .cap{border:1px solid var(--line);border-radius:12px;padding:var(--s6);background:#fff;transition:transform .18s ease,box-shadow .18s ease}
-  .cap:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,30,80,.10)}
+  .cap{border:1px solid var(--line);border-radius:12px;padding:var(--s6);background:var(--surface);transition:transform .18s ease,box-shadow .18s ease}
+  .cap:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.24)}
   .cap .ico{width:40px;height:40px;margin-bottom:var(--s3)}
   .cap h3{font-size:18px;font-weight:600;margin-bottom:6px}
-  .cap p{font-size:14px;color:#5a6275}
-  .cap .more{margin-top:var(--s3);font-weight:600;font-size:14px;color:var(--orange-600);display:inline-flex;gap:6px;align-items:center}
+  .cap p{font-size:14px;color:var(--muted)}
+  .cap .more{margin-top:var(--s3);font-weight:600;font-size:14px;color:var(--orange);display:inline-flex;gap:6px;align-items:center}
   .cap:hover .more .arr{transform:translateX(3px)}
   .more .arr{transition:transform .15s ease}
   /* ---- Roadmap · the bank ---- */
-  .roadmap{background:var(--white)}
+  .roadmap{background:var(--labs-base)}
   .road-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
   @media(max-width:760px){.road-grid{grid-template-columns:1fr}}
-  .col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:var(--s6)}
+  .col{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:var(--s6)}
   .col .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s4)}
   .col .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block}
   .col ul{list-style:none}
-  .col li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#52596b;padding:7px 0;border-top:1px solid var(--line)}
+  .col li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);padding:7px 0;border-top:1px solid var(--line)}
   .col li:first-child{border-top:0}
-  .col li .node{width:8px;height:8px;border-radius:50%;flex:none;margin-top:6px;background:var(--navy)}
-  .road-caption{font-size:14px;color:#52596b;margin-top:var(--s8);max-width:64ch}
+  .col li .node{width:8px;height:8px;border-radius:50%;flex:none;margin-top:6px;background:var(--orange)}
+  .road-caption{font-size:14px;color:var(--muted);margin-top:var(--s8);max-width:64ch}
 </style>
 </head>
 <body>
