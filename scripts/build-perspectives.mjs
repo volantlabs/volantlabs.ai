@@ -259,7 +259,7 @@ function renderFooter() {
       <div><div class="brand" style="font-size:20px">Volant Labs</div><p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p></div>
       <div class="foot-cols">
         <div class="foot-col"><h5>Project</h5><a href="../engine.html">Engine</a><a href="../thesis.html">Thesis</a><a href="../perspectives.html">Perspectives</a><a href="../community.html">Community</a></div>
-        <div class="foot-col"><h5>Open</h5><a href="../thesis.html">Open by Design</a><a href="https://github.com/volantpartners/kesher">GitHub repo</a><a href="../engine.html#quickstart">Local start</a><a href="../platform.html">Production support</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="../thesis.html">Open by Design</a><a href="../engine.html">Engine overview</a><a href="../engine.html#quickstart">Local start</a><a href="../platform.html">Production support</a></div>
         <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
