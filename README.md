@@ -6,6 +6,14 @@ Mid-fidelity prototype of **volantlabs.ai** — the public story site for Vellis
 
 Open `index.html` in a browser. The nav, logo, and footers link to every page, so you can click through the whole site locally. All links are relative filenames; the site is static, with a small Perspectives generator that must be run before committing content changes.
 
+For a local HTTP preview:
+
+```
+npm run dev
+```
+
+Then open `http://localhost:4173/`.
+
 ```
 volantlabs.ai/
 ├── index.html              # Home — animated node-edge hero
@@ -51,12 +59,28 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 - **"Graphcasting" is cut from v1** — it does not appear anywhere public-facing. The story section is named **Thesis**.
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
 - **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each article page carries the full provenance footer from the approved Kind × Status model. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
+- **Repo scripts:** `npm run build` regenerates Perspectives outputs; `npm run check` verifies generated files are current.
 - **One-property principle:** the site sells Vellis. **Kesher**, Volant Partners' commercial platform, appears only as a *quiet* graduation path, never a competing pillar.
 - **Audience lanes:** engineer (→ Engine), curious/builder (→ Domain Explorations), thinker (→ Thesis / Perspectives), champion (→ Platform).
 
 ## Source of truth
 
-**This repo is canonical for the site code.** The source bundle lives at `client_packs/volant/published_apps/volantlabs.ai/`; the `volant_base` knowledge graph *governs/indexes* it — site-architecture Spec `392e552b-5858-475e-a716-31d8f05bc5a6` and WebsiteLaunch `6328b862-2d29-4500-bbe2-13c338b104fc`. Current FileDrive publication snapshots live under `/public/vellis/website/`; older `/public/open-engine/website/` assets are legacy/pre-Vellis snapshots, not the working copy — edit here, in git.
+**This repo is canonical for the site code.** It was extracted from the former Kesher source bundle at `client_packs/volant/published_apps/volantlabs.ai/`; the `volant_base` knowledge graph *governs/indexes* it — site-architecture Spec `392e552b-5858-475e-a716-31d8f05bc5a6` and WebsiteLaunch `6328b862-2d29-4500-bbe2-13c338b104fc`. Current FileDrive publication snapshots live under `/public/vellis/website/`; older `/public/open-engine/website/` assets are legacy/pre-Vellis snapshots, not the working copy — edit here, in git.
+
+## Kesher launcher bridge
+
+During migration, the Volant launcher still serves from Kesher's runtime app mirror. To refresh that local launcher copy from this repo:
+
+```
+KESHER_REPO=/path/to/kesher
+rsync -a --delete --exclude .git ./ "$KESHER_REPO/data/app_bundles/published_apps/volantlabs.ai/"
+KESHER_DATA_DIR="$KESHER_REPO/data" PYTHONPATH="$KESHER_REPO" python3 - <<'PY'
+import os
+from pathlib import Path
+from src.common.app_manifest import write_app_manifest
+write_app_manifest(Path(os.environ["KESHER_DATA_DIR"]))
+PY
+```
 
 ## Status & next
 

@@ -1,0 +1,11 @@
+{
+  "name": "volantlabs.ai",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-perspectives.mjs",
+    "check": "node scripts/build-perspectives.mjs --check",
+    "dev": "python3 -m http.server 4173"
+  }
+}
