@@ -9,6 +9,12 @@
   "published": "2026-05-19",
   "displayDate": "May 19, 2026",
   "readingTime": "3 min read",
+  "image": {
+    "src": "assets/images/perspectives/legibility-wedge.webp",
+    "alt": "Agent proposal resolving through an orange traversal wedge into accountable customer, policy, record, boundary, and human review graph context.",
+    "width": 1672,
+    "height": 941
+  },
   "author": "Eddie Austin",
   "provenanceLine": "By Eddie Austin",
   "statusLabel": "Human essay",
@@ -28,7 +34,7 @@
     {
       "heading": "Legibility changes the shape of delegation",
       "paragraphs": [
-        "When the system can expose meaning, delegation becomes more precise. An agent can be allowed to draft one kind of change, blocked from another, and asked to collect human ratification when a boundary is crossed.",
+        "When the system can expose meaning, delegation becomes more precise. An agent can be allowed to draft one kind of change, blocked from another, and asked to collect human review when a boundary is crossed.",
         "That is a better model than treating autonomy as a slider. The useful question is not how much freedom the agent has in the abstract. It is whether the system can tell what the agent is trying to touch."
       ]
     },

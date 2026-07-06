@@ -9,6 +9,12 @@
   "published": "2026-06-11",
   "displayDate": "June 11, 2026",
   "readingTime": "4 min read",
+  "image": {
+    "src": "assets/images/graph-theory-thesis.webp",
+    "alt": "Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters.",
+    "width": 960,
+    "height": 540
+  },
   "author": "Eddie Austin",
   "provenanceLine": "By Eddie Austin",
   "statusLabel": "Human essay",
@@ -35,7 +41,7 @@
     {
       "heading": "Legibility is what lets judgment stay human",
       "paragraphs": [
-        "The point is not to automate judgment away. The point is to make the system legible enough that judgment can happen at the right moment. When the graph knows what a thing is, what it depends on, and what policies attach to it, a human can ratify the meaningful decision instead of auditing the rubble afterward.",
+        "The point is not to automate judgment away. The point is to make the system legible enough that judgment can happen at the right moment. When the graph knows what a thing is, what it depends on, and what policies attach to it, a human can review the meaningful decision instead of auditing the rubble afterward.",
         "That is why the graph is more than storage. It is a compact theory of the domain: partial, revisable, and powerful precisely because the system can run it."
       ]
     }

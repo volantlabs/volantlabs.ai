@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perspectives — essays, dispatches, and ratified work · volantlabs.ai</title>
+<title>Perspectives — essays and field notes · volantlabs.ai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -54,19 +54,20 @@
   .band-head h2{font-size:32px}
   .band-head .lane{font-size:13px;font-weight:700;color:var(--orange-600)}
   .feed{display:grid;grid-template-columns:1fr;gap:var(--s4)}
-  .post{display:grid;grid-template-columns:150px 1fr auto;gap:var(--s6);align-items:start;border:1px solid var(--line);border-radius:8px;padding:var(--s6);background:var(--surface);scroll-margin-top:96px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+  .post{display:grid;grid-template-columns:184px 1fr auto;gap:var(--s6);align-items:start;border:1px solid var(--line);border-radius:8px;padding:var(--s6);background:var(--surface);scroll-margin-top:96px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
   .post[hidden]{display:none}
   .post:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(0,0,0,.24);border-color:var(--muted)}
+  .post-media{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3)}
+  .post-thumb{display:block;width:100%;aspect-ratio:16/9;border:1px solid rgba(245,245,245,.14);border-radius:6px;overflow:hidden;background:var(--labs-base)}
+  .post-thumb img{display:block;width:100%;height:100%;object-fit:cover}
   .lanepill{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;padding:5px 10px;border-radius:6px;white-space:nowrap;display:inline-flex}
   .lanepill.essays{color:var(--text);background:var(--blue-50)}
-  .lanepill.graph{color:#f2b293;background:var(--orange-50)}
-  .lanepill.ratified{color:#fff;background:var(--navy)}
+  .lanepill.notes{color:#f2b293;background:var(--orange-50)}
   .post h3{font-size:21px;margin-bottom:6px}
   .post p{font-size:14px;color:var(--muted);max-width:70ch;margin-bottom:var(--s3)}
   .post .meta{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;font-size:13px;color:var(--muted)}
   .post .prov{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:12px;color:var(--muted)}
   .post .prov .gdot{width:7px;height:7px;border-radius:50%;background:var(--orange);flex:none}
-  .post .prov.ok{color:var(--orange-600)}
   .post .read{align-self:center;font-weight:700;font-size:14px;color:var(--orange);display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
   .post:hover .read .arr{transform:translateX(3px)}
   .read .arr{transition:transform .15s ease}
@@ -119,8 +120,8 @@
     <div class="wrap">
       <div>
         <span class="eyebrow"><span class="dot"></span>Perspectives</span>
-        <h1>Essays, dispatches, and ratified work.</h1>
-        <p class="sub">The growing library for Vellis: human-written essays, notes drafted from the graph, and ratified artifacts — provenance visible on every one.</p>
+        <h1>Essays and field notes.</h1>
+        <p class="sub">The growing library for Vellis: authored essays, launch notes, and field observations behind the open graph engine.</p>
       </div>
       <aside class="library-note">
         <strong>The Thesis is the story.</strong>
@@ -134,9 +135,9 @@
       <div class="tabs" role="tablist" aria-label="Filter perspectives by lane">
         <button class="tab active" type="button" role="tab" aria-selected="true" data-filter="all" aria-controls="perspective-feed">All</button>
         <button class="tab" type="button" role="tab" aria-selected="false" data-filter="essays" aria-controls="perspective-feed">Essays</button>
-        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="graph" aria-controls="perspective-feed">From the graph</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" data-filter="notes" aria-controls="perspective-feed">Field notes</button>
       </div>
-      <span class="caption">every item shows how it was made — and whether a human ratified it</span>
+      <span class="caption">essays carry bylines; field notes carry working assumptions and review status</span>
     </div>
   </section>
 
@@ -151,7 +152,9 @@
       <div class="feed" id="perspective-feed">
         <!-- GENERATED:perspectives-feed:start -->
         <article class="post" id="graph-theory" data-lane="essays">
-          <div><span class="lanepill essays">Essay</span></div>
+          <div class="post-media"><a class="post-thumb" href="perspectives/graph-theory.html" aria-hidden="true" tabindex="-1">
+              <img src="assets/images/graph-theory-thesis.webp" alt="" width="960" height="540" loading="lazy" decoding="async">
+            </a><span class="lanepill essays">Essay</span></div>
           <div>
             <h3>The graph is a theory</h3>
             <p>Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.</p>
@@ -163,34 +166,40 @@
           <a class="read" href="perspectives/graph-theory.html" aria-label="Open perspective: The graph is a theory">Open note <span class="arr">-&gt;</span></a>
         </article>
 
-        <article class="post" id="runtime-controls" data-lane="graph">
-          <div><span class="lanepill graph">From the graph</span></div>
+        <article class="post" id="runtime-controls" data-lane="notes">
+          <div class="post-media"><a class="post-thumb" href="perspectives/runtime-controls.html" aria-hidden="true" tabindex="-1">
+              <img src="assets/images/perspectives/runtime-controls.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+            </a><span class="lanepill notes">Field note</span></div>
           <div>
             <h3>Runtime-native controls: policy where execution happens</h3>
-            <p>A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.</p>
+            <p>A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.</p>
             <div class="meta">
               <span>June 4, 2026</span>
-              <span class="prov">Drafted from the graph · Exploration</span>
+              <span class="prov">Volant Labs field note</span>
             </div>
           </div>
           <a class="read" href="perspectives/runtime-controls.html" aria-label="Open perspective: Runtime-native controls: policy where execution happens">Open note <span class="arr">-&gt;</span></a>
         </article>
 
-        <article class="post" id="open-data" data-lane="graph">
-          <div><span class="lanepill graph">From the graph</span></div>
+        <article class="post" id="open-data" data-lane="notes">
+          <div class="post-media"><a class="post-thumb" href="perspectives/open-data.html" aria-hidden="true" tabindex="-1">
+              <img src="assets/images/perspectives/open-data.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+            </a><span class="lanepill notes">Field note</span></div>
           <div>
             <h3>Open data, proprietary intelligence</h3>
             <p>The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.</p>
             <div class="meta">
               <span>May 27, 2026</span>
-              <span class="prov ok">Drafted from the graph · Ratified by Eddie Austin</span>
+              <span class="prov">Volant Labs field note</span>
             </div>
           </div>
           <a class="read" href="perspectives/open-data.html" aria-label="Open perspective: Open data, proprietary intelligence">Open note <span class="arr">-&gt;</span></a>
         </article>
 
         <article class="post" id="legibility-wedge" data-lane="essays">
-          <div><span class="lanepill essays">Essay</span></div>
+          <div class="post-media"><a class="post-thumb" href="perspectives/legibility-wedge.html" aria-hidden="true" tabindex="-1">
+              <img src="assets/images/perspectives/legibility-wedge.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+            </a><span class="lanepill essays">Essay</span></div>
           <div>
             <h3>Legibility is the wedge for agentic software</h3>
             <p>Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.</p>
@@ -202,27 +211,31 @@
           <a class="read" href="perspectives/legibility-wedge.html" aria-label="Open perspective: Legibility is the wedge for agentic software">Open note <span class="arr">-&gt;</span></a>
         </article>
 
-        <article class="post" id="domain-explorations-matter" data-lane="graph">
-          <div><span class="lanepill graph">From the graph</span></div>
+        <article class="post" id="domain-explorations-matter" data-lane="notes">
+          <div class="post-media"><a class="post-thumb" href="perspectives/domain-explorations-matter.html" aria-hidden="true" tabindex="-1">
+              <img src="assets/images/perspectives/domain-explorations-matter.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+            </a><span class="lanepill notes">Field note</span></div>
           <div>
             <h3>Why domain explorations matter</h3>
-            <p>A graph-sourced note on worked models as the bridge between abstract infrastructure and practical adoption.</p>
+            <p>A field note on worked models as the bridge between abstract infrastructure and practical adoption.</p>
             <div class="meta">
               <span>May 8, 2026</span>
-              <span class="prov">Drafted from the graph · Exploration</span>
+              <span class="prov">Volant Labs field note</span>
             </div>
           </div>
           <a class="read" href="perspectives/domain-explorations-matter.html" aria-label="Open perspective: Why domain explorations matter">Open note <span class="arr">-&gt;</span></a>
         </article>
 
-        <article class="post" id="no-rug-pull-license" data-lane="graph">
-          <div><span class="lanepill graph">From the graph</span></div>
+        <article class="post" id="no-rug-pull-license" data-lane="notes">
+          <div class="post-media"><a class="post-thumb" href="perspectives/no-rug-pull-license.html" aria-hidden="true" tabindex="-1">
+              <img src="assets/images/perspectives/no-rug-pull-license.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+            </a><span class="lanepill notes">Field note</span></div>
           <div>
             <h3>No rug-pull means more than a license</h3>
-            <p>A ratified note on trust signals: portability, export path, and production support that does not compete with Vellis.</p>
+            <p>A field note on trust signals: Apache licensing, portability, export path, and production support that does not compete with Vellis.</p>
             <div class="meta">
               <span>April 29, 2026</span>
-              <span class="prov ok">Drafted from the graph · Ratified by Eddie Austin</span>
+              <span class="prov">Volant Labs field note</span>
             </div>
           </div>
           <a class="read" href="perspectives/no-rug-pull-license.html" aria-label="Open perspective: No rug-pull means more than a license">Open note <span class="arr">-&gt;</span></a>
@@ -236,7 +249,7 @@
     <div class="wrap">
       <div class="panel">
         <h2>Stay close to the thinking</h2>
-        <p>New essays, graph dispatches, and ratified notes as they land. No noise, just the ideas behind Vellis.</p>
+        <p>New essays and field notes as they land. No noise, just the ideas behind Vellis.</p>
         <div class="subform">
           <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives">Request updates</a>
           <a class="rss" href="feed.xml">RSS feed -></a>

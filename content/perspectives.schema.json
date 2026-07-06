@@ -7,14 +7,24 @@
   "properties": {
     "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
     "url": { "type": "string" },
-    "kind": { "type": "string", "enum": ["essays", "graph", "artifact"] },
-    "kindLabel": { "type": "string", "enum": ["Essay", "From the graph", "Artifact"] },
+    "kind": { "type": "string", "enum": ["essays", "notes", "artifact"] },
+    "kindLabel": { "type": "string", "enum": ["Essay", "Field note", "Artifact"] },
     "title": { "type": "string", "minLength": 1 },
     "shortTitle": { "type": "string", "minLength": 1 },
     "dek": { "type": "string", "minLength": 1 },
     "published": { "type": "string", "format": "date" },
     "displayDate": { "type": "string" },
     "readingTime": { "type": "string" },
+    "image": {
+      "type": "object",
+      "required": ["src", "alt", "width", "height"],
+      "properties": {
+        "src": { "type": "string" },
+        "alt": { "type": "string", "minLength": 1 },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
+      }
+    },
     "author": { "type": ["string", "null"] },
     "provenanceLine": { "type": "string" },
     "statusLabel": { "type": "string" },

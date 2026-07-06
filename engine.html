@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vellis Engine — typed context graph infrastructure · volantlabs.ai</title>
+<title>Vellis Engine — open-source typed context graph · volantlabs.ai</title>
+<meta name="description" content="Vellis is an Apache-licensed repo for running a typed graph engine and MCP server pattern that agents can read, traverse, write to, validate against, and export from.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -117,28 +118,31 @@
   <div class="wrap">
     <div class="hero-copy">
       <span class="eyebrow"><span class="dot"></span>Vellis Engine · first open project</span>
-      <h1 class="headline">Vellis is the typed context graph for AI-native work.</h1>
-      <p class="sub">Model real work as a typed context graph your agents can reason over, write to, and export from without surrendering the context you build.</p>
+      <h1 class="headline">Vellis is the open-source graph engine for agent memory.</h1>
+      <p class="sub">Clone the repo, run a typed context graph locally, and connect MCP-capable agents to memory they can read, traverse, write to, propose changes against, validate, and export.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#quickstart">Quick start
+        <a class="btn btn-primary" href="#quickstart">Run locally
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a class="btn btn-ghost" href="thesis.html">Read the thesis</a>
       </div>
     </div>
     <div class="term" id="quickstart" role="region" aria-label="Local start path for Vellis.">
-      <div class="term-bar"><i></i><i></i><i class="r"></i><span>~/vellis — quick start status</span></div>
+      <div class="term-bar"><i></i><i></i><i class="r"></i><span>~/vellis — local quick start</span></div>
       <div class="term-body">
-<span class="c"># current local-start path</span><br>
-<span class="p">›</span> <a href="https://www.volantpartners.com/contact">request the current path from Volant</a><br>
-<span class="p">›</span> run Vellis locally when the path is shared<br>
+<span class="c"># local start</span><br>
+<span class="p">›</span> git clone &lt;repo-url&gt;<br>
+<span class="p">›</span> cd vellis<br>
+<span class="p">›</span> follow the README to run the graph engine and MCP server<br>
 <span class="p">›</span> load your first typed nodes and edges<br>
-<span class="o">→ public clone/install commands replace this block when the release path is live</span><br>
+<span class="o">→ the final repository URL lands here at launch</span><br>
 <br>
 <span class="c"># what Vellis covers</span><br>
 <span class="p">›</span> typed graph storage<br>
 <span class="p">›</span> schema-enforced writes<br>
-<span class="p">›</span> full-fidelity export<span class="cursor"></span>
+<span class="p">›</span> read / traverse / write / propose / validate operations<br>
+<span class="p">›</span> full-fidelity export<br>
+<span class="p">›</span> Apache 2.0 license<span class="cursor"></span>
       </div>
     </div>
   </div>
@@ -160,22 +164,22 @@
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><ellipse cx="18" cy="11" rx="11" ry="4" stroke="#001E50" stroke-width="1.6"/><path d="M7 11v14c0 2.2 4.9 4 11 4s11-1.8 11-4V11" stroke="#001E50" stroke-width="1.6"/><path d="M7 18c0 2.2 4.9 4 11 4s11-1.8 11-4" stroke="#001E50" stroke-width="1.6" stroke-opacity=".5"/></svg>
       <h4>Storage</h4>
-      <p>Runs on your machine or your infra, local-first. Your data stays yours.</p>
+      <p>Runs on your machine or your infrastructure. Your data stays yours.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M10 11h16M10 18h16M10 25h10" stroke="#001E50" stroke-width="1.7" stroke-linecap="round"/><circle cx="26" cy="25" r="3" fill="#D15B21"/></svg>
       <h4>Agent tooling</h4>
-      <p>MCP-capable tools can work against graph operations instead of scraping stale docs or isolated chats.</p>
+      <p>The repo gives builders the MCP server pattern so Claude, Codex, and other MCP-capable tools can work against graph operations after setup.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 6v16" stroke="#D15B21" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l6 6 6-6" stroke="#D15B21" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 28h20" stroke="#001E50" stroke-width="1.8" stroke-linecap="round"/></svg>
       <h4>Export</h4>
-      <p>Full-fidelity export to open standards. No lock-in: everything you put in, you can take out.</p>
+      <p>Full-fidelity export to open formats. No lock-in: everything you put in, you can take out.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M11 7h10l5 5v17H11z" stroke="#001E50" stroke-width="1.7" stroke-linejoin="round"/><path d="M21 7v6h5M15 20h8M15 24h5" stroke="#001E50" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.2" fill="#D15B21"/></svg>
-      <h4>Project docs</h4>
-      <p>Run notes, schema references, and traversal guides live close to the project, not in a disconnected wiki.</p>
+      <h4>Launch kit</h4>
+      <p>Starter prompts, AGENTS.md guidance, schema references, and traversal notes live close to the code.</p>
     </div>
   </div>
 </section>
@@ -189,9 +193,9 @@
     </div>
     <div class="panel">
       <div class="lic">
-        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>Access</span>
-        <h3>Local-first by design</h3>
-        <p>Source and local run paths are part of the Vellis promise: the graph stays runnable, portable, and yours.</p>
+        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>License</span>
+        <h3>Apache 2.0 by design</h3>
+        <p>Source, local run paths, and starter agent instructions are part of the Vellis promise: the graph stays runnable, portable, and yours.</p>
       </div>
       <div class="lic">
         <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>The covenant</span>

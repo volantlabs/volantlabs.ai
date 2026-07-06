@@ -56,16 +56,16 @@
   <rect x="625" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
   <text x="715" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Perspectives</text>
   <text x="715" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">the library (blog)</text>
-  <text x="715" y="362" fill="#333333" font-size="10.5" text-anchor="middle">Essays · From the graph</text>
-  <text x="715" y="377" fill="#333333" font-size="10.5" text-anchor="middle">· Ratified (provenance)</text>
+  <text x="715" y="362" fill="#333333" font-size="10.5" text-anchor="middle">Essays · Field notes</text>
+  <text x="715" y="377" fill="#333333" font-size="10.5" text-anchor="middle">editorial context</text>
 
   <!-- Community -->
   <circle cx="910" cy="288" r="5" fill="#D15B21"/>
   <rect x="820" y="290" width="180" height="100" rx="10" fill="#FFFFFF" stroke="#001E50" stroke-width="1.5"/>
   <text x="910" y="320" fill="#001E50" font-size="15" font-weight="700" text-anchor="middle">Community</text>
-  <text x="910" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">support + signal</text>
-  <text x="910" y="362" fill="#333333" font-size="10.5" text-anchor="middle">iceberg model</text>
-  <text x="910" y="377" fill="#333333" font-size="10.5" text-anchor="middle">roadmap · the bank</text>
+  <text x="910" y="342" fill="#A8491A" font-size="10.5" font-weight="600" text-anchor="middle">builder path</text>
+  <text x="910" y="362" fill="#333333" font-size="10.5" text-anchor="middle">run · share · follow</text>
+  <text x="910" y="377" fill="#333333" font-size="10.5" text-anchor="middle">future directions</text>
 
   <!-- graduate edge -->
   <line x1="520" y1="390" x2="520" y2="486" stroke="#001E50" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arr)"/>

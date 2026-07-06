@@ -12,24 +12,20 @@ const checkOnly = process.argv.includes("--check");
 const contentSourceName = process.env.PERSPECTIVES_SOURCE || "json";
 const kindLabelsByKind = new Map([
   ["essays", "Essay"],
-  ["graph", "From the graph"],
+  ["notes", "Field note"],
   ["artifact", "Artifact"]
 ]);
 
 const manifest = {
-  schemaVersion: "2026-06-22.perspectives.v2",
+  schemaVersion: "2026-07-06.perspectives.v4",
   siteUrl: "https://volantlabs.ai",
   sourceSpecs: [
     {
       id: "392e552b-5858-475e-a716-31d8f05bc5a6",
       name: "volantlabs.ai - Site Architecture"
-    },
-    {
-      id: "9c3d7e21-5b4a-4f86-a1d9-2e7c6b8f0a34",
-      name: "volantlabs.ai Provenance Display Model (Kind x Status)"
     }
   ],
-  filters: ["all", "essays", "graph"]
+  filters: ["all", "essays", "notes"]
 };
 
 function escapeHtml(value = "") {
@@ -146,6 +142,20 @@ function normalizePerspectivePost(rawPost, sourceRef) {
   if (author !== null && typeof author !== "string") {
     throw new Error(`${sourceRef} author must be a string or null`);
   }
+  const image = rawPost.image ?? null;
+  if (image !== null) {
+    if (!image || typeof image !== "object") throw new Error(`${sourceRef} image must be an object`);
+    if (typeof image.src !== "string" || !image.src) throw new Error(`${sourceRef} image.src is required`);
+    if (typeof image.alt !== "string" || !image.alt) throw new Error(`${sourceRef} image.alt is required`);
+    if (!Number.isInteger(image.width) || image.width < 1) throw new Error(`${sourceRef} image.width must be a positive integer`);
+    if (!Number.isInteger(image.height) || image.height < 1) throw new Error(`${sourceRef} image.height must be a positive integer`);
+    const imagePath = path.resolve(siteRoot, image.src);
+    const relativeImagePath = path.relative(siteRoot, imagePath);
+    if (relativeImagePath.startsWith("..") || path.isAbsolute(relativeImagePath)) {
+      throw new Error(`${sourceRef} image.src must stay inside the site root`);
+    }
+    if (!existsSync(imagePath)) throw new Error(`${sourceRef} image.src does not exist: ${image.src}`);
+  }
 
   return {
     slug: requireString(rawPost, "slug", sourceRef),
@@ -158,6 +168,7 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     published: requireString(rawPost, "published", sourceRef),
     displayDate: requireString(rawPost, "displayDate", sourceRef),
     readingTime: requireString(rawPost, "readingTime", sourceRef),
+    image,
     author,
     provenanceLine: requireString(rawPost, "provenanceLine", sourceRef),
     statusLabel: requireString(rawPost, "statusLabel", sourceRef),
@@ -285,14 +296,14 @@ function renderArticle(post, posts) {
         ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n        ")}`)
     .join("\n        ");
 
-  const provenanceRows = [
-    ["Provenance", post.provenance.source],
-    ["Reasoning layer", post.provenance.reasoningLayer],
-    ["Human ratifier", post.provenance.humanRatifier],
+  const editorialRows = [
+    ["Source", post.provenance.source],
+    ["Editorial layer", post.provenance.reasoningLayer],
+    ["Owner", post.provenance.humanRatifier],
     ["Status", post.provenance.status],
-    ["Known uncertainty", post.provenance.knownUncertainty],
-    ["Dissent", post.provenance.dissent],
-    ["Next falsifier", post.provenance.nextFalsifier]
+    ["Open question", post.provenance.knownUncertainty],
+    ["Counterpoint", post.provenance.dissent],
+    ["What would change this", post.provenance.nextFalsifier]
   ]
     .map(([term, definition]) => `<dt>${escapeHtml(term)}</dt>
           <dd>${escapeHtml(definition)}</dd>`)
@@ -300,6 +311,19 @@ function renderArticle(post, posts) {
 
   const tags = post.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
   const canonical = absoluteUrl(post.url);
+  const imageMeta = post.image
+    ? `<meta property="og:image" content="${escapeHtml(absoluteUrl(post.image.src))}">
+<meta property="og:image:alt" content="${escapeHtml(post.image.alt)}">
+<meta property="og:image:width" content="${escapeHtml(post.image.width)}">
+<meta property="og:image:height" content="${escapeHtml(post.image.height)}">
+<meta name="twitter:image" content="${escapeHtml(absoluteUrl(post.image.src))}">
+<meta name="twitter:image:alt" content="${escapeHtml(post.image.alt)}">`
+    : "";
+  const articleVisual = post.image
+    ? `<figure class="article-visual">
+        <img src="../${escapeHtml(post.image.src)}" alt="${escapeHtml(post.image.alt)}" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="eager" decoding="async">
+      </figure>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -311,7 +335,8 @@ function renderArticle(post, posts) {
 <meta property="og:description" content="${escapeHtml(post.dek)}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${escapeHtml(canonical)}">
-<meta name="twitter:card" content="summary">
+${imageMeta}
+<meta name="twitter:card" content="${post.image ? "summary_large_image" : "summary"}">
 <link rel="canonical" href="${escapeHtml(canonical)}">
 <title>${escapeHtml(post.title)} - Perspectives - volantlabs.ai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -339,9 +364,10 @@ ${renderHeader()}
       </div>
       <aside class="article-summary" aria-label="Perspective summary">
         <strong>${escapeHtml(post.statusLabel)}</strong>
-        <p>Every Perspectives piece keeps authorship and ratification visible. The full provenance footer lives with the article.</p>
+        <p>Perspectives pieces are published as Volant Labs thinking. Essays carry a byline; field notes carry working context and review status.</p>
         <div class="tag-row">${tags}</div>
       </aside>
+      ${articleVisual}
     </div>
   </section>
   <section class="article-main wrap">
@@ -350,11 +376,11 @@ ${renderHeader()}
     </article>
     <section class="provenance-panel" aria-labelledby="provenance-title">
       <div class="provenance-head">
-        <p class="article-kicker">Provenance</p>
+        <p class="article-kicker">Editorial context</p>
         <h2 id="provenance-title">How this piece should be read</h2>
       </div>
       <dl>
-          ${provenanceRows}
+          ${editorialRows}
       </dl>
     </section>
     <section class="related-block">
@@ -371,7 +397,7 @@ ${renderHeader()}
     <div class="wrap subscribe-panel">
       <div>
         <h2>Stay close to the thinking</h2>
-        <p>New essays, graph dispatches, and ratified notes as they land.</p>
+        <p>New essays and field notes as they land.</p>
       </div>
       <div class="article-actions">
         <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives">Request updates</a>
@@ -397,9 +423,14 @@ function renderPerspectiveCount(posts) {
 function renderPerspectiveIndexFeed(posts) {
   return posts
     .map((post) => {
-      const provenanceClass = post.provenanceLine.includes("Ratified") ? "prov ok" : "prov";
+      const provenanceClass = "prov";
+      const thumbnail = post.image
+        ? `<a class="post-thumb" href="${escapeHtml(post.url)}" aria-hidden="true" tabindex="-1">
+              <img src="${escapeHtml(post.image.src)}" alt="" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="lazy" decoding="async">
+            </a>`
+        : "";
       return `        <article class="post" id="${escapeHtml(post.slug)}" data-lane="${escapeHtml(post.kind)}">
-          <div><span class="lanepill ${escapeHtml(post.kind)}">${escapeHtml(post.kindLabel)}</span></div>
+          <div class="post-media">${thumbnail}<span class="lanepill ${escapeHtml(post.kind)}">${escapeHtml(post.kindLabel)}</span></div>
           <div>
             <h3>${escapeHtml(post.title)}</h3>
             <p>${escapeHtml(post.dek)}</p>
@@ -442,7 +473,7 @@ function renderFeed(posts) {
     <title>volantlabs.ai Perspectives</title>
     <link>${manifest.siteUrl}/perspectives.html</link>
     <atom:link href="${manifest.siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Essays, graph dispatches, and ratified notes behind Vellis.</description>
+    <description>Essays and field notes behind Vellis.</description>
     <language>en-us</language>
 ${items}
   </channel>
