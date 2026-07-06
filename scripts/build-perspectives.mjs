@@ -14,24 +14,20 @@ const checkOnly = process.argv.includes("--check");
 const contentSourceName = process.env.PERSPECTIVES_SOURCE || "json";
 const kindLabelsByKind = new Map([
   ["essays", "Essay"],
-  ["graph", "From the graph"],
+  ["notes", "Field note"],
   ["artifact", "Artifact"]
 ]);
 
 const manifest = {
-  schemaVersion: "2026-06-22.perspectives.v2",
+  schemaVersion: "2026-07-06.perspectives.v4",
   siteUrl: "https://volantlabs.ai",
   sourceSpecs: [
     {
       id: "392e552b-5858-475e-a716-31d8f05bc5a6",
       name: "volantlabs.ai - Site Architecture"
-    },
-    {
-      id: "9c3d7e21-5b4a-4f86-a1d9-2e7c6b8f0a34",
-      name: "volantlabs.ai Provenance Display Model (Kind x Status)"
     }
   ],
-  filters: ["all", "essays", "graph"]
+  filters: ["all", "essays", "notes"]
 };
 const defaultSocialImage = "assets/images/graph-theory-thesis.webp";
 const defaultSocialImageAlt =
@@ -41,31 +37,31 @@ const summaryPages = [
     title: "Home",
     path: "",
     summaryPath: "llms/pages/home.md",
-    description: "Volant Labs publishes open graph-native infrastructure for AI-native work, starting with Vellis."
+    description: "Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory."
   },
   {
     title: "Vellis Engine",
     path: "engine.html",
     summaryPath: "llms/pages/engine.md",
-    description: "The product overview for Vellis as a typed context graph with schema-enforced writes and exportable context."
+    description: "The product overview for Vellis as an open-source graph engine, schema layer, MCP server pattern, and exportable context substrate."
   },
   {
     title: "Thesis",
     path: "thesis.html",
     summaryPath: "llms/pages/thesis.md",
-    description: "The narrative point of view behind Vellis: graph memory, model reasoning, and human ratification."
+    description: "The narrative point of view behind Vellis: graph memory, model reasoning, and human review."
   },
   {
     title: "Perspectives",
     path: "perspectives.html",
     summaryPath: "llms/pages/perspectives.md",
-    description: "The library of essays, graph dispatches, and ratified notes behind Vellis."
+    description: "The library of essays and field notes behind Vellis."
   },
   {
     title: "Community",
     path: "community.html",
     summaryPath: "llms/pages/community.md",
-    description: "The support and signal page for collaboration, graph registration, release notes, and questions."
+    description: "The lightweight builder path for running Vellis, following releases, sharing examples, and asking questions."
   },
   {
     title: "Platform",
@@ -205,6 +201,20 @@ function normalizePerspectivePost(rawPost, sourceRef) {
   if (author !== null && typeof author !== "string") {
     throw new Error(`${sourceRef} author must be a string or null`);
   }
+  const image = rawPost.image ?? null;
+  if (image !== null) {
+    if (!image || typeof image !== "object") throw new Error(`${sourceRef} image must be an object`);
+    if (typeof image.src !== "string" || !image.src) throw new Error(`${sourceRef} image.src is required`);
+    if (typeof image.alt !== "string" || !image.alt) throw new Error(`${sourceRef} image.alt is required`);
+    if (!Number.isInteger(image.width) || image.width < 1) throw new Error(`${sourceRef} image.width must be a positive integer`);
+    if (!Number.isInteger(image.height) || image.height < 1) throw new Error(`${sourceRef} image.height must be a positive integer`);
+    const imagePath = path.resolve(siteRoot, image.src);
+    const relativeImagePath = path.relative(siteRoot, imagePath);
+    if (relativeImagePath.startsWith("..") || path.isAbsolute(relativeImagePath)) {
+      throw new Error(`${sourceRef} image.src must stay inside the site root`);
+    }
+    if (!existsSync(imagePath)) throw new Error(`${sourceRef} image.src does not exist: ${image.src}`);
+  }
 
   return {
     slug: requireString(rawPost, "slug", sourceRef),
@@ -217,6 +227,7 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     published: requireString(rawPost, "published", sourceRef),
     displayDate: requireString(rawPost, "displayDate", sourceRef),
     readingTime: requireString(rawPost, "readingTime", sourceRef),
+    image,
     author,
     provenanceLine: requireString(rawPost, "provenanceLine", sourceRef),
     statusLabel: requireString(rawPost, "statusLabel", sourceRef),
@@ -344,14 +355,14 @@ function renderArticle(post, posts) {
         ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n        ")}`)
     .join("\n        ");
 
-  const provenanceRows = [
-    ["Provenance", post.provenance.source],
-    ["Reasoning layer", post.provenance.reasoningLayer],
-    ["Human ratifier", post.provenance.humanRatifier],
+  const editorialRows = [
+    ["Source", post.provenance.source],
+    ["Editorial layer", post.provenance.reasoningLayer],
+    ["Owner", post.provenance.humanRatifier],
     ["Status", post.provenance.status],
-    ["Known uncertainty", post.provenance.knownUncertainty],
-    ["Dissent", post.provenance.dissent],
-    ["Next falsifier", post.provenance.nextFalsifier]
+    ["Open question", post.provenance.knownUncertainty],
+    ["Counterpoint", post.provenance.dissent],
+    ["What would change this", post.provenance.nextFalsifier]
   ]
     .map(([term, definition]) => `<dt>${escapeHtml(term)}</dt>
           <dd>${escapeHtml(definition)}</dd>`)
@@ -359,7 +370,10 @@ function renderArticle(post, posts) {
 
   const tags = post.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
   const canonical = absoluteUrl(post.url);
-  const socialImage = absoluteUrl(defaultSocialImage);
+  const socialImage = absoluteUrl(post.image?.src ?? defaultSocialImage);
+  const socialImageWidth = post.image?.width ?? 960;
+  const socialImageHeight = post.image?.height ?? 540;
+  const socialImageAlt = post.image?.alt ?? defaultSocialImageAlt;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -385,6 +399,11 @@ function renderArticle(post, posts) {
       url: manifest.siteUrl
     }
   };
+  const articleVisual = post.image
+    ? `<figure class="article-visual">
+        <img src="../${escapeHtml(post.image.src)}" alt="${escapeHtml(post.image.alt)}" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="eager" decoding="async">
+      </figure>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -398,14 +417,15 @@ function renderArticle(post, posts) {
 <meta property="og:type" content="article">
 <meta property="og:url" content="${escapeHtml(canonical)}">
 <meta property="og:image" content="${escapeHtml(socialImage)}">
-<meta property="og:image:width" content="960">
-<meta property="og:image:height" content="540">
-<meta property="og:image:alt" content="${escapeHtml(defaultSocialImageAlt)}">
+<meta property="og:image:width" content="${escapeHtml(socialImageWidth)}">
+<meta property="og:image:height" content="${escapeHtml(socialImageHeight)}">
+<meta property="og:image:alt" content="${escapeHtml(socialImageAlt)}">
 <meta property="article:published_time" content="${escapeHtml(post.published)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeHtml(post.title)}">
 <meta name="twitter:description" content="${escapeHtml(post.dek)}">
 <meta name="twitter:image" content="${escapeHtml(socialImage)}">
+<meta name="twitter:image:alt" content="${escapeHtml(socialImageAlt)}">
 <meta name="theme-color" content="#041026">
 <link rel="canonical" href="${escapeHtml(canonical)}">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
@@ -440,9 +460,10 @@ ${renderHeader()}
       </div>
       <aside class="article-summary" aria-label="Perspective summary">
         <strong>${escapeHtml(post.statusLabel)}</strong>
-        <p>Every Perspectives piece keeps authorship and ratification visible. The full provenance footer lives with the article.</p>
+        <p>Perspectives pieces are published as Volant Labs thinking. Essays carry a byline; field notes carry working context and review status.</p>
         <div class="tag-row">${tags}</div>
       </aside>
+      ${articleVisual}
     </div>
   </section>
   <section class="article-main wrap">
@@ -451,11 +472,11 @@ ${renderHeader()}
     </article>
     <section class="provenance-panel" aria-labelledby="provenance-title">
       <div class="provenance-head">
-        <p class="article-kicker">Provenance</p>
+        <p class="article-kicker">Editorial context</p>
         <h2 id="provenance-title">How this piece should be read</h2>
       </div>
       <dl>
-          ${provenanceRows}
+          ${editorialRows}
       </dl>
     </section>
     <section class="related-block">
@@ -472,7 +493,7 @@ ${renderHeader()}
     <div class="wrap subscribe-panel">
       <div>
         <h2>Stay close to the thinking</h2>
-        <p>New essays, graph dispatches, and ratified notes as they land.</p>
+        <p>New essays and field notes as they land.</p>
       </div>
       <div class="article-actions">
         <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives">Request updates</a>
@@ -500,7 +521,7 @@ function renderPerspectiveIndexJson(posts) {
       title: "volantlabs.ai Perspectives",
       url: absoluteUrl("perspectives.html"),
       feedUrl: absoluteUrl("feed.xml"),
-      description: "Essays, graph dispatches, and ratified notes behind Vellis."
+      description: "Essays and field notes behind Vellis."
     },
     posts: posts.map((post) => ({
       slug: post.slug,
@@ -538,15 +559,19 @@ function renderPerspectiveCount(posts) {
 function renderPerspectiveIndexFeed(posts) {
   return posts
     .map((post) => {
-      const provenanceClass = post.provenanceLine.includes("Ratified") ? "prov ok" : "prov";
+      const thumbnail = post.image
+        ? `<a class="post-thumb" href="${escapeHtml(post.url)}" aria-hidden="true" tabindex="-1">
+              <img src="${escapeHtml(post.image.src)}" alt="" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="lazy" decoding="async">
+            </a>`
+        : "";
       return `        <article class="post" id="${escapeHtml(post.slug)}" data-lane="${escapeHtml(post.kind)}">
-          <div><span class="lanepill ${escapeHtml(post.kind)}">${escapeHtml(post.kindLabel)}</span></div>
+          <div class="post-media">${thumbnail}<span class="lanepill ${escapeHtml(post.kind)}">${escapeHtml(post.kindLabel)}</span></div>
           <div>
             <h3>${escapeHtml(post.title)}</h3>
             <p>${escapeHtml(post.dek)}</p>
             <div class="meta">
               <span>${escapeHtml(post.displayDate)}</span>
-              <span class="${provenanceClass}">${escapeHtml(post.provenanceLine)}</span>
+              <span class="prov">${escapeHtml(post.provenanceLine)}</span>
             </div>
           </div>
           <a class="read" href="${escapeHtml(post.url)}" aria-label="Open perspective: ${escapeHtml(post.title)}">Open note <span class="arr">-&gt;</span></a>
@@ -583,7 +608,7 @@ function renderFeed(posts) {
     <title>volantlabs.ai Perspectives</title>
     <link>${manifest.siteUrl}/perspectives.html</link>
     <atom:link href="${manifest.siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
-    <description>Essays, graph dispatches, and ratified notes behind Vellis.</description>
+    <description>Essays and field notes behind Vellis.</description>
     <language>en-us</language>
 ${items}
   </channel>
@@ -625,14 +650,14 @@ function renderPerspectiveMarkdownSummary(post, posts) {
     .map((item) => `- [${item.title}](${markdownUrl(item.url)})`)
     .join("\n");
   const sectionList = post.body.map((section) => `- ${section.heading}`).join("\n");
-  const provenanceRows = [
+  const editorialRows = [
     ["Source", post.provenance.source],
-    ["Reasoning layer", post.provenance.reasoningLayer],
-    ["Human ratifier", post.provenance.humanRatifier],
+    ["Editorial layer", post.provenance.reasoningLayer],
+    ["Owner", post.provenance.humanRatifier],
     ["Status", post.provenance.status],
-    ["Known uncertainty", post.provenance.knownUncertainty],
-    ["Dissent", post.provenance.dissent],
-    ["Next falsifier", post.provenance.nextFalsifier]
+    ["Open question", post.provenance.knownUncertainty],
+    ["Counterpoint", post.provenance.dissent],
+    ["What would change this", post.provenance.nextFalsifier]
   ]
     .map(([label, value]) => `- ${label}: ${value}`)
     .join("\n");
@@ -661,9 +686,9 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 
 ${sectionList}
 
-## Provenance
+## Editorial Context
 
-${provenanceRows}
+${editorialRows}
 
 ## Related Pages
 
@@ -681,7 +706,7 @@ function renderLlmsTxt(posts) {
 
   return `# Volant Labs
 
-> Volant Labs publishes open graph-native infrastructure for AI-native work. Vellis is the first open project: a typed context graph for shared agent context, schema-enforced writes, and exportable operational memory.
+> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and exportable operational context.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 
@@ -704,6 +729,7 @@ ${perspectiveLinks}
 - Treat Vellis as the first open Volant Labs project, not as the whole company.
 - Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
 - Domain Explorations is intentionally parked and noindexed for launch; do not present it as a finished ontology-pack catalog.
+- Perspectives uses public labels Essay and Field note; do not describe launch content as graph-authored or formally approved by a publishing workflow.
 `;
 }
 

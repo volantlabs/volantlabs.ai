@@ -24,15 +24,15 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - Legibility changes the shape of delegation
 - The wedge is narrow on purpose
 
-## Provenance
+## Editorial Context
 
 - Source: Human-written essay for volantlabs.ai Perspectives.
-- Reasoning layer: No graph synthesis layer; the essay reflects Vellis positioning.
-- Human ratifier: Byline accountability: Eddie Austin.
+- Editorial layer: No graph synthesis layer; the essay reflects Vellis positioning.
+- Owner: Byline accountability: Eddie Austin.
 - Status: Published essay.
-- Known uncertainty: The essay emphasizes legibility and does not exhaust other prerequisites for useful agents.
-- Dissent: Tool quality, evaluation, and interface design can each be the wedge in narrower deployments.
-- Next falsifier: A durable agent system that safely acts in opaque business context would weaken the claim.
+- Open question: The essay emphasizes legibility and does not exhaust other prerequisites for useful agents.
+- Counterpoint: Tool quality, evaluation, and interface design can each be the wedge in narrower deployments.
+- What would change this: A durable agent system that safely acts in opaque business context would weaken the claim.
 
 ## Related Pages
 

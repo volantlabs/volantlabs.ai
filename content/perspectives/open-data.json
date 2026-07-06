@@ -1,17 +1,23 @@
 {
   "slug": "open-data",
   "url": "perspectives/open-data.html",
-  "kind": "graph",
-  "kindLabel": "From the graph",
+  "kind": "notes",
+  "kindLabel": "Field note",
   "title": "Open data, proprietary intelligence",
   "shortTitle": "Open data, proprietary intelligence",
   "dek": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
   "published": "2026-05-27",
   "displayDate": "May 27, 2026",
   "readingTime": "4 min read",
+  "image": {
+    "src": "assets/images/perspectives/open-data.webp",
+    "alt": "Layered graph stack showing private organization graphs above an open substrate with open-format export rails.",
+    "width": 1672,
+    "height": 941
+  },
   "author": null,
-  "provenanceLine": "Drafted from the graph · Ratified by Eddie Austin",
-  "statusLabel": "Ratified",
+  "provenanceLine": "Volant Labs field note",
+  "statusLabel": "Field note",
   "tags": [
     "Vellis",
     "Portability",
@@ -22,7 +28,7 @@
       "heading": "Open does not mean undifferentiated",
       "paragraphs": [
         "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. Vellis can stay open because the substrate is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
-        "The proprietary value appears in the work an organization does with it. Their domain model, policy choices, operating history, ratified decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
+        "The proprietary value appears in the work an organization does with it. Their domain model, policy choices, operating history, reviewed decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
       ]
     },
     {
@@ -41,10 +47,10 @@
     }
   ],
   "provenance": {
-    "source": "Drafted from graph-held site architecture and open/governed boundary notes.",
-    "reasoningLayer": "Model-synthesized dispatch from approved Volant graph context.",
-    "humanRatifier": "Eddie Austin.",
-    "status": "Ratified.",
+    "source": "Drawn from Volant Labs site architecture and open/governed boundary notes.",
+    "reasoningLayer": "Edited from internal positioning notes for public launch copy.",
+    "humanRatifier": "Editorial review by Volant Labs.",
+    "status": "Published field note.",
     "knownUncertainty": "The boundary will need sharper examples as real deployments create edge cases.",
     "dissent": "Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.",
     "nextFalsifier": "A platform path that requires proprietary lock-in or lossy export would invalidate the promise."

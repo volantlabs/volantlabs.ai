@@ -20,8 +20,8 @@ volantlabs.ai/
 ├── engine.html             # Vellis Engine (flagship / "one property") — local start path
 ├── domain-explorations.html# Parked post-launch initiative — worked models
 ├── thesis.html             # Cinematic story page — Volant's point of view
-├── perspectives.html       # Essays / From the graph / Ratified (provenance-tagged)
-├── community.html          # Iceberg model — support + telemetry, roadmap "the bank"
+├── perspectives.html       # Essays and field notes
+├── community.html          # Lightweight builder actions and future directions
 ├── platform.html           # Volant Partners production-support path
 ├── llms.txt                # Generated LLM-facing site map with summary links
 ├── llms/                   # Markdown summaries for LLM retrieval and routing
@@ -62,12 +62,13 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 
 - **"Graphcasting" is cut from v1** — it does not appear anywhere public-facing. The story section is named **Thesis**.
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
-- **Perspectives publishing model:** cards filter by Kind only (`Essay` / `From the graph`), while each article page carries the full provenance footer from the approved Kind × Status model. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
+- **Perspectives publishing model:** launch copy should present authored essays and field notes. The JSON generator still supports provenance metadata for future graph-drafted work; keep that future-state language out of public copy until the workflow is real. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
 - **Discovery fundamentals:** top-level pages carry canonical URLs, descriptions, Open Graph/Twitter preview metadata, RSS discovery, Markdown summary discovery, and theme color. Perspectives articles inherit the same baseline plus Article JSON-LD from `scripts/build-perspectives.mjs`; `sitemap.xml`, `llms.txt`, `perspectives/index.json`, and `llms/perspectives/*.md` are generated there too. Parked `domain-explorations.html` is intentionally `noindex,follow` and excluded from the sitemap.
 - **Repo scripts:** `npm run build` regenerates Perspectives outputs; `npm run check` verifies generated files are current.
-- **Launch posture:** the site leads with Volant Labs and presents Vellis as the first open project. Users should see a clear `Quick start` path; until the public repo or guide is reachable, route that path through the current local-start request/contact step.
-- **Domain Explorations:** demoted from global navigation for launch; keep the page as a parked post-launch initiative until the modeling story is resolved.
-- **Audience lanes:** engineer (→ Engine / local start), thinker (→ Thesis / Perspectives), contributor (→ Community), production champion (→ Platform).
+- **Launch posture:** the launch site presents Vellis as an Apache-licensed open-source repo. Users should see a clear `Run locally` path: clone the repo, follow the README, run the graph engine/MCP server pattern, and load a first graph. Do not route launch copy through access-request or contact-gate language.
+- **Domain Explorations:** demoted from global navigation for launch; keep the page as a parked reference-graph initiative until the example format and review path are ready.
+- **Community:** keep community actions GitHub-native and lightweight: clone/run, follow releases, share examples, ask questions. Do not imply a mature graph registry, telemetry program, or fixed release cadence before those exist.
+- **Audience lanes:** engineer (→ Engine / local start), thinker (→ Thesis / Perspectives), builder (→ Community), production champion (→ Platform).
 
 ## Source of truth
 
@@ -75,4 +76,4 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 
 ## Status & next
 
-Fidelity: **mid→hi**. Status: published app bundle. Done: shared CSS shell extracted to `assets/site.css`; Home hero reframed outcome-first (lead with the capability, demote the mechanism). Next: real content, per-page hi-fi polish, fold nav/footer markup into a partial when a build lands, and wire a build/deploy path.
+Fidelity: **mid→hi**. Status: published app bundle / launch-copy draft. Done: shared CSS shell extracted to `assets/site.css`; Home and Engine reframed around the open-source Vellis launch posture. Next: wire the final public repo URL, confirm export-format specifics, add launch demos/reference graphs, and fold nav/footer markup into a partial when a build lands.

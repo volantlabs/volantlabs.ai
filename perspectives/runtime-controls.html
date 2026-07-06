@@ -3,21 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.">
+<meta name="description" content="A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.">
 <meta property="og:site_name" content="Volant Labs">
 <meta property="og:title" content="Runtime-native controls: policy where execution happens">
-<meta property="og:description" content="A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.">
+<meta property="og:description" content="A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://volantlabs.ai/perspectives/runtime-controls.html">
-<meta property="og:image" content="https://volantlabs.ai/assets/images/graph-theory-thesis.webp">
-<meta property="og:image:width" content="960">
-<meta property="og:image:height" content="540">
-<meta property="og:image:alt" content="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters.">
+<meta property="og:image" content="https://volantlabs.ai/assets/images/perspectives/runtime-controls.webp">
+<meta property="og:image:width" content="1672">
+<meta property="og:image:height" content="941">
+<meta property="og:image:alt" content="Runtime control network diagram with an orange policy gate inspecting graph evidence and routing write outcomes.">
 <meta property="article:published_time" content="2026-06-04">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Runtime-native controls: policy where execution happens">
-<meta name="twitter:description" content="A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.">
-<meta name="twitter:image" content="https://volantlabs.ai/assets/images/graph-theory-thesis.webp">
+<meta name="twitter:description" content="A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.">
+<meta name="twitter:image" content="https://volantlabs.ai/assets/images/perspectives/runtime-controls.webp">
+<meta name="twitter:image:alt" content="Runtime control network diagram with an orange policy gate inspecting graph evidence and routing write outcomes.">
 <meta name="theme-color" content="#041026">
 <link rel="canonical" href="https://volantlabs.ai/perspectives/runtime-controls.html">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
@@ -34,10 +35,10 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Runtime-native controls: policy where execution happens",
-  "description": "A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.",
+  "description": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
   "datePublished": "2026-06-04",
   "mainEntityOfPage": "https://volantlabs.ai/perspectives/runtime-controls.html",
-  "image": "https://volantlabs.ai/assets/images/graph-theory-thesis.webp",
+  "image": "https://volantlabs.ai/assets/images/perspectives/runtime-controls.webp",
   "inLanguage": "en",
   "author": {
     "@type": "Organization",
@@ -79,29 +80,32 @@
     <div class="wrap article-hero-grid">
       <div>
         <a class="backlink" href="../perspectives.html">Back to Perspectives</a>
-        <span class="lanepill graph">From the graph</span>
+        <span class="lanepill notes">Field note</span>
         <h1>Runtime-native controls: policy where execution happens</h1>
-        <p class="dek">A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.</p>
+        <p class="dek">A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.</p>
         <div class="article-meta">
           <span>June 4, 2026</span>
           <span>3 min read</span>
-          <span>Drafted from the graph · Exploration</span>
+          <span>Volant Labs field note</span>
         </div>
       </div>
       <aside class="article-summary" aria-label="Perspective summary">
-        <strong>Exploration</strong>
-        <p>Every Perspectives piece keeps authorship and ratification visible. The full provenance footer lives with the article.</p>
+        <strong>Field note</strong>
+        <p>Perspectives pieces are published as Volant Labs thinking. Essays carry a byline; field notes carry working context and review status.</p>
         <div class="tag-row"><span>Governance</span><span>Controls</span><span>Write path</span></div>
       </aside>
+      <figure class="article-visual">
+        <img src="../assets/images/perspectives/runtime-controls.webp" alt="Runtime control network diagram with an orange policy gate inspecting graph evidence and routing write outcomes." width="1672" height="941" loading="eager" decoding="async">
+      </figure>
     </div>
   </section>
   <section class="article-main wrap">
     <article class="article-body">
         <h2>Controls that live after execution become paperwork</h2>
         <p>A policy that only appears after a system has already changed state is not really controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.</p>
-        <p>Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for ratification, or stops.</p>
+        <p>Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for review, or stops.</p>
         <h2>The graph gives policy something to inspect</h2>
-        <p>Rules become much more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human ratified this source? Does this write cross a boundary that requires an explicit approval?</p>
+        <p>Rules become much more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human reviewed this source? Does this write cross a boundary that requires an explicit approval?</p>
         <p>Those questions are not generic security theater. They are domain questions. The graph makes them available at the moment of action, which is where governance stops being a ceremony and starts becoming a substrate.</p>
         <h2>The audit trail should be a byproduct</h2>
         <p>When controls run at execution time, the audit record becomes a natural residue of the decision. The system can capture who or what proposed the change, which policy applied, what evidence was consulted, and how the final decision was made.</p>
@@ -109,23 +113,23 @@
     </article>
     <section class="provenance-panel" aria-labelledby="provenance-title">
       <div class="provenance-head">
-        <p class="article-kicker">Provenance</p>
+        <p class="article-kicker">Editorial context</p>
         <h2 id="provenance-title">How this piece should be read</h2>
       </div>
       <dl>
-          <dt>Provenance</dt>
-          <dd>Drafted from graph-held governance and site architecture notes.</dd>
-          <dt>Reasoning layer</dt>
-          <dd>Model-synthesized dispatch from approved Volant graph context.</dd>
-          <dt>Human ratifier</dt>
-          <dd>Not ratified.</dd>
+          <dt>Source</dt>
+          <dd>Drawn from Volant Labs governance and site architecture notes.</dd>
+          <dt>Editorial layer</dt>
+          <dd>Edited from internal positioning notes for public launch copy.</dd>
+          <dt>Owner</dt>
+          <dd>Editorial review by Volant Labs.</dd>
           <dt>Status</dt>
-          <dd>Exploration.</dd>
-          <dt>Known uncertainty</dt>
+          <dd>Published field note.</dd>
+          <dt>Open question</dt>
           <dd>This dispatch states the operating model but does not yet name a production customer implementation.</dd>
-          <dt>Dissent</dt>
+          <dt>Counterpoint</dt>
           <dd>Some regulated environments may still require external approval ceremonies even when runtime controls exist.</dd>
-          <dt>Next falsifier</dt>
+          <dt>What would change this</dt>
           <dd>A disconnected approval process that reliably prevents unsafe agent writes at scale would weaken the argument.</dd>
       </dl>
     </section>
@@ -142,7 +146,7 @@
           <span class="read">Read next -&gt;</span>
         </a>
         <a class="related-card" href="../perspectives/open-data.html">
-          <span class="lanepill graph">From the graph</span>
+          <span class="lanepill notes">Field note</span>
           <h3>Open data, proprietary intelligence</h3>
           <p>The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.</p>
           <span class="read">Read next -&gt;</span>
@@ -154,7 +158,7 @@
     <div class="wrap subscribe-panel">
       <div>
         <h2>Stay close to the thinking</h2>
-        <p>New essays, graph dispatches, and ratified notes as they land.</p>
+        <p>New essays and field notes as they land.</p>
       </div>
       <div class="article-actions">
         <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives">Request updates</a>

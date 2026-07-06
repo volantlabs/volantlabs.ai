@@ -3,8 +3,8 @@
 Canonical URL: https://volantlabs.ai/perspectives/runtime-controls.html
 HTML path: /perspectives/runtime-controls.html
 Collection: Perspectives
-Kind: From the graph
-Status: Exploration
+Kind: Field note
+Status: Field note
 Published: 2026-06-04
 Reading time: 3 min read
 Author: Volant Labs
@@ -12,7 +12,7 @@ Tags: Governance, Controls, Write path
 
 ## Summary
 
-A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.
+A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.
 
 ## What This Page Is For
 
@@ -24,15 +24,15 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - The graph gives policy something to inspect
 - The audit trail should be a byproduct
 
-## Provenance
+## Editorial Context
 
-- Source: Drafted from graph-held governance and site architecture notes.
-- Reasoning layer: Model-synthesized dispatch from approved Volant graph context.
-- Human ratifier: Not ratified.
-- Status: Exploration.
-- Known uncertainty: This dispatch states the operating model but does not yet name a production customer implementation.
-- Dissent: Some regulated environments may still require external approval ceremonies even when runtime controls exist.
-- Next falsifier: A disconnected approval process that reliably prevents unsafe agent writes at scale would weaken the argument.
+- Source: Drawn from Volant Labs governance and site architecture notes.
+- Editorial layer: Edited from internal positioning notes for public launch copy.
+- Owner: Editorial review by Volant Labs.
+- Status: Published field note.
+- Open question: This dispatch states the operating model but does not yet name a production customer implementation.
+- Counterpoint: Some regulated environments may still require external approval ceremonies even when runtime controls exist.
+- What would change this: A disconnected approval process that reliably prevents unsafe agent writes at scale would weaken the argument.
 
 ## Related Pages
 

@@ -9,7 +9,7 @@ writes: None (static public site prototype)
 features:
   - Home page with animated node-edge hero and lab/project routing
   - Cinematic Thesis page that tells Vellis story
-  - Perspectives library for essays, graph-sourced dispatches, and ratified artifacts
+  - Perspectives library for essays and field notes
   - Engine page for Vellis details
   - Community and Platform pages
 -->
@@ -17,12 +17,12 @@ features:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Volant Labs — open graph-native tools for AI-native work · volantlabs.ai</title>
-<meta name="description" content="Volant Labs publishes open graph-native infrastructure for AI-native work. Vellis is the first project: a typed context graph your agents can share, reason over, and export.">
+<title>Vellis — open-source shared memory for AI agents · volantlabs.ai</title>
+<meta name="description" content="Vellis is an Apache-licensed typed context graph for AI agents: clone the repo, run the graph locally, connect MCP-capable tools, and keep your context exportable.">
 <link rel="canonical" href="https://volantlabs.ai/">
 <meta property="og:site_name" content="Volant Labs">
-<meta property="og:title" content="Volant Labs — open graph-native tools for AI-native work">
-<meta property="og:description" content="Volant Labs publishes open graph-native infrastructure for AI-native work. Vellis is the first project: a typed context graph your agents can share, reason over, and export.">
+<meta property="og:title" content="Vellis — open-source shared memory for AI agents">
+<meta property="og:description" content="Apache-licensed typed context graph for AI agents: clone the repo, run locally, connect MCP-capable tools, and keep context exportable.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://volantlabs.ai/">
 <meta property="og:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
@@ -30,8 +30,8 @@ features:
 <meta property="og:image:height" content="540">
 <meta property="og:image:alt" content="Abstract typed context graph with schema, storage, and export paths around an active orange node.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Volant Labs — open graph-native tools for AI-native work">
-<meta name="twitter:description" content="Open graph-native infrastructure for AI-native work, starting with Vellis.">
+<meta name="twitter:title" content="Vellis — open-source shared memory for AI agents">
+<meta name="twitter:description" content="Clone the repo, run locally, connect MCP-capable tools, and keep context exportable.">
 <meta name="twitter:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
 <meta name="theme-color" content="#041026">
 <meta name="kesher:name" content="volantlabs.ai">
@@ -215,26 +215,26 @@ features:
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Volant Labs · open infrastructure and research</span>
-      <h1 class="headline">Open infrastructure for AI-native work.</h1>
-      <p class="sub">Volant Labs publishes practical, inspectable tools for teams building with agents. Vellis is the first project: a typed context graph your agents can share, reason over, and export anytime.</p>
+      <span class="eyebrow"><span class="dot"></span>Vellis · Apache-licensed graph engine</span>
+      <h1 class="headline">One memory your agents share — and you own.</h1>
+      <p class="sub">Vellis is an Apache-licensed typed graph engine that turns scattered context into a living model your AI can reason over. Model your domain once; let Claude, Codex, and MCP-capable tools build on the same graph.</p>
       <ul class="cap-strip">
-        <li>Start locally with Vellis as the first open project</li>
-        <li>Carry context across agents, tools, and sessions</li>
+        <li>Clone the repo and run the graph engine locally</li>
+        <li>Connect Claude, Codex, and other MCP-capable tools through your own setup</li>
         <li>Model schemas, provenance, and decisions as a typed graph</li>
-        <li>Bring in Volant Partners when the graph needs production controls</li>
+        <li>Read, traverse, write, propose, validate, and export</li>
       </ul>
       <div class="cta-row">
-        <a class="btn btn-primary" href="engine.html#quickstart">Quick start Vellis
+        <a class="btn btn-primary" href="engine.html#quickstart">Run Vellis locally
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a class="btn btn-ghost" href="engine.html">How Vellis works</a>
+        <a class="btn btn-ghost" href="engine.html">See the engine</a>
       </div>
-      <p class="trust-line">Maintained by Volant Partners · open by design · full-fidelity export.</p>
+      <p class="trust-line">Apache 2.0 · maintained by Volant Partners · full-fidelity export.</p>
     </div>
     <div class="hero-figure">
-      <canvas id="graph" aria-label="Animated typed context graph — one shared memory your agents read and write"></canvas>
-      <span class="figcap">One typed graph — every agent reads and writes the same memory.</span>
+      <canvas id="graph" aria-label="Animated typed context graph for one shared memory your agents can read and write"></canvas>
+      <span class="figcap">One typed graph that agents can read, write, and validate against.</span>
     </div>
   </div>
 </section>
@@ -244,7 +244,7 @@ features:
   <div class="wrap">
     <div class="band-head">
       <h2>Start here</h2>
-      <span class="lane">Open project · public thinking · community</span>
+      <span class="lane">Open engine · public thinking · builder community</span>
     </div>
     <div class="trio">
       <!-- flagship -->
@@ -255,8 +255,8 @@ features:
         <div class="body">
           <span class="tag flag">First project</span>
           <h3>Vellis</h3>
-          <p>The typed graph, schema language, storage, and full-fidelity export path — visible, runnable, and yours to inspect.</p>
-          <a class="more" href="engine.html#quickstart">See local start <span class="arr">→</span></a>
+          <p>The Apache-licensed graph engine, schema language, MCP server pattern, and export path: visible, runnable, and yours to inspect.</p>
+          <a class="more" href="engine.html#quickstart">Run locally <span class="arr">→</span></a>
         </div>
       </article>
       <!-- satellite 1 -->
@@ -279,7 +279,7 @@ features:
         <div class="body">
           <span class="tag">Perspectives</span>
           <h3>Thinking in public</h3>
-          <p>Essays and graph-sourced notes on why agents need a substrate that carries meaning, not just text.</p>
+          <p>Essays and field notes on why agents need a substrate that carries meaning, not just text.</p>
           <a class="more" href="perspectives.html">Browse notes <span class="arr">→</span></a>
         </div>
       </article>
@@ -320,12 +320,12 @@ features:
 <section class="band" style="padding-top:0">
   <div class="wrap">
     <div class="flywheel">
-      <div class="fly-title">How it works — from local start to shared context</div>
+      <div class="fly-title">How it works — from clone to shared context</div>
       <div class="steps">
-        <div class="step"><div class="num">1</div><h4>Start</h4><p>Use the current local-start path, then run the project on your machine.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">1</div><h4>Clone</h4><p>Pull the repo and run the graph engine on your machine.</p><span class="conn">→</span></div>
         <div class="step"><div class="num">2</div><h4>Model</h4><p>Define typed nodes, links, and constraints for the work.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">3</div><h4>Connect</h4><p>Give agents and tools one shared graph-backed context.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">4</div><h4>Iterate</h4><p>Change the graph with schema checks and visible provenance.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">3</div><h4>Connect</h4><p>Point MCP-capable agents at one shared graph-backed context.</p><span class="conn">→</span></div>
+        <div class="step"><div class="num">4</div><h4>Iterate</h4><p>Read, write, propose, and validate changes with schema checks.</p><span class="conn">→</span></div>
         <div class="step compound"><div class="num">5</div><h4>Reuse</h4><p>Each pass leaves better context for the next one.</p></div>
       </div>
     </div>
@@ -346,11 +346,11 @@ features:
           <circle cx="90" cy="140" r="6" fill="#D15B21"/>
           <circle cx="130" cy="40" r="9" fill="#E6EAF2" fill-opacity=".7"/>
         </svg>
-        <h2>Take the open graph into production</h2>
-        <p>Vellis can start locally and remain fully yours. Capable teams can take the foundation to production themselves; when they want support with operating controls, audit traces, approval paths, and production hardening, Volant Partners runs on these rails too.</p>
+        <h2>Build with the open graph</h2>
+        <p>Vellis starts as a repo you can run and shape yourself. Capable teams can carry it a long way; when the graph needs operating controls, audit paths, approval workflows, or production hardening, Volant Partners can help.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://www.volantpartners.com/contact">Talk to Volant Partners</a>
-          <a class="btn btn-ghost" href="platform.html">See support path</a>
+          <a class="btn btn-primary" href="community.html">Join the builder path</a>
+          <a class="btn btn-ghost" href="platform.html">See production support</a>
         </div>
       </div>
       <div class="platform" id="platform">

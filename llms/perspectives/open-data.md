@@ -3,8 +3,8 @@
 Canonical URL: https://volantlabs.ai/perspectives/open-data.html
 HTML path: /perspectives/open-data.html
 Collection: Perspectives
-Kind: From the graph
-Status: Ratified
+Kind: Field note
+Status: Field note
 Published: 2026-05-27
 Reading time: 4 min read
 Author: Volant Labs
@@ -24,15 +24,15 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - Portability is the trust signal
 - The line makes both sides stronger
 
-## Provenance
+## Editorial Context
 
-- Source: Drafted from graph-held site architecture and open/governed boundary notes.
-- Reasoning layer: Model-synthesized dispatch from approved Volant graph context.
-- Human ratifier: Eddie Austin.
-- Status: Ratified.
-- Known uncertainty: The boundary will need sharper examples as real deployments create edge cases.
-- Dissent: Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.
-- Next falsifier: A platform path that requires proprietary lock-in or lossy export would invalidate the promise.
+- Source: Drawn from Volant Labs site architecture and open/governed boundary notes.
+- Editorial layer: Edited from internal positioning notes for public launch copy.
+- Owner: Editorial review by Volant Labs.
+- Status: Published field note.
+- Open question: The boundary will need sharper examples as real deployments create edge cases.
+- Counterpoint: Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.
+- What would change this: A platform path that requires proprietary lock-in or lossy export would invalidate the promise.
 
 ## Related Pages
 
