@@ -1,0 +1,36 @@
+# Volant Labs
+
+> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and exportable operational context.
+
+Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
+
+## Primary Pages
+
+- [Home](https://volantlabs.ai/llms/pages/home.md): Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory.
+- [Vellis Engine](https://volantlabs.ai/llms/pages/engine.md): The product overview for Vellis as an open-source graph engine, schema layer, MCP server pattern, and exportable context substrate.
+- [Thesis](https://volantlabs.ai/llms/pages/thesis.md): The narrative point of view behind Vellis: graph memory, model reasoning, and human review.
+- [Perspectives](https://volantlabs.ai/llms/pages/perspectives.md): The library of essays and field notes behind Vellis.
+- [Community](https://volantlabs.ai/llms/pages/community.md): The lightweight builder path for running Vellis, following releases, sharing examples, and asking questions.
+- [Platform](https://volantlabs.ai/llms/pages/platform.md): The Volant Partners production-support path for teams applying Volant Labs infrastructure.
+
+## Perspectives
+
+- [The graph is a theory](https://volantlabs.ai/llms/perspectives/graph-theory.md): Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.
+- [Runtime-native controls: policy where execution happens](https://volantlabs.ai/llms/perspectives/runtime-controls.md): A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.
+- [Open data, proprietary intelligence](https://volantlabs.ai/llms/perspectives/open-data.md): The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.
+- [Legibility is the wedge for agentic software](https://volantlabs.ai/llms/perspectives/legibility-wedge.md): Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.
+- [Why domain explorations matter](https://volantlabs.ai/llms/perspectives/domain-explorations-matter.md): A field note on worked models as the bridge between abstract infrastructure and practical adoption.
+- [No rug-pull means more than a license](https://volantlabs.ai/llms/perspectives/no-rug-pull-license.md): A field note on trust signals: Apache licensing, portability, export path, and production support that does not compete with Vellis.
+
+## Machine-Readable Resources
+
+- [Perspectives index JSON](https://volantlabs.ai/perspectives/index.json): canonical metadata for the Perspectives collection.
+- [RSS feed](https://volantlabs.ai/feed.xml): latest Perspectives posts.
+- [Sitemap](https://volantlabs.ai/sitemap.xml): indexable public pages.
+
+## Notes For Agents
+
+- Treat Vellis as the first open Volant Labs project, not as the whole company.
+- Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
+- Domain Explorations is intentionally parked and noindexed for launch; do not present it as a finished ontology-pack catalog.
+- Perspectives uses public labels Essay and Field note; do not describe launch content as graph-authored or formally approved by a publishing workflow.

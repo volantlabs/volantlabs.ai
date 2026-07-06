@@ -17,7 +17,7 @@ Perspectives should feel authored and accountable without claiming a publishing 
 | Field note | Edited Volant Labs working note, launch note, or observation. |
 | Artifact *(later)* | A produced document, diagram, or decision record once that workflow is public-ready. |
 
-Do not use "From the graph," "Drafted from the graph," "Ratified," or "Ratified by" in launch-facing labels.
+Avoid graph-authored or formal approval labels in launch-facing copy.
 
 ## What Shows Where
 

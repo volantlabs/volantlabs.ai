@@ -8,6 +8,8 @@ const siteRoot = path.resolve(__dirname, "..");
 const sourceDir = path.join(siteRoot, "content", "perspectives");
 const articleDir = path.join(siteRoot, "perspectives");
 const assetsDir = path.join(siteRoot, "assets");
+const llmsDir = path.join(siteRoot, "llms");
+const llmsPerspectivesDir = path.join(llmsDir, "perspectives");
 const checkOnly = process.argv.includes("--check");
 const contentSourceName = process.env.PERSPECTIVES_SOURCE || "json";
 const kindLabelsByKind = new Map([
@@ -27,6 +29,55 @@ const manifest = {
   ],
   filters: ["all", "essays", "notes"]
 };
+const defaultSocialImage = "assets/images/graph-theory-thesis.webp";
+const defaultSocialImageAlt =
+  "Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters.";
+const summaryPages = [
+  {
+    title: "Home",
+    path: "",
+    summaryPath: "llms/pages/home.md",
+    description: "Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory."
+  },
+  {
+    title: "Vellis Engine",
+    path: "engine.html",
+    summaryPath: "llms/pages/engine.md",
+    description: "The product overview for Vellis as an open-source graph engine, schema layer, MCP server pattern, and exportable context substrate."
+  },
+  {
+    title: "Thesis",
+    path: "thesis.html",
+    summaryPath: "llms/pages/thesis.md",
+    description: "The narrative point of view behind Vellis: graph memory, model reasoning, and human review."
+  },
+  {
+    title: "Perspectives",
+    path: "perspectives.html",
+    summaryPath: "llms/pages/perspectives.md",
+    description: "The library of essays and field notes behind Vellis."
+  },
+  {
+    title: "Community",
+    path: "community.html",
+    summaryPath: "llms/pages/community.md",
+    description: "The lightweight builder path for running Vellis, following releases, sharing examples, and asking questions."
+  },
+  {
+    title: "Platform",
+    path: "platform.html",
+    summaryPath: "llms/pages/platform.md",
+    description: "The Volant Partners production-support path for teams applying Volant Labs infrastructure."
+  }
+];
+const sitemapPages = [
+  { path: "", changefreq: "weekly", priority: "1.0" },
+  { path: "engine.html", changefreq: "monthly", priority: "0.9" },
+  { path: "thesis.html", changefreq: "monthly", priority: "0.8" },
+  { path: "perspectives.html", changefreq: "weekly", priority: "0.8" },
+  { path: "community.html", changefreq: "monthly", priority: "0.6" },
+  { path: "platform.html", changefreq: "monthly", priority: "0.5" }
+];
 
 function escapeHtml(value = "") {
   return String(value)
@@ -42,6 +93,14 @@ function escapeXml(value = "") {
 
 function absoluteUrl(relativePath) {
   return `${manifest.siteUrl}/${relativePath}`;
+}
+
+function markdownUrl(relativePath) {
+  return `${manifest.siteUrl}/${relativePath}`;
+}
+
+function jsonScript(value) {
+  return JSON.stringify(value, null, 2).replaceAll("<", "\\u003c");
 }
 
 function toRssDate(isoDate) {
@@ -311,14 +370,35 @@ function renderArticle(post, posts) {
 
   const tags = post.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
   const canonical = absoluteUrl(post.url);
-  const imageMeta = post.image
-    ? `<meta property="og:image" content="${escapeHtml(absoluteUrl(post.image.src))}">
-<meta property="og:image:alt" content="${escapeHtml(post.image.alt)}">
-<meta property="og:image:width" content="${escapeHtml(post.image.width)}">
-<meta property="og:image:height" content="${escapeHtml(post.image.height)}">
-<meta name="twitter:image" content="${escapeHtml(absoluteUrl(post.image.src))}">
-<meta name="twitter:image:alt" content="${escapeHtml(post.image.alt)}">`
-    : "";
+  const socialImage = absoluteUrl(post.image?.src ?? defaultSocialImage);
+  const socialImageWidth = post.image?.width ?? 960;
+  const socialImageHeight = post.image?.height ?? 540;
+  const socialImageAlt = post.image?.alt ?? defaultSocialImageAlt;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.dek,
+    datePublished: post.published,
+    mainEntityOfPage: canonical,
+    image: socialImage,
+    inLanguage: "en",
+    author: post.author
+      ? {
+          "@type": "Person",
+          name: post.author
+        }
+      : {
+          "@type": "Organization",
+          name: "Volant Labs",
+          url: manifest.siteUrl
+        },
+    publisher: {
+      "@type": "Organization",
+      name: "Volant Labs",
+      url: manifest.siteUrl
+    }
+  };
   const articleVisual = post.image
     ? `<figure class="article-visual">
         <img src="../${escapeHtml(post.image.src)}" alt="${escapeHtml(post.image.alt)}" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="eager" decoding="async">
@@ -331,19 +411,35 @@ function renderArticle(post, posts) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${escapeHtml(post.dek)}">
+<meta property="og:site_name" content="Volant Labs">
 <meta property="og:title" content="${escapeHtml(post.title)}">
 <meta property="og:description" content="${escapeHtml(post.dek)}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${escapeHtml(canonical)}">
-${imageMeta}
-<meta name="twitter:card" content="${post.image ? "summary_large_image" : "summary"}">
+<meta property="og:image" content="${escapeHtml(socialImage)}">
+<meta property="og:image:width" content="${escapeHtml(socialImageWidth)}">
+<meta property="og:image:height" content="${escapeHtml(socialImageHeight)}">
+<meta property="og:image:alt" content="${escapeHtml(socialImageAlt)}">
+<meta property="article:published_time" content="${escapeHtml(post.published)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escapeHtml(post.title)}">
+<meta name="twitter:description" content="${escapeHtml(post.dek)}">
+<meta name="twitter:image" content="${escapeHtml(socialImage)}">
+<meta name="twitter:image:alt" content="${escapeHtml(socialImageAlt)}">
+<meta name="theme-color" content="#041026">
 <link rel="canonical" href="${escapeHtml(canonical)}">
+<link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
+<link rel="alternate" type="application/json" title="Perspectives index" href="../perspectives/index.json">
+<link rel="alternate" type="text/markdown" title="LLM summary" href="../llms/perspectives/${escapeHtml(post.slug)}.md">
 <title>${escapeHtml(post.title)} - Perspectives - volantlabs.ai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/perspective-article.css">
+<script type="application/ld+json">
+${jsonScript(articleJsonLd)}
+</script>
 </head>
 <body data-perspective-slug="${escapeHtml(post.slug)}">
 <a class="skip" href="#main">Skip to content</a>
@@ -416,6 +512,46 @@ function renderDataBundle(posts) {
   return `window.PERSPECTIVE_POSTS = ${JSON.stringify(posts, null, 2)};\n\nwindow.PERSPECTIVE_MANIFEST = ${JSON.stringify(manifest, null, 2)};\n`;
 }
 
+function renderPerspectiveIndexJson(posts) {
+  const payload = {
+    schemaVersion: "2026-06-27.perspectives.index.v1",
+    siteUrl: manifest.siteUrl,
+    generatedFrom: contentSourceName,
+    collection: {
+      title: "volantlabs.ai Perspectives",
+      url: absoluteUrl("perspectives.html"),
+      feedUrl: absoluteUrl("feed.xml"),
+      description: "Essays and field notes behind Vellis."
+    },
+    posts: posts.map((post) => ({
+      slug: post.slug,
+      url: absoluteUrl(post.url),
+      htmlPath: post.url,
+      markdownSummaryPath: `llms/perspectives/${post.slug}.md`,
+      markdownSummaryUrl: absoluteUrl(`llms/perspectives/${post.slug}.md`),
+      kind: post.kind,
+      kindLabel: post.kindLabel,
+      title: post.title,
+      shortTitle: post.shortTitle,
+      dek: post.dek,
+      published: post.published,
+      displayDate: post.displayDate,
+      readingTime: post.readingTime,
+      author: post.author,
+      provenanceLine: post.provenanceLine,
+      statusLabel: post.statusLabel,
+      tags: post.tags,
+      related: post.related.map((slug) => ({
+        slug,
+        url: absoluteUrl(`perspectives/${slug}.html`),
+        markdownSummaryUrl: absoluteUrl(`llms/perspectives/${slug}.md`)
+      }))
+    }))
+  };
+
+  return `${JSON.stringify(payload, null, 2)}\n`;
+}
+
 function renderPerspectiveCount(posts) {
   return `        <span class="lane">${posts.length} pieces and growing</span>`;
 }
@@ -423,7 +559,6 @@ function renderPerspectiveCount(posts) {
 function renderPerspectiveIndexFeed(posts) {
   return posts
     .map((post) => {
-      const provenanceClass = "prov";
       const thumbnail = post.image
         ? `<a class="post-thumb" href="${escapeHtml(post.url)}" aria-hidden="true" tabindex="-1">
               <img src="${escapeHtml(post.image.src)}" alt="" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="lazy" decoding="async">
@@ -436,7 +571,7 @@ function renderPerspectiveIndexFeed(posts) {
             <p>${escapeHtml(post.dek)}</p>
             <div class="meta">
               <span>${escapeHtml(post.displayDate)}</span>
-              <span class="${provenanceClass}">${escapeHtml(post.provenanceLine)}</span>
+              <span class="prov">${escapeHtml(post.provenanceLine)}</span>
             </div>
           </div>
           <a class="read" href="${escapeHtml(post.url)}" aria-label="Open perspective: ${escapeHtml(post.title)}">Open note <span class="arr">-&gt;</span></a>
@@ -478,6 +613,123 @@ function renderFeed(posts) {
 ${items}
   </channel>
 </rss>
+`;
+}
+
+function renderSitemap(posts) {
+  const urls = [
+    ...sitemapPages,
+    ...posts.map((post) => ({
+      path: post.url,
+      changefreq: "monthly",
+      priority: "0.7"
+    }))
+  ];
+
+  const entries = urls
+    .map(
+      (url) => `  <url>
+    <loc>${escapeXml(absoluteUrl(url.path))}</loc>
+    <changefreq>${escapeXml(url.changefreq)}</changefreq>
+    <priority>${escapeXml(url.priority)}</priority>
+  </url>`
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</urlset>
+`;
+}
+
+function renderPerspectiveMarkdownSummary(post, posts) {
+  const related = post.related
+    .map((slug) => posts.find((candidate) => candidate.slug === slug))
+    .filter(Boolean)
+    .map((item) => `- [${item.title}](${markdownUrl(item.url)})`)
+    .join("\n");
+  const sectionList = post.body.map((section) => `- ${section.heading}`).join("\n");
+  const editorialRows = [
+    ["Source", post.provenance.source],
+    ["Editorial layer", post.provenance.reasoningLayer],
+    ["Owner", post.provenance.humanRatifier],
+    ["Status", post.provenance.status],
+    ["Open question", post.provenance.knownUncertainty],
+    ["Counterpoint", post.provenance.dissent],
+    ["What would change this", post.provenance.nextFalsifier]
+  ]
+    .map(([label, value]) => `- ${label}: ${value}`)
+    .join("\n");
+
+  return `# ${post.title}
+
+Canonical URL: ${markdownUrl(post.url)}
+HTML path: /${post.url}
+Collection: Perspectives
+Kind: ${post.kindLabel}
+Status: ${post.statusLabel}
+Published: ${post.published}
+Reading time: ${post.readingTime}
+Author: ${post.author || "Volant Labs"}
+Tags: ${post.tags.join(", ")}
+
+## Summary
+
+${post.dek}
+
+## What This Page Is For
+
+This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, graph-native AI infrastructure, provenance, governance, and operational adoption.
+
+## Main Sections
+
+${sectionList}
+
+## Editorial Context
+
+${editorialRows}
+
+## Related Pages
+
+${related || "- None listed"}
+`;
+}
+
+function renderLlmsTxt(posts) {
+  const pageLinks = summaryPages
+    .map((page) => `- [${page.title}](${markdownUrl(page.summaryPath)}): ${page.description}`)
+    .join("\n");
+  const perspectiveLinks = posts
+    .map((post) => `- [${post.title}](${markdownUrl(`llms/perspectives/${post.slug}.md`)}): ${post.dek}`)
+    .join("\n");
+
+  return `# Volant Labs
+
+> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and exportable operational context.
+
+Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
+
+## Primary Pages
+
+${pageLinks}
+
+## Perspectives
+
+${perspectiveLinks}
+
+## Machine-Readable Resources
+
+- [Perspectives index JSON](${markdownUrl("perspectives/index.json")}): canonical metadata for the Perspectives collection.
+- [RSS feed](${markdownUrl("feed.xml")}): latest Perspectives posts.
+- [Sitemap](${markdownUrl("sitemap.xml")}): indexable public pages.
+
+## Notes For Agents
+
+- Treat Vellis as the first open Volant Labs project, not as the whole company.
+- Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
+- Domain Explorations is intentionally parked and noindexed for launch; do not present it as a finished ontology-pack catalog.
+- Perspectives uses public labels Essay and Field note; do not describe launch content as graph-authored or formally approved by a publishing workflow.
 `;
 }
 
@@ -528,13 +780,34 @@ async function reconcileArticleOrphans(posts) {
   await Promise.all(orphanFiles.map((filePath) => rm(filePath)));
 }
 
+async function reconcilePerspectiveMarkdownOrphans(posts) {
+  if (!existsSync(llmsPerspectivesDir)) return;
+
+  const expectedSummaries = new Set(posts.map((post) => `${post.slug}.md`));
+  const orphanFiles = (await readdir(llmsPerspectivesDir, { withFileTypes: true }))
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".md") && !expectedSummaries.has(entry.name))
+    .map((entry) => path.join(llmsPerspectivesDir, entry.name));
+
+  if (!orphanFiles.length) return;
+
+  const orphanList = orphanFiles.map((filePath) => path.relative(siteRoot, filePath)).join(", ");
+  if (checkOnly) throw new Error(`generated Perspective Markdown orphan found: ${orphanList}`);
+
+  await Promise.all(orphanFiles.map((filePath) => rm(filePath)));
+}
+
 const posts = await readPosts();
 await reconcileArticleOrphans(posts);
+await reconcilePerspectiveMarkdownOrphans(posts);
 for (const post of posts) {
   await writeGenerated(path.join(siteRoot, post.url), renderArticle(post, posts));
+  await writeGenerated(path.join(llmsPerspectivesDir, `${post.slug}.md`), renderPerspectiveMarkdownSummary(post, posts));
 }
 await writeGenerated(path.join(assetsDir, "perspectives-data.js"), renderDataBundle(posts));
+await writeGenerated(path.join(articleDir, "index.json"), renderPerspectiveIndexJson(posts));
 await writeGenerated(path.join(siteRoot, "feed.xml"), renderFeed(posts));
+await writeGenerated(path.join(siteRoot, "llms.txt"), renderLlmsTxt(posts));
+await writeGenerated(path.join(siteRoot, "sitemap.xml"), renderSitemap(posts));
 await writeGeneratedBlock(path.join(siteRoot, "perspectives.html"), "perspectives-count", renderPerspectiveCount(posts));
 await writeGeneratedBlock(path.join(siteRoot, "perspectives.html"), "perspectives-feed", renderPerspectiveIndexFeed(posts));
 await writeGeneratedBlock(path.join(siteRoot, "index.html"), "home-latest-perspectives", renderHomeLatestRows(posts));

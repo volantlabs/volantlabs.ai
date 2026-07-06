@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "2026-06-27.perspectives.index.v1",
+  "siteUrl": "https://volantlabs.ai",
+  "generatedFrom": "json",
+  "collection": {
+    "title": "volantlabs.ai Perspectives",
+    "url": "https://volantlabs.ai/perspectives.html",
+    "feedUrl": "https://volantlabs.ai/feed.xml",
+    "description": "Essays and field notes behind Vellis."
+  },
+  "posts": [
+    {
+      "slug": "graph-theory",
+      "url": "https://volantlabs.ai/perspectives/graph-theory.html",
+      "htmlPath": "perspectives/graph-theory.html",
+      "markdownSummaryPath": "llms/perspectives/graph-theory.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/graph-theory.md",
+      "kind": "essays",
+      "kindLabel": "Essay",
+      "title": "The graph is a theory",
+      "shortTitle": "The graph is a theory",
+      "dek": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.",
+      "published": "2026-06-11",
+      "displayDate": "June 11, 2026",
+      "readingTime": "4 min read",
+      "author": "Eddie Austin",
+      "provenanceLine": "By Eddie Austin",
+      "statusLabel": "Human essay",
+      "tags": [
+        "Substrate",
+        "Legibility",
+        "Agentic software"
+      ],
+      "related": [
+        {
+          "slug": "runtime-controls",
+          "url": "https://volantlabs.ai/perspectives/runtime-controls.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/runtime-controls.md"
+        },
+        {
+          "slug": "open-data",
+          "url": "https://volantlabs.ai/perspectives/open-data.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
+        }
+      ]
+    },
+    {
+      "slug": "runtime-controls",
+      "url": "https://volantlabs.ai/perspectives/runtime-controls.html",
+      "htmlPath": "perspectives/runtime-controls.html",
+      "markdownSummaryPath": "llms/perspectives/runtime-controls.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/runtime-controls.md",
+      "kind": "notes",
+      "kindLabel": "Field note",
+      "title": "Runtime-native controls: policy where execution happens",
+      "shortTitle": "Runtime-native controls",
+      "dek": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
+      "published": "2026-06-04",
+      "displayDate": "June 4, 2026",
+      "readingTime": "3 min read",
+      "author": null,
+      "provenanceLine": "Volant Labs field note",
+      "statusLabel": "Field note",
+      "tags": [
+        "Governance",
+        "Controls",
+        "Write path"
+      ],
+      "related": [
+        {
+          "slug": "graph-theory",
+          "url": "https://volantlabs.ai/perspectives/graph-theory.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/graph-theory.md"
+        },
+        {
+          "slug": "open-data",
+          "url": "https://volantlabs.ai/perspectives/open-data.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
+        }
+      ]
+    },
+    {
+      "slug": "open-data",
+      "url": "https://volantlabs.ai/perspectives/open-data.html",
+      "htmlPath": "perspectives/open-data.html",
+      "markdownSummaryPath": "llms/perspectives/open-data.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md",
+      "kind": "notes",
+      "kindLabel": "Field note",
+      "title": "Open data, proprietary intelligence",
+      "shortTitle": "Open data, proprietary intelligence",
+      "dek": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
+      "published": "2026-05-27",
+      "displayDate": "May 27, 2026",
+      "readingTime": "4 min read",
+      "author": null,
+      "provenanceLine": "Volant Labs field note",
+      "statusLabel": "Field note",
+      "tags": [
+        "Vellis",
+        "Portability",
+        "Compounding intelligence"
+      ],
+      "related": [
+        {
+          "slug": "no-rug-pull-license",
+          "url": "https://volantlabs.ai/perspectives/no-rug-pull-license.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/no-rug-pull-license.md"
+        },
+        {
+          "slug": "runtime-controls",
+          "url": "https://volantlabs.ai/perspectives/runtime-controls.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/runtime-controls.md"
+        }
+      ]
+    },
+    {
+      "slug": "legibility-wedge",
+      "url": "https://volantlabs.ai/perspectives/legibility-wedge.html",
+      "htmlPath": "perspectives/legibility-wedge.html",
+      "markdownSummaryPath": "llms/perspectives/legibility-wedge.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/legibility-wedge.md",
+      "kind": "essays",
+      "kindLabel": "Essay",
+      "title": "Legibility is the wedge for agentic software",
+      "shortTitle": "Legibility is the wedge",
+      "dek": "Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.",
+      "published": "2026-05-19",
+      "displayDate": "May 19, 2026",
+      "readingTime": "3 min read",
+      "author": "Eddie Austin",
+      "provenanceLine": "By Eddie Austin",
+      "statusLabel": "Human essay",
+      "tags": [
+        "Agents",
+        "Legibility",
+        "Human judgment"
+      ],
+      "related": [
+        {
+          "slug": "graph-theory",
+          "url": "https://volantlabs.ai/perspectives/graph-theory.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/graph-theory.md"
+        },
+        {
+          "slug": "runtime-controls",
+          "url": "https://volantlabs.ai/perspectives/runtime-controls.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/runtime-controls.md"
+        }
+      ]
+    },
+    {
+      "slug": "domain-explorations-matter",
+      "url": "https://volantlabs.ai/perspectives/domain-explorations-matter.html",
+      "htmlPath": "perspectives/domain-explorations-matter.html",
+      "markdownSummaryPath": "llms/perspectives/domain-explorations-matter.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/domain-explorations-matter.md",
+      "kind": "notes",
+      "kindLabel": "Field note",
+      "title": "Why domain explorations matter",
+      "shortTitle": "Why domain explorations matter",
+      "dek": "A field note on worked models as the bridge between abstract infrastructure and practical adoption.",
+      "published": "2026-05-08",
+      "displayDate": "May 8, 2026",
+      "readingTime": "3 min read",
+      "author": null,
+      "provenanceLine": "Volant Labs field note",
+      "statusLabel": "Field note",
+      "tags": [
+        "Domain packs",
+        "Adoption",
+        "Worked models"
+      ],
+      "related": [
+        {
+          "slug": "open-data",
+          "url": "https://volantlabs.ai/perspectives/open-data.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
+        },
+        {
+          "slug": "legibility-wedge",
+          "url": "https://volantlabs.ai/perspectives/legibility-wedge.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/legibility-wedge.md"
+        }
+      ]
+    },
+    {
+      "slug": "no-rug-pull-license",
+      "url": "https://volantlabs.ai/perspectives/no-rug-pull-license.html",
+      "htmlPath": "perspectives/no-rug-pull-license.html",
+      "markdownSummaryPath": "llms/perspectives/no-rug-pull-license.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/no-rug-pull-license.md",
+      "kind": "notes",
+      "kindLabel": "Field note",
+      "title": "No rug-pull means more than a license",
+      "shortTitle": "No rug-pull means more than a license",
+      "dek": "A field note on trust signals: Apache licensing, portability, export path, and production support that does not compete with Vellis.",
+      "published": "2026-04-29",
+      "displayDate": "April 29, 2026",
+      "readingTime": "3 min read",
+      "author": null,
+      "provenanceLine": "Volant Labs field note",
+      "statusLabel": "Field note",
+      "tags": [
+        "Trust",
+        "License",
+        "Export"
+      ],
+      "related": [
+        {
+          "slug": "open-data",
+          "url": "https://volantlabs.ai/perspectives/open-data.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
+        },
+        {
+          "slug": "domain-explorations-matter",
+          "url": "https://volantlabs.ai/perspectives/domain-explorations-matter.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/domain-explorations-matter.md"
+        }
+      ]
+    }
+  ]
+}
