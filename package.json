@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node scripts/build-perspectives.mjs",
     "check": "node scripts/build-perspectives.mjs --check",
+    "audit": "node scripts/audit-site.mjs",
     "dev": "python3 -m http.server 4173"
   }
 }

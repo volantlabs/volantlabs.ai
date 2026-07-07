@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Production Support — Volant Partners path from Volant Labs · volantlabs.ai</title>
-<meta name="description" content="Volant Partners helps teams take Volant Labs infrastructure into production with operating controls, audit paths, and implementation discipline.">
+<title>Production Support — from Vellis to governed operations · volantlabs.ai</title>
+<meta name="description" content="Vellis gives builders an open substrate for agent memory. Volant Partners helps teams carry that substrate into production with operating controls and audit paths.">
 <link rel="canonical" href="https://volantlabs.ai/platform.html">
 <meta property="og:site_name" content="Volant Labs">
-<meta property="og:title" content="Production Support — Volant Partners path from Volant Labs">
-<meta property="og:description" content="Operating controls, audit paths, and implementation discipline for production use of Volant Labs infrastructure.">
+<meta property="og:title" content="Production Support — from Vellis to governed operations">
+<meta property="og:description" content="Volant Partners helps teams carry the open Vellis substrate into governed production operations.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://volantlabs.ai/platform.html">
 <meta property="og:image" content="https://volantlabs.ai/assets/images/platform-governance-gate.webp">
@@ -16,12 +16,13 @@
 <meta property="og:image:height" content="720">
 <meta property="og:image:alt" content="Agent graph clusters converging through a governance gate into an auditable record along an orange write path.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Production Support — Volant Partners path">
-<meta name="twitter:description" content="Operating controls, audit paths, and implementation discipline for production use of Volant Labs infrastructure.">
+<meta name="twitter:title" content="Production Support — governed operations">
+<meta name="twitter:description" content="Carry the open Vellis substrate into governed production operations.">
 <meta name="twitter:image" content="https://volantlabs.ai/assets/images/platform-governance-gate.webp">
 <meta name="theme-color" content="#041026">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
 <link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/platform.md">
+<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -73,6 +74,22 @@
   .endcta p{font-size:16px;color:#c7d0e0;max-width:48ch}
   .endcta .note{font-size:13px;color:#8d9ab5;margin-top:calc(-1 * var(--s2))}
 </style>
+<script>
+(function () {
+  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
+  if (!productionHosts.has(window.location.hostname)) return;
+
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+  document.head.appendChild(gaScript);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-VNXWVPERBQ');
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -82,24 +99,15 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="index.html" aria-label="Volant Labs home">
-        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
-          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-        </svg>
+        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
         Volant Labs
       </a>
       <div class="navlinks">
-        <a href="engine.html">Engine</a>
-        <a href="thesis.html">Thesis</a>
-        <a href="perspectives.html">Perspectives</a>
-        <a href="community.html">Community</a>
+        <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
       </div>
       <div class="navright">
         <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
-        <a class="btn btn-quiet" href="platform.html" aria-current="page">Platform</a>
+        <a class="btn btn-quiet" href="platform.html">Platform</a>
       </div>
     </nav>
   </div>
@@ -112,7 +120,7 @@
     <div class="hero-copy">
       <span class="eyebrow"><span class="dot"></span>Volant Partners · production support</span>
       <h1 class="headline">When lab infrastructure needs production operations.</h1>
-      <p class="sub">Volant Labs publishes open projects. Volant Partners helps teams apply them with the operating controls, audit paths, and implementation discipline production work needs.</p>
+      <p class="sub">Vellis gives builders an open substrate for agent memory. Volant Partners helps teams carry that substrate into production with operating controls, audit paths, and implementation discipline.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://volantpartners.com">Book a conversation
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -129,10 +137,10 @@
 <section class="band">
   <div class="wrap">
     <div class="band-head">
-      <h2>Same open foundation. More operating discipline.</h2>
+      <h2>Same open foundation. A managed operating layer when teams need it.</h2>
       <span class="lane">Lab → production</span>
     </div>
-    <p class="band-sub">Vellis runs the shared context graph. Volant Partners helps teams add the controls, workflows, and support model needed to use it responsibly in real operations.</p>
+    <p class="band-sub">Vellis is the open substrate: runnable, inspectable, and portable. For managed customer work, Volant Partners and Kesher add the controls, workflows, and support model needed to use that pattern responsibly in real operations.</p>
     <div class="compare">
 
       <!-- Vellis -->
@@ -150,14 +158,14 @@
           </div>
           <div class="row">
             <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
-            <span><strong>Production controls</strong> are intentionally left to the team using it.</span>
+            <span><strong>Production controls</strong> are intentionally the builder's responsibility in the open repo.</span>
           </div>
         </div>
       </div>
 
       <!-- Governed platform -->
       <div class="pane gov">
-        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>With Volant Partners</span>
+        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>With Volant Partners / Kesher</span>
         <h3>Operationalized for the team.</h3>
         <div class="rows">
           <div class="row">
@@ -186,8 +194,8 @@
 <!-- ============ FINAL CTA ============ -->
 <section class="endcta">
   <div class="wrap">
-    <h2>Ready to put it to work?</h2>
-    <p>When audit, policy, and operating change management start to matter, Volant Partners can help carry the open foundation into production.</p>
+    <h2>Ready for governed operations?</h2>
+    <p>When audit, policy, approvals, and operating change management start to matter, Volant Partners can help carry the open foundation into production.</p>
     <a class="btn btn-primary" href="https://volantpartners.com">Book a conversation
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -201,38 +209,23 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <div>
-        <div class="brand" style="font-size:20px">
-          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
-            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
-            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-          </svg>
-          Volant Labs
+      <div class="footer-brand-grid">
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
+          <p>Open tools and research for graph-native AI work.</p>
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p>
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
+          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
+        </div>
       </div>
       <div class="foot-cols">
-        <div class="foot-col">
-          <h5>Project</h5>
-          <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
-        </div>
-        <div class="foot-col">
-          <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="engine.html#quickstart">Local start</a><a href="platform.html">Production support</a>
-        </div>
-        <div class="foot-col">
-          <h5>Stay close</h5>
-          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="platform.html">Platform</a>
-        </div>
+        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
+        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Volant Partners</span>
-      <span class="nrp">Vellis stays runnable and exportable.</span>
-    </div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
   </div>
 </footer>
 

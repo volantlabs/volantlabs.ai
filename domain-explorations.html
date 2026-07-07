@@ -23,6 +23,7 @@
 <meta name="theme-color" content="#041026">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
 <link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/domain-explorations.md">
+<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
 <style>
   .pagehead{background:var(--surface-soft);border-bottom:1px solid var(--line)}
   .pagehead .wrap{padding:var(--s16) var(--s12) var(--s12)}
-  .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
+  .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white);margin-bottom:var(--s3)}
   .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
   .pagehead h1{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:0;margin-bottom:var(--s3)}
   .pagehead p.sub{font-size:18px;color:var(--muted);max-width:54ch}
@@ -49,6 +50,22 @@
   .candidate .kicker{color:#f2b293}
   @media(max-width:880px){.parking-panel{grid-template-columns:1fr}.candidate-grid{grid-template-columns:1fr}}
 </style>
+<script>
+(function () {
+  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
+  if (!productionHosts.has(window.location.hostname)) return;
+
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+  document.head.appendChild(gaScript);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-VNXWVPERBQ');
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -58,20 +75,11 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="index.html" aria-label="Volant Labs home">
-        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
-          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-        </svg>
+        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
         Volant Labs
       </a>
       <div class="navlinks">
-        <a href="engine.html">Engine</a>
-        <a href="thesis.html">Thesis</a>
-        <a href="perspectives.html">Perspectives</a>
-        <a href="community.html">Community</a>
+        <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
       </div>
       <div class="navright">
         <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
@@ -97,13 +105,13 @@
     <div class="parking-panel">
       <div>
         <span class="kicker">Not a launch blocker</span>
-        <h2>Domain packs need a sharper open boundary.</h2>
+        <h2>Reference graphs need a sharper open boundary.</h2>
         <p>The useful version of this page is not a generic gallery of examples. It should show how Vellis can start from a concrete schema or public standard without pretending that a downloaded ontology is enough to run a regulated workflow.</p>
-        <p>For launch, keep the core path simple: understand Vellis, request the current local-start path, and read the thinking behind the substrate.</p>
+        <p>For launch, keep the core path simple: clone Vellis, run the graph locally, and read the thinking behind the substrate. Reference graphs can follow without blocking the open-source release.</p>
       </div>
       <aside class="parking-note">
         <h3>Fast-follow shape</h3>
-        <p>When this returns, it should feel more like installable schema modules: public-standard mappings, narrow workflow examples, and community reference builds with clear boundaries.</p>
+        <p>When this expands, it should feel more like installable schema modules: public-standard mappings, narrow workflow examples, and community reference builds with clear boundaries.</p>
       </aside>
     </div>
     <div class="candidate-grid" aria-label="Future domain exploration directions">
@@ -120,7 +128,7 @@
       <article class="candidate">
         <span class="kicker">03</span>
         <h3>Community reference builds</h3>
-        <p>Let builders share patterns once the install and review story is ready.</p>
+        <p>Let builders share patterns once the repo, example format, and review path are ready.</p>
       </article>
     </div>
   </div>
@@ -132,38 +140,23 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <div>
-        <div class="brand" style="font-size:20px">
-          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
-            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
-            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-          </svg>
-          Volant Labs
+      <div class="footer-brand-grid">
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
+          <p>Open tools and research for graph-native AI work.</p>
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p>
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
+          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
+        </div>
       </div>
       <div class="foot-cols">
-        <div class="foot-col">
-          <h5>Project</h5>
-          <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
-        </div>
-        <div class="foot-col">
-          <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="engine.html#quickstart">Local start</a><a href="platform.html">Production support</a>
-        </div>
-        <div class="foot-col">
-          <h5>Stay close</h5>
-          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="platform.html">Platform</a>
-        </div>
+        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
+        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Volant Partners</span>
-      <span class="nrp">Vellis stays runnable and exportable.</span>
-    </div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
   </div>
 </footer>
 

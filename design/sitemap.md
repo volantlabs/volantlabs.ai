@@ -8,7 +8,7 @@
 
 ## What changed in this rebuild (decisions locked 2026-06-16)
 
-1. **"Graphcasting" is cut entirely from v1.** The term hasn't landed with the team, so it appears nowhere public-facing — not in nav, not as a page title, not as a lane name, not as an explainer. The underlying capability (publishing from the graph, with provenance) stays; the *word* comes back only if/when it lands internally.
+1. **"Graphcasting" is cut entirely from v1.** The term hasn't landed with the team, so it appears nowhere public-facing — not in nav, not as a page title, not as a lane name, not as an explainer. Future graph-drafted publishing can return when the workflow is real.
 2. **The story section keeps its name: "Thesis."** Thesis remains the point-of-view page; the feed/index behavior moves to Perspectives.
 3. **The spine gains a content-library page:** Engine · Domain Explorations · Thesis · Perspectives · Community · Platform, plus Home.
 
@@ -19,17 +19,17 @@
 - **One-property principle.** This site sells one thing: Vellis. The commercial platform is present only as a *quiet* graduation path, never a competing pillar.
 - **Quiet graduation path.** Platform lives in the nav and in one calm strip per page — never a loud sales rail.
 - **Audience lanes.** Four readers move through the site on different paths (see §2). The IA serves all four without four separate sites.
-- **Iceberg model of community.** Most users pull and build; the site surfaces support + adoption telemetry, not a PR bazaar.
+- **Lightweight builder path.** Most users pull and build; the site surfaces clone/run, release following, useful examples, and direct questions.
 
 ---
 
 ## 1. Global shell (every page)
 
 **Top nav (left → right):**
-`Vellis` (logo → Home) · Engine · Domain Explorations · Thesis · Perspectives · Community · — · `Contact` (ghost button) · `Platform` (quiet button)
+`Vellis` (logo → Home) · Engine · Thesis · Perspectives · Community · — · `Contact` (ghost button) · `Platform` (quiet button)
 
 **Footer (every page):**
-Open by Design · Access model · Preview access · RSS / subscribe · Contact · Platform
+Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 
 ---
 
@@ -37,8 +37,8 @@ Open by Design · Access model · Preview access · RSS / subscribe · Contact �
 
 | Reader | Wants | Primary path |
 |---|---|---|
-| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (preview access + terminal-style access model) → preview access |
-| **Curious / builder** | "What can it model?" | Home featured trio → **Domain Explorations** → bootstrap a pack |
+| **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (local run path + terminal-style access model) → clone and run |
+| **Curious / builder** | "What can it model?" | Home featured trio → **Community** → run locally or share an example |
 | **Thinker** | "What's the idea here?" | Home → **Thesis** (story) → **Perspectives** (library) → subscribe |
 | **Champion** | "When do we need governance?" | **Thesis / Engine** → **Platform** (Kesher graduation) → book a conversation |
 
@@ -48,27 +48,27 @@ Open by Design · Access model · Preview access · RSS / subscribe · Contact �
 
 ### 3.0 Home  *(wireframe-1)*
 **Job:** answer "what is it / can I evaluate it" in one screen; route the four lanes.
-- **Hero** — headline "One memory your agents share — and you own."; subhead: typed knowledge graph, shared AI context, full-fidelity export; CTAs: *Request Vellis preview* (primary), *See a worked model*; animated node-edge graph.
-- **Featured trio** — flagship (Vellis) + 2 satellites (worked domain models, Thesis essay).
-- **Latest perspectives** — feed strip of recent essays/dispatches linking to the Perspectives library.
-- **Flywheel (5 steps)** — seed → meaning → governance → graduate to Kesher → compound.
+- **Hero** — headline "One memory your agents share — and you own."; subhead: Apache-licensed typed graph engine, harness-agnostic shared AI context, and exportable ownership; CTAs: *Run Vellis locally* (primary), *See the engine*; animated node-edge graph.
+- **Featured trio** — flagship (Vellis) + 2 satellites (engine details, Thesis/Perspectives).
+- **Latest perspectives** — feed strip of recent essays and field notes linking to the Perspectives library.
+- **Flywheel (5 steps)** — clone → model → connect → iterate → reuse.
 - **Community CTA** + **quiet Platform strip** ("Need governance? → Platform").
 
 > Mid-fi update 2026-06-17: the home page keeps the Thesis entry point, and the latest-content strip now routes to Perspectives.
 
 ### 3.1 Engine  *(wireframe-2)* — the flagship, the one property
-**Job:** get an engineer from landing to a preview access.
-- **Hero** — "Vellis is the typed context graph for AI-native work"; CTAs *Request Vellis preview*, *See the platform*.
-- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style preview access.
-- **Capabilities** — Schema language · Open-standards export (JSON-LD · RDF · CSV) · access-pack docs.
+**Job:** get an engineer from landing to local evaluation.
+- **Hero** — "Vellis is the open-source graph engine for agent memory"; CTAs *Run locally*, *Read the thesis*.
+- **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style local quick start.
+- **Capabilities** — Schema language · MCP server pattern · open-format export (exact formats confirmed before final launch) · starter docs/prompts.
 - **Why open · promise** — portability + no-rug-pull covenant, stated up front as a trust signal.
 
 ### 3.2 Domain Explorations  *(wireframe-3)* — proof by worked models
-**Job:** show what Vellis can model; let people bootstrap a real graph.
-- **Header + filter** — All · Domain packs · Reference builds · Over-the-air ★ (filter by type; freshness shown per card).
-- **Featured OTA callout** — "★ Over-the-air graphs" → *Bootstrap it*.
-- **Card grid (3×2)** — each card: type tag + freshness date.
-- **Propose a domain** — *Submit an idea* CTA.
+**Job:** show what Vellis can model once example boundaries are ready; keep it from blocking launch.
+- **Header** — reference-graph framing; domain examples are useful proof, not a launch gate.
+- **Reference concepts** — personal project management, jobs/search, business operating graph, and other starter domains once the example format is ready.
+- **Boundary note** — publish examples only when the schema, seed data, and review path are clear enough for builders to reuse.
+- **Propose a domain** — optional signal capture after launch.
 
 ### 3.3 Thesis  *(story page — reworked 2026-06-17)* — Volant's point of view
 **Job:** carry the big story — for the "thinker" lane — in plain language, with a more cinematic landing-page feel.
@@ -80,21 +80,21 @@ Open by Design · Access model · Preview access · RSS / subscribe · Contact �
 - **Latest perspectives** — small strip linking into the content library, not the primary page job.
 
 ### 3.4 Perspectives  *(new 2026-06-17)* — content library
-**Job:** hold the growing body of essays and graph dispatches, with ratification shown per piece, without turning Thesis into a blog index.
+**Job:** hold the growing body of essays and field notes without turning Thesis into a blog index.
 
-- **Header** — "Essays, dispatches, and ratified work"; calls out that Thesis is the story and Perspectives is the library.
-- **Kind filter** — three content views:
+- **Header** — essays and field notes; calls out that Thesis is the story and Perspectives is the library.
+- **Kind filter** — simple launch views:
   - *All*
-  - *Essays* (was "Human Essays")
-  - *From the graph* (was "Graph Dispatches")
-- **Provenance line** — each post keeps one provenance line (byline for essays; exploration or ratification status for graph-drafted pieces). No "graphcasting" label attached.
+  - *Essays*
+  - *Field notes*
+- **Provenance line** — byline and update status only for launch. Graph-drafted provenance can return once the workflow is real.
 - **Subscribe band** — email + RSS.
 
-### 3.5 Community  *(wireframe-5)* — support + telemetry, iceberg model
-**Job:** support the silent majority who pull & build; capture adoption signal; avoid a noisy contributor bazaar.
-- **Header** — framing: most users pull & build; surface support + telemetry.
-- **Cards (2×2)** — Collaborate · Showcase/register your graph (= adoption telemetry) · Release notes/cadence · Questions (email during the test period).
-- **Roadmap · the bank** — next drop / planned / banked (from the module + exploration bank).
+### 3.5 Community  *(wireframe-5)* — lightweight builder path
+**Job:** support the silent majority who pull and build; avoid implying a mature registry or fixed cadence.
+- **Header** — framing: most users clone, run, and learn by building.
+- **Cards (2×2)** — Run locally · Share an example · Follow releases · Questions.
+- **Future directions** — likely next / exploring / later, framed explicitly as candidates rather than dated commitments.
 
 ### 3.6 Platform  *(wireframe-6)* — the quiet graduation path
 **Job:** for the "champion," name the one thing Vellis should not pretend to solve alone, and offer a calm exit to Kesher.
@@ -109,11 +109,11 @@ Open by Design · Access model · Preview access · RSS / subscribe · Contact �
 ```
 Home  (/)
 ├─ Engine  (/engine)                         ← Vellis flagship · one property
-│   ├─ Preview access / terminal
+│   ├─ Local run path / terminal
 │   ├─ Capabilities (schema · export · docs)
 │   └─ Why open · promise (portability + no-rug-pull)
 ├─ Domain Explorations  (/explorations)
-│   ├─ filter: packs · reference builds · over-the-air ★
+│   ├─ parked reference-graph concepts
 │   ├─ exploration cards (type + freshness)
 │   └─ Propose a domain
 ├─ Thesis  (/thesis)                          ← story page
@@ -122,12 +122,12 @@ Home  (/)
 │   ├─ operating loop
 │   └─ latest perspectives strip
 ├─ Perspectives  (/perspectives)              ← growing content library
-│   ├─ Kind filter: All · Essays · From the graph
-│   ├─ posts (with one provenance line)
+│   ├─ Kind filter: All · Essays · Field notes
+│   ├─ posts
 │   └─ Subscribe (email + RSS)
 ├─ Community  (/community)
-│   ├─ Contribute · Showcase · Release notes · Discussions
-│   └─ Roadmap · the bank
+│   ├─ Run locally · Share an example · Follow releases · Questions
+│   └─ Future directions
 └─ Platform  (/platform)                      ← quiet Kesher graduation path
     ├─ the governance question
     ├─ Vellis vs Kesher
@@ -141,7 +141,7 @@ Home  (/)
 1. **Middle story section name** → **Thesis** (kept; not renamed).
 2. **Graphcasting** → **cut entirely for v1.** No public-facing use anywhere. Revisit only if the term lands internally.
 3. **Growing content library** → **Perspectives**.
-4. **Perspective Kind filters** → *All · Essays · From the graph*. Ratified is status, not a filter.
+4. **Perspective Kind filters** → *All · Essays · Field notes* for launch. Graph-drafted provenance is future-state.
 
 ---
 

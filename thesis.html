@@ -22,6 +22,7 @@
 <meta name="theme-color" content="#041026">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
 <link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/thesis.md">
+<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,12 +38,12 @@
   .navlinks{display:flex;gap:var(--s6);margin-left:var(--s6)}
   .navlinks a{font-weight:500;font-size:15px;color:var(--muted);padding:6px 0;position:relative;white-space:nowrap}
   .navlinks a.active{color:var(--text);font-weight:700}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:700;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
   .btn:hover{transform:translateY(-1px)}
   .btn-primary:hover{background:var(--orange)}
   .btn-dark{color:#fff;border-color:rgba(245,245,245,.36);background:rgba(255,255,255,.04)}
   .btn-dark:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-  .btn-quiet{background:rgba(159,176,204,.08);color:var(--muted);border:1px solid var(--line);min-height:38px;font-size:13px;font-weight:600}
+  .btn-quiet{background:rgba(159,176,204,.08);color:var(--muted);border:1px solid var(--line);min-height:38px;font-size:13px;font-weight:500}
   .btn-sm{min-height:38px;padding:0 14px;font-size:13px}
   @media(max-width:980px){
     nav{height:auto;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
@@ -64,12 +65,12 @@
   #thesis-field{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;opacity:.58}
   .hero .wrap{position:relative;z-index:2;width:100%;padding-top:var(--s20);padding-bottom:var(--s20)}
   .hero-copy{max-width:820px}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#f4c7b4}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(209,91,33,.20)}
   h1.headline{font-size:64px;line-height:1.04;color:#fff;font-weight:800;margin:var(--s4) 0 var(--s6);max-width:12ch}
   .hero p.sub{font-size:20px;color:#d5ddea;max-width:54ch}
   .tagline{display:flex;gap:var(--s2);flex-wrap:wrap;margin:var(--s8) 0 var(--s8)}
-  .tagline span{font-family:var(--mono);font-size:12px;color:#dce4f2;border:1px solid rgba(230,234,242,.24);border-radius:6px;padding:8px 10px;background:rgba(255,255,255,.04)}
+  .tagline span{font-family:var(--mono);font-size:12px;color:#dce4f2;border-radius:6px;padding:8px 10px;background:rgba(255,255,255,.04)}
   .hero-actions{display:flex;gap:var(--s4);flex-wrap:wrap}
   .scroll-cue{position:absolute;z-index:2;left:50%;bottom:24px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8fa0bd;display:flex;flex-direction:column;align-items:center;gap:8px}
   .scroll-cue::before{content:"";width:1px;height:40px;background:linear-gradient(to bottom,transparent,#8fa0bd,transparent)}
@@ -183,6 +184,22 @@
     *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   }
 </style>
+<script>
+(function () {
+  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
+  if (!productionHosts.has(window.location.hostname)) return;
+
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+  document.head.appendChild(gaScript);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-VNXWVPERBQ');
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -190,23 +207,14 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="index.html" aria-label="Volant Labs home">
-        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
-          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-        </svg>
+        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
         Volant Labs
       </a>
       <div class="navlinks">
-        <a href="engine.html">Engine</a>
-        <a href="thesis.html" class="active" aria-current="page">Thesis</a>
-        <a href="perspectives.html">Perspectives</a>
-        <a href="community.html">Community</a>
+        <a href="engine.html">Engine</a><a href="thesis.html" class="active" aria-current="page">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
       </div>
       <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact" aria-label="Contact Volant">Contact</a>
+        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
         <a class="btn btn-quiet" href="platform.html">Platform</a>
       </div>
     </nav>
@@ -250,11 +258,11 @@
       <div class="hero-copy">
         <span class="eyebrow"><span class="dot"></span>Foundation story</span>
         <h1 class="headline" id="thesis-title">The graph remembers. The model reasons. The human ratifies.</h1>
-        <p class="sub">Vellis rests on a simple thesis: agentic systems need more than prompts and documents. They need a substrate where meaning persists, policy executes, and human judgment compounds.</p>
+        <p class="sub">Vellis rests on a simple thesis: agentic systems need more than prompts and documents. They need a substrate where meaning persists, policy stays visible, and human judgment compounds.</p>
         <div class="tagline" aria-label="Thesis pillars">
           <span>coherence, not compute</span>
           <span>typed graph as substrate</span>
-          <span>runtime governance</span>
+          <span>governance near action</span>
         </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#arc">Read the arc</a>
@@ -306,7 +314,7 @@
         <article class="chapter">
           <div class="chapter-num">04</div>
           <h3>Governance belongs where execution happens.</h3>
-          <p>Policies, traces, approvals, and provenance matter most at write time, when agents and humans are changing shared reality.</p>
+          <p>Policies, traces, approvals, and provenance matter most near write time, when agents and humans are changing shared reality.</p>
           <div class="proof">Result: speed and trust together.</div>
         </article>
       </div>
@@ -395,8 +403,8 @@
           <p class="section-kicker">04 / Published thinking</p>
           <h2>Perspectives carry the ongoing conversation.</h2>
         </div>
-        <p>Essays, graph dispatches, and ratified artifacts live in one place — and the library grows without turning this page into a blog index.</p>
-        <p>Every published piece carries its provenance: a human byline for essays, or graph-drafted status with named ratification when a human has signed off.</p>
+        <p>Essays and field notes live in one place, so the library can grow without turning this page into a blog index.</p>
+        <p>As the workflow matures, graph-drafted pieces can carry visible provenance and human review status. For launch, published work should read as authored Volant Labs thinking.</p>
       </div>
       <div class="perspective-strip">
         <a class="perspective-card" href="perspectives/graph-theory.html">
@@ -406,13 +414,13 @@
           <span class="read">Read -></span>
         </a>
         <a class="perspective-card" href="perspectives/runtime-controls.html">
-          <span class="pill">From the graph</span>
+          <span class="pill">Field note</span>
           <h3>Runtime-native controls</h3>
           <p>Why policy belongs where execution happens.</p>
           <span class="read">Read -></span>
         </a>
         <a class="perspective-card" href="perspectives/open-data.html">
-          <span class="pill">From the graph</span>
+          <span class="pill">Field note</span>
           <h3>Open data, proprietary intelligence</h3>
           <p>Drawing the line that lets both sides compound.</p>
           <span class="read">Read -></span>
@@ -429,7 +437,7 @@
           <p>The story matters because it shapes what we build: open enough to trust, structured enough to reason over, and clear enough to carry into real operations.</p>
         </div>
         <div class="endcap-actions">
-          <a class="btn btn-primary" href="engine.html#quickstart">Quick start</a>
+          <a class="btn btn-primary" href="engine.html#quickstart">Run locally</a>
           <a class="btn btn-dark" href="perspectives.html">Perspectives</a>
         </div>
       </div>
@@ -440,38 +448,23 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <div>
-        <div class="brand" style="font-size:20px">
-          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
-            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
-            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-          </svg>
-          Volant Labs
+      <div class="footer-brand-grid">
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
+          <p>Open tools and research for graph-native AI work.</p>
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p>
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
+          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
+        </div>
       </div>
       <div class="foot-cols">
-        <div class="foot-col">
-          <h5>Project</h5>
-          <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
-        </div>
-        <div class="foot-col">
-          <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="engine.html#quickstart">Local start</a><a href="platform.html">Production support</a>
-        </div>
-        <div class="foot-col">
-          <h5>Stay close</h5>
-          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="platform.html">Platform</a>
-        </div>
+        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
+        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Volant Partners</span>
-      <span class="nrp">Vellis stays runnable and exportable.</span>
-    </div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
   </div>
 </footer>
 

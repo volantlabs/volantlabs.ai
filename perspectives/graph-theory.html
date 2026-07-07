@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="The graph is a theory">
 <meta name="twitter:description" content="Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.">
 <meta name="twitter:image" content="https://volantlabs.ai/assets/images/graph-theory-thesis.webp">
+<meta name="twitter:image:alt" content="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters.">
 <meta name="theme-color" content="#041026">
 <link rel="canonical" href="https://volantlabs.ai/perspectives/graph-theory.html">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
@@ -50,6 +51,22 @@
   }
 }
 </script>
+<script>
+(function () {
+  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
+  if (!productionHosts.has(window.location.hostname)) return;
+
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+  document.head.appendChild(gaScript);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-VNXWVPERBQ');
+})();
+</script>
 </head>
 <body data-perspective-slug="graph-theory">
 <a class="skip" href="#main">Skip to content</a>
@@ -57,10 +74,7 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="../index.html" aria-label="Volant Labs home">
-        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/><line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/><line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-          <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/><circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-        </svg>
+        <img class="labs-logo" src="../assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
         Volant Labs
       </a>
       <div class="navlinks">
@@ -89,9 +103,12 @@
       </div>
       <aside class="article-summary" aria-label="Perspective summary">
         <strong>Human essay</strong>
-        <p>Every Perspectives piece keeps authorship and ratification visible. The full provenance footer lives with the article.</p>
+        <p>Perspectives pieces are published as Volant Labs thinking. Essays carry a byline; field notes carry working context and review status.</p>
         <div class="tag-row"><span>Substrate</span><span>Legibility</span><span>Agentic software</span></div>
       </aside>
+      <figure class="article-visual">
+        <img src="../assets/images/graph-theory-thesis.webp" alt="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters." width="960" height="540" loading="eager" decoding="async">
+      </figure>
     </div>
   </section>
   <section class="article-main wrap">
@@ -103,28 +120,28 @@
         <p>Vellis is interesting because it lets the graph carry a point of view. Types, links, and constraints are not a diagram about the system. They are a theory the system can execute against: this node may connect to that one, this edge carries this implication, this proposed change has to pass this rule.</p>
         <p>That is the wedge for agentic software. Agents do not need a larger pile of text. They need a world where the important distinctions are already named, where traversals reveal context, and where uncertain changes have somewhere to slow down.</p>
         <h2>Legibility is what lets judgment stay human</h2>
-        <p>The point is not to automate judgment away. The point is to make the system legible enough that judgment can happen at the right moment. When the graph knows what a thing is, what it depends on, and what policies attach to it, a human can ratify the meaningful decision instead of auditing the rubble afterward.</p>
+        <p>The point is not to automate judgment away. The point is to make the system legible enough that judgment can happen at the right moment. When the graph knows what a thing is, what it depends on, and what policies attach to it, a human can review the meaningful decision instead of auditing the rubble afterward.</p>
         <p>That is why the graph is more than storage. It is a compact theory of the domain: partial, revisable, and powerful precisely because the system can run it.</p>
     </article>
     <section class="provenance-panel" aria-labelledby="provenance-title">
       <div class="provenance-head">
-        <p class="article-kicker">Provenance</p>
+        <p class="article-kicker">Editorial context</p>
         <h2 id="provenance-title">How this piece should be read</h2>
       </div>
       <dl>
-          <dt>Provenance</dt>
+          <dt>Source</dt>
           <dd>Human-written essay for volantlabs.ai Perspectives.</dd>
-          <dt>Reasoning layer</dt>
+          <dt>Editorial layer</dt>
           <dd>No graph synthesis layer; the graph is referenced as the subject of the essay.</dd>
-          <dt>Human ratifier</dt>
+          <dt>Owner</dt>
           <dd>Byline accountability: Eddie Austin.</dd>
           <dt>Status</dt>
           <dd>Published essay.</dd>
-          <dt>Known uncertainty</dt>
+          <dt>Open question</dt>
           <dd>The claim is directional, not a benchmark: it argues for legibility as the wedge rather than proving it is the only wedge.</dd>
-          <dt>Dissent</dt>
+          <dt>Counterpoint</dt>
           <dd>Some systems can get useful agent behavior from retrieval and workflow scaffolding before adopting a graph-native model.</dd>
-          <dt>Next falsifier</dt>
+          <dt>What would change this</dt>
           <dd>A production agent workflow that remains safe, explainable, and adaptive without explicit domain relationships would weaken the thesis.</dd>
       </dl>
     </section>
@@ -135,13 +152,13 @@
       </div>
       <div class="related-grid">
         <a class="related-card" href="../perspectives/runtime-controls.html">
-          <span class="lanepill graph">From the graph</span>
+          <span class="lanepill notes">Field note</span>
           <h3>Runtime-native controls</h3>
-          <p>A graph-sourced dispatch on why governance must sit near the write path, not in a disconnected approval ritual after the fact.</p>
+          <p>A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.</p>
           <span class="read">Read next -&gt;</span>
         </a>
         <a class="related-card" href="../perspectives/open-data.html">
-          <span class="lanepill graph">From the graph</span>
+          <span class="lanepill notes">Field note</span>
           <h3>Open data, proprietary intelligence</h3>
           <p>The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.</p>
           <span class="read">Read next -&gt;</span>
@@ -153,10 +170,10 @@
     <div class="wrap subscribe-panel">
       <div>
         <h2>Stay close to the thinking</h2>
-        <p>New essays, graph dispatches, and ratified notes as they land.</p>
+        <p>New essays and field notes as they land.</p>
       </div>
       <div class="article-actions">
-        <a class="btn btn-primary" href="mailto:hello@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives">Request updates</a>
+        <a class="btn btn-primary" href="mailto:labs@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives">Request updates</a>
         <a class="btn btn-ghost" href="../feed.xml">RSS feed</a>
       </div>
     </div>
@@ -165,14 +182,23 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <div><div class="brand" style="font-size:20px">Volant Labs</div><p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p></div>
+      <div class="footer-brand-grid">
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="../assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">Volant Labs</div>
+          <p>Open tools and research for graph-native AI work.</p>
+        </div>
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="../assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
+          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
+        </div>
+      </div>
       <div class="foot-cols">
         <div class="foot-col"><h5>Project</h5><a href="../engine.html">Engine</a><a href="../thesis.html">Thesis</a><a href="../perspectives.html">Perspectives</a><a href="../community.html">Community</a></div>
-        <div class="foot-col"><h5>Open</h5><a href="../thesis.html">Open by Design</a><a href="../engine.html">Engine overview</a><a href="../engine.html#quickstart">Local start</a><a href="../platform.html">Production support</a></div>
-        <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="../engine.html#quickstart">Quickstart</a><a href="../thesis.html">Open by Design</a><a href="../engine.html">Engine overview</a><a href="../platform.html">Path to Production</a></div>
+        <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 Volant Partners</span><span class="nrp">Vellis stays runnable and exportable.</span></div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
   </div>
 </footer>
 </body>

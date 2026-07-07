@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vellis Engine — typed context graph infrastructure · volantlabs.ai</title>
-<meta name="description" content="Vellis is a typed context graph for AI-native work: schema-enforced storage, shared agent context, governance-adjacent writes, and full-fidelity export.">
+<title>Vellis Engine — open-source typed context graph · volantlabs.ai</title>
+<meta name="description" content="Vellis is an Apache-licensed repo for running a typed graph engine and MCP server pattern that agents can read, traverse, write to, validate against, and export from.">
 <link rel="canonical" href="https://volantlabs.ai/engine.html">
 <meta property="og:site_name" content="Volant Labs">
-<meta property="og:title" content="Vellis Engine — typed context graph infrastructure">
-<meta property="og:description" content="Schema-enforced graph storage and shared context for AI-native work.">
+<meta property="og:title" content="Vellis Engine — open-source typed context graph">
+<meta property="og:description" content="Apache-licensed graph engine and MCP server pattern for shared agent memory.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://volantlabs.ai/engine.html">
 <meta property="og:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
@@ -16,12 +16,13 @@
 <meta property="og:image:height" content="540">
 <meta property="og:image:alt" content="Abstract typed context graph with schema, storage, and export paths around an active orange node.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vellis Engine — typed context graph infrastructure">
-<meta name="twitter:description" content="Schema-enforced graph storage and shared context for AI-native work.">
+<meta name="twitter:title" content="Vellis Engine — open-source typed context graph">
+<meta name="twitter:description" content="Apache-licensed graph engine and MCP server pattern for shared agent memory.">
 <meta name="twitter:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
 <meta name="theme-color" content="#041026">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
 <link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/engine.md">
+<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -89,7 +90,7 @@
   .lic{padding:var(--s12)}
   .lic + .lic{border-left:1px solid var(--line)}
   @media(max-width:760px){.lic + .lic{border-left:0;border-top:1px solid var(--line)}}
-  .lic .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-600);margin-bottom:var(--s3)}
+  .lic .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:var(--s3)}
   .lic h3{font-size:22px;font-weight:700;margin-bottom:var(--s2)}
   .lic p{font-size:15px;color:var(--muted);max-width:46ch}
   .lic code{font-family:var(--mono);font-size:13px;background:var(--blue-50);color:var(--text);padding:2px 7px;border-radius:5px}
@@ -97,6 +98,22 @@
   .lic-head h2{font-size:clamp(24px,3vw,32px)}
   .lic-head p{color:var(--muted);margin-top:var(--s2)}
 </style>
+<script>
+(function () {
+  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
+  if (!productionHosts.has(window.location.hostname)) return;
+
+  var gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+  document.head.appendChild(gaScript);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(){window.dataLayer.push(arguments);}
+  window.gtag('js', new Date());
+  window.gtag('config', 'G-VNXWVPERBQ');
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -106,20 +123,11 @@
   <div class="wrap">
     <nav>
       <a class="brand" href="index.html" aria-label="Volant Labs home">
-        <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <line x1="6" y1="6" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="6" x2="6" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <line x1="6" y1="18" x2="18" y2="18" stroke="#001E50" stroke-width="1.6"/>
-          <circle cx="6" cy="6" r="3" fill="#001E50"/><circle cx="18" cy="18" r="3" fill="#001E50"/>
-          <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-        </svg>
+        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
         Volant Labs
       </a>
       <div class="navlinks">
-        <a href="engine.html" class="active" aria-current="page">Engine</a>
-        <a href="thesis.html">Thesis</a>
-        <a href="perspectives.html">Perspectives</a>
-        <a href="community.html">Community</a>
+        <a href="engine.html" class="active" aria-current="page">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
       </div>
       <div class="navright">
         <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
@@ -135,28 +143,31 @@
   <div class="wrap">
     <div class="hero-copy">
       <span class="eyebrow"><span class="dot"></span>Vellis Engine · first open project</span>
-      <h1 class="headline">Vellis is the typed context graph for AI-native work.</h1>
-      <p class="sub">Model real work as a typed context graph your agents can reason over, write to, and export from without surrendering the context you build.</p>
+      <h1 class="headline">Vellis is the open-source graph engine for agent memory.</h1>
+      <p class="sub">Clone the repo, run a typed context graph locally, and connect MCP-capable agents to memory they can read, traverse, write to, propose changes against, validate, and export.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#quickstart">Quick start
+        <a class="btn btn-primary" href="#quickstart">Run locally
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a class="btn btn-ghost" href="thesis.html">Read the thesis</a>
       </div>
     </div>
-    <div class="term" id="quickstart" role="region" aria-label="Local start path for Vellis.">
-      <div class="term-bar"><i></i><i></i><i class="r"></i><span>~/vellis — quick start status</span></div>
+    <div class="term" id="quickstart" role="region" aria-label="Quickstart path for Vellis.">
+      <div class="term-bar"><i></i><i></i><i class="r"></i><span>~/vellis — local quick start</span></div>
       <div class="term-body">
-<span class="c"># current local-start path</span><br>
-<span class="p">›</span> <a href="https://www.volantpartners.com/contact">request the current path from Volant</a><br>
-<span class="p">›</span> run Vellis locally when the path is shared<br>
+<span class="c"># local start</span><br>
+<span class="p">›</span> git clone https://github.com/volantlabs/vellis.git<br>
+<span class="p">›</span> cd vellis<br>
+<span class="p">›</span> follow the README to run the graph engine and MCP server<br>
 <span class="p">›</span> load your first typed nodes and edges<br>
-<span class="o">→ public clone/install commands replace this block when the release path is live</span><br>
+<span class="o">→ the final repository URL lands here at launch</span><br>
 <br>
 <span class="c"># what Vellis covers</span><br>
 <span class="p">›</span> typed graph storage<br>
 <span class="p">›</span> schema-enforced writes<br>
-<span class="p">›</span> full-fidelity export<span class="cursor"></span>
+<span class="p">›</span> read / traverse / write / propose / validate operations<br>
+<span class="p">›</span> full-fidelity export<br>
+<span class="p">›</span> Apache 2.0 license<span class="cursor"></span>
       </div>
     </div>
   </div>
@@ -178,22 +189,22 @@
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><ellipse cx="18" cy="11" rx="11" ry="4" stroke="#001E50" stroke-width="1.6"/><path d="M7 11v14c0 2.2 4.9 4 11 4s11-1.8 11-4V11" stroke="#001E50" stroke-width="1.6"/><path d="M7 18c0 2.2 4.9 4 11 4s11-1.8 11-4" stroke="#001E50" stroke-width="1.6" stroke-opacity=".5"/></svg>
       <h4>Storage</h4>
-      <p>Runs on your machine or your infra, local-first. Your data stays yours.</p>
+      <p>Runs on your machine or your infrastructure. Your data stays yours.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M10 11h16M10 18h16M10 25h10" stroke="#001E50" stroke-width="1.7" stroke-linecap="round"/><circle cx="26" cy="25" r="3" fill="#D15B21"/></svg>
       <h4>Agent tooling</h4>
-      <p>MCP-capable tools can work against graph operations instead of scraping stale docs or isolated chats.</p>
+      <p>The repo gives builders the MCP server pattern so Claude, Codex, and other MCP-capable tools can work against graph operations after setup.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 6v16" stroke="#D15B21" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l6 6 6-6" stroke="#D15B21" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 28h20" stroke="#001E50" stroke-width="1.8" stroke-linecap="round"/></svg>
       <h4>Export</h4>
-      <p>Full-fidelity export to open standards. No lock-in: everything you put in, you can take out.</p>
+      <p>Full-fidelity export to open formats. No lock-in: everything you put in, you can take out.</p>
     </div>
     <div class="wi">
       <svg class="ico" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M11 7h10l5 5v17H11z" stroke="#001E50" stroke-width="1.7" stroke-linejoin="round"/><path d="M21 7v6h5M15 20h8M15 24h5" stroke="#001E50" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="2.2" fill="#D15B21"/></svg>
-      <h4>Project docs</h4>
-      <p>Run notes, schema references, and traversal guides live close to the project, not in a disconnected wiki.</p>
+      <h4>Launch kit</h4>
+      <p>Starter prompts, AGENTS.md guidance, schema references, and traversal notes live close to the code.</p>
     </div>
   </div>
 </section>
@@ -207,14 +218,14 @@
     </div>
     <div class="panel">
       <div class="lic">
-        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>Access</span>
-        <h3>Local-first by design</h3>
-        <p>Source and local run paths are part of the Vellis promise: the graph stays runnable, portable, and yours.</p>
+        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>License</span>
+        <h3>Apache 2.0 by design</h3>
+        <p>Source, local run paths, and starter agent instructions are part of the Vellis promise: the graph stays runnable, portable, and yours.</p>
       </div>
       <div class="lic">
         <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>The covenant</span>
         <h3>No rug-pull</h3>
-        <p>Vellis remains a standalone path you can run, inspect, and export from. Production support is available when teams want help operationalizing it.</p>
+        <p>Vellis remains a standalone path you can run, inspect, and export from. A production path is available when teams want help operationalizing it.</p>
       </div>
     </div>
   </div>
@@ -226,38 +237,23 @@
 <footer>
   <div class="wrap">
     <div class="foot-top">
-      <div>
-        <div class="brand" style="font-size:20px">
-          <svg class="glyph" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="width:22px;height:22px">
-            <line x1="6" y1="6" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="6" x2="6" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <line x1="6" y1="18" x2="18" y2="18" stroke="#F5F5F5" stroke-width="1.6"/>
-            <circle cx="6" cy="6" r="3" fill="#F5F5F5"/><circle cx="18" cy="18" r="3" fill="#F5F5F5"/>
-            <circle cx="6" cy="18" r="2.4" fill="#D15B21"/>
-          </svg>
-          Volant Labs
+      <div class="footer-brand-grid">
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
+          <p>Open tools and research for graph-native AI work.</p>
         </div>
-        <p style="max-width:34ch;margin-top:12px;font-size:14px;color:#9aa0ab">Open tools and research for graph-native AI work.</p>
+        <div class="footer-brand">
+          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
+          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
+        </div>
       </div>
       <div class="foot-cols">
-        <div class="foot-col">
-          <h5>Project</h5>
-          <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
-        </div>
-        <div class="foot-col">
-          <h5>Open</h5>
-          <a href="thesis.html">Open by Design</a><a href="#quickstart">Local start</a><a href="platform.html">Production support</a>
-        </div>
-        <div class="foot-col">
-          <h5>Stay close</h5>
-          <a href="perspectives.html#subscribe">RSS / subscribe</a><a href="perspectives.html">Perspectives</a><a href="mailto:hello@volantpartners.com">Contact</a><a href="platform.html">Platform</a>
-        </div>
+        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
+        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
+        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Volant Partners</span>
-      <span class="nrp">Vellis stays runnable and exportable.</span>
-    </div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
   </div>
 </footer>
 

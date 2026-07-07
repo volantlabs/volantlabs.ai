@@ -24,15 +24,15 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - Theory becomes executable when the system can test it
 - Legibility is what lets judgment stay human
 
-## Provenance
+## Editorial Context
 
 - Source: Human-written essay for volantlabs.ai Perspectives.
-- Reasoning layer: No graph synthesis layer; the graph is referenced as the subject of the essay.
-- Human ratifier: Byline accountability: Eddie Austin.
+- Editorial layer: No graph synthesis layer; the graph is referenced as the subject of the essay.
+- Owner: Byline accountability: Eddie Austin.
 - Status: Published essay.
-- Known uncertainty: The claim is directional, not a benchmark: it argues for legibility as the wedge rather than proving it is the only wedge.
-- Dissent: Some systems can get useful agent behavior from retrieval and workflow scaffolding before adopting a graph-native model.
-- Next falsifier: A production agent workflow that remains safe, explainable, and adaptive without explicit domain relationships would weaken the thesis.
+- Open question: The claim is directional, not a benchmark: it argues for legibility as the wedge rather than proving it is the only wedge.
+- Counterpoint: Some systems can get useful agent behavior from retrieval and workflow scaffolding before adopting a graph-native model.
+- What would change this: A production agent workflow that remains safe, explainable, and adaptive without explicit domain relationships would weaken the thesis.
 
 ## Related Pages
 

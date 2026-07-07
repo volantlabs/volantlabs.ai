@@ -1,17 +1,23 @@
 {
   "slug": "domain-explorations-matter",
   "url": "perspectives/domain-explorations-matter.html",
-  "kind": "graph",
-  "kindLabel": "From the graph",
+  "kind": "notes",
+  "kindLabel": "Field note",
   "title": "Why domain explorations matter",
   "shortTitle": "Why domain explorations matter",
-  "dek": "A graph-sourced note on worked models as the bridge between abstract infrastructure and practical adoption.",
+  "dek": "A field note on worked models as the bridge between abstract infrastructure and practical adoption.",
   "published": "2026-05-08",
   "displayDate": "May 8, 2026",
   "readingTime": "3 min read",
+  "image": {
+    "src": "assets/images/perspectives/domain-explorations-matter.webp",
+    "alt": "Context graph connected to supply lineage, clinical ontology, manufacturing BOM, and energy topology worked model panels.",
+    "width": 1672,
+    "height": 941
+  },
   "author": null,
-  "provenanceLine": "Drafted from the graph · Exploration",
-  "statusLabel": "Exploration",
+  "provenanceLine": "Volant Labs field note",
+  "statusLabel": "Field note",
   "tags": [
     "Domain packs",
     "Adoption",
@@ -33,18 +39,18 @@
       ]
     },
     {
-      "heading": "The bank keeps the site alive",
+      "heading": "Reference models keep the site practical",
       "paragraphs": [
-        "A growing exploration bank also creates a cadence. New domains become new proof, new perspective pieces, and new entry points for communities that would not have arrived through the Vellis Engine page alone.",
-        "That is the role of domain explorations: not decoration, but translation."
+        "A small set of reference models can create proof without becoming a launch blocker. New domains should follow real builder need, not a content cadence.",
+        "That is the role of domain explorations when the boundary is ready: not decoration, but translation."
       ]
     }
   ],
   "provenance": {
-    "source": "Drafted from graph-held site architecture and domain exploration positioning.",
-    "reasoningLayer": "Model-synthesized dispatch from approved Volant graph context.",
-    "humanRatifier": "Not ratified.",
-    "status": "Exploration.",
+    "source": "Drawn from Volant Labs site architecture and domain exploration positioning.",
+    "reasoningLayer": "Edited from internal positioning notes for public launch copy.",
+    "humanRatifier": "Editorial review by Volant Labs.",
+    "status": "Published field note.",
     "knownUncertainty": "The note describes the site strategy rather than measuring exploration-to-adoption conversion.",
     "dissent": "Some builders will prefer raw docs and code before worked domain narratives.",
     "nextFalsifier": "If visitors adopt Vellis without using any domain exploration path, the strategic weight of explorations should be reduced."

@@ -1,17 +1,23 @@
 {
   "slug": "no-rug-pull-license",
   "url": "perspectives/no-rug-pull-license.html",
-  "kind": "graph",
-  "kindLabel": "From the graph",
+  "kind": "notes",
+  "kindLabel": "Field note",
   "title": "No rug-pull means more than a license",
   "shortTitle": "No rug-pull means more than a license",
-  "dek": "A ratified note on trust signals: portability, export path, and production support that does not compete with Vellis.",
+  "dek": "A field note on trust signals: Apache licensing, portability, export path, and production support that does not compete with Vellis.",
   "published": "2026-04-29",
   "displayDate": "April 29, 2026",
   "readingTime": "3 min read",
+  "image": {
+    "src": "assets/images/perspectives/no-rug-pull-license.webp",
+    "alt": "Open engine architecture diagram with Apache-2.0 license, export rails, and attached policy, audit, and approval controls.",
+    "width": 1672,
+    "height": 941
+  },
   "author": null,
-  "provenanceLine": "Drafted from the graph · Ratified by Eddie Austin",
-  "statusLabel": "Ratified",
+  "provenanceLine": "Volant Labs field note",
+  "statusLabel": "Field note",
   "tags": [
     "Trust",
     "License",
@@ -36,15 +42,15 @@
       "heading": "The platform should graduate, not replace",
       "paragraphs": [
         "Volant Partners support has a real job: write controls, audit traces, approvals, and operational discipline. Those capabilities can justify a commercial relationship without undermining Vellis.",
-        "That is the clean bargain. Vellis stays runnable. Production support adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
+        "That is the clean bargain. Vellis stays runnable. A production path adds governance when an organization needs it. Nobody has to pretend that trust was solved by a license file alone."
       ]
     }
   ],
   "provenance": {
-    "source": "Drafted from graph-held site architecture and open/governed boundary notes.",
-    "reasoningLayer": "Model-synthesized dispatch from approved Volant graph context.",
-    "humanRatifier": "Eddie Austin.",
-    "status": "Ratified.",
+    "source": "Drawn from Volant Labs site architecture and open/governed boundary notes.",
+    "reasoningLayer": "Edited from internal positioning notes for public launch copy.",
+    "humanRatifier": "Editorial review by Volant Labs.",
+    "status": "Published field note.",
     "knownUncertainty": "The promise should be revisited whenever packaging, access, or deployment mechanics change.",
     "dissent": "A project can be trustworthy with a stronger commercial boundary if it communicates that boundary early and honestly.",
     "nextFalsifier": "Any change that makes Vellis non-runnable or export lossy would break the no-rug-pull claim."
