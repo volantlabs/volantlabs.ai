@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--
 @app-docs
 name: volantlabs.ai
@@ -14,296 +14,869 @@ features:
   - Community and Platform pages
 -->
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vellis — open-source shared memory for AI agents · volantlabs.ai</title>
-<meta name="description" content="Vellis is an Apache-licensed typed context graph for AI agents: clone the repo, run the graph locally, connect MCP-capable tools, and keep your context exportable.">
-<link rel="canonical" href="https://volantlabs.ai/">
-<meta property="og:site_name" content="Volant Labs">
-<meta property="og:title" content="Vellis — open-source shared memory for AI agents">
-<meta property="og:description" content="Apache-licensed typed context graph for AI agents: clone the repo, run locally, connect MCP-capable tools, and keep context exportable.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://volantlabs.ai/">
-<meta property="og:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
-<meta property="og:image:width" content="960">
-<meta property="og:image:height" content="540">
-<meta property="og:image:alt" content="Abstract typed context graph with schema, storage, and export paths around an active orange node.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Vellis — open-source shared memory for AI agents">
-<meta name="twitter:description" content="Clone the repo, run locally, connect MCP-capable tools, and keep context exportable.">
-<meta name="twitter:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
-<meta name="theme-color" content="#041026">
-<meta name="kesher:name" content="volantlabs.ai">
-<meta name="kesher:description" content="Public story site for Volant Labs, with Vellis as the first open project, a cinematic thesis page, perspectives library, and quiet path to Volant Partners production support.">
-<meta name="kesher:type" content="content">
-<link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
-<link rel="alternate" type="text/plain" title="LLM site map" href="llms.txt">
-<link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/home.md">
-<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://volantlabs.ai/#organization",
-      "name": "Volant Labs",
-      "url": "https://volantlabs.ai/",
-      "description": "Open graph-native infrastructure for AI-native work.",
-      "parentOrganization": {
-        "@type": "Organization",
-        "name": "Volant Partners",
-        "url": "https://www.volantpartners.com/"
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://volantlabs.ai/#website",
-      "name": "volantlabs.ai",
-      "url": "https://volantlabs.ai/",
-      "publisher": {
-        "@id": "https://volantlabs.ai/#organization"
-      },
-      "inLanguage": "en"
-    }
-  ]
-}
-</script>
-<style>
-  /* focus states — WCAG AA */
-  /* ---- Nav ---- */
-  .navlinks a:hover::after{right:0}
-  .lab-note{background:var(--surface-soft);border-bottom:1px solid var(--line)}
-  .lab-note .wrap{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;padding-top:10px;padding-bottom:10px;font-size:13px;color:var(--muted)}
-  .lab-note strong{color:var(--text);font-weight:700;white-space:nowrap}
-  .lab-note a{color:inherit;font-weight:700}
-  .lab-note a:hover{color:inherit}
-  .lab-note span{flex:1 1 auto;min-width:min(100%,420px)}
-  @media(max-width:720px){.lab-note .wrap{display:block;line-height:1.55}.lab-note strong{white-space:normal}}
-  /* ---- Hero ---- */
-  .hero{background:var(--labs-base);color:var(--white);position:relative;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s12);align-items:center;
-    padding-top:var(--s24);padding-bottom:var(--s24);min-height:540px}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
-    letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
-  h1.headline{font-size:clamp(34px,4.6vw,60px);font-weight:800;color:#fff;letter-spacing:0;margin:var(--s4) 0 var(--s6)}
-  .hero p.sub{font-size:18px;font-weight:400;color:#c7d0e0;max-width:48ch}
-  .meta-row{display:flex;flex-wrap:wrap;gap:var(--s6);margin-top:var(--s6);font-size:13px;color:#9fb0cc}
-  .meta-row span{display:inline-flex;align-items:center;gap:7px}
-  .meta-row .tick{color:var(--orange-600);font-weight:700}
-  /* capability strip — what Vellis does (replaces risk-reversal ticks) */
-  .cap-strip{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;margin-top:var(--s6);padding:0;max-width:54ch}
-  .cap-strip li{position:relative;padding-left:20px;font-size:13.5px;color:#c7d0e0;line-height:1.45}
-  .cap-strip li::before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--orange)}
-  @media(max-width:880px){.cap-strip{grid-template-columns:1fr;gap:10px}}
-  .trust-line{margin-top:var(--s6);font-size:12.5px;color:#8fa0bd;letter-spacing:.02em}
-  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
-  .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
-  .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
-  .hero-figure{position:relative;height:420px;isolation:isolate}
-  #graph{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
-  .figcap{position:absolute;bottom:-6px;left:0;z-index:2;font-size:12px;color:#7f90ad;font-weight:300}
-  @media(max-width:880px){
-    .hero .wrap{grid-template-columns:1fr;gap:var(--s8);min-height:0}
-    .hero-figure{height:300px;order:-1}
-  }
-  /* ---- Featured trio ---- */
-  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
-  @media(max-width:880px){.trio{grid-template-columns:1fr}}
-  .card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);
-    transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.24)}
-  .card.flagship{border-color:rgba(209,91,33,.38);box-shadow:0 10px 28px rgba(0,0,0,.18)}
-  .card .thumb{height:150px;position:relative;background:var(--navy);overflow:hidden}
-  .card .body{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s2);flex:1}
-  .tag{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-    padding:4px 10px;border-radius:999px;background:var(--orange-50);color:#f2b293}
-  .tag.flag{background:var(--blue-50);color:var(--text)}
-  .card h3{font-size:18px;font-weight:600}
-  .card p{font-size:14px;color:var(--muted)}
-  .card .more{margin-top:auto;font-weight:600;font-size:14px;color:var(--orange);display:inline-flex;gap:6px;align-items:center}
-  .card:hover .more .arr{transform:translateX(3px)}
-  .more .arr{transition:transform .15s ease}
-  /* ---- Perspectives feed ---- */
-  .feed{border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .feed a.row{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s6);align-items:center;
-    padding:18px var(--s6);border-bottom:1px solid var(--line);transition:background .12s ease}
-  .feed a.row:last-child{border-bottom:0}
-  .feed a.row:hover{background:rgba(159,176,204,.08)}
-  .feed .pill{font-size:11px;font-weight:600;color:var(--text);background:var(--blue-50);
-    padding:5px 10px;border-radius:6px;white-space:nowrap}
-  .feed .pill .lane{color:#f2b293}
-  .feed .ftitle{font-weight:500;font-size:15px;color:var(--text)}
-  .feed .read{font-size:13px;font-weight:600;color:var(--orange);white-space:nowrap}
-  @media(max-width:620px){.feed a.row{grid-template-columns:1fr;gap:8px}.feed .read{justify-self:start}}
-  /* ---- Flywheel ---- */
-  .flywheel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s12) var(--s8)}
-  .fly-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text);
-    text-align:center;margin-bottom:var(--s8)}
-  .steps{display:flex;align-items:stretch;gap:var(--s2);justify-content:center;flex-wrap:wrap}
-  .step{flex:1;min-width:150px;max-width:210px;background:var(--surface-soft);border:1px solid var(--line);border-radius:10px;
-    padding:var(--s6) var(--s4);text-align:center;position:relative}
-  .step .num{width:30px;height:30px;border-radius:50%;background:var(--labs-elevated);color:#fff;font-weight:700;
-    font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto var(--s3);border:1px solid #999}
-  .step h4{color:var(--text);font-size:15px;font-weight:600;margin-bottom:4px}
-  .step p{font-size:12.5px;color:var(--muted);line-height:1.45}
-  .step.compound .num{background:var(--orange)}
-  .step .conn{position:absolute;right:-14px;top:42px;color:#6f82a6;font-size:18px;font-weight:700;z-index:2}
-  .step:nth-child(4) .conn{color:var(--orange)}
-  .step:last-child .conn{display:none}
-  @media(max-width:880px){.step .conn{display:none}.step{max-width:none}}
-  /* ---- Community + quiet platform ---- */
-  .duo{display:grid;grid-template-columns:1.7fr 1fr;gap:var(--s6)}
-  @media(max-width:880px){.duo{grid-template-columns:1fr}}
-  .community{background:var(--labs-elevated);color:#fff;border-radius:16px;padding:var(--s12);position:relative;overflow:hidden}
-  .community h2{color:#fff;font-size:28px}
-  .community p{color:#c7d0e0;margin:var(--s3) 0 var(--s6);max-width:46ch}
-  .community .ghosts{position:absolute;right:-40px;top:-40px;opacity:.5}
-  .platform{border:1px dashed var(--line);border-radius:16px;padding:var(--s8);background:var(--surface);
-    display:flex;flex-direction:column;gap:var(--s3)}
-  .platform .kicker{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .platform h3{font-size:20px}
-  .platform p{font-size:14px;color:var(--muted)}
-  .platform a.go{margin-top:auto;font-weight:600;color:var(--text);display:inline-flex;gap:7px;align-items:center}
-  .platform a.go:hover{color:var(--orange)}
-</style>
-<script>
-(function () {
-  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
-  if (!productionHosts.has(window.location.hostname)) return;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Vellis — open-source shared memory for AI agents · volantlabs.ai
+        </title>
+        <meta
+            name="description"
+            content="Vellis is an Apache-licensed typed context graph for AI agents: clone the repo, run the graph locally, connect MCP-capable tools, and keep your context exportable."
+        />
+        <link rel="canonical" href="https://volantlabs.ai/" />
+        <meta property="og:site_name" content="Volant Labs" />
+        <meta
+            property="og:title"
+            content="Vellis — open-source shared memory for AI agents"
+        />
+        <meta
+            property="og:description"
+            content="Apache-licensed typed context graph for AI agents: clone the repo, run locally, connect MCP-capable tools, and keep context exportable."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://volantlabs.ai/" />
+        <meta
+            property="og:image"
+            content="https://volantlabs.ai/assets/images/vellis-context-graph.webp"
+        />
+        <meta property="og:image:width" content="960" />
+        <meta property="og:image:height" content="540" />
+        <meta
+            property="og:image:alt"
+            content="Abstract typed context graph with schema, storage, and export paths around an active orange node."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Vellis — open-source shared memory for AI agents"
+        />
+        <meta
+            name="twitter:description"
+            content="Clone the repo, run locally, connect MCP-capable tools, and keep context exportable."
+        />
+        <meta
+            name="twitter:image"
+            content="https://volantlabs.ai/assets/images/vellis-context-graph.webp"
+        />
+        <meta name="theme-color" content="#041026" />
+        <meta name="kesher:name" content="volantlabs.ai" />
+        <meta
+            name="kesher:description"
+            content="Public story site for Volant Labs, with Vellis as the first open project, a cinematic thesis page, perspectives library, and quiet path to Volant Partners production support."
+        />
+        <meta name="kesher:type" content="content" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="volantlabs.ai Perspectives"
+            href="feed.xml"
+        />
+        <link
+            rel="alternate"
+            type="text/plain"
+            title="LLM site map"
+            href="llms.txt"
+        />
+        <link
+            rel="alternate"
+            type="text/markdown"
+            title="LLM summary"
+            href="llms/pages/home.md"
+        />
+        <link
+            rel="icon"
+            href="assets/logos/volant-labs-flask-favicon.svg"
+            type="image/svg+xml"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/site.css" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Organization",
+                        "@id": "https://volantlabs.ai/#organization",
+                        "name": "Volant Labs",
+                        "url": "https://volantlabs.ai/",
+                        "description": "Open graph-native infrastructure for AI-native work.",
+                        "parentOrganization": {
+                            "@type": "Organization",
+                            "name": "Volant Partners",
+                            "url": "https://www.volantpartners.com/"
+                        }
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://volantlabs.ai/#website",
+                        "name": "volantlabs.ai",
+                        "url": "https://volantlabs.ai/",
+                        "publisher": {
+                            "@id": "https://volantlabs.ai/#organization"
+                        },
+                        "inLanguage": "en"
+                    }
+                ]
+            }
+        </script>
+        <style>
+            /* focus states — WCAG AA */
+            /* ---- Nav ---- */
+            .navlinks a:hover::after {
+                right: 0;
+            }
+            .lab-note {
+                background: var(--surface-soft);
+                border-bottom: 1px solid var(--line);
+            }
+            .lab-note .wrap {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 8px;
+                align-items: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                font-size: 13px;
+                color: var(--muted);
+            }
+            .lab-note strong {
+                color: var(--text);
+                font-weight: 700;
+                white-space: nowrap;
+            }
+            .lab-note a {
+                color: inherit;
+                font-weight: 700;
+            }
+            .lab-note a:hover {
+                color: inherit;
+            }
+            .lab-note span {
+                flex: 1 1 auto;
+                min-width: min(100%, 420px);
+            }
+            @media (max-width: 720px) {
+                .lab-note .wrap {
+                    display: block;
+                    line-height: 1.55;
+                }
+                .lab-note strong {
+                    white-space: normal;
+                }
+            }
+            /* ---- Hero ---- */
+            .hero {
+                background: var(--labs-base);
+                color: var(--white);
+                position: relative;
+                overflow: hidden;
+            }
+            .hero .wrap {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--s12);
+                align-items: center;
+                padding-top: var(--s24);
+                padding-bottom: var(--s24);
+                min-height: 540px;
+            }
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--white);
+            }
+            .eyebrow .dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--orange);
+                box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
+            }
+            h1.headline {
+                font-size: clamp(34px, 4.6vw, 60px);
+                font-weight: 800;
+                color: #fff;
+                letter-spacing: 0;
+                margin: var(--s4) 0 var(--s6);
+            }
+            .hero p.sub {
+                font-size: 18px;
+                font-weight: 400;
+                color: #c7d0e0;
+                max-width: 48ch;
+            }
+            .meta-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--s6);
+                margin-top: var(--s6);
+                font-size: 13px;
+                color: #9fb0cc;
+            }
+            .meta-row span {
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+            }
+            .meta-row .tick {
+                color: var(--orange-600);
+                font-weight: 700;
+            }
+            /* capability strip — what Vellis does (replaces risk-reversal ticks) */
+            .cap-strip {
+                list-style: none;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 22px;
+                margin-top: var(--s6);
+                padding: 0;
+                max-width: 54ch;
+            }
+            .cap-strip li {
+                position: relative;
+                padding-left: 20px;
+                font-size: 13.5px;
+                color: #c7d0e0;
+                line-height: 1.45;
+            }
+            .cap-strip li::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 6px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--orange);
+            }
+            @media (max-width: 880px) {
+                .cap-strip {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                }
+            }
+            .trust-line {
+                margin-top: var(--s6);
+                font-size: 12.5px;
+                color: #8fa0bd;
+                letter-spacing: 0.02em;
+            }
+            .cta-row {
+                display: flex;
+                gap: var(--s4);
+                margin-top: var(--s8);
+                flex-wrap: wrap;
+            }
+            .hero .btn-ghost {
+                color: #fff;
+                border-color: rgba(245, 245, 245, 0.32);
+            }
+            .hero .btn-ghost:hover {
+                border-color: #fff;
+                background: rgba(255, 255, 255, 0.06);
+            }
+            .hero-figure {
+                position: relative;
+                height: 420px;
+                isolation: isolate;
+            }
+            #graph {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                z-index: 1;
+            }
+            .figcap {
+                position: absolute;
+                bottom: -6px;
+                left: 0;
+                z-index: 2;
+                font-size: 12px;
+                color: #7f90ad;
+                font-weight: 300;
+            }
+            @media (max-width: 880px) {
+                .hero .wrap {
+                    grid-template-columns: 1fr;
+                    gap: var(--s8);
+                    min-height: 0;
+                }
+                .hero-figure {
+                    height: 300px;
+                }
+            }
+            /* ---- Featured trio ---- */
+            .trio {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--s6);
+            }
+            @media (max-width: 880px) {
+                .trio {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .card {
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                overflow: hidden;
+                background: var(--surface);
+                transition:
+                    transform 0.18s ease,
+                    box-shadow 0.18s ease;
+                display: flex;
+                flex-direction: column;
+            }
+            .card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+            }
+            .card.flagship {
+                border-color: rgba(209, 91, 33, 0.38);
+                box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+            }
+            .card .thumb {
+                height: 150px;
+                position: relative;
+                background: var(--navy);
+                overflow: hidden;
+            }
+            .card .body {
+                padding: var(--s6);
+                display: flex;
+                flex-direction: column;
+                gap: var(--s2);
+                flex: 1;
+            }
+            .tag {
+                align-self: flex-start;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                padding: 4px 10px;
+                border-radius: 999px;
+                background: var(--orange-50);
+                color: #f2b293;
+            }
+            .tag.flag {
+                background: var(--blue-50);
+                color: var(--text);
+            }
+            .card h3 {
+                font-size: 18px;
+                font-weight: 600;
+            }
+            .card p {
+                font-size: 14px;
+                color: var(--muted);
+            }
+            .card .more {
+                margin-top: auto;
+                font-weight: 600;
+                font-size: 14px;
+                color: var(--orange);
+                display: inline-flex;
+                gap: 6px;
+                align-items: center;
+            }
+            .card:hover .more .arr {
+                transform: translateX(3px);
+            }
+            .more .arr {
+                transition: transform 0.15s ease;
+            }
+            /* ---- Perspectives feed ---- */
+            .feed {
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                overflow: hidden;
+            }
+            .feed a.row {
+                display: grid;
+                grid-template-columns: auto 1fr auto;
+                gap: var(--s6);
+                align-items: center;
+                padding: 18px var(--s6);
+                border-bottom: 1px solid var(--line);
+                transition: background 0.12s ease;
+            }
+            .feed a.row:last-child {
+                border-bottom: 0;
+            }
+            .feed a.row:hover {
+                background: rgba(159, 176, 204, 0.08);
+            }
+            .feed .pill {
+                font-size: 11px;
+                font-weight: 600;
+                color: var(--text);
+                background: var(--blue-50);
+                padding: 5px 10px;
+                border-radius: 6px;
+                white-space: nowrap;
+            }
+            .feed .pill .lane {
+                color: #f2b293;
+            }
+            .feed .ftitle {
+                font-weight: 500;
+                font-size: 15px;
+                color: var(--text);
+            }
+            .feed .read {
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--orange);
+                white-space: nowrap;
+            }
+            @media (max-width: 620px) {
+                .feed a.row {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+                .feed .read {
+                    justify-self: start;
+                }
+            }
+            /* ---- Flywheel ---- */
+            .flywheel {
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                padding: var(--s12) var(--s8);
+            }
+            .fly-title {
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--text);
+                text-align: center;
+                margin-bottom: var(--s8);
+            }
+            .steps {
+                display: flex;
+                align-items: stretch;
+                gap: var(--s2);
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .step {
+                flex: 1;
+                min-width: 150px;
+                max-width: 210px;
+                background: var(--surface-soft);
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: var(--s6) var(--s4);
+                text-align: center;
+                position: relative;
+            }
+            .step .num {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: var(--labs-elevated);
+                color: #fff;
+                font-weight: 700;
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto var(--s3);
+                border: 1px solid #999;
+            }
+            .step h4 {
+                color: var(--text);
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 4px;
+            }
+            .step p {
+                font-size: 12.5px;
+                color: var(--muted);
+                line-height: 1.45;
+            }
+            .step.compound .num {
+                background: var(--orange);
+            }
+            .step .conn {
+                position: absolute;
+                right: -14px;
+                top: 42px;
+                color: #6f82a6;
+                font-size: 18px;
+                font-weight: 700;
+                z-index: 2;
+            }
+            .step:nth-child(4) .conn {
+                color: var(--orange);
+            }
+            .step:last-child .conn {
+                display: none;
+            }
+            @media (max-width: 880px) {
+                .step .conn {
+                    display: none;
+                }
+                .step {
+                    max-width: none;
+                }
+            }
+            /* ---- Community + quiet platform ---- */
+            .duo {
+                display: grid;
+                grid-template-columns: 1.7fr 1fr;
+                gap: var(--s6);
+            }
+            @media (max-width: 880px) {
+                .duo {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .community {
+                background: var(--labs-elevated);
+                color: #fff;
+                border-radius: 16px;
+                padding: var(--s12);
+                position: relative;
+                overflow: hidden;
+            }
+            .community h2 {
+                color: #fff;
+                font-size: 28px;
+            }
+            .community p {
+                color: #c7d0e0;
+                margin: var(--s3) 0 var(--s6);
+                max-width: 46ch;
+            }
+            .community .ghosts {
+                position: absolute;
+                right: -40px;
+                top: -40px;
+                opacity: 0.5;
+            }
+            .platform {
+                border: 1px dashed var(--line);
+                border-radius: 16px;
+                padding: var(--s8);
+                background: var(--surface);
+                display: flex;
+                flex-direction: column;
+                gap: var(--s3);
+            }
+            .platform .kicker {
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+            }
+            .platform h3 {
+                font-size: 20px;
+            }
+            .platform p {
+                font-size: 14px;
+                color: var(--muted);
+            }
+            .platform a.go {
+                margin-top: auto;
+                font-weight: 600;
+                color: var(--text);
+                display: inline-flex;
+                gap: 7px;
+                align-items: center;
+            }
+            .platform a.go:hover {
+                color: var(--orange);
+            }
+        </style>
+        <script>
+            (function () {
+                var productionHosts = new Set([
+                    "volantlabs.ai",
+                    "www.volantlabs.ai",
+                ]);
+                if (!productionHosts.has(window.location.hostname)) return;
 
-  var gaScript = document.createElement("script");
-  gaScript.async = true;
-  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
-  document.head.appendChild(gaScript);
+                var gaScript = document.createElement("script");
+                gaScript.async = true;
+                gaScript.src =
+                    "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+                document.head.appendChild(gaScript);
 
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag(){window.dataLayer.push(arguments);}
-  window.gtag('js', new Date());
-  window.gtag('config', 'G-VNXWVPERBQ');
-})();
-</script>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function gtag() {
+                    window.dataLayer.push(arguments);
+                };
+                window.gtag("js", new Date());
+                window.gtag("config", "G-VNXWVPERBQ");
+            })();
+        </script>
+    </head>
+    <body>
+        <a class="skip" href="#main">Skip to content</a>
 
-<!-- ============ NAV ============ -->
-<header>
-  <div class="wrap">
-    <nav>
-      <a class="brand" href="index.html" aria-label="Volant Labs home" aria-current="page">
-        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
-        Volant Labs
-      </a>
-      <div class="navlinks">
-        <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
-      </div>
-      <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
-        <a class="btn btn-quiet" href="platform.html">Platform</a>
-      </div>
-    </nav>
-  </div>
-</header>
-<div class="lab-note" role="note">
-  <div class="wrap">
-    <strong>Brought to you by <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a>.</strong>
-    <span>The lab publishes open tools and research for graph-native AI work; <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams apply them in production.</span>
-  </div>
-</div>
-<main id="main">
+        <!-- ============ NAV ============ -->
+        <header>
+            <div class="wrap">
+                <nav>
+                    <a
+                        class="brand"
+                        href="index.html"
+                        aria-label="Volant Labs home"
+                        aria-current="page"
+                    >
+                        <img
+                            class="labs-logo"
+                            src="assets/logos/volant-labs-flask-mark.svg"
+                            alt="Volant Labs"
+                            width="50"
+                            height="50"
+                        />
+                        Volant Labs
+                    </a>
+                    <div class="navlinks">
+                        <a href="engine.html">Engine</a
+                        ><a href="thesis.html">Thesis</a
+                        ><a href="perspectives.html">Perspectives</a
+                        ><a href="community.html">Community</a>
+                    </div>
+                    <div class="navright">
+                        <a
+                            class="btn btn-ghost btn-sm"
+                            href="https://www.volantpartners.com/contact"
+                            >Contact</a
+                        >
+                        <a class="btn btn-quiet" href="platform.html"
+                            >Platform</a
+                        >
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="lab-note" role="note">
+            <div class="wrap">
+                <strong
+                    >Brought to you by
+                    <a
+                        class="volant-partners-link"
+                        href="https://www.volantpartners.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Volant Partners</a
+                    >.</strong
+                >
+                <span
+                    >The lab publishes open tools and research for graph-native
+                    AI work;
+                    <a
+                        class="volant-partners-link"
+                        href="https://www.volantpartners.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Volant Partners</a
+                    >
+                    helps teams apply them in production.</span
+                >
+            </div>
+        </div>
+        <main id="main">
+            <!-- ============ HERO ============ -->
+            <section class="hero">
+                <div class="wrap">
+                    <div class="hero-copy">
+                        <span class="eyebrow"
+                            ><span class="dot"></span>Vellis · Apache-licensed
+                            graph engine</span
+                        >
+                        <h1 class="headline">
+                            One memory your agents share — and you own.
+                        </h1>
+                        <p class="sub">
+                            Vellis is an Apache-licensed typed graph engine that
+                            turns scattered context into a living model your AI
+                            can reason over. Model your domain once; let Claude,
+                            Codex, and MCP-capable tools build on the same
+                            graph.
+                        </p>
+                        <ul class="cap-strip">
+                            <li>
+                                Clone the repo and run the graph engine locally
+                            </li>
+                            <li>
+                                Connect Claude, Codex, and other MCP-capable
+                                tools through your own setup
+                            </li>
+                            <li>
+                                Model schemas, provenance, and decisions as a
+                                typed graph
+                            </li>
+                            <li>
+                                Read, traverse, write, propose, validate, and
+                                export
+                            </li>
+                        </ul>
+                        <div class="cta-row">
+                            <a
+                                class="btn btn-primary"
+                                href="engine.html#quickstart"
+                                >Run Vellis locally
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M3 8h9M8 4l4 4-4 4"
+                                        stroke="#fff"
+                                        stroke-width="1.7"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </a>
+                            <a class="btn btn-ghost" href="engine.html"
+                                >See the engine</a
+                            >
+                        </div>
+                        <p class="trust-line">
+                            Apache 2.0 · maintained by Volant Partners ·
+                            full-fidelity export.
+                        </p>
+                    </div>
+                    <div class="hero-figure">
+                        <canvas
+                            id="graph"
+                            aria-label="Animated typed context graph for one shared memory your agents can read and write"
+                        ></canvas>
+                        <span class="figcap"
+                            >One typed graph that agents can read, write, and
+                            validate against.</span
+                        >
+                    </div>
+                </div>
+            </section>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Vellis · Apache-licensed graph engine</span>
-      <h1 class="headline">One memory your agents share — and you own.</h1>
-      <p class="sub">Vellis is an Apache-licensed typed graph engine that turns scattered context into a living model your AI can reason over. Model your domain once; let Claude, Codex, and MCP-capable tools build on the same graph.</p>
-      <ul class="cap-strip">
-        <li>Clone the repo and run the graph engine locally</li>
-        <li>Connect Claude, Codex, and other MCP-capable tools through your own setup</li>
-        <li>Model schemas, provenance, and decisions as a typed graph</li>
-        <li>Read, traverse, write, propose, validate, and export</li>
-      </ul>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="engine.html#quickstart">Run Vellis locally
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a class="btn btn-ghost" href="engine.html">See the engine</a>
-      </div>
-      <p class="trust-line">Apache 2.0 · maintained by Volant Partners · full-fidelity export.</p>
-    </div>
-    <div class="hero-figure">
-      <canvas id="graph" aria-label="Animated typed context graph for one shared memory your agents can read and write"></canvas>
-      <span class="figcap">One typed graph that agents can read, write, and validate against.</span>
-    </div>
-  </div>
-</section>
+            <!-- ============ FEATURED TRIO ============ -->
+            <section class="band" id="engine">
+                <div class="wrap">
+                    <div class="band-head">
+                        <h2>Start here</h2>
+                        <span class="lane"
+                            >Open engine · public thinking · builder
+                            community</span
+                        >
+                    </div>
+                    <div class="trio">
+                        <!-- flagship -->
+                        <article class="card flagship">
+                            <div class="thumb">
+                                <img
+                                    src="assets/images/vellis-context-graph.webp"
+                                    alt="Abstract typed context graph with schema, storage, and export paths around an active orange node."
+                                    width="960"
+                                    height="540"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                            <div class="body">
+                                <span class="tag flag">First project</span>
+                                <h3>Vellis</h3>
+                                <p>
+                                    The Apache-licensed graph engine, schema
+                                    language, MCP server pattern, and export
+                                    path: visible, runnable, and yours to
+                                    inspect.
+                                </p>
+                                <a class="more" href="engine.html#quickstart"
+                                    >Run locally <span class="arr">→</span></a
+                                >
+                            </div>
+                        </article>
+                        <!-- satellite 1 -->
+                        <article class="card">
+                            <div class="thumb">
+                                <img
+                                    src="assets/images/graph-theory-thesis.webp"
+                                    alt="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters."
+                                    width="960"
+                                    height="540"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                            <div class="body">
+                                <span class="tag">Engine</span>
+                                <h3>How Vellis works</h3>
+                                <p>
+                                    Understand the typed graph, schema language,
+                                    storage model, and export promise behind the
+                                    first Volant Labs project.
+                                </p>
+                                <a class="more" href="engine.html"
+                                    >Learn more <span class="arr">→</span></a
+                                >
+                            </div>
+                        </article>
+                        <!-- satellite 2 -->
+                        <article class="card">
+                            <div class="thumb">
+                                <img
+                                    src="assets/images/platform-governance-gate.webp"
+                                    alt="Abstract graph clusters converging through a clear review gate along an orange path."
+                                    width="960"
+                                    height="540"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                            <div class="body">
+                                <span class="tag">Perspectives</span>
+                                <h3>Thinking in public</h3>
+                                <p>
+                                    Essays and field notes on why agents need a
+                                    substrate that carries meaning, not just
+                                    text.
+                                </p>
+                                <a class="more" href="perspectives.html"
+                                    >Browse notes <span class="arr">→</span></a
+                                >
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-<!-- ============ FEATURED TRIO ============ -->
-<section class="band" id="engine">
-  <div class="wrap">
-    <div class="band-head">
-      <h2>Start here</h2>
-      <span class="lane">Open engine · public thinking · builder community</span>
-    </div>
-    <div class="trio">
-      <!-- flagship -->
-      <article class="card flagship">
-        <div class="thumb">
-          <img src="assets/images/vellis-context-graph.webp" alt="Abstract typed context graph with schema, storage, and export paths around an active orange node." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="body">
-          <span class="tag flag">First project</span>
-          <h3>Vellis</h3>
-          <p>The Apache-licensed graph engine, schema language, MCP server pattern, and export path: visible, runnable, and yours to inspect.</p>
-          <a class="more" href="engine.html#quickstart">Run locally <span class="arr">→</span></a>
-        </div>
-      </article>
-      <!-- satellite 1 -->
-      <article class="card">
-        <div class="thumb">
-          <img src="assets/images/graph-theory-thesis.webp" alt="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="body">
-          <span class="tag">Engine</span>
-          <h3>How Vellis works</h3>
-          <p>Understand the typed graph, schema language, storage model, and export promise behind the first Volant Labs project.</p>
-          <a class="more" href="engine.html">Learn more <span class="arr">→</span></a>
-        </div>
-      </article>
-      <!-- satellite 2 -->
-      <article class="card">
-        <div class="thumb">
-          <img src="assets/images/platform-governance-gate.webp" alt="Abstract graph clusters converging through a clear review gate along an orange path." width="960" height="540" loading="lazy" decoding="async">
-        </div>
-        <div class="body">
-          <span class="tag">Perspectives</span>
-          <h3>Thinking in public</h3>
-          <p>Essays and field notes on why agents need a substrate that carries meaning, not just text.</p>
-          <a class="more" href="perspectives.html">Browse notes <span class="arr">→</span></a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PERSPECTIVES FEED ============ -->
-<section class="band" id="thesis" style="padding-top:0">
-  <div class="wrap">
-    <div class="band-head">
-      <h2>Latest perspectives</h2>
-      <a class="lane" href="perspectives.html">View library →</a>
-    </div>
-    <div class="feed">
-      <!-- GENERATED:home-latest-perspectives:start -->
+            <!-- ============ PERSPECTIVES FEED ============ -->
+            <section class="band" id="thesis" style="padding-top: 0">
+                <div class="wrap">
+                    <div class="band-head">
+                        <h2>Latest perspectives</h2>
+                        <a class="lane" href="perspectives.html"
+                            >View library →</a
+                        >
+                    </div>
+                    <div class="feed">
+                        <!-- GENERATED:home-latest-perspectives:start -->
       <a class="row" href="perspectives/graph-theory.html">
         <span class="pill">Jun 11 · <span class="lane">Substrate</span></span>
         <span class="ftitle">The graph is a theory</span>
@@ -319,236 +892,603 @@ features:
         <span class="ftitle">Open data, proprietary intelligence</span>
         <span class="read">Read -&gt;</span>
       </a>
-      <!-- GENERATED:home-latest-perspectives:end -->
-    </div>
-  </div>
-</section>
+                        <!-- GENERATED:home-latest-perspectives:end -->
+                    </div>
+                </div>
+            </section>
 
-<!-- ============ FLYWHEEL ============ -->
-<section class="band" style="padding-top:0">
-  <div class="wrap">
-    <div class="flywheel">
-      <div class="fly-title">How it works — from clone to shared context</div>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><h4>Clone</h4><p>Pull the repo and run the graph engine on your machine.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">2</div><h4>Model</h4><p>Define typed nodes, links, and constraints for the work.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">3</div><h4>Connect</h4><p>Point MCP-capable agents at one shared graph-backed context.</p><span class="conn">→</span></div>
-        <div class="step"><div class="num">4</div><h4>Iterate</h4><p>Read, write, propose, and validate changes with schema checks.</p><span class="conn">→</span></div>
-        <div class="step compound"><div class="num">5</div><h4>Reuse</h4><p>Each pass leaves better context for the next one.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+            <!-- ============ FLYWHEEL ============ -->
+            <section class="band" style="padding-top: 0">
+                <div class="wrap">
+                    <div class="flywheel">
+                        <div class="fly-title">
+                            How it works — from clone to shared context
+                        </div>
+                        <div class="steps">
+                            <div class="step">
+                                <div class="num">1</div>
+                                <h4>Clone</h4>
+                                <p>
+                                    Pull the repo and run the graph engine on
+                                    your machine.
+                                </p>
+                                <span class="conn">→</span>
+                            </div>
+                            <div class="step">
+                                <div class="num">2</div>
+                                <h4>Model</h4>
+                                <p>
+                                    Define typed nodes, links, and constraints
+                                    for the work.
+                                </p>
+                                <span class="conn">→</span>
+                            </div>
+                            <div class="step">
+                                <div class="num">3</div>
+                                <h4>Connect</h4>
+                                <p>
+                                    Point MCP-capable agents at one shared
+                                    graph-backed context.
+                                </p>
+                                <span class="conn">→</span>
+                            </div>
+                            <div class="step">
+                                <div class="num">4</div>
+                                <h4>Iterate</h4>
+                                <p>
+                                    Read, write, propose, and validate changes
+                                    with schema checks.
+                                </p>
+                                <span class="conn">→</span>
+                            </div>
+                            <div class="step compound">
+                                <div class="num">5</div>
+                                <h4>Reuse</h4>
+                                <p>
+                                    Each pass leaves better context for the next
+                                    one.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<!-- ============ COMMUNITY + QUIET PLATFORM ============ -->
-<section class="band" id="community" style="padding-top:0">
-  <div class="wrap">
-    <div class="duo">
-      <div class="community">
-        <svg class="ghosts" width="220" height="220" viewBox="0 0 220 220" fill="none" aria-hidden="true">
-          <line x1="40" y1="60" x2="130" y2="40" stroke="#F5F5F5" stroke-opacity=".25"/>
-          <line x1="130" y1="40" x2="180" y2="120" stroke="#F5F5F5" stroke-opacity=".25"/>
-          <line x1="130" y1="40" x2="90" y2="140" stroke="#F5F5F5" stroke-opacity=".25"/>
-          <circle cx="40" cy="60" r="6" fill="#E6EAF2" fill-opacity=".7"/>
-          <circle cx="180" cy="120" r="6" fill="#E6EAF2" fill-opacity=".7"/>
-          <circle cx="90" cy="140" r="6" fill="#D15B21"/>
-          <circle cx="130" cy="40" r="9" fill="#E6EAF2" fill-opacity=".7"/>
-        </svg>
-        <h2>Build with the open graph</h2>
-        <p>Vellis starts as a repo you can run and shape yourself. Capable teams can carry it a long way; when the graph needs operating controls, audit paths, approval workflows, or production hardening, Volant Partners can help.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="community.html">Join the builder path</a>
-          <a class="btn btn-ghost" href="platform.html">See production support</a>
-        </div>
-      </div>
-      <div class="platform" id="platform">
-        <span class="kicker">Stay close</span>
-        <h3>Follow the lab work</h3>
-        <p>Read the thesis, browse Perspectives, or send a note if you want to shape the next open project.</p>
-        <a class="go" href="perspectives.html">Browse Perspectives <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
+            <!-- ============ COMMUNITY + QUIET PLATFORM ============ -->
+            <section class="band" id="community" style="padding-top: 0">
+                <div class="wrap">
+                    <div class="duo">
+                        <div class="community">
+                            <svg
+                                class="ghosts"
+                                width="220"
+                                height="220"
+                                viewBox="0 0 220 220"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <line
+                                    x1="40"
+                                    y1="60"
+                                    x2="130"
+                                    y2="40"
+                                    stroke="#F5F5F5"
+                                    stroke-opacity=".25"
+                                />
+                                <line
+                                    x1="130"
+                                    y1="40"
+                                    x2="180"
+                                    y2="120"
+                                    stroke="#F5F5F5"
+                                    stroke-opacity=".25"
+                                />
+                                <line
+                                    x1="130"
+                                    y1="40"
+                                    x2="90"
+                                    y2="140"
+                                    stroke="#F5F5F5"
+                                    stroke-opacity=".25"
+                                />
+                                <circle
+                                    cx="40"
+                                    cy="60"
+                                    r="6"
+                                    fill="#E6EAF2"
+                                    fill-opacity=".7"
+                                />
+                                <circle
+                                    cx="180"
+                                    cy="120"
+                                    r="6"
+                                    fill="#E6EAF2"
+                                    fill-opacity=".7"
+                                />
+                                <circle cx="90" cy="140" r="6" fill="#D15B21" />
+                                <circle
+                                    cx="130"
+                                    cy="40"
+                                    r="9"
+                                    fill="#E6EAF2"
+                                    fill-opacity=".7"
+                                />
+                            </svg>
+                            <h2>Build with the open graph</h2>
+                            <p>
+                                Vellis starts as a repo you can run and shape
+                                yourself. Capable teams can carry it a long way;
+                                when the graph needs operating controls, audit
+                                paths, approval workflows, or production
+                                hardening, Volant Partners can help.
+                            </p>
+                            <div class="cta-row">
+                                <a class="btn btn-primary" href="community.html"
+                                    >Join the builder path</a
+                                >
+                                <a class="btn btn-ghost" href="platform.html"
+                                    >See production support</a
+                                >
+                            </div>
+                        </div>
+                        <div class="platform" id="platform">
+                            <span class="kicker">Stay close</span>
+                            <h3>Follow the lab work</h3>
+                            <p>
+                                Read the Thesis, browse Perspectives, or send a
+                                note if you want to shape the next open project.
+                            </p>
+                            <a class="go" href="perspectives.html"
+                                >Browse Perspectives
+                                <span aria-hidden="true">→</span></a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-</main>
+        <!-- ============ FOOTER ============ -->
+        <footer>
+            <div class="wrap">
+                <div class="foot-top">
+                    <div class="footer-brand-grid">
+                        <div class="footer-brand">
+                            <div class="brand" style="font-size: 20px">
+                                <img
+                                    class="footer-logo"
+                                    src="assets/logos/volant-labs-flask-mark.svg"
+                                    alt="Volant Labs"
+                                    width="50"
+                                    height="50"
+                                    loading="lazy"
+                                    decoding="async"
+                                />Volant Labs
+                            </div>
+                            <p>
+                                Open tools and research for graph-native AI
+                                work.
+                            </p>
+                        </div>
+                        <div class="footer-brand">
+                            <div class="brand" style="font-size: 20px">
+                                <img
+                                    class="footer-logo"
+                                    src="assets/logos/volant-partners-bug-orange.png"
+                                    alt="Volant Partners"
+                                    width="50"
+                                    height="50"
+                                    loading="lazy"
+                                    decoding="async"
+                                /><a
+                                    class="volant-partners-link"
+                                    href="https://www.volantpartners.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Volant Partners</a
+                                >
+                            </div>
+                            <p>
+                                <a
+                                    class="volant-partners-link"
+                                    href="https://www.volantpartners.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Volant Partners</a
+                                >
+                                helps teams turn complex technical work into
+                                reliable products, operations, and decisions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="foot-cols">
+                        <div class="foot-col">
+                            <h5>Project</h5>
+                            <a href="engine.html">Engine</a
+                            ><a href="thesis.html">Thesis</a
+                            ><a href="perspectives.html">Perspectives</a
+                            ><a href="community.html">Community</a>
+                        </div>
+                        <div class="foot-col">
+                            <h5>Open</h5>
+                            <a href="engine.html#quickstart">Quickstart</a
+                            ><a href="thesis.html">Open by Design</a
+                            ><a href="engine.html">Engine overview</a
+                            ><a href="platform.html">Path to Production</a>
+                        </div>
+                        <div class="foot-col">
+                            <h5>Stay close</h5>
+                            <a href="feed.xml">RSS feed</a
+                            ><a href="perspectives.html#subscribe">Subscribe</a
+                            ><a href="https://www.volantpartners.com/contact"
+                                >Contact</a
+                            ><a href="platform.html">Platform</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot-bottom">
+                    <span
+                        >&copy; 2026
+                        <a
+                            class="volant-partners-link"
+                            href="https://www.volantpartners.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Volant Partners</a
+                        ></span
+                    ><span class="nrp"
+                        >No rug-pull: Vellis stays runnable.</span
+                    >
+                </div>
+            </div>
+        </footer>
 
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="footer-brand-grid">
-        <div class="footer-brand">
-          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
-          <p>Open tools and research for graph-native AI work.</p>
-        </div>
-        <div class="footer-brand">
-          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
-          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
-        </div>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
-        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
-        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
-      </div>
-    </div>
-    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
-  </div>
-</footer>
-
-<script>
-  /* ---- Evolving hero graph ----
+        <script>
+            /* ---- Evolving hero graph ----
    Deterministic canvas motion: the graph morphs between two stable shapes,
    then adds, ratifies, and prunes transient nodes in a quiet loop. */
-  (function(){
-    const canvas=document.getElementById('graph');
-    if(!canvas) return;
-    const ctx=canvas.getContext('2d');
-    let W=0,H=0,DPR=1,raf=0,start=0;
-    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            (function () {
+                const canvas = document.getElementById("graph");
+                if (!canvas) return;
+                const ctx = canvas.getContext("2d");
+                let W = 0,
+                    H = 0,
+                    DPR = 1,
+                    raf = 0,
+                    start = 0;
+                const reduce = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
 
-    function resize(){
-      DPR=Math.min(window.devicePixelRatio||1,2);
-      W=canvas.clientWidth; H=canvas.clientHeight;
-      canvas.width=W*DPR; canvas.height=H*DPR;
-      ctx.setTransform(DPR,0,0,DPR,0,0);
-    }
+                function resize() {
+                    DPR = Math.min(window.devicePixelRatio || 1, 2);
+                    W = canvas.clientWidth;
+                    H = canvas.clientHeight;
+                    canvas.width = W * DPR;
+                    canvas.height = H * DPR;
+                    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+                }
 
-    const nodes=[
-      {id:'memory',ax:.50,ay:.51,bx:.43,by:.50,r:10,accent:true,seed:1.1},
-      {id:'schema',ax:.31,ay:.28,bx:.24,by:.36,r:6,seed:2.7},
-      {id:'policy',ax:.68,ay:.31,bx:.70,by:.21,r:6,seed:4.2},
-      {id:'agent',ax:.30,ay:.72,bx:.36,by:.77,r:6,seed:5.6},
-      {id:'export',ax:.73,ay:.68,bx:.80,by:.61,r:6,seed:7.4},
-      {id:'human',ax:.55,ay:.18,bx:.61,by:.32,r:5,seed:8.3},
-      {id:'session',ax:.19,ay:.52,bx:.17,by:.58,r:4.5,seed:9.1},
-      {id:'trace',ax:.84,ay:.50,bx:.77,by:.44,r:4.5,seed:10.5},
-      {id:'domain',ax:.42,ay:.36,bx:.34,by:.25,r:4.5,seed:12.2},
-      {id:'runtime',ax:.58,ay:.63,bx:.62,by:.72,r:4.5,seed:13.8},
-      {id:'ingest',ax:.12,ay:.28,bx:.22,by:.20,r:5,seed:15.1,enter:.06,life:.58},
-      {id:'draft',ax:.57,ay:.82,bx:.52,by:.70,r:5.5,accent:true,seed:16.4,enter:.22,life:.5},
-      {id:'ratify',ax:.87,ay:.25,bx:.78,by:.30,r:5.5,accent:true,seed:17.9,enter:.34,life:.38},
-      {id:'stale',ax:.88,ay:.78,bx:.68,by:.82,r:4.5,seed:19.2,enter:.0,life:.44,retire:true}
-    ];
+                const nodes = [
+                    {
+                        id: "memory",
+                        ax: 0.5,
+                        ay: 0.51,
+                        bx: 0.43,
+                        by: 0.5,
+                        r: 10,
+                        accent: true,
+                        seed: 1.1,
+                    },
+                    {
+                        id: "schema",
+                        ax: 0.31,
+                        ay: 0.28,
+                        bx: 0.24,
+                        by: 0.36,
+                        r: 6,
+                        seed: 2.7,
+                    },
+                    {
+                        id: "policy",
+                        ax: 0.68,
+                        ay: 0.31,
+                        bx: 0.7,
+                        by: 0.21,
+                        r: 6,
+                        seed: 4.2,
+                    },
+                    {
+                        id: "agent",
+                        ax: 0.3,
+                        ay: 0.72,
+                        bx: 0.36,
+                        by: 0.77,
+                        r: 6,
+                        seed: 5.6,
+                    },
+                    {
+                        id: "export",
+                        ax: 0.73,
+                        ay: 0.68,
+                        bx: 0.8,
+                        by: 0.61,
+                        r: 6,
+                        seed: 7.4,
+                    },
+                    {
+                        id: "human",
+                        ax: 0.55,
+                        ay: 0.18,
+                        bx: 0.61,
+                        by: 0.32,
+                        r: 5,
+                        seed: 8.3,
+                    },
+                    {
+                        id: "session",
+                        ax: 0.19,
+                        ay: 0.52,
+                        bx: 0.17,
+                        by: 0.58,
+                        r: 4.5,
+                        seed: 9.1,
+                    },
+                    {
+                        id: "trace",
+                        ax: 0.84,
+                        ay: 0.5,
+                        bx: 0.77,
+                        by: 0.44,
+                        r: 4.5,
+                        seed: 10.5,
+                    },
+                    {
+                        id: "domain",
+                        ax: 0.42,
+                        ay: 0.36,
+                        bx: 0.34,
+                        by: 0.25,
+                        r: 4.5,
+                        seed: 12.2,
+                    },
+                    {
+                        id: "runtime",
+                        ax: 0.58,
+                        ay: 0.63,
+                        bx: 0.62,
+                        by: 0.72,
+                        r: 4.5,
+                        seed: 13.8,
+                    },
+                    {
+                        id: "ingest",
+                        ax: 0.12,
+                        ay: 0.28,
+                        bx: 0.22,
+                        by: 0.2,
+                        r: 5,
+                        seed: 15.1,
+                        enter: 0.06,
+                        life: 0.58,
+                    },
+                    {
+                        id: "draft",
+                        ax: 0.57,
+                        ay: 0.82,
+                        bx: 0.52,
+                        by: 0.7,
+                        r: 5.5,
+                        accent: true,
+                        seed: 16.4,
+                        enter: 0.22,
+                        life: 0.5,
+                    },
+                    {
+                        id: "ratify",
+                        ax: 0.87,
+                        ay: 0.25,
+                        bx: 0.78,
+                        by: 0.3,
+                        r: 5.5,
+                        accent: true,
+                        seed: 17.9,
+                        enter: 0.34,
+                        life: 0.38,
+                    },
+                    {
+                        id: "stale",
+                        ax: 0.88,
+                        ay: 0.78,
+                        bx: 0.68,
+                        by: 0.82,
+                        r: 4.5,
+                        seed: 19.2,
+                        enter: 0.0,
+                        life: 0.44,
+                        retire: true,
+                    },
+                ];
 
-    const edges=[
-      ['memory','schema'],['memory','policy'],['memory','agent'],['memory','export'],
-      ['memory','human'],['schema','domain'],['schema','session'],['policy','trace'],
-      ['agent','runtime'],['export','runtime'],['human','policy'],['session','agent'],
-      ['ingest','schema'],['ingest','memory'],['draft','runtime'],['draft','agent'],
-      ['ratify','policy'],['ratify','human'],['stale','export'],['stale','trace']
-    ];
+                const edges = [
+                    ["memory", "schema"],
+                    ["memory", "policy"],
+                    ["memory", "agent"],
+                    ["memory", "export"],
+                    ["memory", "human"],
+                    ["schema", "domain"],
+                    ["schema", "session"],
+                    ["policy", "trace"],
+                    ["agent", "runtime"],
+                    ["export", "runtime"],
+                    ["human", "policy"],
+                    ["session", "agent"],
+                    ["ingest", "schema"],
+                    ["ingest", "memory"],
+                    ["draft", "runtime"],
+                    ["draft", "agent"],
+                    ["ratify", "policy"],
+                    ["ratify", "human"],
+                    ["stale", "export"],
+                    ["stale", "trace"],
+                ];
 
-    const lookup=new Map(nodes.map((node,index)=>[node.id,index]));
+                const lookup = new Map(
+                    nodes.map((node, index) => [node.id, index]),
+                );
 
-    function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
-    function smoothstep(a,b,v){
-      const x=clamp((v-a)/(b-a),0,1);
-      return x*x*(3-2*x);
-    }
-    function nodeAlpha(node,cycle){
-      if(node.enter===undefined) return 1;
-      const age=(cycle-node.enter+1)%1;
-      if(age>node.life) return 0;
-      const fade=Math.min(.13,node.life*.38);
-      return Math.min(smoothstep(0,fade,age),1-smoothstep(node.life-fade,node.life,age));
-    }
+                function clamp(v, min, max) {
+                    return Math.max(min, Math.min(max, v));
+                }
+                function smoothstep(a, b, v) {
+                    const x = clamp((v - a) / (b - a), 0, 1);
+                    return x * x * (3 - 2 * x);
+                }
+                function nodeAlpha(node, cycle) {
+                    if (node.enter === undefined) return 1;
+                    const age = (cycle - node.enter + 1) % 1;
+                    if (age > node.life) return 0;
+                    const fade = Math.min(0.13, node.life * 0.38);
+                    return Math.min(
+                        smoothstep(0, fade, age),
+                        1 - smoothstep(node.life - fade, node.life, age),
+                    );
+                }
 
-    function stateFor(node,elapsed,cycle,morph){
-      const drift=reduce?0:1;
-      const x=(node.ax+(node.bx-node.ax)*morph)*W + Math.sin(elapsed*.00055+node.seed)*7*drift;
-      const y=(node.ay+(node.by-node.ay)*morph)*H + Math.cos(elapsed*.00047+node.seed)*6*drift;
-      return {node,x,y,alpha:nodeAlpha(node,cycle)};
-    }
+                function stateFor(node, elapsed, cycle, morph) {
+                    const drift = reduce ? 0 : 1;
+                    const x =
+                        (node.ax + (node.bx - node.ax) * morph) * W +
+                        Math.sin(elapsed * 0.00055 + node.seed) * 7 * drift;
+                    const y =
+                        (node.ay + (node.by - node.ay) * morph) * H +
+                        Math.cos(elapsed * 0.00047 + node.seed) * 6 * drift;
+                    return { node, x, y, alpha: nodeAlpha(node, cycle) };
+                }
 
-    function line(a,b,alpha,width,color){
-      ctx.globalAlpha=alpha;
-      ctx.strokeStyle=color;
-      ctx.lineWidth=width;
-      ctx.beginPath();
-      ctx.moveTo(a.x,a.y);
-      ctx.lineTo(b.x,b.y);
-      ctx.stroke();
-    }
+                function line(a, b, alpha, width, color) {
+                    ctx.globalAlpha = alpha;
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = width;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.stroke();
+                }
 
-    function drawPulse(a,b,alpha,elapsed,index){
-      const phase=(elapsed*.00009+index*.137)%1;
-      const len=.18;
-      const startT=clamp(phase-len,0,1);
-      const endT=clamp(phase,0,1);
-      const p0={x:a.x+(b.x-a.x)*startT,y:a.y+(b.y-a.y)*startT};
-      const p1={x:a.x+(b.x-a.x)*endT,y:a.y+(b.y-a.y)*endT};
-      const pulseAlpha=alpha*(.18+.42*Math.sin(Math.PI*phase));
-      line(p0,p1,pulseAlpha,2.1,'#D15B21');
-    }
+                function drawPulse(a, b, alpha, elapsed, index) {
+                    const phase = (elapsed * 0.00009 + index * 0.137) % 1;
+                    const len = 0.18;
+                    const startT = clamp(phase - len, 0, 1);
+                    const endT = clamp(phase, 0, 1);
+                    const p0 = {
+                        x: a.x + (b.x - a.x) * startT,
+                        y: a.y + (b.y - a.y) * startT,
+                    };
+                    const p1 = {
+                        x: a.x + (b.x - a.x) * endT,
+                        y: a.y + (b.y - a.y) * endT,
+                    };
+                    const pulseAlpha =
+                        alpha * (0.18 + 0.42 * Math.sin(Math.PI * phase));
+                    line(p0, p1, pulseAlpha, 2.1, "#D15B21");
+                }
 
-    function render(elapsed){
-      if(!W||!H) return;
-      const cycle=(elapsed%14000)/14000;
-      const morph=.5-.5*Math.cos(cycle*Math.PI*2);
-      const states=nodes.map(node=>stateFor(node,elapsed,cycle,morph));
-      ctx.clearRect(0,0,W,H);
+                function render(elapsed) {
+                    if (!W || !H) return;
+                    const cycle = (elapsed % 14000) / 14000;
+                    const morph = 0.5 - 0.5 * Math.cos(cycle * Math.PI * 2);
+                    const states = nodes.map((node) =>
+                        stateFor(node, elapsed, cycle, morph),
+                    );
+                    ctx.clearRect(0, 0, W, H);
 
-      ctx.globalCompositeOperation='source-over';
-      edges.forEach(([from,to],index)=>{
-        const a=states[lookup.get(from)];
-        const b=states[lookup.get(to)];
-        const alpha=Math.min(a.alpha,b.alpha);
-        if(alpha<=.02) return;
-        const isWrite=a.node.accent||b.node.accent||a.node.enter!==undefined||b.node.enter!==undefined;
-        line(a,b,alpha*(isWrite ? .2 : .14),isWrite ? 1.25 : 1,'#E6EAF2');
-        if(!reduce&&alpha>.46) drawPulse(a,b,alpha*(isWrite ? .75 : .38),elapsed,index);
-      });
+                    ctx.globalCompositeOperation = "source-over";
+                    edges.forEach(([from, to], index) => {
+                        const a = states[lookup.get(from)];
+                        const b = states[lookup.get(to)];
+                        const alpha = Math.min(a.alpha, b.alpha);
+                        if (alpha <= 0.02) return;
+                        const isWrite =
+                            a.node.accent ||
+                            b.node.accent ||
+                            a.node.enter !== undefined ||
+                            b.node.enter !== undefined;
+                        line(
+                            a,
+                            b,
+                            alpha * (isWrite ? 0.2 : 0.14),
+                            isWrite ? 1.25 : 1,
+                            "#E6EAF2",
+                        );
+                        if (!reduce && alpha > 0.46)
+                            drawPulse(
+                                a,
+                                b,
+                                alpha * (isWrite ? 0.75 : 0.38),
+                                elapsed,
+                                index,
+                            );
+                    });
 
-      states.forEach(({node,x,y,alpha})=>{
-        if(alpha<=.02) return;
-        const transient=node.enter!==undefined;
-        const scale=transient?(.78+.22*alpha):1;
-        const r=node.r*scale;
-        const glow=node.accent?'rgba(209,91,33,':'rgba(230,234,242,';
-        ctx.globalAlpha=alpha*(node.accent ? .2 : .11);
-        ctx.fillStyle=`${glow}${node.retire ? .06 : .16})`;
-        ctx.beginPath();
-        ctx.arc(x,y,r+10+(node.accent?2:0),0,Math.PI*2);
-        ctx.fill();
+                    states.forEach(({ node, x, y, alpha }) => {
+                        if (alpha <= 0.02) return;
+                        const transient = node.enter !== undefined;
+                        const scale = transient ? 0.78 + 0.22 * alpha : 1;
+                        const r = node.r * scale;
+                        const glow = node.accent
+                            ? "rgba(209,91,33,"
+                            : "rgba(230,234,242,";
+                        ctx.globalAlpha = alpha * (node.accent ? 0.2 : 0.11);
+                        ctx.fillStyle = `${glow}${node.retire ? 0.06 : 0.16})`;
+                        ctx.beginPath();
+                        ctx.arc(
+                            x,
+                            y,
+                            r + 10 + (node.accent ? 2 : 0),
+                            0,
+                            Math.PI * 2,
+                        );
+                        ctx.fill();
 
-        if(transient&&!node.retire){
-          ctx.globalAlpha=alpha*.45;
-          ctx.strokeStyle=node.accent?'#D15B21':'#E6EAF2';
-          ctx.lineWidth=1;
-          ctx.beginPath();
-          ctx.arc(x,y,r+6,0,Math.PI*2);
-          ctx.stroke();
-        }
+                        if (transient && !node.retire) {
+                            ctx.globalAlpha = alpha * 0.45;
+                            ctx.strokeStyle = node.accent
+                                ? "#D15B21"
+                                : "#E6EAF2";
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.arc(x, y, r + 6, 0, Math.PI * 2);
+                            ctx.stroke();
+                        }
 
-        ctx.globalAlpha=alpha*(node.retire ? .42 : 1);
-        ctx.fillStyle=node.accent?'#D15B21':'#E6EAF2';
-        ctx.beginPath();
-        ctx.arc(x,y,r,0,Math.PI*2);
-        ctx.fill();
-      });
+                        ctx.globalAlpha = alpha * (node.retire ? 0.42 : 1);
+                        ctx.fillStyle = node.accent ? "#D15B21" : "#E6EAF2";
+                        ctx.beginPath();
+                        ctx.arc(x, y, r, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
 
-      ctx.globalAlpha=1;
-    }
+                    ctx.globalAlpha = 1;
+                }
 
-    function loop(now){
-      if(!start) start=now;
-      render(now-start);
-      if(!reduce) raf=requestAnimationFrame(loop);
-    }
+                function loop(now) {
+                    if (!start) start = now;
+                    render(now - start);
+                    if (!reduce) raf = requestAnimationFrame(loop);
+                }
 
-    function init(){
-      resize();
-      if(raf) cancelAnimationFrame(raf);
-      start=0;
-      if(reduce) render(6200);
-      else raf=requestAnimationFrame(loop);
-    }
+                function init() {
+                    resize();
+                    if (raf) cancelAnimationFrame(raf);
+                    start = 0;
+                    if (reduce) render(6200);
+                    else raf = requestAnimationFrame(loop);
+                }
 
-    window.addEventListener('resize',init);
-    init();
-  })();
-</script>
-</body>
+                window.addEventListener("resize", init);
+                init();
+            })();
+        </script>
+    </body>
 </html>

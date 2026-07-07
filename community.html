@@ -1,244 +1,659 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Community — build with Vellis · volantlabs.ai</title>
-<meta name="description" content="Run Vellis, follow releases, share useful examples, and ask direct questions while the open project and examples settle.">
-<link rel="canonical" href="https://volantlabs.ai/community.html">
-<meta property="og:site_name" content="Volant Labs">
-<meta property="og:title" content="Community — build with Vellis">
-<meta property="og:description" content="Run Vellis, follow releases, share useful examples, and ask direct questions.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://volantlabs.ai/community.html">
-<meta property="og:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
-<meta property="og:image:width" content="960">
-<meta property="og:image:height" content="540">
-<meta property="og:image:alt" content="Abstract typed context graph with schema, storage, and export paths around an active orange node.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Community — build with Vellis">
-<meta name="twitter:description" content="Run Vellis, follow releases, share useful examples, and ask direct questions.">
-<meta name="twitter:image" content="https://volantlabs.ai/assets/images/vellis-context-graph.webp">
-<meta name="theme-color" content="#041026">
-<link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
-<link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/community.md">
-<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<style>
-  /* ---- Page header band ---- */
-  .pagehead{background:var(--surface-soft);border-bottom:1px solid var(--line)}
-  .pagehead .wrap{padding-top:var(--s16);padding-bottom:var(--s16)}
-  .pagehead .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white);margin-bottom:var(--s3)}
-  .pagehead .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
-  .pagehead h1{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:0;margin-bottom:var(--s4)}
-  .pagehead p.sub{font-size:18px;font-weight:400;color:var(--muted);max-width:58ch}
-  /* ---- Section scaffolding ---- */
-  /* community cards — 2x2 */
-  .caps{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s6)}
-  @media(max-width:760px){.caps{grid-template-columns:1fr}}
-  .cap{border:1px solid var(--line);border-radius:12px;padding:var(--s6);background:var(--surface);transition:transform .18s ease,box-shadow .18s ease}
-  .cap:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.24)}
-  .cap .ico{width:40px;height:40px;margin-bottom:var(--s3)}
-  .cap h3{font-size:18px;font-weight:600;margin-bottom:6px}
-  .cap p{font-size:14px;color:var(--muted)}
-  .cap .more{margin-top:var(--s3);font-weight:600;font-size:14px;color:var(--orange);display:inline-flex;gap:6px;align-items:center}
-  .cap:hover .more .arr{transform:translateX(3px)}
-  .more .arr{transition:transform .15s ease}
-  /* ---- Future directions ---- */
-  .future{background:var(--labs-base)}
-  .road-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
-  @media(max-width:760px){.road-grid{grid-template-columns:1fr}}
-  .col{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:var(--s6)}
-  .col .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:var(--s4)}
-  .col .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block}
-  .col ul{list-style:none}
-  .col li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);padding:7px 0;border-top:1px solid var(--line)}
-  .col li:first-child{border-top:0}
-  .col li .node{width:8px;height:8px;border-radius:50%;flex:none;margin-top:6px;background:var(--orange)}
-  .road-caption{font-size:14px;color:var(--muted);margin-top:var(--s8);max-width:64ch}
-</style>
-<script>
-(function () {
-  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
-  if (!productionHosts.has(window.location.hostname)) return;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Community — build with Vellis · volantlabs.ai</title>
+        <meta
+            name="description"
+            content="Run Vellis, follow releases, share useful examples, and ask direct questions while the open project and examples settle."
+        />
+        <link rel="canonical" href="https://volantlabs.ai/community.html" />
+        <meta property="og:site_name" content="Volant Labs" />
+        <meta property="og:title" content="Community — build with Vellis" />
+        <meta
+            property="og:description"
+            content="Run Vellis, follow releases, share useful examples, and ask direct questions."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://volantlabs.ai/community.html"
+        />
+        <meta
+            property="og:image"
+            content="https://volantlabs.ai/assets/images/vellis-context-graph.webp"
+        />
+        <meta property="og:image:width" content="960" />
+        <meta property="og:image:height" content="540" />
+        <meta
+            property="og:image:alt"
+            content="Abstract typed context graph with schema, storage, and export paths around an active orange node."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Community — build with Vellis" />
+        <meta
+            name="twitter:description"
+            content="Run Vellis, follow releases, share useful examples, and ask direct questions."
+        />
+        <meta
+            name="twitter:image"
+            content="https://volantlabs.ai/assets/images/vellis-context-graph.webp"
+        />
+        <meta name="theme-color" content="#041026" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="volantlabs.ai Perspectives"
+            href="feed.xml"
+        />
+        <link
+            rel="alternate"
+            type="text/markdown"
+            title="LLM summary"
+            href="llms/pages/community.md"
+        />
+        <link
+            rel="icon"
+            href="assets/logos/volant-labs-flask-favicon.svg"
+            type="image/svg+xml"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/site.css" />
+        <style>
+            /* ---- Page header band ---- */
+            .pagehead {
+                background: var(--surface-soft);
+                border-bottom: 1px solid var(--line);
+            }
+            .pagehead .wrap {
+                padding-top: var(--s16);
+                padding-bottom: var(--s16);
+            }
+            .pagehead .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--white);
+                margin-bottom: var(--s3);
+            }
+            .pagehead .eyebrow .dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--orange);
+                box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
+            }
+            .pagehead h1 {
+                font-size: clamp(28px, 3.6vw, 44px);
+                font-weight: 800;
+                letter-spacing: 0;
+                margin-bottom: var(--s4);
+            }
+            .pagehead p.sub {
+                font-size: 18px;
+                font-weight: 400;
+                color: var(--muted);
+                max-width: 58ch;
+            }
+            /* ---- Section scaffolding ---- */
+            /* community cards — 2x2 */
+            .caps {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--s6);
+            }
+            @media (max-width: 760px) {
+                .caps {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .cap {
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                padding: var(--s6);
+                background: var(--surface);
+                transition:
+                    transform 0.18s ease,
+                    box-shadow 0.18s ease;
+            }
+            .cap:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+            }
+            .cap .ico {
+                width: 40px;
+                height: 40px;
+                margin-bottom: var(--s3);
+            }
+            .cap h3 {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+            .cap p {
+                font-size: 14px;
+                color: var(--muted);
+            }
+            .cap .more {
+                margin-top: var(--s3);
+                font-weight: 600;
+                font-size: 14px;
+                color: var(--orange);
+                display: inline-flex;
+                gap: 6px;
+                align-items: center;
+            }
+            .cap:hover .more .arr {
+                transform: translateX(3px);
+            }
+            .more .arr {
+                transition: transform 0.15s ease;
+            }
+            /* ---- Future directions ---- */
+            .future {
+                background: var(--labs-base);
+            }
+            .road-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--s6);
+            }
+            @media (max-width: 760px) {
+                .road-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .col {
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                padding: var(--s6);
+            }
+            .col .kicker {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--white);
+                margin-bottom: var(--s4);
+            }
+            .col .kicker .dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--orange);
+                display: inline-block;
+            }
+            .col ul {
+                list-style: none;
+            }
+            .col li {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                font-size: 14px;
+                color: var(--muted);
+                padding: 7px 0;
+                border-top: 1px solid var(--line);
+            }
+            .col li:first-child {
+                border-top: 0;
+            }
+            .col li .node {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                flex: none;
+                margin-top: 6px;
+                background: var(--orange);
+            }
+            .road-caption {
+                font-size: 14px;
+                color: var(--muted);
+                margin-top: var(--s8);
+                max-width: 64ch;
+            }
+        </style>
+        <script>
+            (function () {
+                var productionHosts = new Set([
+                    "volantlabs.ai",
+                    "www.volantlabs.ai",
+                ]);
+                if (!productionHosts.has(window.location.hostname)) return;
 
-  var gaScript = document.createElement("script");
-  gaScript.async = true;
-  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
-  document.head.appendChild(gaScript);
+                var gaScript = document.createElement("script");
+                gaScript.async = true;
+                gaScript.src =
+                    "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+                document.head.appendChild(gaScript);
 
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag(){window.dataLayer.push(arguments);}
-  window.gtag('js', new Date());
-  window.gtag('config', 'G-VNXWVPERBQ');
-})();
-</script>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function gtag() {
+                    window.dataLayer.push(arguments);
+                };
+                window.gtag("js", new Date());
+                window.gtag("config", "G-VNXWVPERBQ");
+            })();
+        </script>
+    </head>
+    <body>
+        <a class="skip" href="#main">Skip to content</a>
 
-<!-- ============ NAV ============ -->
-<header>
-  <div class="wrap">
-    <nav>
-      <a class="brand" href="index.html" aria-label="Volant Labs home">
-        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
-        Volant Labs
-      </a>
-      <div class="navlinks">
-        <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html" class="active" aria-current="page">Community</a>
-      </div>
-      <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
-        <a class="btn btn-quiet" href="platform.html">Platform</a>
-      </div>
-    </nav>
-  </div>
-</header>
-<main id="main">
+        <!-- ============ NAV ============ -->
+        <header>
+            <div class="wrap">
+                <nav>
+                    <a
+                        class="brand"
+                        href="index.html"
+                        aria-label="Volant Labs home"
+                    >
+                        <img
+                            class="labs-logo"
+                            src="assets/logos/volant-labs-flask-mark.svg"
+                            alt="Volant Labs"
+                            width="50"
+                            height="50"
+                        />
+                        Volant Labs
+                    </a>
+                    <div class="navlinks">
+                        <a href="engine.html">Engine</a
+                        ><a href="thesis.html">Thesis</a
+                        ><a href="perspectives.html">Perspectives</a
+                        ><a
+                            href="community.html"
+                            class="active"
+                            aria-current="page"
+                            >Community</a
+                        >
+                    </div>
+                    <div class="navright">
+                        <a
+                            class="btn btn-ghost btn-sm"
+                            href="https://www.volantpartners.com/contact"
+                            >Contact</a
+                        >
+                        <a class="btn btn-quiet" href="platform.html"
+                            >Platform</a
+                        >
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main id="main">
+            <!-- ============ PAGE HEADER ============ -->
+            <section class="pagehead">
+                <div class="wrap">
+                    <span class="eyebrow"
+                        ><span class="dot"></span>Community</span
+                    >
+                    <h1>Community</h1>
+                    <p class="sub">
+                        Most people will clone, run, and learn by building. This
+                        page keeps the path quiet: try Vellis, follow releases,
+                        share useful examples, and ask direct questions.
+                    </p>
+                </div>
+            </section>
 
-<!-- ============ PAGE HEADER ============ -->
-<section class="pagehead">
-  <div class="wrap">
-    <span class="eyebrow"><span class="dot"></span>Community</span>
-    <h1>Community</h1>
-    <p class="sub">Most people will clone, run, and learn by building. This page keeps the path quiet: try Vellis, follow releases, share useful examples, and ask direct questions.</p>
-  </div>
-</section>
+            <!-- ============ CARDS · 2x2 ============ -->
+            <section class="band">
+                <div class="wrap">
+                    <div class="band-head">
+                        <h2>Ways in</h2>
+                        <span class="lane">Clone · follow · share · ask</span>
+                    </div>
+                    <div class="caps">
+                        <!-- Run locally -->
+                        <a
+                            class="cap card-link"
+                            href="engine.html#quickstart"
+                            aria-label="Collaborate with Vellis quickstart"
+                        >
+                            <svg
+                                class="ico"
+                                viewBox="0 0 40 40"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <circle cx="12" cy="13" r="3" fill="#001E50" />
+                                <circle cx="28" cy="13" r="3" fill="#001E50" />
+                                <circle cx="20" cy="28" r="3" fill="#D15B21" />
+                                <path
+                                    d="M12 13l8 15M28 13l-8 15M12 13h16"
+                                    stroke="#001E50"
+                                    stroke-width="1.6"
+                                    stroke-opacity=".55"
+                                />
+                            </svg>
+                            <h3>Run Vellis</h3>
+                            <p>
+                                Start with the open repo, run the graph locally,
+                                and connect your own MCP-capable tools when you
+                                are ready.
+                            </p>
+                            <span class="more"
+                                >See quickstart <span class="arr">→</span></span
+                            >
+                        </a>
 
-<!-- ============ CARDS · 2x2 ============ -->
-<section class="band">
-  <div class="wrap">
-    <div class="band-head">
-      <h2>Ways in</h2>
-      <span class="lane">Clone · follow · share · ask</span>
-    </div>
-    <div class="caps">
+                        <!-- Share an example -->
+                        <a
+                            class="cap card-link"
+                            href="mailto:labs@volantpartners.com?subject=Vellis%20example"
+                            aria-label="Showcase a Vellis example"
+                        >
+                            <svg
+                                class="ico"
+                                viewBox="0 0 40 40"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <circle cx="20" cy="11" r="3" fill="#001E50" />
+                                <circle cx="10" cy="27" r="3" fill="#001E50" />
+                                <circle cx="30" cy="27" r="3" fill="#001E50" />
+                                <circle
+                                    cx="20"
+                                    cy="20"
+                                    r="2.6"
+                                    fill="#D15B21"
+                                />
+                                <path
+                                    d="M20 11v6M20 20l-9 7M20 20l9 7M10 27h20"
+                                    stroke="#001E50"
+                                    stroke-width="1.6"
+                                    stroke-opacity=".55"
+                                />
+                            </svg>
+                            <h3>Share an example</h3>
+                            <p>
+                                If you build a useful graph pattern, schema, or
+                                starter workflow, send it over. Public examples
+                                are the first version of community signal.
+                            </p>
+                            <span class="more"
+                                >Share an example
+                                <span class="arr">→</span></span
+                            >
+                        </a>
 
-      <!-- Run locally -->
-      <a class="cap card-link" href="engine.html#quickstart" aria-label="Collaborate with Vellis quickstart">
-        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <circle cx="12" cy="13" r="3" fill="#001E50"/>
-          <circle cx="28" cy="13" r="3" fill="#001E50"/>
-          <circle cx="20" cy="28" r="3" fill="#D15B21"/>
-          <path d="M12 13l8 15M28 13l-8 15M12 13h16" stroke="#001E50" stroke-width="1.6" stroke-opacity=".55"/>
-        </svg>
-        <h3>Run Vellis</h3>
-        <p>Start with the open repo, run the graph locally, and connect your own MCP-capable tools when you are ready.</p>
-        <span class="more">See quickstart <span class="arr">→</span></span>
-      </a>
+                        <!-- Release notes -->
+                        <a
+                            class="cap card-link"
+                            href="https://github.com/volantlabs/vellis/releases"
+                            aria-label="Open Vellis Release notes on GitHub"
+                        >
+                            <svg
+                                class="ico"
+                                viewBox="0 0 40 40"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <circle
+                                    cx="20"
+                                    cy="20"
+                                    r="13"
+                                    stroke="#001E50"
+                                    stroke-width="1.6"
+                                />
+                                <path
+                                    d="M20 12v8l6 4"
+                                    stroke="#001E50"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <circle
+                                    cx="20"
+                                    cy="20"
+                                    r="2.4"
+                                    fill="#D15B21"
+                                />
+                            </svg>
+                            <h3>Follow releases</h3>
+                            <p>
+                                Watch the public repo when it lands, or request
+                                a launch note now. Cadence will follow real
+                                usage, not a calendar promise.
+                            </p>
+                            <span class="more"
+                                >Read release notes
+                                <span class="arr">→</span></span
+                            >
+                        </a>
 
-      <!-- Share an example -->
-      <a class="cap card-link" href="mailto:labs@volantpartners.com?subject=Vellis%20example" aria-label="Showcase a Vellis example">
-        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <circle cx="20" cy="11" r="3" fill="#001E50"/>
-          <circle cx="10" cy="27" r="3" fill="#001E50"/>
-          <circle cx="30" cy="27" r="3" fill="#001E50"/>
-          <circle cx="20" cy="20" r="2.6" fill="#D15B21"/>
-          <path d="M20 11v6M20 20l-9 7M20 20l9 7M10 27h20" stroke="#001E50" stroke-width="1.6" stroke-opacity=".55"/>
-        </svg>
-        <h3>Share an example</h3>
-        <p>If you build a useful graph pattern, schema, or starter workflow, send it over. Public examples are the first version of community signal.</p>
-        <span class="more">Share an example <span class="arr">→</span></span>
-      </a>
+                        <!-- Questions -->
+                        <a
+                            class="cap card-link"
+                            href="https://github.com/volantlabs/vellis/issues"
+                            aria-label="Open Vellis Questions on GitHub Issues"
+                        >
+                            <svg
+                                class="ico"
+                                viewBox="0 0 40 40"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M9 11h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H16l-5 5v-5H9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z"
+                                    stroke="#001E50"
+                                    stroke-width="1.6"
+                                    stroke-linejoin="round"
+                                />
+                                <circle
+                                    cx="14"
+                                    cy="17.5"
+                                    r="1.6"
+                                    fill="#001E50"
+                                />
+                                <circle
+                                    cx="20"
+                                    cy="17.5"
+                                    r="1.6"
+                                    fill="#001E50"
+                                />
+                                <circle
+                                    cx="26"
+                                    cy="17.5"
+                                    r="1.6"
+                                    fill="#D15B21"
+                                />
+                            </svg>
+                            <h3>Questions</h3>
+                            <p>
+                                Ask a question, share a pattern, or surface an
+                                edge case. Email is the lowest-overhead way in
+                                while the repo and examples settle.
+                            </p>
+                            <span class="more"
+                                >Ask a question <span class="arr">→</span></span
+                            >
+                        </a>
+                    </div>
+                </div>
+            </section>
 
-      <!-- Release notes -->
-      <a class="cap card-link" href="https://github.com/volantlabs/vellis/releases" aria-label="Open Vellis Release notes on GitHub">
-        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <circle cx="20" cy="20" r="13" stroke="#001E50" stroke-width="1.6"/>
-          <path d="M20 12v8l6 4" stroke="#001E50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="20" r="2.4" fill="#D15B21"/>
-        </svg>
-        <h3>Follow releases</h3>
-        <p>Watch the public repo when it lands, or request a launch note now. Cadence will follow real usage, not a calendar promise.</p>
-        <span class="more">Read release notes <span class="arr">→</span></span>
-      </a>
+            <!-- ============ FUTURE DIRECTIONS ============ -->
+            <section class="band future">
+                <div class="wrap">
+                    <div class="band-head">
+                        <h2>Future directions</h2>
+                        <span class="lane">Candidates, not promises</span>
+                    </div>
+                    <div class="road-grid">
+                        <div class="col">
+                            <span class="kicker"
+                                ><span class="dot"></span>Likely next</span
+                            >
+                            <ul>
+                                <li>
+                                    <span class="node"></span>Schema diff &amp;
+                                    migration preview
+                                </li>
+                                <li>
+                                    <span class="node"></span>Faster bulk node
+                                    load
+                                </li>
+                                <li>
+                                    <span class="node"></span>Export round-trip
+                                    test suite
+                                </li>
+                            </ul>
+                        </div>
 
-      <!-- Questions -->
-      <a class="cap card-link" href="https://github.com/volantlabs/vellis/issues" aria-label="Open Vellis Questions on GitHub Issues">
-        <svg class="ico" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-          <path d="M9 11h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H16l-5 5v-5H9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" stroke="#001E50" stroke-width="1.6" stroke-linejoin="round"/>
-          <circle cx="14" cy="17.5" r="1.6" fill="#001E50"/>
-          <circle cx="20" cy="17.5" r="1.6" fill="#001E50"/>
-          <circle cx="26" cy="17.5" r="1.6" fill="#D15B21"/>
-        </svg>
-        <h3>Questions</h3>
-        <p>Ask a question, share a pattern, or surface an edge case. Email is the lowest-overhead way in while the repo and examples settle.</p>
-        <span class="more">Ask a question <span class="arr">→</span></span>
-      </a>
+                        <div class="col">
+                            <span class="kicker"
+                                ><span class="dot"></span>Exploring</span
+                            >
+                            <ul>
+                                <li>
+                                    <span class="node"></span>Typed traversal
+                                    query planner
+                                </li>
+                                <li>
+                                    <span class="node"></span>Constraint
+                                    annotations in schema
+                                </li>
+                                <li>
+                                    <span class="node"></span>Read-only graph
+                                    snapshots
+                                </li>
+                            </ul>
+                        </div>
 
-    </div>
-  </div>
-</section>
+                        <div class="col">
+                            <span class="kicker"
+                                ><span class="dot"></span>Later</span
+                            >
+                            <ul>
+                                <li>
+                                    <span class="node"></span>Pluggable storage
+                                    backends
+                                </li>
+                                <li>
+                                    <span class="node"></span>Temporal /
+                                    versioned edges
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="road-caption">
+                        These are launch-adjacent candidates, not promises with
+                        dates. The first public signal will come from what
+                        builders actually try with Vellis.
+                    </p>
+                </div>
+            </section>
+        </main>
 
-<!-- ============ FUTURE DIRECTIONS ============ -->
-<section class="band future">
-  <div class="wrap">
-    <div class="band-head">
-      <h2>Future directions</h2>
-      <span class="lane">Candidates, not promises</span>
-    </div>
-    <div class="road-grid">
-
-      <div class="col">
-        <span class="kicker"><span class="dot"></span>Likely next</span>
-        <ul>
-          <li><span class="node"></span>Schema diff &amp; migration preview</li>
-          <li><span class="node"></span>Faster bulk node load</li>
-          <li><span class="node"></span>Export round-trip test suite</li>
-        </ul>
-      </div>
-
-      <div class="col">
-        <span class="kicker"><span class="dot"></span>Exploring</span>
-        <ul>
-          <li><span class="node"></span>Typed traversal query planner</li>
-          <li><span class="node"></span>Constraint annotations in schema</li>
-          <li><span class="node"></span>Read-only graph snapshots</li>
-        </ul>
-      </div>
-
-      <div class="col">
-        <span class="kicker"><span class="dot"></span>Later</span>
-        <ul>
-          <li><span class="node"></span>Pluggable storage backends</li>
-          <li><span class="node"></span>Temporal / versioned edges</li>
-        </ul>
-      </div>
-
-    </div>
-    <p class="road-caption">These are launch-adjacent candidates, not promises with dates. The first public signal will come from what builders actually try with Vellis.</p>
-  </div>
-</section>
-
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="footer-brand-grid">
-        <div class="footer-brand">
-          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
-          <p>Open tools and research for graph-native AI work.</p>
-        </div>
-        <div class="footer-brand">
-          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
-          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
-        </div>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
-        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
-        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
-      </div>
-    </div>
-    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
-  </div>
-</footer>
-
-</body>
+        <!-- ============ FOOTER ============ -->
+        <footer>
+            <div class="wrap">
+                <div class="foot-top">
+                    <div class="footer-brand-grid">
+                        <div class="footer-brand">
+                            <div class="brand" style="font-size: 20px">
+                                <img
+                                    class="footer-logo"
+                                    src="assets/logos/volant-labs-flask-mark.svg"
+                                    alt="Volant Labs"
+                                    width="50"
+                                    height="50"
+                                    loading="lazy"
+                                    decoding="async"
+                                />Volant Labs
+                            </div>
+                            <p>
+                                Open tools and research for graph-native AI
+                                work.
+                            </p>
+                        </div>
+                        <div class="footer-brand">
+                            <div class="brand" style="font-size: 20px">
+                                <img
+                                    class="footer-logo"
+                                    src="assets/logos/volant-partners-bug-orange.png"
+                                    alt="Volant Partners"
+                                    width="50"
+                                    height="50"
+                                    loading="lazy"
+                                    decoding="async"
+                                /><a
+                                    class="volant-partners-link"
+                                    href="https://www.volantpartners.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Volant Partners</a
+                                >
+                            </div>
+                            <p>
+                                <a
+                                    class="volant-partners-link"
+                                    href="https://www.volantpartners.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Volant Partners</a
+                                >
+                                helps teams turn complex technical work into
+                                reliable products, operations, and decisions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="foot-cols">
+                        <div class="foot-col">
+                            <h5>Project</h5>
+                            <a href="engine.html">Engine</a
+                            ><a href="thesis.html">Thesis</a
+                            ><a href="perspectives.html">Perspectives</a
+                            ><a href="community.html">Community</a>
+                        </div>
+                        <div class="foot-col">
+                            <h5>Open</h5>
+                            <a href="engine.html#quickstart">Quickstart</a
+                            ><a href="thesis.html">Open by Design</a
+                            ><a href="engine.html">Engine overview</a
+                            ><a href="platform.html">Path to Production</a>
+                        </div>
+                        <div class="foot-col">
+                            <h5>Stay close</h5>
+                            <a href="feed.xml">RSS feed</a
+                            ><a href="perspectives.html#subscribe">Subscribe</a
+                            ><a href="https://www.volantpartners.com/contact"
+                                >Contact</a
+                            ><a href="platform.html">Platform</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot-bottom">
+                    <span
+                        >&copy; 2026
+                        <a
+                            class="volant-partners-link"
+                            href="https://www.volantpartners.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Volant Partners</a
+                        ></span
+                    ><span class="nrp"
+                        >No rug-pull: Vellis stays runnable.</span
+                    >
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

@@ -1,233 +1,739 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Production Support — from Vellis to governed operations · volantlabs.ai</title>
-<meta name="description" content="Vellis gives builders an open substrate for agent memory. Volant Partners helps teams carry that substrate into production with operating controls and audit paths.">
-<link rel="canonical" href="https://volantlabs.ai/platform.html">
-<meta property="og:site_name" content="Volant Labs">
-<meta property="og:title" content="Production Support — from Vellis to governed operations">
-<meta property="og:description" content="Volant Partners helps teams carry the open Vellis substrate into governed production operations.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://volantlabs.ai/platform.html">
-<meta property="og:image" content="https://volantlabs.ai/assets/images/platform-governance-gate.webp">
-<meta property="og:image:width" content="1280">
-<meta property="og:image:height" content="720">
-<meta property="og:image:alt" content="Agent graph clusters converging through a governance gate into an auditable record along an orange write path.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Production Support — governed operations">
-<meta name="twitter:description" content="Carry the open Vellis substrate into governed production operations.">
-<meta name="twitter:image" content="https://volantlabs.ai/assets/images/platform-governance-gate.webp">
-<meta name="theme-color" content="#041026">
-<link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="feed.xml">
-<link rel="alternate" type="text/markdown" title="LLM summary" href="llms/pages/platform.md">
-<link rel="icon" href="assets/logos/volant-labs-flask-favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
-<style>
-  /* ---- Hero ---- */
-  .hero{background:var(--labs-base);color:var(--white);overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s12);align-items:center;padding-top:var(--s24);padding-bottom:var(--s24)}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(209,91,33,.18)}
-  h1.headline{font-size:clamp(32px,4.2vw,54px);font-weight:800;color:#fff;letter-spacing:0;margin:var(--s4) 0 var(--s6)}
-  .hero p.sub{font-size:18px;font-weight:400;color:#c7d0e0;max-width:46ch}
-  .cta-row{display:flex;gap:var(--s4);margin-top:var(--s8);flex-wrap:wrap}
-  .hero .btn-ghost{color:#fff;border-color:rgba(245,245,245,.32)}
-  .hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
-  /* hero node-and-edge motif */
-  .heromotif{display:flex;justify-content:center}
-  .heromotif img{display:block;width:100%;max-width:560px;height:auto;border-radius:8px}
-  @media(max-width:880px){
-    .hero .wrap{grid-template-columns:1fr;gap:var(--s8)}
-    .heromotif{order:2}
-  }
-  /* ---- Section scaffolding ---- */
-  .band-sub{color:var(--muted);font-size:15px;max-width:54ch;margin-top:calc(-1 * var(--s4));margin-bottom:var(--s8)}
-  /* ---- Before / After comparison ---- */
-  .compare{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6)}
-  @media(max-width:760px){.compare{grid-template-columns:1fr}}
-  .pane{border-radius:16px;padding:var(--s12);display:flex;flex-direction:column;gap:var(--s4)}
-  .pane.open{background:var(--surface);border:1px solid var(--line)}
-  .pane.gov{background:var(--labs-elevated);border:1px solid var(--line);position:relative;overflow:hidden}
-  .pane.gov::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--orange)}
-  .pane .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-  .pane.open .kicker{color:var(--muted)}
-  .pane.gov .kicker{color:#e6c9b6}
-  .pane h3{font-size:22px;font-weight:700}
-  .pane.gov h3{color:#fff}
-  .pane.open h3{color:var(--text)}
-  .rows{display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s2)}
-  .row{display:flex;align-items:flex-start;gap:var(--s3);font-size:15px}
-  .row .gl{flex:none;width:20px;height:20px;margin-top:1px}
-  .pane.open .row{color:var(--muted)}
-  .pane.gov .row{color:#dbe3f1}
-  .pane.gov .row strong{color:#fff;font-weight:600}
-  .pane.open .row strong{color:var(--text);font-weight:600}
-  /* ---- Final calm CTA band ---- */
-  .endcta{background:var(--labs-elevated);color:var(--white)}
-  .endcta .wrap{text-align:center;padding-top:var(--s24);padding-bottom:var(--s24);display:flex;flex-direction:column;align-items:center;gap:var(--s6)}
-  .endcta h2{font-size:clamp(26px,3.2vw,38px);font-weight:700;color:#fff}
-  .endcta p{font-size:16px;color:#c7d0e0;max-width:48ch}
-  .endcta .note{font-size:13px;color:#8d9ab5;margin-top:calc(-1 * var(--s2))}
-</style>
-<script>
-(function () {
-  var productionHosts = new Set(["volantlabs.ai", "www.volantlabs.ai"]);
-  if (!productionHosts.has(window.location.hostname)) return;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Production Support — from Vellis to governed operations ·
+            volantlabs.ai
+        </title>
+        <meta
+            name="description"
+            content="Vellis gives builders an open substrate for agent memory. Volant Partners helps teams carry that substrate into production with operating controls and audit paths."
+        />
+        <link rel="canonical" href="https://volantlabs.ai/platform.html" />
+        <meta property="og:site_name" content="Volant Labs" />
+        <meta
+            property="og:title"
+            content="Production Support — from Vellis to governed operations"
+        />
+        <meta
+            property="og:description"
+            content="Volant Partners helps teams carry the open Vellis substrate into governed production operations."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://volantlabs.ai/platform.html" />
+        <meta
+            property="og:image"
+            content="https://volantlabs.ai/assets/images/platform-governance-gate.webp"
+        />
+        <meta property="og:image:width" content="1280" />
+        <meta property="og:image:height" content="720" />
+        <meta
+            property="og:image:alt"
+            content="Agent graph clusters converging through a governance gate into an auditable record along an orange write path."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Production Support — governed operations"
+        />
+        <meta
+            name="twitter:description"
+            content="Carry the open Vellis substrate into governed production operations."
+        />
+        <meta
+            name="twitter:image"
+            content="https://volantlabs.ai/assets/images/platform-governance-gate.webp"
+        />
+        <meta name="theme-color" content="#041026" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="volantlabs.ai Perspectives"
+            href="feed.xml"
+        />
+        <link
+            rel="alternate"
+            type="text/markdown"
+            title="LLM summary"
+            href="llms/pages/platform.md"
+        />
+        <link
+            rel="icon"
+            href="assets/logos/volant-labs-flask-favicon.svg"
+            type="image/svg+xml"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/site.css" />
+        <style>
+            /* ---- Hero ---- */
+            .hero {
+                background: var(--labs-base);
+                color: var(--white);
+                overflow: hidden;
+            }
+            .hero .wrap {
+                display: grid;
+                grid-template-columns: 1fr 1.05fr;
+                gap: var(--s12);
+                align-items: center;
+                padding-top: var(--s24);
+                padding-bottom: var(--s24);
+            }
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--white);
+            }
+            .eyebrow .dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--orange);
+                box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
+            }
+            h1.headline {
+                font-size: clamp(32px, 4.2vw, 54px);
+                font-weight: 800;
+                color: #fff;
+                letter-spacing: 0;
+                margin: var(--s4) 0 var(--s6);
+            }
+            .hero p.sub {
+                font-size: 18px;
+                font-weight: 400;
+                color: #c7d0e0;
+                max-width: 46ch;
+            }
+            .cta-row {
+                display: flex;
+                gap: var(--s4);
+                margin-top: var(--s8);
+                flex-wrap: wrap;
+            }
+            .hero .btn-ghost {
+                color: #fff;
+                border-color: rgba(245, 245, 245, 0.32);
+            }
+            .hero .btn-ghost:hover {
+                border-color: #fff;
+                background: rgba(255, 255, 255, 0.06);
+            }
+            /* hero node-and-edge motif */
+            .heromotif {
+                display: flex;
+                justify-content: center;
+            }
+            .heromotif img {
+                display: block;
+                width: 100%;
+                max-width: 560px;
+                height: auto;
+                border-radius: 8px;
+            }
+            @media (max-width: 880px) {
+                .hero .wrap {
+                    grid-template-columns: 1fr;
+                    gap: var(--s8);
+                }
+                .heromotif {
+                    order: 2;
+                }
+            }
+            /* ---- Section scaffolding ---- */
+            .band-sub {
+                color: var(--muted);
+                font-size: 15px;
+                max-width: 54ch;
+                margin-top: calc(-1 * var(--s4));
+                margin-bottom: var(--s8);
+            }
+            /* ---- Before / After comparison ---- */
+            .compare {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--s6);
+            }
+            @media (max-width: 760px) {
+                .compare {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .pane {
+                border-radius: 16px;
+                padding: var(--s12);
+                display: flex;
+                flex-direction: column;
+                gap: var(--s4);
+            }
+            .pane.open {
+                background: var(--surface);
+                border: 1px solid var(--line);
+            }
+            .pane.gov {
+                background: var(--labs-elevated);
+                border: 1px solid var(--line);
+                position: relative;
+                overflow: hidden;
+            }
+            .pane.gov::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background: var(--orange);
+            }
+            .pane .kicker {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+            }
+            .pane.open .kicker {
+                color: var(--muted);
+            }
+            .pane.gov .kicker {
+                color: #e6c9b6;
+            }
+            .pane h3 {
+                font-size: 22px;
+                font-weight: 700;
+            }
+            .pane.gov h3 {
+                color: #fff;
+            }
+            .pane.open h3 {
+                color: var(--text);
+            }
+            .rows {
+                display: flex;
+                flex-direction: column;
+                gap: var(--s3);
+                margin-top: var(--s2);
+            }
+            .row {
+                display: flex;
+                align-items: flex-start;
+                gap: var(--s3);
+                font-size: 15px;
+            }
+            .row .gl {
+                flex: none;
+                width: 20px;
+                height: 20px;
+                margin-top: 1px;
+            }
+            .pane.open .row {
+                color: var(--muted);
+            }
+            .pane.gov .row {
+                color: #dbe3f1;
+            }
+            .pane.gov .row strong {
+                color: #fff;
+                font-weight: 600;
+            }
+            .pane.open .row strong {
+                color: var(--text);
+                font-weight: 600;
+            }
+            /* ---- Final calm CTA band ---- */
+            .endcta {
+                background: var(--labs-elevated);
+                color: var(--white);
+            }
+            .endcta .wrap {
+                text-align: center;
+                padding-top: var(--s24);
+                padding-bottom: var(--s24);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--s6);
+            }
+            .endcta h2 {
+                font-size: clamp(26px, 3.2vw, 38px);
+                font-weight: 700;
+                color: #fff;
+            }
+            .endcta p {
+                font-size: 16px;
+                color: #c7d0e0;
+                max-width: 48ch;
+            }
+            .endcta .note {
+                font-size: 13px;
+                color: #8d9ab5;
+                margin-top: calc(-1 * var(--s2));
+            }
+        </style>
+        <script>
+            (function () {
+                var productionHosts = new Set([
+                    "volantlabs.ai",
+                    "www.volantlabs.ai",
+                ]);
+                if (!productionHosts.has(window.location.hostname)) return;
 
-  var gaScript = document.createElement("script");
-  gaScript.async = true;
-  gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
-  document.head.appendChild(gaScript);
+                var gaScript = document.createElement("script");
+                gaScript.async = true;
+                gaScript.src =
+                    "https://www.googletagmanager.com/gtag/js?id=G-VNXWVPERBQ";
+                document.head.appendChild(gaScript);
 
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag(){window.dataLayer.push(arguments);}
-  window.gtag('js', new Date());
-  window.gtag('config', 'G-VNXWVPERBQ');
-})();
-</script>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function gtag() {
+                    window.dataLayer.push(arguments);
+                };
+                window.gtag("js", new Date());
+                window.gtag("config", "G-VNXWVPERBQ");
+            })();
+        </script>
+    </head>
+    <body>
+        <a class="skip" href="#main">Skip to content</a>
 
-<!-- ============ NAV ============ -->
-<header>
-  <div class="wrap">
-    <nav>
-      <a class="brand" href="index.html" aria-label="Volant Labs home">
-        <img class="labs-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50">
-        Volant Labs
-      </a>
-      <div class="navlinks">
-        <a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a>
-      </div>
-      <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact">Contact</a>
-        <a class="btn btn-quiet" href="platform.html">Platform</a>
-      </div>
-    </nav>
-  </div>
-</header>
-<main id="main">
+        <!-- ============ NAV ============ -->
+        <header>
+            <div class="wrap">
+                <nav>
+                    <a
+                        class="brand"
+                        href="index.html"
+                        aria-label="Volant Labs home"
+                    >
+                        <img
+                            class="labs-logo"
+                            src="assets/logos/volant-labs-flask-mark.svg"
+                            alt="Volant Labs"
+                            width="50"
+                            height="50"
+                        />
+                        Volant Labs
+                    </a>
+                    <div class="navlinks">
+                        <a href="engine.html">Engine</a
+                        ><a href="thesis.html">Thesis</a
+                        ><a href="perspectives.html">Perspectives</a
+                        ><a href="community.html">Community</a>
+                    </div>
+                    <div class="navright">
+                        <a
+                            class="btn btn-ghost btn-sm"
+                            href="https://www.volantpartners.com/contact"
+                            >Contact</a
+                        >
+                        <a class="btn btn-quiet" href="platform.html"
+                            >Platform</a
+                        >
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main id="main">
+            <!-- ============ HERO ============ -->
+            <section class="hero">
+                <div class="wrap">
+                    <div class="hero-copy">
+                        <span class="eyebrow"
+                            ><span class="dot"></span>Volant Partners ·
+                            production support</span
+                        >
+                        <h1 class="headline">
+                            When lab infrastructure needs production operations.
+                        </h1>
+                        <p class="sub">
+                            Vellis gives builders an open substrate for agent
+                            memory. Volant Partners helps teams carry that
+                            substrate into production with operating controls,
+                            audit paths, and implementation discipline.
+                        </p>
+                        <div class="cta-row">
+                            <a
+                                class="btn btn-primary"
+                                href="https://volantpartners.com"
+                                >Book a conversation
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M3 8h9M8 4l4 4-4 4"
+                                        stroke="#fff"
+                                        stroke-width="1.7"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="heromotif">
+                        <img
+                            src="assets/images/platform-governance-gate.webp"
+                            alt="Agent graph clusters converging through a governance gate into an auditable record along an orange write path."
+                            width="1280"
+                            height="720"
+                            decoding="async"
+                            fetchpriority="high"
+                        />
+                    </div>
+                </div>
+            </section>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Volant Partners · production support</span>
-      <h1 class="headline">When lab infrastructure needs production operations.</h1>
-      <p class="sub">Vellis gives builders an open substrate for agent memory. Volant Partners helps teams carry that substrate into production with operating controls, audit paths, and implementation discipline.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://volantpartners.com">Book a conversation
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="heromotif">
-      <img src="assets/images/platform-governance-gate.webp" alt="Agent graph clusters converging through a governance gate into an auditable record along an orange write path." width="1280" height="720" decoding="async" fetchpriority="high">
-    </div>
-  </div>
-</section>
+            <!-- ============ BEFORE / AFTER ============ -->
+            <section class="band">
+                <div class="wrap">
+                    <div class="band-head">
+                        <h2>
+                            Same open foundation. A managed operating layer when
+                            teams need it.
+                        </h2>
+                        <span class="lane">Lab → production</span>
+                    </div>
+                    <p class="band-sub">
+                        Vellis is the open substrate: runnable, inspectable, and
+                        portable. For managed customer work, Volant Partners and
+                        Kesher add the controls, workflows, and support model
+                        needed to use that pattern responsibly in real
+                        operations.
+                    </p>
+                    <div class="compare">
+                        <!-- Vellis -->
+                        <div class="pane open">
+                            <span class="kicker"
+                                ><span
+                                    class="dot"
+                                    style="
+                                        width: 7px;
+                                        height: 7px;
+                                        border-radius: 50%;
+                                        background: #9fb0d0;
+                                        display: inline-block;
+                                    "
+                                ></span
+                                >In Volant Labs</span
+                            >
+                            <h3>Open, inspectable, runnable.</h3>
+                            <div class="rows">
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <circle
+                                            cx="10"
+                                            cy="10"
+                                            r="4"
+                                            fill="none"
+                                            stroke="#9aa3b5"
+                                            stroke-width="1.6"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Developers run</strong> the
+                                        project locally.</span
+                                    >
+                                </div>
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <circle
+                                            cx="10"
+                                            cy="10"
+                                            r="4"
+                                            fill="none"
+                                            stroke="#9aa3b5"
+                                            stroke-width="1.6"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Graphs model real work</strong>
+                                        with typed structure.</span
+                                    >
+                                </div>
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <circle
+                                            cx="10"
+                                            cy="10"
+                                            r="4"
+                                            fill="none"
+                                            stroke="#9aa3b5"
+                                            stroke-width="1.6"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Production controls</strong>
+                                        are intentionally the builder's
+                                        responsibility in the open repo.</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
 
-<!-- ============ BEFORE / AFTER ============ -->
-<section class="band">
-  <div class="wrap">
-    <div class="band-head">
-      <h2>Same open foundation. A managed operating layer when teams need it.</h2>
-      <span class="lane">Lab → production</span>
-    </div>
-    <p class="band-sub">Vellis is the open substrate: runnable, inspectable, and portable. For managed customer work, Volant Partners and Kesher add the controls, workflows, and support model needed to use that pattern responsibly in real operations.</p>
-    <div class="compare">
+                        <!-- Governed platform -->
+                        <div class="pane gov">
+                            <span class="kicker"
+                                ><span
+                                    class="dot"
+                                    style="
+                                        width: 7px;
+                                        height: 7px;
+                                        border-radius: 50%;
+                                        background: var(--orange);
+                                        display: inline-block;
+                                    "
+                                ></span
+                                >With Volant Partners / Kesher</span
+                            >
+                            <h3>Operationalized for the team.</h3>
+                            <div class="rows">
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M4 10.5l3.5 3.5L16 6"
+                                            stroke="#D15B21"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Write controls</strong> hold
+                                        important changes at the right
+                                        boundary.</span
+                                    >
+                                </div>
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M4 10.5l3.5 3.5L16 6"
+                                            stroke="#D15B21"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Audit traces</strong> record
+                                        who changed what, and when.</span
+                                    >
+                                </div>
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M4 10.5l3.5 3.5L16 6"
+                                            stroke="#D15B21"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Approval paths</strong> make
+                                        high-impact changes reviewable.</span
+                                    >
+                                </div>
+                                <div class="row">
+                                    <svg
+                                        class="gl"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            d="M4 10.5l3.5 3.5L16 6"
+                                            stroke="#D15B21"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                    <span
+                                        ><strong>Implementation support</strong>
+                                        helps the graph become part of the
+                                        operating rhythm.</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-      <!-- Vellis -->
-      <div class="pane open">
-        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:#9fb0d0;display:inline-block"></span>In Volant Labs</span>
-        <h3>Open, inspectable, runnable.</h3>
-        <div class="rows">
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
-            <span><strong>Developers run</strong> the project locally.</span>
-          </div>
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
-            <span><strong>Graphs model real work</strong> with typed structure.</span>
-          </div>
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="none" stroke="#9aa3b5" stroke-width="1.6"/></svg>
-            <span><strong>Production controls</strong> are intentionally the builder's responsibility in the open repo.</span>
-          </div>
-        </div>
-      </div>
+            <!-- ============ FINAL CTA ============ -->
+            <section class="endcta">
+                <div class="wrap">
+                    <h2>Ready for governed operations?</h2>
+                    <p>
+                        When audit, policy, approvals, and operating change
+                        management start to matter, Volant Partners can help
+                        carry the open foundation into production.
+                    </p>
+                    <a class="btn btn-primary" href="https://volantpartners.com"
+                        >Book a conversation
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3 8h9M8 4l4 4-4 4"
+                                stroke="#fff"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </a>
+                    <span class="note"
+                        >Opens the commercial site, volantpartners.com.</span
+                    >
+                </div>
+            </section>
+        </main>
 
-      <!-- Governed platform -->
-      <div class="pane gov">
-        <span class="kicker"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--orange);display:inline-block"></span>With Volant Partners / Kesher</span>
-        <h3>Operationalized for the team.</h3>
-        <div class="rows">
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>Write controls</strong> hold important changes at the right boundary.</span>
-          </div>
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>Audit traces</strong> record who changed what, and when.</span>
-          </div>
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>Approval paths</strong> make high-impact changes reviewable.</span>
-          </div>
-          <div class="row">
-            <svg class="gl" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="#D15B21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>Implementation support</strong> helps the graph become part of the operating rhythm.</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ FINAL CTA ============ -->
-<section class="endcta">
-  <div class="wrap">
-    <h2>Ready for governed operations?</h2>
-    <p>When audit, policy, approvals, and operating change management start to matter, Volant Partners can help carry the open foundation into production.</p>
-    <a class="btn btn-primary" href="https://volantpartners.com">Book a conversation
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <span class="note">Opens the commercial site, volantpartners.com.</span>
-  </div>
-</section>
-
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="footer-brand-grid">
-        <div class="footer-brand">
-          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-labs-flask-mark.svg" alt="Volant Labs" width="50" height="50" loading="lazy" decoding="async">Volant Labs</div>
-          <p>Open tools and research for graph-native AI work.</p>
-        </div>
-        <div class="footer-brand">
-          <div class="brand" style="font-size:20px"><img class="footer-logo" src="assets/logos/volant-partners-bug-orange.png" alt="Volant Partners" width="50" height="50" loading="lazy" decoding="async"><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></div>
-          <p><a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a> helps teams turn complex technical work into reliable products, operations, and decisions.</p>
-        </div>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col"><h5>Project</h5><a href="engine.html">Engine</a><a href="thesis.html">Thesis</a><a href="perspectives.html">Perspectives</a><a href="community.html">Community</a></div>
-        <div class="foot-col"><h5>Open</h5><a href="engine.html#quickstart">Quickstart</a><a href="thesis.html">Open by Design</a><a href="engine.html">Engine overview</a><a href="platform.html">Path to Production</a></div>
-        <div class="foot-col"><h5>Stay close</h5><a href="feed.xml">RSS feed</a><a href="perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="platform.html">Platform</a></div>
-      </div>
-    </div>
-    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
-  </div>
-</footer>
-
-</body>
+        <!-- ============ FOOTER ============ -->
+        <footer>
+            <div class="wrap">
+                <div class="foot-top">
+                    <div class="footer-brand-grid">
+                        <div class="footer-brand">
+                            <div class="brand" style="font-size: 20px">
+                                <img
+                                    class="footer-logo"
+                                    src="assets/logos/volant-labs-flask-mark.svg"
+                                    alt="Volant Labs"
+                                    width="50"
+                                    height="50"
+                                    loading="lazy"
+                                    decoding="async"
+                                />Volant Labs
+                            </div>
+                            <p>
+                                Open tools and research for graph-native AI
+                                work.
+                            </p>
+                        </div>
+                        <div class="footer-brand">
+                            <div class="brand" style="font-size: 20px">
+                                <img
+                                    class="footer-logo"
+                                    src="assets/logos/volant-partners-bug-orange.png"
+                                    alt="Volant Partners"
+                                    width="50"
+                                    height="50"
+                                    loading="lazy"
+                                    decoding="async"
+                                /><a
+                                    class="volant-partners-link"
+                                    href="https://www.volantpartners.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Volant Partners</a
+                                >
+                            </div>
+                            <p>
+                                <a
+                                    class="volant-partners-link"
+                                    href="https://www.volantpartners.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >Volant Partners</a
+                                >
+                                helps teams turn complex technical work into
+                                reliable products, operations, and decisions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="foot-cols">
+                        <div class="foot-col">
+                            <h5>Project</h5>
+                            <a href="engine.html">Engine</a
+                            ><a href="thesis.html">Thesis</a
+                            ><a href="perspectives.html">Perspectives</a
+                            ><a href="community.html">Community</a>
+                        </div>
+                        <div class="foot-col">
+                            <h5>Open</h5>
+                            <a href="engine.html#quickstart">Quickstart</a
+                            ><a href="thesis.html">Open by Design</a
+                            ><a href="engine.html">Engine overview</a
+                            ><a href="platform.html">Path to Production</a>
+                        </div>
+                        <div class="foot-col">
+                            <h5>Stay close</h5>
+                            <a href="feed.xml">RSS feed</a
+                            ><a href="perspectives.html#subscribe">Subscribe</a
+                            ><a href="https://www.volantpartners.com/contact"
+                                >Contact</a
+                            ><a href="platform.html">Platform</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="foot-bottom">
+                    <span
+                        >&copy; 2026
+                        <a
+                            class="volant-partners-link"
+                            href="https://www.volantpartners.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Volant Partners</a
+                        ></span
+                    ><span class="nrp"
+                        >No rug-pull: Vellis stays runnable.</span
+                    >
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

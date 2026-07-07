@@ -2,6 +2,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ga4TrackingFailures } from "./audit-site-rules.mjs";
 
 const siteRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -25,8 +26,6 @@ const requiredLabsFavicon = path.join(
   "logos",
   "volant-labs-flask-favicon.svg",
 );
-const ga4MeasurementId = "G-VNXWVPERBQ";
-const ga4ScriptUrl = `https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`;
 const publicFiles = listFiles(siteRoot)
   .filter((file) => /\.(html|js|xml|json|css)$/.test(file))
   .filter((file) => !file.includes(`${path.sep}design${path.sep}`))
@@ -528,30 +527,7 @@ function assertVolantPartnersFooterLinks(page, html) {
 }
 
 function assertGa4Tracking(page, html) {
-  if (new RegExp(`<script\\s+async\\s+src="${escapeRegExp(ga4ScriptUrl)}"\\s*>`).test(html)) {
-    failures.push(`${page} loads GA4 before checking the production host`);
-  }
-  if (!html.includes(ga4ScriptUrl)) {
-    failures.push(`${page} is missing the GA4 gtag.js loader for ${ga4MeasurementId}`);
-  }
-  if (
-    !/new Set\(\["volantlabs\.ai", "www\.volantlabs\.ai"\]\)/.test(html) ||
-    !/productionHosts\.has\(window\.location\.hostname\)/.test(html)
-  ) {
-    failures.push(`${page} is missing the GA4 production-host guard`);
-  }
-  if (!/window\.dataLayer\s*=\s*window\.dataLayer\s*\|\|\s*\[\]/.test(html)) {
-    failures.push(`${page} is missing the GA4 dataLayer initialization`);
-  }
-  if (!/window\.gtag\s*=\s*function gtag\(\)\s*\{\s*window\.dataLayer\.push\(arguments\);\s*\}/.test(html)) {
-    failures.push(`${page} is missing the GA4 gtag helper`);
-  }
-  if (!/window\.gtag\('js',\s*new Date\(\)\);/.test(html)) {
-    failures.push(`${page} is missing the GA4 js initialization event`);
-  }
-  if (!new RegExp(`window\\.gtag\\('config',\\s*'${escapeRegExp(ga4MeasurementId)}'\\);`).test(html)) {
-    failures.push(`${page} is missing the GA4 config call for ${ga4MeasurementId}`);
-  }
+  failures.push(...ga4TrackingFailures(page, html));
 }
 
 function normalizeWhitespace(value) {
