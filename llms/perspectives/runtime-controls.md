@@ -9,6 +9,12 @@ Published: 2026-06-04
 Reading time: 3 min read
 Author: Volant Labs
 Tags: Governance, Controls, Write path
+Subject matter: Not yet classified in the graph
+
+## Made With
+
+- Matthew Lou-Magnuson: Accountable author; Owns the argument, judgment, and final publication decision.
+- Graph snapshot: Context graph; The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z. (18,951 nodes; 45,005 links; 269 node types; 575 link rules)
 
 ## Summary
 

@@ -73,7 +73,7 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 ### 3.3 Thesis  *(story page — reworked 2026-06-17)* — Volant's point of view
 **Job:** carry the big story — for the "thinker" lane — in plain language, with a more cinematic landing-page feel.
 
-- **Hero** — full-viewport dark scene with animated node field and the central line: "The graph remembers. The model reasons. The human ratifies."
+- **Hero** — full-viewport dark scene with animated node field and the central line: "The graph remembers. The model reasons. You ratify."
 - **Story arc** — capability is abundant → text alone cannot carry the system → graph as theory → governance at execution.
 - **Operating loop** — remember → reason → ratify → run → compound.
 - **Promise** — open substrate and governed graduation path.

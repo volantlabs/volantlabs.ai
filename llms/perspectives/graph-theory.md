@@ -4,11 +4,18 @@ Canonical URL: https://volantlabs.ai/perspectives/graph-theory.html
 HTML path: /perspectives/graph-theory.html
 Collection: Perspectives
 Kind: Essay
-Status: Human essay
+Status: Essay
 Published: 2026-06-11
 Reading time: 4 min read
 Author: Eddie Austin
 Tags: Substrate, Legibility, Agentic software
+Subject matter: Substrate, Legibility, Agentic software
+
+## Made With
+
+- Eddie Austin: Accountable author; Owns the argument, judgment, and final publication decision.
+- Claude Opus 4.8: AI drafting partner; Helped compress, clarify, and shape the essay language without owning the final claims.
+- Graph snapshot: Context graph; The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z. (18,951 nodes; 45,005 links; 269 node types; 575 link rules)
 
 ## Summary
 

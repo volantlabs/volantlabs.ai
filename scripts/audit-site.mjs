@@ -24,7 +24,14 @@ const requiredLabsFavicon = path.join(
   siteRoot,
   "assets",
   "logos",
-  "volant-labs-flask-favicon.svg",
+  "volant-labs-favicon.svg",
+);
+const socialPreviewManifestPath = path.join(
+  siteRoot,
+  "assets",
+  "images",
+  "social",
+  "manifest.json",
 );
 const publicFiles = listFiles(siteRoot)
   .filter((file) => /\.(html|js|xml|json|css)$/.test(file))
@@ -41,7 +48,7 @@ const requiredStrings = [
   "https://www.volantpartners.com/contact",
   "Volant Partners helps teams turn complex technical work into reliable products, operations, and decisions.",
   "volant-labs-flask-mark.svg",
-  "volant-labs-flask-favicon.svg",
+  "volant-labs-favicon.svg",
 ];
 
 const approvedPartnersBlurb =
@@ -64,6 +71,7 @@ const forbiddenPatterns = [
 ];
 
 const failures = [];
+const socialPreviewManifest = readSocialPreviewManifest();
 const corpus = publicFiles
   .map((file) => `${relative(file)}\n${readFileSync(file, "utf8")}`)
   .join("\n");
@@ -116,6 +124,8 @@ for (const file of publicHtmlFiles) {
   assertGa4Tracking(relative(file), readFileSync(file, "utf8"));
 }
 
+assertSocialPreviewManifest();
+
 const handAuthoredPages = [
   "index.html",
   "engine.html",
@@ -143,7 +153,7 @@ for (const page of handAuthoredPages) {
     );
   }
   if (
-    !/<link\s+rel="icon"\s+href="assets\/logos\/volant-labs-flask-favicon\.svg"\s+type="image\/svg\+xml"\s*\/?>/.test(
+    !/<link\s+rel="icon"\s+href="assets\/logos\/volant-labs-favicon\.svg"\s+type="image\/svg\+xml"\s*\/?>/.test(
       html,
     )
   ) {
@@ -180,7 +190,7 @@ const sharedCss = readFileSync(
   "utf8",
 );
 if (
-  !/<link\s+rel="icon"\s+href="assets\/logos\/volant-labs-flask-favicon\.svg"\s+type="image\/svg\+xml"\s*\/?>/.test(
+  !/<link\s+rel="icon"\s+href="assets\/logos\/volant-labs-favicon\.svg"\s+type="image\/svg\+xml"\s*\/?>/.test(
     indexHtml,
   )
 ) {
@@ -188,7 +198,7 @@ if (
     "index.html is missing the relative Volant Labs SVG favicon link",
   );
 }
-if (/href="\/assets\/logos\/volant-labs-flask-favicon\.svg"/.test(indexHtml)) {
+if (/href="\/assets\/logos\/volant-labs-favicon\.svg"/.test(indexHtml)) {
   failures.push(
     "index.html favicon link should be relative so it works under app session routes",
   );
@@ -425,7 +435,7 @@ console.log(`Site audit passed (${publicFiles.length} public files checked).`);
 function listFiles(dir) {
   return readdirSync(dir).flatMap((entry) => {
     const full = path.join(dir, entry);
-    if (entry === ".DS_Store") return [];
+    if (entry === ".DS_Store" || entry === "node_modules") return [];
     return statSync(full).isDirectory() ? listFiles(full) : [full];
   });
 }
@@ -578,4 +588,165 @@ function parseAttributes(rawAttributes) {
     attributes[match[1].toLowerCase()] = match[2] ?? match[3] ?? "";
   }
   return attributes;
+}
+
+function readSocialPreviewManifest() {
+  if (!existsSync(socialPreviewManifestPath)) {
+    failures.push(
+      `Missing social preview manifest: ${relative(socialPreviewManifestPath)}`,
+    );
+    return [];
+  }
+  const raw = JSON.parse(readFileSync(socialPreviewManifestPath, "utf8"));
+  if (!Array.isArray(raw) || !raw.length) {
+    failures.push("Social preview manifest must contain preview records");
+    return [];
+  }
+  return raw;
+}
+
+function assertSocialPreviewManifest() {
+  const byPage = new Map();
+  const images = new Set();
+  const htmlPages = publicFiles
+    .filter((file) => file.endsWith(".html"))
+    .map((file) => htmlPageForFile(file));
+
+  for (const [index, preview] of socialPreviewManifest.entries()) {
+    const sourceRef = `assets/images/social/manifest.json[${index}]`;
+    for (const field of [
+      "page",
+      "title",
+      "description",
+      "twitterTitle",
+      "twitterDescription",
+      "image",
+      "width",
+      "height",
+      "alt",
+    ]) {
+      if (preview[field] === undefined || preview[field] === null || preview[field] === "") {
+        failures.push(`${sourceRef} missing required field ${field}`);
+      }
+    }
+
+    const page = normalizeSocialPage(preview.page ?? "");
+    if (byPage.has(page)) {
+      failures.push(`Duplicate social preview manifest page: ${page}`);
+    }
+    byPage.set(page, preview);
+
+    if (preview.width !== 1200 || preview.height !== 630) {
+      failures.push(`${sourceRef} must declare 1200x630 dimensions`);
+    }
+    if (typeof preview.image !== "string" || !preview.image.startsWith("assets/images/social/") || !preview.image.endsWith(".png")) {
+      failures.push(`${sourceRef} image must be a PNG under assets/images/social/`);
+      continue;
+    }
+    if (images.has(preview.image)) {
+      failures.push(`Social preview image is reused: ${preview.image}`);
+    }
+    images.add(preview.image);
+
+    const imagePath = path.join(siteRoot, preview.image);
+    if (!existsSync(imagePath)) {
+      failures.push(`${sourceRef} image does not exist: ${preview.image}`);
+    } else {
+      const dimensions = readPngDimensions(imagePath);
+      if (!dimensions) {
+        failures.push(`${sourceRef} image is not a readable PNG: ${preview.image}`);
+      } else if (dimensions.width !== 1200 || dimensions.height !== 630) {
+        failures.push(
+          `${sourceRef} image has ${dimensions.width}x${dimensions.height}; expected 1200x630`,
+        );
+      }
+    }
+
+    const htmlFile = htmlFileForSocialPage(page);
+    if (!existsSync(htmlFile)) {
+      failures.push(`${sourceRef} page does not exist: ${page}`);
+      continue;
+    }
+    const html = readFileSync(htmlFile, "utf8");
+    const htmlName = relative(htmlFile);
+    const imageUrl = `https://volantlabs.ai/${preview.image}`;
+    assertMetaEquals(htmlName, html, "property", "og:title", preview.title);
+    assertMetaEquals(htmlName, html, "property", "og:description", preview.description);
+    assertMetaEquals(htmlName, html, "property", "og:image", imageUrl);
+    assertMetaEquals(htmlName, html, "property", "og:image:width", String(preview.width));
+    assertMetaEquals(htmlName, html, "property", "og:image:height", String(preview.height));
+    assertMetaEquals(htmlName, html, "property", "og:image:alt", preview.alt);
+    assertMetaEquals(htmlName, html, "name", "twitter:card", "summary_large_image");
+    assertMetaEquals(htmlName, html, "name", "twitter:title", preview.twitterTitle);
+    assertMetaEquals(htmlName, html, "name", "twitter:description", preview.twitterDescription);
+    assertMetaEquals(htmlName, html, "name", "twitter:image", imageUrl);
+    assertMetaEquals(htmlName, html, "name", "twitter:image:alt", preview.alt);
+  }
+
+  for (const page of htmlPages) {
+    if (!byPage.has(page)) {
+      failures.push(`Public HTML page is missing from social preview manifest: ${page}`);
+    }
+  }
+
+  for (const file of publicFiles.filter((item) => item.endsWith(".html"))) {
+    const html = readFileSync(file, "utf8");
+    for (const attrName of ["og:image", "twitter:image"]) {
+      const attrType = attrName.startsWith("og:") ? "property" : "name";
+      const value = extractMetaContent(html, attrType, attrName);
+      if (value && /\.webp(?:$|\?)/i.test(value)) {
+        failures.push(`${relative(file)} ${attrName} must not use WebP: ${value}`);
+      }
+    }
+  }
+}
+
+function normalizeSocialPage(page) {
+  if (page === "/" || page === "") return "/";
+  return page.startsWith("/") ? page : `/${page}`;
+}
+
+function htmlFileForSocialPage(page) {
+  return path.join(siteRoot, page === "/" ? "index.html" : page.slice(1));
+}
+
+function htmlPageForFile(file) {
+  const page = `/${relative(file).replaceAll(path.sep, "/")}`;
+  return page === "/index.html" ? "/" : page;
+}
+
+function assertMetaEquals(page, html, attrType, attrName, expected) {
+  const actual = extractMetaContent(html, attrType, attrName);
+  if (actual !== expected) {
+    failures.push(
+      `${page} ${attrName} expected "${expected}" but found "${actual ?? "missing"}"`,
+    );
+  }
+}
+
+function extractMetaContent(html, attrType, attrName) {
+  const metaPattern = /<meta\b([^>]*)>/gi;
+  let match;
+  while ((match = metaPattern.exec(html))) {
+    const attrs = parseAttributes(match[1]);
+    if (attrs[attrType] === attrName) return attrs.content ?? null;
+  }
+  return null;
+}
+
+function readPngDimensions(filePath) {
+  const bytes = readFileSync(filePath);
+  if (
+    bytes.length < 24 ||
+    bytes[0] !== 0x89 ||
+    bytes[1] !== 0x50 ||
+    bytes[2] !== 0x4e ||
+    bytes[3] !== 0x47
+  ) {
+    return null;
+  }
+  return {
+    width: bytes.readUInt32BE(16),
+    height: bytes.readUInt32BE(20),
+  };
 }

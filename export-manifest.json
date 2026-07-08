@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "2026-07-07.export-manifest.v1",
+  "source": "kesher",
+  "sourcePath": "client_packs/volant/published_apps/volantlabs.ai",
+  "siteUrl": "https://volantlabs.ai",
+  "generator": "scripts/build-perspectives.mjs",
+  "generatorSchemaVersion": "2026-07-06.perspectives.v4",
+  "sourceCommit": "28007bc6f40a6e415a527e8922ab712e6cbcf50a",
+  "contentHash": "sha256:4e3daeceecaf8427a6b117699b157900803d4c2a4c39e16ba920ba794857db17",
+  "sourceSpecs": [
+    {
+      "id": "392e552b-5858-475e-a716-31d8f05bc5a6",
+      "name": "volantlabs.ai - Site Architecture"
+    },
+    {
+      "id": "7e5a2c91-4b3f-4d68-9a1c-e0f6b8d24a53",
+      "name": "volantlabs.ai - Perspectives Editorial Rubric"
+    }
+  ],
+  "editorial": {
+    "rubricVersion": "2026-07-07.v1",
+    "publishThreshold": 0.7,
+    "posts": [
+      {
+        "slug": "graph-theory",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.88,
+          "blockers": [],
+          "passed": true,
+          "publishingDecisionId": "8a6d0f59-4c7e-4b28-9d3f-6e0a2c5b8f71"
+        }
+      },
+      {
+        "slug": "runtime-controls",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.8333,
+          "blockers": [],
+          "passed": true,
+          "publishingDecisionId": "9b7e1a60-5d8f-4c39-8e4a-7f1b3d6c9a82"
+        }
+      },
+      {
+        "slug": "open-data",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.91,
+          "blockers": [],
+          "passed": true,
+          "publishingDecisionId": "0c8f2b71-6e9a-4d40-9f5b-8a2c4e7d0b93"
+        }
+      }
+    ]
+  },
+  "counts": {
+    "posts": 3
+  }
+}

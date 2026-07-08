@@ -63,6 +63,7 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 - **"Graphcasting" is cut from v1** — it does not appear anywhere public-facing. The story section is named **Thesis**.
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
 - **Perspectives publishing model:** launch copy should present authored essays and field notes. The JSON generator still supports provenance metadata for future graph-drafted work; keep that future-state language out of public copy until the workflow is real. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
+- **Perspectives attribution:** public "Made with" metadata comes from the graph export at `content/perspectives.graph-attribution.json`, not from per-article source JSON. It mirrors `PerspectiveContribution`, `GraphContextSnapshot`, and subject `Taxonomy` records from `volant_base`; the generator tolerates missing records and falls back to byline/tag display.
 - **Discovery fundamentals:** top-level pages carry canonical URLs, descriptions, Open Graph/Twitter preview metadata, RSS discovery, Markdown summary discovery, and theme color. Perspectives articles inherit the same baseline plus Article JSON-LD from `scripts/build-perspectives.mjs`; `sitemap.xml`, `llms.txt`, `perspectives/index.json`, and `llms/perspectives/*.md` are generated there too. Parked `domain-explorations.html` is intentionally `noindex,follow` and excluded from the sitemap.
 - **Repo scripts:** `npm run build` regenerates Perspectives outputs; `npm run check` verifies generated files are current.
 - **Launch posture:** the launch site presents Vellis as an Apache-licensed open-source repo. Users should see a clear `Run locally` path: clone the repo, follow the README, run the graph engine/MCP server pattern, and load a first graph. Do not route launch copy through access-request or contact-gate language.
@@ -93,7 +94,10 @@ The export script:
 - runs `npm run check` and `npm run audit` in the site bundle;
 - verifies the target checkout remote is `git@github.com:volantlabs/volantlabs.ai.git`;
 - refuses to overwrite a dirty target checkout;
+- refuses to derive a provenance commit from a dirty source checkout unless `EXPORT_SOURCE_COMMIT` is set explicitly;
 - syncs the site bundle with `rsync --delete`, preserving the target `.git/`, `.gitignore`, and common host-owned deployment metadata (`CNAME`, `.nojekyll`, `netlify.toml`, `vercel.json`, `_headers`, `_redirects`);
+- removes and excludes source-only `content/` so editorial checkdowns and other authoring metadata do not ship in the deployment mirror;
+- builds the deployment manifest with the Kesher source commit, then restores the source checkout's manifest after export;
 - stages the resulting mirror changes in the deployment repo.
 
 After export, inspect and publish from the deployment repo:

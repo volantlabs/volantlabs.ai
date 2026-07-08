@@ -1,7 +1,7 @@
 {
   "schemaVersion": "2026-06-27.perspectives.index.v1",
   "siteUrl": "https://volantlabs.ai",
-  "generatedFrom": "json",
+  "generatedFrom": "json+graph-attribution",
   "collection": {
     "title": "volantlabs.ai Perspectives",
     "url": "https://volantlabs.ai/perspectives.html",
@@ -24,8 +24,69 @@
       "displayDate": "June 11, 2026",
       "readingTime": "4 min read",
       "author": "Eddie Austin",
+      "subjectMatter": [
+        "Substrate",
+        "Legibility",
+        "Agentic software"
+      ],
+      "madeWith": {
+        "label": "Made with",
+        "explanation": "Made with separates accountability from assistance. The human author owns the argument and final judgment; models and graph context are named when they materially shaped the published piece.",
+        "items": [
+          {
+            "label": "Eddie Austin",
+            "role": "Accountable author",
+            "kind": "person",
+            "summary": "thesis + final judgment",
+            "detail": "Owns the argument, judgment, and final publication decision.",
+            "initials": "EA",
+            "avatar": {
+              "src": "assets/images/contributors/eddie-austin.png",
+              "alt": "Eddie Austin"
+            },
+            "metrics": []
+          },
+          {
+            "label": "Claude Opus 4.8",
+            "role": "AI drafting partner",
+            "kind": "model",
+            "summary": "drafting + simplification",
+            "detail": "Helped compress, clarify, and shape the essay language without owning the final claims.",
+            "initials": "AI",
+            "avatar": null,
+            "metrics": []
+          },
+          {
+            "label": "Graph snapshot",
+            "role": "Context graph",
+            "kind": "graph",
+            "summary": "18,951 nodes / 45,005 links",
+            "detail": "The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z.",
+            "initials": "KG",
+            "avatar": null,
+            "metrics": [
+              {
+                "value": "18,951",
+                "label": "nodes"
+              },
+              {
+                "value": "45,005",
+                "label": "links"
+              },
+              {
+                "value": "269",
+                "label": "node types"
+              },
+              {
+                "value": "575",
+                "label": "link rules"
+              }
+            ]
+          }
+        ]
+      },
       "provenanceLine": "By Eddie Austin",
-      "statusLabel": "Human essay",
+      "statusLabel": "Essay",
       "tags": [
         "Substrate",
         "Legibility",
@@ -59,6 +120,50 @@
       "displayDate": "June 4, 2026",
       "readingTime": "3 min read",
       "author": null,
+      "subjectMatter": [],
+      "madeWith": {
+        "label": "Made with",
+        "explanation": "Made with separates accountability from assistance. The human author owns the argument and final judgment; models and graph context are named when they materially shaped the published piece.",
+        "items": [
+          {
+            "label": "Matthew Lou-Magnuson",
+            "role": "Accountable author",
+            "kind": "person",
+            "summary": "thesis + final judgment",
+            "detail": "Owns the argument, judgment, and final publication decision.",
+            "initials": "ML",
+            "avatar": null,
+            "metrics": []
+          },
+          {
+            "label": "Graph snapshot",
+            "role": "Context graph",
+            "kind": "graph",
+            "summary": "18,951 nodes / 45,005 links",
+            "detail": "The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z.",
+            "initials": "KG",
+            "avatar": null,
+            "metrics": [
+              {
+                "value": "18,951",
+                "label": "nodes"
+              },
+              {
+                "value": "45,005",
+                "label": "links"
+              },
+              {
+                "value": "269",
+                "label": "node types"
+              },
+              {
+                "value": "575",
+                "label": "link rules"
+              }
+            ]
+          }
+        ]
+      },
       "provenanceLine": "Volant Labs field note",
       "statusLabel": "Field note",
       "tags": [
@@ -94,6 +199,50 @@
       "displayDate": "May 27, 2026",
       "readingTime": "4 min read",
       "author": null,
+      "subjectMatter": [],
+      "madeWith": {
+        "label": "Made with",
+        "explanation": "Made with separates accountability from assistance. The human author owns the argument and final judgment; models and graph context are named when they materially shaped the published piece.",
+        "items": [
+          {
+            "label": "Andrew Forman",
+            "role": "Accountable author",
+            "kind": "person",
+            "summary": "thesis + final judgment",
+            "detail": "Owns the argument, judgment, and final publication decision.",
+            "initials": "AF",
+            "avatar": null,
+            "metrics": []
+          },
+          {
+            "label": "Graph snapshot",
+            "role": "Context graph",
+            "kind": "graph",
+            "summary": "18,951 nodes / 45,005 links",
+            "detail": "The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z.",
+            "initials": "KG",
+            "avatar": null,
+            "metrics": [
+              {
+                "value": "18,951",
+                "label": "nodes"
+              },
+              {
+                "value": "45,005",
+                "label": "links"
+              },
+              {
+                "value": "269",
+                "label": "node types"
+              },
+              {
+                "value": "575",
+                "label": "link rules"
+              }
+            ]
+          }
+        ]
+      },
       "provenanceLine": "Volant Labs field note",
       "statusLabel": "Field note",
       "tags": [
@@ -103,119 +252,14 @@
       ],
       "related": [
         {
-          "slug": "no-rug-pull-license",
-          "url": "https://volantlabs.ai/perspectives/no-rug-pull-license.html",
-          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/no-rug-pull-license.md"
-        },
-        {
           "slug": "runtime-controls",
           "url": "https://volantlabs.ai/perspectives/runtime-controls.html",
           "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/runtime-controls.md"
-        }
-      ]
-    },
-    {
-      "slug": "legibility-wedge",
-      "url": "https://volantlabs.ai/perspectives/legibility-wedge.html",
-      "htmlPath": "perspectives/legibility-wedge.html",
-      "markdownSummaryPath": "llms/perspectives/legibility-wedge.md",
-      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/legibility-wedge.md",
-      "kind": "essays",
-      "kindLabel": "Essay",
-      "title": "Legibility is the wedge for agentic software",
-      "shortTitle": "Legibility is the wedge",
-      "dek": "Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.",
-      "published": "2026-05-19",
-      "displayDate": "May 19, 2026",
-      "readingTime": "3 min read",
-      "author": "Eddie Austin",
-      "provenanceLine": "By Eddie Austin",
-      "statusLabel": "Human essay",
-      "tags": [
-        "Agents",
-        "Legibility",
-        "Human judgment"
-      ],
-      "related": [
+        },
         {
           "slug": "graph-theory",
           "url": "https://volantlabs.ai/perspectives/graph-theory.html",
           "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/graph-theory.md"
-        },
-        {
-          "slug": "runtime-controls",
-          "url": "https://volantlabs.ai/perspectives/runtime-controls.html",
-          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/runtime-controls.md"
-        }
-      ]
-    },
-    {
-      "slug": "domain-explorations-matter",
-      "url": "https://volantlabs.ai/perspectives/domain-explorations-matter.html",
-      "htmlPath": "perspectives/domain-explorations-matter.html",
-      "markdownSummaryPath": "llms/perspectives/domain-explorations-matter.md",
-      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/domain-explorations-matter.md",
-      "kind": "notes",
-      "kindLabel": "Field note",
-      "title": "Why domain explorations matter",
-      "shortTitle": "Why domain explorations matter",
-      "dek": "A field note on worked models as the bridge between abstract infrastructure and practical adoption.",
-      "published": "2026-05-08",
-      "displayDate": "May 8, 2026",
-      "readingTime": "3 min read",
-      "author": null,
-      "provenanceLine": "Volant Labs field note",
-      "statusLabel": "Field note",
-      "tags": [
-        "Domain packs",
-        "Adoption",
-        "Worked models"
-      ],
-      "related": [
-        {
-          "slug": "open-data",
-          "url": "https://volantlabs.ai/perspectives/open-data.html",
-          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
-        },
-        {
-          "slug": "legibility-wedge",
-          "url": "https://volantlabs.ai/perspectives/legibility-wedge.html",
-          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/legibility-wedge.md"
-        }
-      ]
-    },
-    {
-      "slug": "no-rug-pull-license",
-      "url": "https://volantlabs.ai/perspectives/no-rug-pull-license.html",
-      "htmlPath": "perspectives/no-rug-pull-license.html",
-      "markdownSummaryPath": "llms/perspectives/no-rug-pull-license.md",
-      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/no-rug-pull-license.md",
-      "kind": "notes",
-      "kindLabel": "Field note",
-      "title": "No rug-pull means more than a license",
-      "shortTitle": "No rug-pull means more than a license",
-      "dek": "A field note on trust signals: Apache licensing, portability, export path, and production support that does not compete with Vellis.",
-      "published": "2026-04-29",
-      "displayDate": "April 29, 2026",
-      "readingTime": "3 min read",
-      "author": null,
-      "provenanceLine": "Volant Labs field note",
-      "statusLabel": "Field note",
-      "tags": [
-        "Trust",
-        "License",
-        "Export"
-      ],
-      "related": [
-        {
-          "slug": "open-data",
-          "url": "https://volantlabs.ai/perspectives/open-data.html",
-          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
-        },
-        {
-          "slug": "domain-explorations-matter",
-          "url": "https://volantlabs.ai/perspectives/domain-explorations-matter.html",
-          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/domain-explorations-matter.md"
         }
       ]
     }
