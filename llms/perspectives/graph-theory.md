@@ -4,7 +4,7 @@ Canonical URL: https://volantlabs.ai/perspectives/graph-theory.html
 HTML path: /perspectives/graph-theory.html
 Collection: Perspectives
 Kind: Essay
-Status: Human essay
+Status: Essay
 Published: 2026-06-11
 Reading time: 4 min read
 Author: Eddie Austin

@@ -18,7 +18,7 @@ window.PERSPECTIVE_POSTS = [
     },
     "author": "Eddie Austin",
     "provenanceLine": "By Eddie Austin",
-    "statusLabel": "Human essay",
+    "statusLabel": "Essay",
     "tags": [
       "Substrate",
       "Legibility",
@@ -29,13 +29,13 @@ window.PERSPECTIVE_POSTS = [
         "heading": "A graph is not a filing cabinet",
         "paragraphs": [
           "Most software treats structure as a convenience for storage. Tables hold rows. Documents hold paragraphs. Search gives you a way back into the pile. That helps people retrieve things, but it does not help a system understand what kind of thing it is touching.",
-          "A useful graph does something stronger. It says that the relationships are part of the meaning. A supplier does not merely sit near a part; it qualifies, constrains, and changes what the part means. A policy does not merely describe a write path; it can become part of whether that path should run at all."
+          "A useful graph does something stronger. It says the relationships are part of the meaning. A supplier does not merely sit near a part; it qualifies, constrains, and changes what the part means. A policy does not merely describe a write path; it can decide whether that path runs at all."
         ]
       },
       {
         "heading": "Theory becomes executable when the system can test it",
         "paragraphs": [
-          "Vellis is interesting because it lets the graph carry a point of view. Types, links, and constraints are not a diagram about the system. They are a theory the system can execute against: this node may connect to that one, this edge carries this implication, this proposed change has to pass this rule.",
+          "Vellis lets the graph carry a point of view. Types, links, and constraints are not a diagram about the system. They are a theory the system can execute against: this node may connect to that one, this edge carries this implication, this proposed change has to pass this rule.",
           "That is the wedge for agentic software. Agents do not need a larger pile of text. They need a world where the important distinctions are already named, where traversals reveal context, and where uncertain changes have somewhere to slow down."
         ]
       },
@@ -90,15 +90,15 @@ window.PERSPECTIVE_POSTS = [
       {
         "heading": "Controls that live after execution become paperwork",
         "paragraphs": [
-          "A policy that only appears after a system has already changed state is not really controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.",
+          "A policy that appears only after the system has changed state is not controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.",
           "Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for review, or stops."
         ]
       },
       {
         "heading": "The graph gives policy something to inspect",
         "paragraphs": [
-          "Rules become much more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human reviewed this source? Does this write cross a boundary that requires an explicit approval?",
-          "Those questions are not generic security theater. They are domain questions. The graph makes them available at the moment of action, which is where governance stops being a ceremony and starts becoming a substrate."
+          "Rules become more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human reviewed this source? Does this write cross a boundary that requires explicit approval?",
+          "Those questions are not security theater. They are domain questions. The graph makes them available at the moment of action, which is where governance stops being a ceremony and becomes a substrate."
         ]
       },
       {
@@ -153,21 +153,21 @@ window.PERSPECTIVE_POSTS = [
         "heading": "Open does not mean undifferentiated",
         "paragraphs": [
           "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. Vellis can stay open because the substrate is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
-          "The proprietary value appears in the work an organization does with it. Their domain model, policy choices, operating history, reviewed decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
+          "The proprietary value lives in the work an organization does with it. Their domain model, policy choices, operating history, reviewed decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
         ]
       },
       {
         "heading": "Portability is the trust signal",
         "paragraphs": [
           "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? Vellis answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
-          "That is also why production support should not compete with Vellis. Services can add write controls, audit traces, approvals, and enterprise controls. They should not make the open substrate feel like bait."
+          "That is why production support should not compete with Vellis. Services can add write gates, audit traces, approvals, and enterprise controls. They should not make the open substrate feel like bait."
         ]
       },
       {
         "heading": "The line makes both sides stronger",
         "paragraphs": [
-          "When the open layer is real, more people can inspect, run, and extend the basic model. When the proprietary layer is respected, organizations can invest in their own operational graph without feeling that their intelligence is being laundered into a vendor moat.",
-          "The result is a healthier bargain: open data mechanics, proprietary intelligence where it actually belongs, and a graduation path that adds governance without rewriting the user's world."
+          "When the open layer is real, more people can inspect, run, and extend the basic model. When the proprietary layer is respected, organizations can invest in their own operational graph without worrying that their intelligence is being laundered into a vendor moat.",
+          "The result is a healthier bargain: open data mechanics, proprietary intelligence where it belongs, and a graduation path that adds governance without rewriting the organization's world."
         ]
       }
     ],
@@ -204,7 +204,7 @@ window.PERSPECTIVE_POSTS = [
     },
     "author": "Eddie Austin",
     "provenanceLine": "By Eddie Austin",
-    "statusLabel": "Human essay",
+    "statusLabel": "Essay",
     "tags": [
       "Agents",
       "Legibility",

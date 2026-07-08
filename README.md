@@ -93,7 +93,10 @@ The export script:
 - runs `npm run check` and `npm run audit` in the site bundle;
 - verifies the target checkout remote is `git@github.com:volantlabs/volantlabs.ai.git`;
 - refuses to overwrite a dirty target checkout;
+- refuses to derive a provenance commit from a dirty source checkout unless `EXPORT_SOURCE_COMMIT` is set explicitly;
 - syncs the site bundle with `rsync --delete`, preserving the target `.git/`, `.gitignore`, and common host-owned deployment metadata (`CNAME`, `.nojekyll`, `netlify.toml`, `vercel.json`, `_headers`, `_redirects`);
+- removes and excludes source-only `content/` so editorial checkdowns and other authoring metadata do not ship in the deployment mirror;
+- builds the deployment manifest with the Kesher source commit, then restores the source checkout's manifest after export;
 - stages the resulting mirror changes in the deployment repo.
 
 After export, inspect and publish from the deployment repo:

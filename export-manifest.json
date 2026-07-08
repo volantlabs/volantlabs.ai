@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "2026-07-07.export-manifest.v1",
+  "source": "kesher",
+  "sourcePath": "client_packs/volant/published_apps/volantlabs.ai",
+  "siteUrl": "https://volantlabs.ai",
+  "generator": "scripts/build-perspectives.mjs",
+  "generatorSchemaVersion": "2026-07-06.perspectives.v4",
+  "sourceCommit": "0798f7435364137c7eb6c8643dbabcdd49dc2390",
+  "contentHash": "sha256:49d17edc360a8bdbf1be6704b8b3c34066e6eebed185f06eb44b724bf7210580",
+  "sourceSpecs": [
+    {
+      "id": "392e552b-5858-475e-a716-31d8f05bc5a6",
+      "name": "volantlabs.ai - Site Architecture"
+    },
+    {
+      "id": "7e5a2c91-4b3f-4d68-9a1c-e0f6b8d24a53",
+      "name": "volantlabs.ai - Perspectives Editorial Rubric"
+    }
+  ],
+  "editorial": {
+    "rubricVersion": "2026-07-07.v1",
+    "publishThreshold": 0.7,
+    "posts": [
+      {
+        "slug": "graph-theory",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.88,
+          "blockers": [],
+          "passed": true
+        }
+      },
+      {
+        "slug": "runtime-controls",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.8333,
+          "blockers": [],
+          "passed": true
+        }
+      },
+      {
+        "slug": "open-data",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.91,
+          "blockers": [],
+          "passed": true
+        }
+      },
+      {
+        "slug": "legibility-wedge",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.85,
+          "blockers": [],
+          "passed": true
+        }
+      },
+      {
+        "slug": "domain-explorations-matter",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.7733,
+          "blockers": [],
+          "passed": true
+        }
+      },
+      {
+        "slug": "no-rug-pull-license",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "post_publish_review",
+          "reviewedAt": "2026-07-07",
+          "composite": 0.8333,
+          "blockers": [],
+          "passed": true
+        }
+      }
+    ]
+  },
+  "counts": {
+    "posts": 6
+  }
+}

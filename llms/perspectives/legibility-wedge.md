@@ -4,7 +4,7 @@ Canonical URL: https://volantlabs.ai/perspectives/legibility-wedge.html
 HTML path: /perspectives/legibility-wedge.html
 Collection: Perspectives
 Kind: Essay
-Status: Human essay
+Status: Essay
 Published: 2026-05-19
 Reading time: 3 min read
 Author: Eddie Austin

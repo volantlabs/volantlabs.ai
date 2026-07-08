@@ -9,16 +9,16 @@
 <meta property="og:description" content="A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://volantlabs.ai/perspectives/runtime-controls.html">
-<meta property="og:image" content="https://volantlabs.ai/assets/images/perspectives/runtime-controls.webp">
-<meta property="og:image:width" content="1672">
-<meta property="og:image:height" content="941">
-<meta property="og:image:alt" content="Runtime control network diagram with an orange policy gate inspecting graph evidence and routing write outcomes.">
+<meta property="og:image" content="https://volantlabs.ai/assets/images/social/perspective-runtime-controls.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A write path passing through a runtime policy gate.">
 <meta property="article:published_time" content="2026-06-04">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Runtime-native controls: policy where execution happens">
 <meta name="twitter:description" content="A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.">
-<meta name="twitter:image" content="https://volantlabs.ai/assets/images/perspectives/runtime-controls.webp">
-<meta name="twitter:image:alt" content="Runtime control network diagram with an orange policy gate inspecting graph evidence and routing write outcomes.">
+<meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/perspective-runtime-controls.png">
+<meta name="twitter:image:alt" content="A write path passing through a runtime policy gate.">
 <meta name="theme-color" content="#041026">
 <link rel="canonical" href="https://volantlabs.ai/perspectives/runtime-controls.html">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
@@ -38,7 +38,7 @@
   "description": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
   "datePublished": "2026-06-04",
   "mainEntityOfPage": "https://volantlabs.ai/perspectives/runtime-controls.html",
-  "image": "https://volantlabs.ai/assets/images/perspectives/runtime-controls.webp",
+  "image": "https://volantlabs.ai/assets/images/social/perspective-runtime-controls.png",
   "inLanguage": "en",
   "author": {
     "@type": "Organization",
@@ -93,7 +93,7 @@
     <div class="wrap article-hero-grid">
       <div>
         <a class="backlink" href="../perspectives.html">Back to Perspectives</a>
-        <span class="lanepill notes">Field note</span>
+        
         <h1>Runtime-native controls: policy where execution happens</h1>
         <p class="dek">A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.</p>
         <div class="article-meta">
@@ -115,11 +115,11 @@
   <section class="article-main wrap">
     <article class="article-body">
         <h2>Controls that live after execution become paperwork</h2>
-        <p>A policy that only appears after a system has already changed state is not really controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.</p>
+        <p>A policy that appears only after the system has changed state is not controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.</p>
         <p>Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for review, or stops.</p>
         <h2>The graph gives policy something to inspect</h2>
-        <p>Rules become much more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human reviewed this source? Does this write cross a boundary that requires an explicit approval?</p>
-        <p>Those questions are not generic security theater. They are domain questions. The graph makes them available at the moment of action, which is where governance stops being a ceremony and starts becoming a substrate.</p>
+        <p>Rules become more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human reviewed this source? Does this write cross a boundary that requires explicit approval?</p>
+        <p>Those questions are not security theater. They are domain questions. The graph makes them available at the moment of action, which is where governance stops being a ceremony and becomes a substrate.</p>
         <h2>The audit trail should be a byproduct</h2>
         <p>When controls run at execution time, the audit record becomes a natural residue of the decision. The system can capture who or what proposed the change, which policy applied, what evidence was consulted, and how the final decision was made.</p>
         <p>That is a quieter, stronger promise than bolting an approval log onto an opaque process. The trace is useful because it was born inside the control loop.</p>
@@ -153,13 +153,11 @@
       </div>
       <div class="related-grid">
         <a class="related-card" href="../perspectives/graph-theory.html">
-          <span class="lanepill essays">Essay</span>
           <h3>The graph is a theory</h3>
           <p>Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.</p>
           <span class="read">Read next -&gt;</span>
         </a>
         <a class="related-card" href="../perspectives/open-data.html">
-          <span class="lanepill notes">Field note</span>
           <h3>Open data, proprietary intelligence</h3>
           <p>The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.</p>
           <span class="read">Read next -&gt;</span>
