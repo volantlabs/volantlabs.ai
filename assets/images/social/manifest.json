@@ -1,0 +1,112 @@
+[
+  {
+    "page": "/",
+    "title": "Vellis: open-source shared memory for AI agents",
+    "description": "Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and exportable.",
+    "twitterTitle": "Vellis: open-source shared memory for AI agents",
+    "twitterDescription": "Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and exportable.",
+    "image": "assets/images/social/home-vellis-shared-memory.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A large orange Vellis memory node connecting AI agents and tools."
+  },
+  {
+    "page": "/engine.html",
+    "title": "Vellis Engine: typed context graph for local AI work",
+    "description": "Apache-licensed graph engine and MCP server pattern for local shared agent memory, validation, traversal, and export.",
+    "twitterTitle": "Vellis Engine: typed context graph for local AI work",
+    "twitterDescription": "Apache-licensed graph engine and MCP server pattern for local shared agent memory, validation, traversal, and export.",
+    "image": "assets/images/social/engine-local-graph.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A local engine panel connected to a typed graph."
+  },
+  {
+    "page": "/thesis.html",
+    "title": "The Vellis thesis: memory, reasoning, review",
+    "description": "Why graph-native infrastructure lets systems remember, models reason, and humans ratify work without surrendering context.",
+    "twitterTitle": "The Vellis thesis: memory, reasoning, review",
+    "twitterDescription": "Why graph-native infrastructure lets systems remember, models reason, and humans ratify work without surrendering context.",
+    "image": "assets/images/social/thesis-memory-reasoning-review.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Three large connected nodes representing memory, reasoning, and review."
+  },
+  {
+    "page": "/perspectives.html",
+    "title": "Perspectives from Volant Labs",
+    "description": "Essays and field notes on typed context graphs, open agent memory, provenance, controls, and governed operations.",
+    "twitterTitle": "Perspectives from Volant Labs",
+    "twitterDescription": "Essays and field notes on typed context graphs, open agent memory, provenance, controls, and governed operations.",
+    "image": "assets/images/social/perspectives-library.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A stack of perspective cards connected to a central graph node."
+  },
+  {
+    "page": "/community.html",
+    "title": "Build with Vellis",
+    "description": "Run Vellis, follow releases, share examples, and ask direct questions as the open graph engine takes shape.",
+    "twitterTitle": "Build with Vellis",
+    "twitterDescription": "Run Vellis, follow releases, share examples, and ask direct questions as the open graph engine takes shape.",
+    "image": "assets/images/social/community-builder-path.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A bold path of connected builder nodes."
+  },
+  {
+    "page": "/platform.html",
+    "title": "Vellis in governed production",
+    "description": "Carry the open Vellis substrate into production with operating controls, audit paths, and approval workflows.",
+    "twitterTitle": "Vellis in governed production",
+    "twitterDescription": "Carry the open Vellis substrate into production with operating controls, audit paths, and approval workflows.",
+    "image": "assets/images/social/platform-governed-operations.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A Vellis graph passing through a governance gate into an audit record."
+  },
+  {
+    "page": "/domain-explorations.html",
+    "title": "Domain Explorations: worked Vellis models",
+    "description": "A parked fast-follow page for reference graph packs, public-standard mappings, narrow workflow examples, and community builds.",
+    "twitterTitle": "Domain Explorations: worked Vellis models",
+    "twitterDescription": "A parked fast-follow page for reference graph packs, public-standard mappings, narrow workflow examples, and community builds.",
+    "image": "assets/images/social/domain-explorations-worked-models.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Four domain model panels connected to a shared graph substrate."
+  },
+  {
+    "page": "/perspectives/graph-theory.html",
+    "title": "The graph is a theory",
+    "description": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view.",
+    "twitterTitle": "The graph is a theory",
+    "twitterDescription": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view.",
+    "image": "assets/images/social/perspective-graph-theory.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A central theory node connected to four evidence neighborhoods."
+  },
+  {
+    "page": "/perspectives/runtime-controls.html",
+    "title": "Runtime-native controls: policy where execution happens",
+    "description": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
+    "twitterTitle": "Runtime-native controls: policy where execution happens",
+    "twitterDescription": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
+    "image": "assets/images/social/perspective-runtime-controls.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "A write path passing through a runtime policy gate."
+  },
+  {
+    "page": "/perspectives/open-data.html",
+    "title": "Open data, proprietary intelligence",
+    "description": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
+    "twitterTitle": "Open data, proprietary intelligence",
+    "twitterDescription": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
+    "image": "assets/images/social/perspective-open-data.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Private intelligence nodes growing from an open Vellis substrate."
+  }
+]

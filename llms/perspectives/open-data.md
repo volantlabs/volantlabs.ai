@@ -9,6 +9,12 @@ Published: 2026-05-27
 Reading time: 4 min read
 Author: Volant Labs
 Tags: Vellis, Portability, Compounding intelligence
+Subject matter: Not yet classified in the graph
+
+## Made With
+
+- Andrew Forman: Accountable author; Owns the argument, judgment, and final publication decision.
+- Graph snapshot: Context graph; The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z. (18,951 nodes; 45,005 links; 269 node types; 575 link rules)
 
 ## Summary
 
@@ -36,5 +42,5 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 
 ## Related Pages
 
-- [No rug-pull means more than a license](https://volantlabs.ai/perspectives/no-rug-pull-license.html)
 - [Runtime-native controls: policy where execution happens](https://volantlabs.ai/perspectives/runtime-controls.html)
+- [The graph is a theory](https://volantlabs.ai/perspectives/graph-theory.html)

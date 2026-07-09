@@ -18,9 +18,6 @@ Use these Markdown summaries for fast retrieval and routing. Use the canonical H
 - [The graph is a theory](https://volantlabs.ai/llms/perspectives/graph-theory.md): Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.
 - [Runtime-native controls: policy where execution happens](https://volantlabs.ai/llms/perspectives/runtime-controls.md): A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.
 - [Open data, proprietary intelligence](https://volantlabs.ai/llms/perspectives/open-data.md): The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.
-- [Legibility is the wedge for agentic software](https://volantlabs.ai/llms/perspectives/legibility-wedge.md): Agents become more useful when the system can show them what things mean, how they relate, and which changes require judgment.
-- [Why domain explorations matter](https://volantlabs.ai/llms/perspectives/domain-explorations-matter.md): A field note on worked models as the bridge between abstract infrastructure and practical adoption.
-- [No rug-pull means more than a license](https://volantlabs.ai/llms/perspectives/no-rug-pull-license.md): A field note on trust signals: Apache licensing, portability, export path, and production support that does not compete with Vellis.
 
 ## Machine-Readable Resources
 
