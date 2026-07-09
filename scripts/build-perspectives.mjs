@@ -28,7 +28,9 @@ const checkOnly = process.argv.includes("--check");
 const contentSourceName = process.env.PERSPECTIVES_SOURCE || "json";
 let resolvedContentSourceName = contentSourceName;
 const localContributorAvatarsByName = new Map([
-  ["Eddie Austin", { src: "assets/images/contributors/eddie-austin.png", alt: "Eddie Austin" }]
+  ["Andrew Forman", { src: "assets/images/contributors/andrew-forman.png", alt: "Andrew Forman" }],
+  ["Eddie Austin", { src: "assets/images/contributors/eddie-austin.png", alt: "Eddie Austin" }],
+  ["Matthew Lou-Magnuson", { src: "assets/images/contributors/matthew-lou-magnuson.png", alt: "Matthew Lou-Magnuson" }]
 ]);
 const kindLabelsByKind = new Map([
   ["essays", "Essay"],
@@ -60,7 +62,7 @@ const manifest = {
   ],
   filters: ["all", "essays", "notes"]
 };
-// Editorial rubric per Kesher Specification 7e5a2c91-4b3f-4d68-9a1c-e0f6b8d24a53
+// Editorial rubric per graph Specification 7e5a2c91-4b3f-4d68-9a1c-e0f6b8d24a53
 // ("volantlabs.ai — Perspectives Editorial Rubric") and DecisionRecord
 // 3f8c1b6e-9a24-4e07-b5d1-6c2a8f4e9b70. Weights mirror the EditorialCriterion
 // nodes in volant_base; keep the two in sync when re-versioning the rubric.
@@ -818,7 +820,7 @@ function renderExportManifest(posts, editorialReport) {
     .digest("hex");
   const payload = {
     schemaVersion: "2026-07-07.export-manifest.v1",
-    source: "kesher",
+    source: "graph",
     sourcePath: "client_packs/volant/published_apps/volantlabs.ai",
     siteUrl: manifest.siteUrl,
     generator: "scripts/build-perspectives.mjs",

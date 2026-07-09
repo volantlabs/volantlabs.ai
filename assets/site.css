@@ -100,6 +100,18 @@ header .brand .glyph [fill="#001E50"],header .brand .glyph [fill="#9FB0CC"]{fill
   .navright .btn-primary{padding:0 12px}
 }
 
+/* ---- First viewport rhythm ---- */
+.hero.hero-rhythm > .wrap,
+.pagehead.pagehead-rhythm > .wrap{padding-top:var(--s24)}
+.hero.hero-rhythm .hero-copy{align-self:start}
+.pagehead.pagehead-rhythm > .wrap{padding-left:var(--s12);padding-right:var(--s12)}
+.hero.hero-rhythm-story{align-items:flex-start}
+@media(max-width:760px){
+  .hero.hero-rhythm > .wrap,
+  .pagehead.pagehead-rhythm > .wrap{padding-top:var(--s16)}
+  .pagehead.pagehead-rhythm > .wrap{padding-left:20px;padding-right:20px}
+}
+
 /* ---- Section scaffolding ---- */
 section.band{padding:var(--s24) 0}
 @media(max-width:760px){section.band{padding:var(--s16) 0}}

@@ -6,7 +6,7 @@ Primary audience: thinkers, technical leaders, and people evaluating the point o
 
 ## Summary
 
-The Thesis explains the Volant Labs point of view: the graph remembers, the model reasons, and you ratify meaningful changes. It argues that AI-native work needs a substrate where memory, schema, governance, and human judgment remain legible.
+The Thesis explains the Volant Labs point of view: the graph remembers, the model reasons, and you ratify meaningful changes. It argues that agentic systems need a substrate where memory, schema, governance, and human judgment remain legible.
 
 ## Use This Page For
 
@@ -18,7 +18,7 @@ The Thesis explains the Volant Labs point of view: the graph remembers, the mode
 
 - Durable graph context is a foundation for more useful agents.
 - Human judgment remains visible in the loop.
-- The graph is not passive storage; it is an executable point of view about work.
+- Each useful run should leave typed context the next agent can use.
 
 ## Related Pages
 

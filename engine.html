@@ -306,6 +306,241 @@
             .more .arr {
                 transition: transform 0.15s ease;
             }
+            /* ---- RTG model diagram ---- */
+            .model {
+                background: var(--labs-base);
+                border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line);
+            }
+            .model .band-head {
+                align-items: end;
+            }
+            .model-tag {
+                color: var(--muted);
+                font-family: var(--mono);
+                font-size: 12px;
+                white-space: nowrap;
+            }
+            .model-stage {
+                display: grid;
+                gap: 18px;
+            }
+            .model-rail,
+            .model-node {
+                appearance: none;
+                width: 100%;
+                color: inherit;
+                cursor: pointer;
+                font: inherit;
+                text-align: left;
+                background: transparent;
+                transition:
+                    background 0.16s ease,
+                    border-color 0.16s ease;
+            }
+            .model-rail {
+                display: grid;
+                grid-template-columns: 42px 190px minmax(0, 1fr);
+                gap: 14px;
+                align-items: center;
+                border: 0;
+                border-top: 1px solid rgba(159, 176, 204, 0.22);
+                border-bottom: 1px solid rgba(159, 176, 204, 0.12);
+                padding: 11px 0 11px 8px;
+            }
+            .model-core {
+                display: grid;
+                grid-template-columns:
+                    minmax(0, 1fr) 92px minmax(0, 1fr) 92px
+                    minmax(0, 1fr);
+                align-items: center;
+            }
+            .model-node {
+                height: 178px;
+                border: 1px solid rgba(159, 176, 204, 0.24);
+                border-radius: 8px;
+                background: rgba(7, 26, 59, 0.46);
+                display: grid;
+                align-content: start;
+                gap: 7px;
+                padding: var(--s4);
+            }
+            .model-node.anchor {
+                border-color: rgba(209, 91, 33, 0.62);
+                background: rgba(209, 91, 33, 0.1);
+            }
+            .model-rail:hover,
+            .model-rail:focus-visible,
+            .model-rail.is-selected,
+            .model-node:hover,
+            .model-node:focus-visible,
+            .model-node.is-selected {
+                border-color: var(--orange);
+                background: rgba(209, 91, 33, 0.18);
+                outline: none;
+            }
+            .model-rail:focus-visible,
+            .model-node:focus-visible {
+                outline: 2px solid var(--orange);
+                outline-offset: 3px;
+            }
+            .model-number {
+                width: 30px;
+                height: 30px;
+                border: 1px solid rgba(209, 91, 33, 0.72);
+                border-radius: 999px;
+                color: var(--orange);
+                display: inline-grid;
+                place-items: center;
+                font-family: var(--mono);
+                font-size: 12px;
+                font-weight: 600;
+            }
+            .model-kicker,
+            .model-label,
+            .model-flow {
+                color: var(--orange);
+                font-family: var(--mono);
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+            }
+            .model-meta {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .model-copy strong,
+            .model-node strong {
+                display: block;
+                font-weight: 700;
+            }
+            .model-copy strong {
+                font-size: 15px;
+            }
+            .model-copy span,
+            .model-node p,
+            .model-detail p {
+                color: var(--muted);
+            }
+            .model-copy span {
+                display: block;
+                margin-top: 2px;
+                font-size: 12px;
+            }
+            .model-node strong {
+                font-size: clamp(18px, 2vw, 24px);
+                line-height: 1.05;
+            }
+            .model-node p {
+                margin: 0;
+                font-size: 12.5px;
+                line-height: 1.4;
+            }
+            .model-flow {
+                min-width: 0;
+                display: grid;
+                justify-items: center;
+                gap: 7px;
+                color: var(--muted);
+                text-align: center;
+            }
+            .model-line {
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(245, 245, 245, 0.66),
+                    transparent
+                );
+                position: relative;
+            }
+            .model-line::after {
+                content: "";
+                position: absolute;
+                right: 2px;
+                top: -4px;
+                width: 8px;
+                height: 8px;
+                border-right: 1px solid rgba(245, 245, 245, 0.7);
+                border-top: 1px solid rgba(245, 245, 245, 0.7);
+                transform: rotate(45deg);
+            }
+            .model-detail {
+                border-top: 1px solid rgba(159, 176, 204, 0.18);
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 14px;
+                align-items: end;
+                padding-top: 14px;
+            }
+            .model-detail h3 {
+                margin-bottom: 5px;
+                font-size: 17px;
+            }
+            .model-detail p {
+                margin: 0;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+            .model-detail code {
+                color: #f8c5aa;
+                font-family: var(--mono);
+                font-size: 12px;
+                white-space: nowrap;
+            }
+            @media (max-width: 900px) {
+                .model-core {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+                .model-node,
+                .model-node.anchor {
+                    height: auto;
+                    min-height: 0;
+                }
+                .model-flow {
+                    justify-items: start;
+                    text-align: left;
+                    padding-left: 13px;
+                    border-left: 1px dashed rgba(209, 91, 33, 0.72);
+                }
+                .model-line {
+                    display: none;
+                }
+            }
+            @media (max-width: 680px) {
+                .model .band-head {
+                    display: block;
+                }
+                .model-tag {
+                    display: block;
+                    margin-top: var(--s3);
+                    white-space: normal;
+                }
+                .model-rail {
+                    grid-template-columns: 38px 1fr;
+                    gap: 10px 12px;
+                    padding: 11px;
+                }
+                .model-copy {
+                    grid-column: 2;
+                }
+                .model-node {
+                    padding: 14px;
+                }
+                .model-node strong {
+                    font-size: 24px;
+                }
+                .model-detail {
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+                }
+                .model-detail code {
+                    white-space: normal;
+                }
+            }
             /* ---- License / why-open band ---- */
             .license {
                 background: var(--labs-base);
@@ -442,7 +677,7 @@
         </header>
         <main id="main">
             <!-- ============ HERO ============ -->
-            <section class="hero">
+            <section class="hero hero-rhythm">
                 <div class="wrap">
                     <div class="hero-copy">
                         <span class="eyebrow"
@@ -512,7 +747,8 @@
                             <span class="p">›</span> schema-enforced writes<br />
                             <span class="p">›</span> read / traverse / write /
                             propose / validate operations<br />
-                            <span class="p">›</span> full-fidelity export<br />
+                            <span class="p">›</span> snapshots / restore /
+                            ledger replay<br />
                             <span class="p">›</span> Apache 2.0 license<span
                                 class="cursor"
                             ></span>
@@ -661,8 +897,8 @@
                         </svg>
                         <h4>Export</h4>
                         <p>
-                            Full-fidelity export to open formats. No lock-in:
-                            everything you put in, you can take out.
+                            JSON-safe snapshots, restore paths, and ledger
+                            replay keep graph state portable and auditable.
                         </p>
                     </div>
                     <div class="wi">
@@ -693,6 +929,154 @@
                             references, and traversal notes live close to the
                             code.
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ RTG MODEL ============ -->
+            <section class="band model" id="rtg-model">
+                <div class="wrap">
+                    <div class="band-head">
+                        <div>
+                            <h2>A graph memory engine in five parts</h2>
+                            <p class="lead">
+                                Stable anchors preserve identity, associated
+                                facts hold properties, and UUID links carry
+                                relationships. Schema and snapshots keep the
+                                system valid and portable.
+                            </p>
+                        </div>
+                        <span class="model-tag">Vellis RTG model</span>
+                    </div>
+
+                    <div class="model-stage">
+                        <button
+                            class="model-rail model-object"
+                            type="button"
+                            data-model-key="schema"
+                            aria-controls="model-detail"
+                            aria-pressed="false"
+                        >
+                            <span class="model-number">1</span>
+                            <span class="model-label">schema rules</span>
+                            <span class="model-copy">
+                                <strong
+                                    >defines valid anchor, fact, and link
+                                    types</strong
+                                >
+                                <span>validation gates writes</span>
+                            </span>
+                        </button>
+
+                        <div
+                            class="model-core"
+                            aria-label="Vellis RTG object model"
+                        >
+                            <button
+                                class="model-node model-object"
+                                type="button"
+                                data-model-key="links"
+                                aria-controls="model-detail"
+                                aria-pressed="false"
+                            >
+                                <span class="model-meta">
+                                    <span class="model-number">2</span>
+                                    <span class="model-kicker"
+                                        >link records</span
+                                    >
+                                </span>
+                                <strong>relationships between objects</strong>
+                                <p>
+                                    Each relationship has its own UUID plus
+                                    source and target UUIDs.
+                                </p>
+                            </button>
+
+                            <div class="model-flow" aria-hidden="true">
+                                <div class="model-line"></div>
+                                <span>points to source + target</span>
+                            </div>
+
+                            <button
+                                class="model-node anchor model-object"
+                                type="button"
+                                data-model-key="anchors"
+                                aria-controls="model-detail"
+                                aria-pressed="false"
+                            >
+                                <span class="model-meta">
+                                    <span class="model-number">3</span>
+                                    <span class="model-kicker"
+                                        >anchor objects</span
+                                    >
+                                </span>
+                                <strong>stable things to remember</strong>
+                                <p>
+                                    People, areas, projects, tasks, events,
+                                    notes, and resources.
+                                </p>
+                            </button>
+
+                            <div class="model-flow" aria-hidden="true">
+                                <div class="model-line"></div>
+                                <span>has associated facts</span>
+                            </div>
+
+                            <button
+                                class="model-node model-object"
+                                type="button"
+                                data-model-key="facts"
+                                aria-controls="model-detail"
+                                aria-pressed="false"
+                            >
+                                <span class="model-meta">
+                                    <span class="model-number">4</span>
+                                    <span class="model-kicker"
+                                        >fact records</span
+                                    >
+                                </span>
+                                <strong>typed data objects</strong>
+                                <p>
+                                    Fact records associated with anchors; zero,
+                                    one, or many.
+                                </p>
+                            </button>
+                        </div>
+
+                        <button
+                            class="model-rail model-object"
+                            type="button"
+                            data-model-key="snapshot"
+                            aria-controls="model-detail"
+                            aria-pressed="false"
+                        >
+                            <span class="model-number">5</span>
+                            <span class="model-label">ledger + snapshots</span>
+                            <span class="model-copy">
+                                <strong>audits and restores the graph</strong>
+                                <span
+                                    >record writes; restore and replay system
+                                    state</span
+                                >
+                            </span>
+                        </button>
+
+                        <aside
+                            class="model-detail"
+                            id="model-detail"
+                            aria-live="polite"
+                        >
+                            <span>
+                                <h3>Vellis RTG model</h3>
+                                <p>
+                                    Vellis keeps identity, facts, and
+                                    relationships as separate typed objects so
+                                    agents can write context without turning
+                                    memory into loose notes.
+                                </p>
+                            </span>
+                            <code>anchor | data_object | link</code>
+                        </aside>
                     </div>
                 </div>
             </section>
@@ -850,5 +1234,64 @@
                 </div>
             </div>
         </footer>
+        <script>
+            const modelDetails = {
+                schema: {
+                    title: "1. Schema rules",
+                    body: "Schema defines valid anchor, fact, and link types; validation gates writes.",
+                    code: "anchor | data_object | link",
+                },
+                links: {
+                    title: "2. Link records",
+                    body: "Link records represent relationships between objects. Current Vellis uses UUID link identity, not type-source-target identity.",
+                    code: "RtgLink(uuid, type, source_uuid, target_uuid)",
+                },
+                anchors: {
+                    title: "3. Anchor objects",
+                    body: "Anchor objects are the stable things being remembered. They carry identity and navigation while mutable properties live in associated fact records.",
+                    code: "RtgAnchor(uuid, type, display_name)",
+                },
+                facts: {
+                    title: "4. Fact records",
+                    body: "Fact records are typed data objects associated with anchors. The raw graph allows zero, one, or many fact records; schema can require them.",
+                    code: "anchor_data_index[anchor_uuid] -> data_uuid[]",
+                },
+                snapshot: {
+                    title: "5. Ledger and snapshots",
+                    body: "The ledger and snapshots make graph state auditable, restorable, and replayable.",
+                    code: "snapshot -> restore -> replay",
+                },
+            };
+
+            const modelDetail = document.querySelector("#model-detail");
+            const modelObjects = Array.from(
+                document.querySelectorAll(".model-object"),
+            );
+
+            function renderModelDetail(payload) {
+                const wrapper = document.createElement("span");
+                const title = document.createElement("h3");
+                const body = document.createElement("p");
+                const code = document.createElement("code");
+
+                title.textContent = payload.title;
+                body.textContent = payload.body;
+                code.textContent = payload.code;
+                wrapper.append(title, body);
+                modelDetail.replaceChildren(wrapper, code);
+            }
+
+            modelObjects.forEach((object) => {
+                object.addEventListener("click", () => {
+                    modelObjects.forEach((candidate) => {
+                        candidate.classList.remove("is-selected");
+                        candidate.setAttribute("aria-pressed", "false");
+                    });
+                    object.classList.add("is-selected");
+                    object.setAttribute("aria-pressed", "true");
+                    renderModelDetail(modelDetails[object.dataset.modelKey]);
+                });
+            });
+        </script>
     </body>
 </html>

@@ -1,12 +1,12 @@
 {
   "schemaVersion": "2026-07-07.export-manifest.v1",
-  "source": "kesher",
+  "source": "graph",
   "sourcePath": "client_packs/volant/published_apps/volantlabs.ai",
   "siteUrl": "https://volantlabs.ai",
   "generator": "scripts/build-perspectives.mjs",
   "generatorSchemaVersion": "2026-07-06.perspectives.v4",
-  "sourceCommit": "28007bc6f40a6e415a527e8922ab712e6cbcf50a",
-  "contentHash": "sha256:4e3daeceecaf8427a6b117699b157900803d4c2a4c39e16ba920ba794857db17",
+  "sourceCommit": "ddf95495556f6c6921179937a72b49a61e01f0b1",
+  "contentHash": "sha256:0940c6b12bfa83b6f386ca8e2a89619c4822e60048a0c84fa44dd738ff030444",
   "sourceSpecs": [
     {
       "id": "392e552b-5858-475e-a716-31d8f05bc5a6",

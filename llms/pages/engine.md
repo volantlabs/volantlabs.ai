@@ -6,7 +6,7 @@ Primary audience: engineers and technical evaluators.
 
 ## Summary
 
-Vellis is a typed context graph for AI-native work. It provides graph storage, schema-enforced writes, and full-fidelity export so agents can share durable operational context without locking the organization into a closed memory layer.
+Vellis is a typed context graph for AI-native work. It separates stable anchors, typed data/fact records, UUID link records, schema validation, and snapshots with ledger replay so agents can share durable operational context without locking the organization into a closed memory layer.
 
 ## Use This Page For
 
@@ -17,6 +17,9 @@ Vellis is a typed context graph for AI-native work. It provides graph storage, s
 ## Key Claims
 
 - Vellis stores typed nodes and edges with enforced structure.
+- The RTG model is explained as five parts: schema rules, link records, anchor objects, fact records, and ledger/snapshots.
+- Fact records are typed data objects associated with anchors; the raw graph allows zero, one, or many fact records.
+- Vellis uses UUID link identity with source and target UUIDs.
 - Agents can reason over shared context instead of each holding private fragments.
 - Public clone/install commands are not yet shown; the page routes users to request the current path from Volant.
 

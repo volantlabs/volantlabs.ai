@@ -38,6 +38,11 @@ const publicFiles = listFiles(siteRoot)
   .filter((file) => !file.includes(`${path.sep}design${path.sep}`))
   .filter((file) => !file.includes(`${path.sep}scripts${path.sep}`));
 const publicHtmlFiles = publicFiles.filter((file) => file.endsWith(".html"));
+const publicCopyFiles = listFiles(siteRoot)
+  .filter((file) => /\.(html|js|xml|json|css|md)$/.test(file))
+  .filter((file) => !file.includes(`${path.sep}design${path.sep}`))
+  .filter((file) => !file.includes(`${path.sep}scripts${path.sep}`))
+  .filter((file) => path.basename(file) !== "README.md");
 
 const requiredStrings = [
   "https://github.com/volantlabs/vellis",
@@ -120,6 +125,15 @@ for (const pattern of forbiddenPatterns) {
   }
 }
 
+const kesherCopyOffenders = publicCopyFiles.filter((file) =>
+  /\bkesher\b/i.test(readFileSync(file, "utf8")),
+);
+if (kesherCopyOffenders.length) {
+  failures.push(
+    `Public site copy still mentions Kesher in ${kesherCopyOffenders.map(relative).join(", ")}`,
+  );
+}
+
 for (const file of publicHtmlFiles) {
   assertGa4Tracking(relative(file), readFileSync(file, "utf8"));
 }
@@ -135,6 +149,14 @@ const handAuthoredPages = [
   "platform.html",
   "domain-explorations.html",
 ];
+const firstViewportRhythmClasses = new Map([
+  ["engine.html", /<section\s+class="hero hero-rhythm"/],
+  ["thesis.html", /<section\s+[^>]*class="hero hero-rhythm hero-rhythm-story"/],
+  ["perspectives.html", /<section\s+class="pagehead pagehead-rhythm"/],
+  ["community.html", /<section\s+class="pagehead pagehead-rhythm"/],
+  ["platform.html", /<section\s+class="hero hero-rhythm"/],
+  ["domain-explorations.html", /<section\s+class="pagehead pagehead-rhythm"/],
+]);
 
 for (const page of handAuthoredPages) {
   const html = readFileSync(path.join(siteRoot, page), "utf8");
@@ -178,10 +200,17 @@ for (const page of handAuthoredPages) {
   assertPassiveBandLaneNotOrange(page, html);
   assertNoNestedAnchors(page, html);
   assertVolantPartnersFooterLinks(page, html);
+  assertFirstViewportRhythm(page, html);
+  assertSharedNavBreakpoint(page, html);
+  assertLocalGhostButtonBorder(page, html);
 }
 
 const generatedArticle = readFileSync(
   path.join(siteRoot, "perspectives", "runtime-controls.html"),
+  "utf8",
+);
+const generatedOpenDataArticle = readFileSync(
+  path.join(siteRoot, "perspectives", "open-data.html"),
   "utf8",
 );
 const indexHtml = readFileSync(path.join(siteRoot, "index.html"), "utf8");
@@ -189,6 +218,7 @@ const sharedCss = readFileSync(
   path.join(siteRoot, "assets", "site.css"),
   "utf8",
 );
+assertSharedFirstViewportRhythm(sharedCss);
 if (
   !/<link\s+rel="icon"\s+href="assets\/logos\/volant-labs-favicon\.svg"\s+type="image\/svg\+xml"\s*\/?>/.test(
     indexHtml,
@@ -360,6 +390,18 @@ assertNoNestedAnchors("perspectives/runtime-controls.html", generatedArticle);
 assertVolantPartnersFooterLinks(
   "perspectives/runtime-controls.html",
   generatedArticle,
+);
+assertGeneratedContributorAvatar(
+  "perspectives/runtime-controls.html",
+  generatedArticle,
+  "Matthew Lou-Magnuson",
+  "../assets/images/contributors/matthew-lou-magnuson.png",
+);
+assertGeneratedContributorAvatar(
+  "perspectives/open-data.html",
+  generatedOpenDataArticle,
+  "Andrew Forman",
+  "../assets/images/contributors/andrew-forman.png",
 );
 
 const labNote =
@@ -533,6 +575,66 @@ function assertVolantPartnersFooterLinks(page, html) {
     failures.push(
       `${page} footer Volant Partners link should open in a new tab`,
     );
+  }
+}
+
+function assertFirstViewportRhythm(page, html) {
+  const expected = firstViewportRhythmClasses.get(page);
+  if (!expected) return;
+  if (!expected.test(html)) {
+    failures.push(`${page} is missing the shared first-viewport rhythm class`);
+  }
+}
+
+function assertSharedNavBreakpoint(page, html) {
+  if (page !== "thesis.html" && page !== "perspectives.html") return;
+  if (/@media\s*\(max-width:\s*980px\)\s*\{[\s\S]{0,700}?nav\s*\{/.test(html)) {
+    failures.push(
+      `${page} reintroduces the old 980px local nav wrap breakpoint`,
+    );
+  }
+  if (/\.navlinks\s*\{[^}]*?(?:gap|margin-left)\s*:\s*var\(--s6\)/.test(html)) {
+    failures.push(`${page} local nav spacing should match shared nav spacing`);
+  }
+  if (/\.navlinks a\.active\s*\{[^}]*font-weight\s*:\s*700/.test(html)) {
+    failures.push(`${page} active nav weight should match shared nav weight`);
+  }
+}
+
+function assertLocalGhostButtonBorder(page, html) {
+  if (page !== "thesis.html" && page !== "perspectives.html") return;
+  const ghostRule = cssRules(html).find((rule) => rule.selector === ".btn-ghost");
+  if (!ghostRule || !/border-color\s*:\s*var\(--line\)/.test(ghostRule.body)) {
+    failures.push(
+      `${page} local .btn rule overrides shared Contact outline without restoring .btn-ghost border color`,
+    );
+  }
+}
+
+function assertGeneratedContributorAvatar(page, html, alt, src) {
+  const pattern = new RegExp(
+    `<img\\s+src="${escapeRegExp(src)}"\\s+alt="${escapeRegExp(alt)}"`,
+  );
+  if (!pattern.test(html)) {
+    failures.push(`${page} is missing ${alt}'s contributor headshot`);
+  }
+}
+
+function assertSharedFirstViewportRhythm(css) {
+  const requiredSnippets = [
+    ".hero.hero-rhythm > .wrap",
+    ".pagehead.pagehead-rhythm > .wrap{padding-top:var(--s24)}",
+    ".hero.hero-rhythm .hero-copy{align-self:start}",
+    ".hero.hero-rhythm-story{align-items:flex-start}",
+    "@media(max-width:760px)",
+    ".pagehead.pagehead-rhythm > .wrap{padding-left:20px;padding-right:20px}",
+  ];
+  for (const snippet of requiredSnippets) {
+    if (!css.includes(snippet)) {
+      failures.push(
+        `Shared CSS is missing first-viewport rhythm rule: ${snippet}`,
+      );
+    }
   }
 }
 
