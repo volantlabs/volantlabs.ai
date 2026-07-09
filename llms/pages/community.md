@@ -6,17 +6,17 @@ Primary audience: builders who want to collaborate, register a graph, follow rel
 
 ## Summary
 
-The Community page presents quiet support and signal paths around Vellis. It is not framed as a noisy contributor bazaar; it emphasizes collaboration threads, graph registration, release cadence, and questions.
+The Community page presents practical support and signal paths around Vellis. It emphasizes cloning the engine, following releases, sharing examples, and asking direct questions as the project takes shape.
 
 ## Use This Page For
 
 - Routing interested builders to contact Volant.
 - Explaining how adoption signal is collected through graph registration.
-- Clarifying that community support is intentionally focused and low-noise.
+- Clarifying that community support is practical and focused.
 
 ## Key Claims
 
-- Most people pull and build.
+- The easiest way in is to clone, run, and learn by building.
 - The site surfaces support and signal rather than broad community theater.
 - Release notes are positioned as a cadence and freshness signal.
 

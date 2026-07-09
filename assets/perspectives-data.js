@@ -195,7 +195,10 @@ window.PERSPECTIVE_POSTS = [
           "summary": "thesis + final judgment",
           "detail": "Owns the argument, judgment, and final publication decision.",
           "initials": "ML",
-          "avatar": null,
+          "avatar": {
+            "src": "assets/images/contributors/matthew-lou-magnuson.png",
+            "alt": "Matthew Lou-Magnuson"
+          },
           "metrics": []
         },
         {
@@ -301,7 +304,10 @@ window.PERSPECTIVE_POSTS = [
           "summary": "thesis + final judgment",
           "detail": "Owns the argument, judgment, and final publication decision.",
           "initials": "AF",
-          "avatar": null,
+          "avatar": {
+            "src": "assets/images/contributors/andrew-forman.png",
+            "alt": "Andrew Forman"
+          },
           "metrics": []
         },
         {

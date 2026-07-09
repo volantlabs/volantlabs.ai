@@ -81,13 +81,49 @@ Current FileDrive publication snapshots live under `/public/vellis/website/`; ol
 
 ## Publish to GitHub
 
-From the Kesher repo root, export the working source into a clean local checkout of `volantlabs/volantlabs.ai`:
+The normal publish path is the manual GitHub Actions workflow in Kesher:
+
+1. Open **Actions -> Publish volantlabs.ai** in the Kesher GitHub repo.
+2. Run the workflow from the `main` branch.
+3. Review the generated PR in `volantlabs/volantlabs.ai`.
+4. Merge the PR when the deployment review/checks are complete.
+
+The workflow runs `just publish-volantlabs-ai`, which exports the working source into a temporary checkout of `volantlabs/volantlabs.ai`, commits the generated static mirror to a deterministic branch named `export/volantlabs-ai/<kesher-sha>`, and opens or reuses a PR against deployment `main`. If the export is identical to deployment `main`, the workflow exits with "No volantlabs.ai deployment changes" and does not open an empty PR.
+
+### Publish credential
+
+The workflow uses a private GitHub App installation token. The long-lived secrets in Kesher are the app id and private key; the workflow exchanges them for a short-lived token each run.
+
+Create a private GitHub App owned by `volantlabs`:
+
+- App name: `volantlabs-ai-publisher`
+- Homepage URL: `https://github.com/volantpartners/kesher`
+- Webhooks: disabled
+- Repository permissions: **Contents: Read and write**, **Pull requests: Read and write**, **Metadata: Read-only**
+- Install it only on `volantlabs/volantlabs.ai`
+
+Generate a private key for the app, then store these Kesher repository secrets under **Settings -> Secrets and variables -> Actions -> Repository secrets**:
+
+- `VOLANTLABS_AI_APP_ID`: the GitHub App id
+- `VOLANTLABS_AI_PRIVATE_KEY`: the full PEM private key, including the begin/end lines
+
+Credential maintenance:
+
+- Rotate the private key on a regular schedule by generating a new key, replacing `VOLANTLABS_AI_PRIVATE_KEY`, verifying the workflow, then deleting the old key from the app.
+- Keep the app installed only on `volantlabs/volantlabs.ai`; do not grant organization-wide repository access.
+- Revoke and replace the key immediately if it may have been exposed.
+- Keep the private key out of local config, shell history, docs, and PR comments.
+- Verify a replacement by running the manual workflow from `main`; a credential failure should stop before export with a missing/authentication error.
+
+### Local export
+
+For local inspection, export the working source into a clean local checkout of `volantlabs/volantlabs.ai`:
 
 ```
 just export-volantlabs-ai ../volantlabs.ai
 ```
 
-The export target defaults to `../volantlabs.ai`. Override it with the Just argument above or with `VOLANTLABS_AI_REPO=/path/to/volantlabs.ai` when running `scripts/export-volantlabs-ai.sh` directly.
+The export target defaults to `../volantlabs.ai`. Override it with the Just argument above or with `VOLANTLABS_AI_REPO=/path/to/volantlabs.ai` when running `scripts/export-volantlabs-ai.sh` directly. This low-level target stages the mirror locally but does not create the deployment PR.
 
 The export script:
 - refuses to run if the Kesher checkout has unresolved merge conflicts;
@@ -97,20 +133,17 @@ The export script:
 - refuses to derive a provenance commit from a dirty source checkout unless `EXPORT_SOURCE_COMMIT` is set explicitly;
 - syncs the site bundle with `rsync --delete`, preserving the target `.git/`, `.gitignore`, and common host-owned deployment metadata (`CNAME`, `.nojekyll`, `netlify.toml`, `vercel.json`, `_headers`, `_redirects`);
 - removes and excludes source-only `content/` so editorial checkdowns and other authoring metadata do not ship in the deployment mirror;
+- prunes deployment `package.json` to static-mirror scripts only, so the public mirror exposes `npm run audit` rather than source-side build/check commands that require excluded authoring content;
 - builds the deployment manifest with the Kesher source commit, then restores the source checkout's manifest after export;
 - stages the resulting mirror changes in the deployment repo.
 
-After export, inspect and publish from the deployment repo:
+If you need to publish from a local machine instead of Actions, use the PR-producing wrapper from a clean Kesher `main` checkout with an authenticated `gh` session that can write to `volantlabs/volantlabs.ai`:
 
 ```
-cd ../volantlabs.ai
-git status -sb
-git diff --cached --stat
-git commit -m "Export volantlabs.ai from Kesher"
-git push origin main
+just publish-volantlabs-ai
 ```
 
-If GitHub Pages or another host deploys from `volantlabs/volantlabs.ai`, the push is the deployment handoff.
+Do not push directly to deployment `main`; `volantlabs/volantlabs.ai` requires protected-branch PRs. In the public deployment mirror, `npm run audit` is the intended validation command. Kesher remains the place to run source-side generation checks.
 
 ## Status & next
 

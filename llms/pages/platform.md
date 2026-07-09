@@ -6,7 +6,7 @@ Primary audience: production sponsors and teams that need implementation discipl
 
 ## Summary
 
-The Platform page explains the Volant Partners path from open lab infrastructure to production operations. Volant Labs publishes open projects; Volant Partners helps teams apply them with operating controls, audit paths, and production support.
+The Platform page explains the Volant Partners path from open infrastructure to production operations. Volant Labs publishes open projects; Volant Partners helps teams apply them with operating controls, audit paths, and production support.
 
 ## Use This Page For
 

@@ -102,8 +102,8 @@
             }
             .navlinks {
                 display: flex;
-                gap: var(--s6);
-                margin-left: var(--s6);
+                gap: var(--s8);
+                margin-left: var(--s8);
             }
             .navlinks a {
                 font-weight: 500;
@@ -115,7 +115,7 @@
             }
             .navlinks a.active {
                 color: var(--text);
-                font-weight: 700;
+                font-weight: 600;
             }
             .btn {
                 display: inline-flex;
@@ -142,6 +142,15 @@
             .btn-primary:hover {
                 background: var(--orange);
             }
+            .btn-ghost {
+                background: transparent;
+                color: var(--text);
+                border-color: var(--line);
+            }
+            .btn-ghost:hover {
+                border-color: var(--muted);
+                background: rgba(159, 176, 204, 0.08);
+            }
             .btn-dark {
                 color: #fff;
                 border-color: rgba(245, 245, 245, 0.36);
@@ -164,7 +173,7 @@
                 padding: 0 14px;
                 font-size: 13px;
             }
-            @media (max-width: 980px) {
+            @media (max-width: 880px) {
                 nav {
                     height: auto;
                     align-items: flex-start;
@@ -1023,7 +1032,10 @@
         </header>
 
         <main id="main">
-            <section class="hero" aria-labelledby="thesis-title">
+            <section
+                class="hero hero-rhythm hero-rhythm-story"
+                aria-labelledby="thesis-title"
+            >
                 <canvas id="thesis-field" aria-hidden="true"></canvas>
                 <div class="thesis-marker" aria-hidden="true">
                     <svg
@@ -1144,10 +1156,10 @@
                             The graph remembers. The model reasons. You ratify.
                         </h1>
                         <p class="sub">
-                            Vellis rests on a simple thesis: agentic systems
-                            need more than prompts and documents. They need a
-                            substrate where meaning persists, policy stays
-                            visible, and human judgment compounds.
+                            Agentic systems need more than prompts and
+                            documents. They need a substrate where meaning
+                            persists, policy stays visible, and human judgment
+                            compounds.
                         </p>
                         <div class="tagline" aria-label="Thesis pillars">
                             <span>coherence, not compute</span>
@@ -1204,9 +1216,6 @@
                                 useful, but they rarely preserve the operational
                                 meaning behind a decision.
                             </p>
-                            <div class="proof">
-                                Pressure: local context decays.
-                            </div>
                         </article>
                         <article class="chapter">
                             <div class="chapter-num">02</div>
@@ -1216,7 +1225,6 @@
                                 things: who can change what, which link means
                                 dependency, what counts as approved.
                             </p>
-                            <div class="proof">Need: executable semantics.</div>
                         </article>
                         <article class="chapter">
                             <div class="chapter-num">03</div>
@@ -1226,9 +1234,6 @@
                                 model of what the organization believes is true
                                 enough to act on.
                             </p>
-                            <div class="proof">
-                                Move: make meaning queryable.
-                            </div>
                         </article>
                         <article class="chapter">
                             <div class="chapter-num">04</div>
@@ -1238,9 +1243,6 @@
                                 matter most near write time, when agents and
                                 humans are changing shared reality.
                             </p>
-                            <div class="proof">
-                                Result: speed and trust together.
-                            </div>
                         </article>
                     </div>
                 </div>
@@ -1254,12 +1256,12 @@
                                 02 / The operating loop
                             </p>
                             <h2>
-                                Meaning gets better when work leaves structure
-                                behind.
+                                Work gets more useful when it leaves reusable
+                                context behind.
                             </h2>
                             <p>
                                 Each useful run should leave typed context the
-                                next run can use. Vellis captures structure,
+                                next agent can use. Vellis captures structure,
                                 agents work against it, humans review the
                                 important changes, and the graph becomes a
                                 stronger substrate for the next action.
@@ -1530,12 +1532,11 @@
                 <div class="wrap">
                     <div class="endcap-panel">
                         <div>
-                            <h2>Run Vellis. Keep the thesis close.</h2>
+                            <h2>Run Vellis with the model in view.</h2>
                             <p>
-                                The story matters because it shapes what we
-                                build: open enough to trust, structured enough
-                                to reason over, and clear enough to carry into
-                                real operations.
+                                Start with the open engine, then keep what
+                                matters: shared context, visible policy, and
+                                human ownership of the graph you build.
                             </p>
                         </div>
                         <div class="endcap-actions">
