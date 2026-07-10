@@ -75,12 +75,11 @@
                 text-transform: uppercase;
                 color: var(--white);
             }
-            .eyebrow .dot {
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                background: var(--orange);
-                box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
+            .vellis-product-mark {
+                display: block;
+                width: 48px;
+                height: 48px;
+                margin-bottom: var(--s4);
             }
             h1.headline {
                 font-size: clamp(32px, 4.2vw, 54px);
@@ -1470,8 +1469,15 @@
             <section class="hero hero-rhythm">
                 <div class="wrap">
                     <div class="hero-copy">
+                        <img
+                            class="vellis-product-mark"
+                            src="assets/logos/vellis-symbol-orange.svg"
+                            alt="Vellis"
+                            width="48"
+                            height="48"
+                        />
                         <span class="eyebrow"
-                            ><span class="dot"></span>Vellis Engine · first open
+                            >Vellis Engine · first open
                             project</span
                         >
                         <h1 class="headline">

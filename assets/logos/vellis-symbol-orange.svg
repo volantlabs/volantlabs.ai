@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Vellis orange Option 2A symbol</title>
+  <desc id="desc">Asymmetric V-shaped graph with a small upper-left node, large upper-right node, and lower junction.</desc>
+  <g fill="none" stroke="#D15B21" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="48" y1="62" x2="101" y2="156"/>
+    <line x1="151" y1="49" x2="101" y2="156"/>
+    <circle cx="48" cy="62" r="12"/>
+    <circle cx="151" cy="49" r="20"/>
+    <circle cx="101" cy="156" r="14"/>
+  </g>
+</svg>
