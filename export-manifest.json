@@ -5,7 +5,7 @@
   "siteUrl": "https://volantlabs.ai",
   "generator": "scripts/build-perspectives.mjs",
   "generatorSchemaVersion": "2026-07-06.perspectives.v4",
-  "sourceCommit": "82a9d49fe35962f6108bb0f3938c722324128d0c",
+  "sourceCommit": "9747080a3132eb72f8313e59eb867d21114d6d43",
   "contentHash": "sha256:c712c40399dd676738761dd7ef0bafc02be77b96d5ab6c3ffaed8e67fc814d1f",
   "sourceSpecs": [
     {
