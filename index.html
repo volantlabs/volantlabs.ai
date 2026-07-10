@@ -23,12 +23,12 @@ features:
         </title>
         <meta
             name="description"
-            content="Vellis is an Apache-licensed typed context graph for AI agents: clone the repo, run the graph locally, connect MCP-capable tools, and keep your context exportable."
+            content="Vellis is an Apache-licensed graph engine for shared agent memory: clone the repo, run it locally, connect MCP-capable tools, and keep state portable through snapshots, restore, and replay."
         />
         <link rel="canonical" href="https://volantlabs.ai/" />
         <meta property="og:site_name" content="Volant Labs" />
         <meta property="og:title" content="Vellis: open-source shared memory for AI agents" />
-        <meta property="og:description" content="Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and exportable." />
+        <meta property="og:description" content="Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and recoverable." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://volantlabs.ai/" />
         <meta property="og:image" content="https://volantlabs.ai/assets/images/social/home-vellis-shared-memory.png" />
@@ -37,7 +37,7 @@ features:
         <meta property="og:image:alt" content="A large orange Vellis memory node connecting AI agents and tools." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Vellis: open-source shared memory for AI agents" />
-        <meta name="twitter:description" content="Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and exportable." />
+        <meta name="twitter:description" content="Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and recoverable." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/home-vellis-shared-memory.png" />
         <meta name="twitter:image:alt" content="A large orange Vellis memory node connecting AI agents and tools." />
         <meta name="theme-color" content="#041026" />
@@ -205,7 +205,7 @@ features:
                 gap: 7px;
             }
             .meta-row .tick {
-                color: var(--orange-600);
+                color: var(--text);
                 font-weight: 700;
             }
             /* capability strip — what Vellis does (replaces risk-reversal ticks) */
@@ -363,7 +363,7 @@ features:
                 margin-top: auto;
                 font-weight: 600;
                 font-size: 14px;
-                color: var(--orange);
+                color: var(--text);
                 display: inline-flex;
                 gap: 6px;
                 align-items: center;
@@ -415,7 +415,7 @@ features:
             .feed .read {
                 font-size: 13px;
                 font-weight: 600;
-                color: var(--orange);
+                color: var(--text);
                 white-space: nowrap;
             }
             @media (max-width: 620px) {
@@ -488,18 +488,25 @@ features:
             }
             .step.compound .num {
                 background: var(--orange);
+                color: var(--labs-base);
             }
             .step .conn {
                 position: absolute;
                 right: -14px;
                 top: 42px;
-                color: #6f82a6;
+                color: var(--muted);
                 font-size: 18px;
                 font-weight: 700;
                 z-index: 2;
             }
             .step:nth-child(4) .conn {
-                color: var(--orange);
+                width: 24px;
+                height: 24px;
+                border-radius: 999px;
+                background: var(--orange);
+                color: var(--labs-base);
+                display: grid;
+                place-items: center;
             }
             .step:last-child .conn {
                 display: none;
@@ -578,7 +585,7 @@ features:
                 align-items: center;
             }
             .platform a.go:hover {
-                color: var(--orange);
+                color: var(--text);
             }
         </style>
         <script>
@@ -636,6 +643,7 @@ features:
                         <a
                             class="btn btn-ghost btn-sm"
                             href="https://www.volantpartners.com/contact"
+                            aria-label="Contact Volant Partners — opens volantpartners.com"
                             >Contact</a
                         >
                         <a class="btn btn-quiet" href="platform.html"
@@ -686,25 +694,25 @@ features:
                         <p class="sub">
                             Vellis is an Apache-licensed typed graph engine that
                             turns scattered context into a living model your AI
-                            can reason over. Model your domain once; let Claude,
-                            Codex, and MCP-capable tools build on the same
-                            graph.
+                            can reason over. Define and evolve your domain
+                            explicitly; let locally configured MCP-capable
+                            agents build on the same graph.
                         </p>
                         <ul class="cap-strip">
                             <li>
                                 Clone the repo and run the graph engine locally
                             </li>
                             <li>
-                                Connect Claude, Codex, and other MCP-capable
-                                tools through your own setup
+                                Connect Claude, Codex, and other locally
+                                configured MCP-capable tools
                             </li>
                             <li>
                                 Model schemas, provenance, and decisions as a
                                 typed graph
                             </li>
                             <li>
-                                Read, traverse, write, propose, validate, and
-                                export
+                                Query, write, validate, migrate, snapshot, and
+                                replay
                             </li>
                         </ul>
                         <div class="cta-row">
@@ -734,7 +742,7 @@ features:
                         </div>
                         <p class="trust-line">
                             Apache 2.0 · maintained by Volant Partners ·
-                            full-fidelity export.
+                            portable snapshots and replayable state.
                         </p>
                     </div>
                     <div class="hero-figure">
@@ -756,8 +764,8 @@ features:
                     <div class="band-head">
                         <h2>Start here</h2>
                         <span class="lane"
-                            >Open engine · public thinking · builder
-                            community</span
+                            >Engineer · builder · thinker · production
+                            champion</span
                         >
                     </div>
                     <div class="trio">
@@ -774,11 +782,11 @@ features:
                                 />
                             </div>
                             <div class="body">
-                                <span class="tag flag">First project</span>
+                                <span class="tag flag">Engineer · first project</span>
                                 <h3>Vellis</h3>
                                 <p>
                                     The Apache-licensed graph engine, schema
-                                    language, MCP server pattern, and export
+                                    language, MCP server, and snapshot/restore
                                     path: visible, runnable, and yours to
                                     inspect.
                                 </p>
@@ -800,11 +808,11 @@ features:
                                 />
                             </div>
                             <div class="body">
-                                <span class="tag">Engine</span>
+                                <span class="tag">Builder · engine</span>
                                 <h3>How Vellis works</h3>
                                 <p>
                                     Understand the typed graph, schema language,
-                                    storage model, and export promise behind the
+                                    storage model, and recovery path behind the
                                     first Volant Labs project.
                                 </p>
                                 <a class="more" href="engine.html"
@@ -825,7 +833,7 @@ features:
                                 />
                             </div>
                             <div class="body">
-                                <span class="tag">Perspectives</span>
+                                <span class="tag">Thinker · perspectives</span>
                                 <h3>Thinking in public</h3>
                                 <p>
                                     Essays and field notes on why agents need a
@@ -911,7 +919,7 @@ features:
                                 <div class="num">4</div>
                                 <h4>Iterate</h4>
                                 <p>
-                                    Read, write, propose, and validate changes
+                                    Read, write, migrate, and validate changes
                                     with schema checks.
                                 </p>
                                 <span class="conn">→</span>
@@ -989,6 +997,7 @@ features:
                                     fill-opacity=".7"
                                 />
                             </svg>
+                            <span class="kicker">Builder · production champion</span>
                             <h2>Build with the open graph</h2>
                             <p>
                                 Vellis starts as a repo you can run and shape
@@ -1096,6 +1105,7 @@ features:
                             <a href="feed.xml">RSS feed</a
                             ><a href="perspectives.html#subscribe">Subscribe</a
                             ><a href="https://www.volantpartners.com/contact"
+                                aria-label="Contact Volant Partners — opens volantpartners.com"
                                 >Contact</a
                             ><a href="platform.html">Platform</a>
                         </div>

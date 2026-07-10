@@ -304,7 +304,7 @@
             }
             .tab.active {
                 background: var(--orange);
-                color: #fff;
+                color: var(--labs-base);
                 border-color: var(--orange);
             }
             .filters .caption {
@@ -340,7 +340,9 @@
                 border-radius: 8px;
                 padding: var(--s6);
                 background: var(--surface);
+                color: inherit;
                 scroll-margin-top: 96px;
+                text-decoration: none;
                 transition:
                     transform 0.18s ease,
                     box-shadow 0.18s ease,
@@ -353,6 +355,10 @@
                 transform: translateY(-2px);
                 box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
                 border-color: var(--muted);
+            }
+            .post:focus-visible {
+                outline: 2px solid var(--orange);
+                outline-offset: 4px;
             }
             .post-media {
                 display: flex;
@@ -431,7 +437,7 @@
                 align-self: center;
                 font-weight: 700;
                 font-size: 14px;
-                color: var(--orange);
+                color: var(--text);
                 display: inline-flex;
                 gap: 6px;
                 align-items: center;
@@ -498,7 +504,7 @@
             .subform .rss {
                 font-weight: 700;
                 font-size: 14px;
-                color: var(--orange-600);
+                color: var(--text);
                 display: inline-flex;
                 align-items: center;
                 gap: 6px;
@@ -564,6 +570,7 @@
                         <a
                             class="btn btn-ghost btn-sm"
                             href="https://www.volantpartners.com/contact"
+                            aria-label="Contact Volant Partners — opens volantpartners.com"
                             >Contact</a
                         >
                         <a class="btn btn-quiet" href="platform.html"
@@ -584,7 +591,7 @@
                         <h1>Essays and field notes.</h1>
                         <p class="sub">
                             The growing library for Vellis: authored essays,
-                            launch notes, and field observations behind the open
+                            product notes, and field observations behind the open
                             graph engine.
                         </p>
                     </div>
@@ -646,15 +653,15 @@
                     <div class="band-head">
                         <h2>Library</h2>
                         <!-- GENERATED:perspectives-count:start -->
-        <span class="lane">3 pieces and growing</span>
+        <span class="lane">3 published perspectives</span>
                         <!-- GENERATED:perspectives-count:end -->
                     </div>
                     <div class="feed" id="perspective-feed">
                         <!-- GENERATED:perspectives-feed:start -->
-        <article class="post" id="graph-theory" data-lane="essays">
-          <div class="post-media"><a class="post-thumb" href="perspectives/graph-theory.html" aria-hidden="true" tabindex="-1">
+        <a class="post" id="graph-theory" data-lane="essays" href="perspectives/graph-theory.html" aria-label="Open perspective: The graph is a theory">
+          <div class="post-media"><span class="post-thumb" aria-hidden="true">
               <img src="assets/images/graph-theory-thesis.webp" alt="" width="960" height="540" loading="lazy" decoding="async">
-            </a></div>
+            </span></div>
           <div>
             <h3>The graph is a theory</h3>
             <p>Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.</p>
@@ -663,13 +670,13 @@
               <span class="prov">By Eddie Austin</span>
             </div>
           </div>
-          <a class="read" href="perspectives/graph-theory.html" aria-label="Open perspective: The graph is a theory">Open note <span class="arr">-&gt;</span></a>
-        </article>
+          <span class="read">Open note <span class="arr">-&gt;</span></span>
+        </a>
 
-        <article class="post" id="runtime-controls" data-lane="notes">
-          <div class="post-media"><a class="post-thumb" href="perspectives/runtime-controls.html" aria-hidden="true" tabindex="-1">
+        <a class="post" id="runtime-controls" data-lane="notes" href="perspectives/runtime-controls.html" aria-label="Open perspective: Runtime-native controls: policy where execution happens">
+          <div class="post-media"><span class="post-thumb" aria-hidden="true">
               <img src="assets/images/perspectives/runtime-controls.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
-            </a></div>
+            </span></div>
           <div>
             <h3>Runtime-native controls: policy where execution happens</h3>
             <p>A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.</p>
@@ -678,23 +685,23 @@
               <span class="prov">Volant Labs field note</span>
             </div>
           </div>
-          <a class="read" href="perspectives/runtime-controls.html" aria-label="Open perspective: Runtime-native controls: policy where execution happens">Open note <span class="arr">-&gt;</span></a>
-        </article>
+          <span class="read">Open note <span class="arr">-&gt;</span></span>
+        </a>
 
-        <article class="post" id="open-data" data-lane="notes">
-          <div class="post-media"><a class="post-thumb" href="perspectives/open-data.html" aria-hidden="true" tabindex="-1">
+        <a class="post" id="open-data" data-lane="notes" href="perspectives/open-data.html" aria-label="Open perspective: Open data, proprietary intelligence">
+          <div class="post-media"><span class="post-thumb" aria-hidden="true">
               <img src="assets/images/perspectives/open-data.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
-            </a></div>
+            </span></div>
           <div>
             <h3>Open data, proprietary intelligence</h3>
-            <p>The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.</p>
+            <p>Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.</p>
             <div class="meta">
               <span>May 27, 2026</span>
               <span class="prov">Volant Labs field note</span>
             </div>
           </div>
-          <a class="read" href="perspectives/open-data.html" aria-label="Open perspective: Open data, proprietary intelligence">Open note <span class="arr">-&gt;</span></a>
-        </article>
+          <span class="read">Open note <span class="arr">-&gt;</span></span>
+        </a>
                         <!-- GENERATED:perspectives-feed:end -->
                     </div>
                 </div>
@@ -793,6 +800,7 @@
                             <a href="feed.xml">RSS feed</a
                             ><a href="perspectives.html#subscribe">Subscribe</a
                             ><a href="https://www.volantpartners.com/contact"
+                                aria-label="Contact Volant Partners — opens volantpartners.com"
                                 >Contact</a
                             ><a href="platform.html">Platform</a>
                         </div>

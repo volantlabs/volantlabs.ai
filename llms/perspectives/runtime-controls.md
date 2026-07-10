@@ -14,6 +14,7 @@ Subject matter: Not yet classified in the graph
 ## Made With
 
 - Matthew Lou-Magnuson: Accountable author; Owns the argument, judgment, and final publication decision.
+- ChatGPT 5.5: AI drafting partner; Helped draft, refine, and shape the field note language without owning the final claims.
 - Graph snapshot: Context graph; The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z. (18,951 nodes; 45,005 links; 269 node types; 575 link rules)
 
 ## Summary
@@ -33,7 +34,7 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 ## Editorial Context
 
 - Source: Drawn from Volant Labs governance and site architecture notes.
-- Editorial layer: Edited from internal positioning notes for public launch copy.
+- Editorial layer: Edited from internal positioning notes for public site copy.
 - Owner: Editorial review by Volant Labs.
 - Status: Published field note.
 - Open question: This dispatch states the operating model but does not yet name a production customer implementation.

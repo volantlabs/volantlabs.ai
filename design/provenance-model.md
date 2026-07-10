@@ -1,23 +1,23 @@
 # volantlabs.ai — Perspectives Editorial Context Model
 
-**Status:** launch-copy update · **Owner:** Eddie Austin · **Updated:** 2026-07-06
-**Supersedes:** the 2026-06-17 provenance display model for public launch copy.
+**Status:** current public-copy model · **Owner:** Eddie Austin · **Updated:** 2026-07-10
+**Supersedes:** the 2026-06-17 provenance display model.
 
 ---
 
 ## Why this exists
 
-Perspectives should feel authored and accountable without claiming a publishing workflow that is not yet real. The launch site presents essays and field notes as Volant Labs thinking. Rich graph-drafted provenance can return later, once the workflow exists and is worth explaining publicly.
+Perspectives should feel authored and accountable without claiming a publishing workflow that is not yet real. The public site presents essays and field notes as Volant Labs thinking. Rich graph-drafted provenance can return later, once the workflow exists and is worth explaining publicly.
 
-## Public labels for launch
+## Public labels
 
 | Kind | Meaning |
 |---|---|
 | Essay | Human-authored piece with a named byline. |
-| Field note | Edited Volant Labs working note, launch note, or observation. |
+| Field note | Edited Volant Labs working note, product note, or observation. |
 | Artifact *(later)* | A produced document, diagram, or decision record once that workflow is public-ready. |
 
-Avoid graph-authored or formal approval labels in launch-facing copy.
+Avoid graph-authored or formal approval labels in current public copy.
 
 ## What Shows Where
 

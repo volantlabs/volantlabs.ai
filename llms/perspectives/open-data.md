@@ -14,11 +14,12 @@ Subject matter: Not yet classified in the graph
 ## Made With
 
 - Andrew Forman: Accountable author; Owns the argument, judgment, and final publication decision.
+- Fable 5: AI drafting partner; Helped draft, refine, and shape the field note language without owning the final claims.
 - Graph snapshot: Context graph; The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 18,951 nodes, 45,005 links, 269 node types, 575 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-08T20:27:33Z. (18,951 nodes; 45,005 links; 269 node types; 575 link rules)
 
 ## Summary
 
-The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.
+Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.
 
 ## What This Page Is For
 
@@ -26,6 +27,7 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 
 ## Main Sections
 
+- The question an open engine invites
 - Open does not mean undifferentiated
 - Portability is the trust signal
 - The line makes both sides stronger
@@ -33,7 +35,7 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 ## Editorial Context
 
 - Source: Drawn from Volant Labs site architecture and open/governed boundary notes.
-- Editorial layer: Edited from internal positioning notes for public launch copy.
+- Editorial layer: Edited from internal positioning notes for public site copy.
 - Owner: Editorial review by Volant Labs.
 - Status: Published field note.
 - Open question: The boundary will need sharper examples as real deployments create edge cases.

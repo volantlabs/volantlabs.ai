@@ -39,7 +39,7 @@ const publicFiles = listFiles(siteRoot)
   .filter((file) => !file.includes(`${path.sep}scripts${path.sep}`));
 const publicHtmlFiles = publicFiles.filter((file) => file.endsWith(".html"));
 const publicCopyFiles = listFiles(siteRoot)
-  .filter((file) => /\.(html|js|xml|json|css|md)$/.test(file))
+  .filter((file) => /\.(html|js|xml|json|css|md|txt)$/.test(file))
   .filter((file) => !file.includes(`${path.sep}design${path.sep}`))
   .filter((file) => !file.includes(`${path.sep}scripts${path.sep}`))
   .filter((file) => path.basename(file) !== "README.md");
@@ -125,17 +125,26 @@ for (const pattern of forbiddenPatterns) {
   }
 }
 
-const kesherCopyOffenders = publicCopyFiles.filter((file) =>
-  /\bkesher\b/i.test(readFileSync(file, "utf8")),
+const kesherCopyAllowlist = new Set([
+  path.join(siteRoot, "platform.html"),
+  path.join(siteRoot, "llms", "pages", "platform.md"),
+  socialPreviewManifestPath,
+]);
+const kesherCopyOffenders = publicCopyFiles.filter(
+  (file) =>
+    !kesherCopyAllowlist.has(file) &&
+    /\bkesher\b/i.test(readFileSync(file, "utf8")),
 );
 if (kesherCopyOffenders.length) {
   failures.push(
-    `Public site copy still mentions Kesher in ${kesherCopyOffenders.map(relative).join(", ")}`,
+    `Public site copy mentions Kesher outside the approved Platform path in ${kesherCopyOffenders.map(relative).join(", ")}`,
   );
 }
 
 for (const file of publicHtmlFiles) {
-  assertGa4Tracking(relative(file), readFileSync(file, "utf8"));
+  const html = readFileSync(file, "utf8");
+  assertGa4Tracking(relative(file), html);
+  assertExternalContactSignals(relative(file), html);
 }
 
 assertSocialPreviewManifest();
@@ -219,6 +228,7 @@ const sharedCss = readFileSync(
   "utf8",
 );
 assertSharedFirstViewportRhythm(sharedCss);
+assertSharedA11yContrast(sharedCss);
 if (
   !/<link\s+rel="icon"\s+href="assets\/logos\/volant-labs-favicon\.svg"\s+type="image\/svg\+xml"\s*\/?>/.test(
     indexHtml,
@@ -424,12 +434,12 @@ if (!/\.step \.num\s*\{[^}]*border\s*:\s*1px solid #999/i.test(indexHtml)) {
   failures.push("index.html How it works .num markers need a 1px #999 border");
 }
 if (
-  !/(?:\.step:nth-child\(4\) \.conn|\.step \.conn\.final)\s*\{[^}]*color\s*:\s*var\(--orange\)/i.test(
+  !/(?:\.step:nth-child\(4\) \.conn|\.step \.conn\.final)\s*\{[^}]*background\s*:\s*var\(--orange\)[^}]*color\s*:\s*var\(--labs-base\)/i.test(
     indexHtml,
   )
 ) {
   failures.push(
-    "index.html final How it works connector arrow should be orange",
+    "index.html final How it works connector should use an orange fill with AA dark text",
   );
 }
 if (
@@ -578,6 +588,24 @@ function assertVolantPartnersFooterLinks(page, html) {
   }
 }
 
+function assertExternalContactSignals(page, html) {
+  const contactLinks = extractAnchors(html).filter(
+    (anchor) =>
+      anchor.attributes.href === "https://www.volantpartners.com/contact",
+  );
+  for (const contact of contactLinks) {
+    const label = contact.attributes["aria-label"] ?? "";
+    if (
+      !/\bVolant Partners\b/.test(label) ||
+      !/\bvolantpartners\.com\b/.test(label)
+    ) {
+      failures.push(
+        `${page} Contact link should identify Volant Partners and the volantpartners.com domain`,
+      );
+    }
+  }
+}
+
 function assertFirstViewportRhythm(page, html) {
   const expected = firstViewportRhythmClasses.get(page);
   if (!expected) return;
@@ -633,6 +661,28 @@ function assertSharedFirstViewportRhythm(css) {
     if (!css.includes(snippet)) {
       failures.push(
         `Shared CSS is missing first-viewport rhythm rule: ${snippet}`,
+      );
+    }
+  }
+}
+
+function assertSharedA11yContrast(css) {
+  const requiredSnippets = [
+    ".skip{position:absolute;left:var(--s4);top:-48px;background:var(--labs-accent);color:var(--labs-base);font-weight:700",
+    ".btn-primary{background:var(--orange);color:var(--labs-base)}",
+    ".btn-primary:hover{background:var(--orange-600);color:#fff}",
+    'a[href="https://www.volantpartners.com/contact"]::after',
+  ];
+  for (const snippet of requiredSnippets) {
+    if (!css.includes(snippet)) {
+      failures.push(`Shared CSS is missing accessible contrast/domain cue rule: ${snippet}`);
+    }
+  }
+
+  for (const rule of cssRules(css)) {
+    if (/color\s*:\s*var\(--orange\)/.test(rule.body)) {
+      failures.push(
+        `Shared CSS uses brand orange as text in ${rule.selector}; use an AA text token on dark surfaces`,
       );
     }
   }

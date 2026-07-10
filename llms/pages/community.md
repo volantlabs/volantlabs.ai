@@ -2,16 +2,16 @@
 
 Canonical URL: https://volantlabs.ai/community.html
 HTML path: /community.html
-Primary audience: builders who want to collaborate, register a graph, follow releases, or ask questions.
+Primary audience: builders who want to run Vellis, share an example, follow releases, or ask questions.
 
 ## Summary
 
-The Community page presents practical support and signal paths around Vellis. It emphasizes cloning the engine, following releases, sharing examples, and asking direct questions as the project takes shape.
+The Community page presents practical support and signal paths around Vellis. It emphasizes cloning the engine, following releases, sharing examples, and using the public GitHub repository for questions.
 
 ## Use This Page For
 
-- Routing interested builders to contact Volant.
-- Explaining how adoption signal is collected through graph registration.
+- Routing interested builders to the Vellis quickstart, releases, and GitHub Issues.
+- Explaining how to share a useful graph pattern or starter workflow with Volant Labs.
 - Clarifying that community support is practical and focused.
 
 ## Key Claims

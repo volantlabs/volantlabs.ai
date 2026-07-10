@@ -5,8 +5,8 @@
   "siteUrl": "https://volantlabs.ai",
   "generator": "scripts/build-perspectives.mjs",
   "generatorSchemaVersion": "2026-07-06.perspectives.v4",
-  "sourceCommit": "ddf95495556f6c6921179937a72b49a61e01f0b1",
-  "contentHash": "sha256:0940c6b12bfa83b6f386ca8e2a89619c4822e60048a0c84fa44dd738ff030444",
+  "sourceCommit": "82a9d49fe35962f6108bb0f3938c722324128d0c",
+  "contentHash": "sha256:c712c40399dd676738761dd7ef0bafc02be77b96d5ab6c3ffaed8e67fc814d1f",
   "sourceSpecs": [
     {
       "id": "392e552b-5858-475e-a716-31d8f05bc5a6",
@@ -26,11 +26,11 @@
         "editorial": {
           "rubricVersion": "2026-07-07.v1",
           "stage": "post_publish_review",
-          "reviewedAt": "2026-07-07",
-          "composite": 0.88,
+          "reviewedAt": "2026-07-09",
+          "composite": 0.91,
           "blockers": [],
           "passed": true,
-          "publishingDecisionId": "8a6d0f59-4c7e-4b28-9d3f-6e0a2c5b8f71"
+          "publishingDecisionId": "81739b40-aee4-4592-a4ff-ee5b7a4adf7d"
         }
       },
       {
