@@ -1,6 +1,6 @@
 # volantlabs.ai
 
-Mid-fidelity prototype of **volantlabs.ai** — the public story site for Volant Labs, with Vellis as the first open project. Core pages share one design system.
+Published static-site source for **volantlabs.ai** — the public story site for Volant Labs, with Vellis as the first open project. Core pages share one design system.
 
 ## View it
 
@@ -18,7 +18,7 @@ Then open `http://localhost:4173/`.
 volantlabs.ai/
 ├── index.html              # Home — animated node-edge hero
 ├── engine.html             # Vellis Engine (flagship / "one property") — quickstart path
-├── domain-explorations.html# Parked post-launch initiative — worked models
+├── domain-explorations.html# Parked exploratory initiative — worked models
 ├── thesis.html             # Cinematic story page — Volant's point of view
 ├── perspectives.html       # Essays and field notes
 ├── community.html          # Lightweight builder actions and future directions
@@ -50,7 +50,7 @@ volantlabs.ai/
 Each hand-authored page is a single self-contained HTML file with page-specific styles inline. Resolved from the Volant brand in the `volant_base` knowledge graph:
 
 - **Type:** Montserrat (300–800).
-- **Color:** navy `#001E50` (headers/trust/dark surfaces), orange `#D15B21` (emphasis/active nodes), orange-600 `#A8491A` (CTA fills and small orange text on white, for AA), orange-50 `#FEF3ED` (tints and dark-footer accents), warm white `#F5F5F5`, charcoal `#333333`, blue-50 `#E6EAF2`.
+- **Color:** navy `#001E50` (headers/trust/dark surfaces), orange `#D15B21` (emphasis/active nodes), orange-600 `#A8491A` (hover fills and small orange text on light surfaces), orange-50 `#FEF3ED` (tints and dark-footer accents), warm white `#F5F5F5`, charcoal `#333333`, blue-50 `#E6EAF2`. Filled orange controls use the dark Base token for AA text contrast; on dark cards, textual calls to action use warm white while orange remains a border, underline, icon, or other non-text accent.
 - **Motif:** node-and-edge graph visuals only. No pie/donut/3D/clipart/stock photos.
 - **Generated imagery:** site-local WebP assets in `assets/images/` follow the `Flat Design Knowledge Graph` prompt template, `Infographic Dark` visual style, and Volant imagery/color/data-viz guidelines from `volant_base`.
 - **Spacing:** 4px scale, 12-col grid, 1200px max content width.
@@ -62,12 +62,12 @@ The **token block + chrome** (nav, buttons, section scaffolding, footer) now liv
 
 - **"Graphcasting" is cut from v1** — it does not appear anywhere public-facing. The story section is named **Thesis**.
 - **Thesis and Perspectives are split:** Thesis carries the narrative; Perspectives is the growing content library.
-- **Perspectives publishing model:** launch copy should present authored essays and field notes. The JSON generator still supports provenance metadata for future graph-drafted work; keep that future-state language out of public copy until the workflow is real. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
+- **Perspectives publishing model:** public copy presents authored essays and field notes. The JSON generator still supports provenance metadata for future graph-drafted work; keep that future-state language out of public copy until the workflow is real. New posts start as JSON in `content/perspectives/`; run `node scripts/build-perspectives.mjs` to regenerate article pages in `perspectives/`, `assets/perspectives-data.js`, `feed.xml`, and the generated blocks in `index.html` / `perspectives.html`. Use `node scripts/build-perspectives.mjs --check` before committing.
 - **Perspectives attribution:** public "Made with" metadata comes from the graph export at `content/perspectives.graph-attribution.json`, not from per-article source JSON. It mirrors `PerspectiveContribution`, `GraphContextSnapshot`, and subject `Taxonomy` records from `volant_base`; the generator tolerates missing records and falls back to byline/tag display.
 - **Discovery fundamentals:** top-level pages carry canonical URLs, descriptions, Open Graph/Twitter preview metadata, RSS discovery, Markdown summary discovery, and theme color. Perspectives articles inherit the same baseline plus Article JSON-LD from `scripts/build-perspectives.mjs`; `sitemap.xml`, `llms.txt`, `perspectives/index.json`, and `llms/perspectives/*.md` are generated there too. Parked `domain-explorations.html` is intentionally `noindex,follow` and excluded from the sitemap.
 - **Repo scripts:** `npm run build` regenerates Perspectives outputs; `npm run check` verifies generated files are current.
-- **Launch posture:** the launch site presents Vellis as an Apache-licensed open-source repo. Users should see a clear `Run locally` path: clone the repo, follow the README, run the graph engine/MCP server pattern, and load a first graph. Do not route launch copy through access-request or contact-gate language.
-- **Domain Explorations:** demoted from global navigation for launch; keep the page as a parked reference-graph initiative until the example format and review path are ready.
+- **Public posture:** the site presents Vellis as an Apache-licensed open-source repo. Users should see a clear `Run locally` path that mirrors the public README: clone and set up the repo, print MCP client configuration, start the RTG app, validate the graph, check system state, and run the named beta prompt. Do not route product access through request or contact gates.
+- **Domain Explorations:** excluded from global navigation and indexing; keep the publicly reachable page external-facing and parked until the example format and review path are ready.
 - **Community:** keep community actions GitHub-native and lightweight: clone/run, follow releases, share examples, ask questions. Do not imply a mature graph registry, telemetry program, or fixed release cadence before those exist.
 - **Audience lanes:** engineer (→ Engine / quickstart), thinker (→ Thesis / Perspectives), builder (→ Community), production champion (→ Platform).
 
@@ -147,4 +147,4 @@ Do not push directly to deployment `main`; `volantlabs/volantlabs.ai` requires p
 
 ## Status & next
 
-Fidelity: **mid→hi**. Status: published app bundle / launch-copy draft. Done: shared CSS shell extracted to `assets/site.css`; Home and Engine reframed around the open-source Vellis launch posture with the public repo at `https://github.com/volantlabs/vellis`. Next: confirm export-format specifics, add launch demos/reference graphs, and fold nav/footer markup into a partial when a build lands.
+Status: **published static app bundle**. The public Vellis repository and verified local quickstart are live; Home, Engine, Community, and Platform copy should track that documented product surface. Next: promote reference graphs only when their reuse boundary is ready, and fold nav/footer markup into a partial when a broader build system lands.

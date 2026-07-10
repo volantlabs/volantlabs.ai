@@ -100,7 +100,7 @@ const summaryPages = [
     title: "Vellis Engine",
     path: "engine.html",
     summaryPath: "llms/pages/engine.md",
-    description: "The product overview for Vellis as an open-source graph engine, schema layer, MCP server pattern, and exportable context substrate."
+    description: "The product overview and verified local quickstart for Vellis as an open-source graph engine, RTG knowledge system, and reusable component library."
   },
   {
     title: "Thesis",
@@ -124,7 +124,7 @@ const summaryPages = [
     title: "Platform",
     path: "platform.html",
     summaryPath: "llms/pages/platform.md",
-    description: "The Volant Partners production-support path for teams applying Volant Labs infrastructure."
+    description: "The Volant Partners path from open Vellis patterns to governed production operations."
   }
 ];
 const sitemapPages = [
@@ -859,7 +859,7 @@ function renderHeader() {
         <a href="../engine.html">Engine</a><a href="../thesis.html">Thesis</a><a href="../perspectives.html" class="active" aria-current="page">Perspectives</a><a href="../community.html">Community</a>
       </div>
       <div class="navright">
-        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact" aria-label="Contact Volant">Contact</a>
+        <a class="btn btn-ghost btn-sm" href="https://www.volantpartners.com/contact" aria-label="Contact Volant Partners — opens volantpartners.com">Contact</a>
         <a class="btn btn-quiet" href="../platform.html">Platform</a>
       </div>
     </nav>
@@ -884,7 +884,7 @@ function renderFooter() {
       <div class="foot-cols">
         <div class="foot-col"><h5>Project</h5><a href="../engine.html">Engine</a><a href="../thesis.html">Thesis</a><a href="../perspectives.html">Perspectives</a><a href="../community.html">Community</a></div>
         <div class="foot-col"><h5>Open</h5><a href="../engine.html#quickstart">Quickstart</a><a href="../thesis.html">Open by Design</a><a href="../engine.html">Engine overview</a><a href="../platform.html">Path to Production</a></div>
-        <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact">Contact</a><a href="../platform.html">Platform</a></div>
+        <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact" aria-label="Contact Volant Partners — opens volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
     <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
@@ -932,6 +932,7 @@ function renderMadeWith(post) {
               ${item.metrics.map((metric) => `<span><strong>${escapeHtml(metric.value)}</strong>${escapeHtml(metric.label)}</span>`).join("")}
             </div>`
         : "";
+      const metricsBlock = metrics ? `\n              ${metrics}` : "";
       return `<div class="madewith-chip madewith-${escapeHtml(item.kind)}" role="listitem" tabindex="0" aria-describedby="${escapeHtml(tooltipId)}">
             <span class="madewith-avatar">${avatar}</span>
             <span class="madewith-copy">
@@ -940,8 +941,7 @@ function renderMadeWith(post) {
             </span>
             <span class="madewith-tooltip" id="${escapeHtml(tooltipId)}" role="tooltip">
               <strong>${escapeHtml(item.role)}</strong>
-              ${escapeHtml(item.detail)}
-              ${metrics}
+              ${escapeHtml(item.detail)}${metricsBlock}
             </span>
           </div>`;
     })
@@ -1198,18 +1198,19 @@ function renderPerspectiveIndexJson(posts) {
 }
 
 function renderPerspectiveCount(posts) {
-  return `        <span class="lane">${posts.length} pieces and growing</span>`;
+  const label = posts.length === 1 ? "published perspective" : "published perspectives";
+  return `        <span class="lane">${posts.length} ${label}</span>`;
 }
 
 function renderPerspectiveIndexFeed(posts) {
   return posts
     .map((post) => {
       const thumbnail = post.image
-        ? `<a class="post-thumb" href="${escapeHtml(post.url)}" aria-hidden="true" tabindex="-1">
+        ? `<span class="post-thumb" aria-hidden="true">
               <img src="${escapeHtml(post.image.src)}" alt="" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="lazy" decoding="async">
-            </a>`
+            </span>`
         : "";
-      return `        <article class="post" id="${escapeHtml(post.slug)}" data-lane="${escapeHtml(post.kind)}">
+      return `        <a class="post" id="${escapeHtml(post.slug)}" data-lane="${escapeHtml(post.kind)}" href="${escapeHtml(post.url)}" aria-label="Open perspective: ${escapeHtml(post.title)}">
           <div class="post-media">${thumbnail}${renderKindPill(post)}</div>
           <div>
             <h3>${escapeHtml(post.title)}</h3>
@@ -1219,8 +1220,8 @@ function renderPerspectiveIndexFeed(posts) {
               <span class="prov">${escapeHtml(post.provenanceLine)}</span>
             </div>
           </div>
-          <a class="read" href="${escapeHtml(post.url)}" aria-label="Open perspective: ${escapeHtml(post.title)}">Open note <span class="arr">-&gt;</span></a>
-        </article>`;
+          <span class="read">Open note <span class="arr">-&gt;</span></span>
+        </a>`;
     })
     .join("\n\n");
 }
@@ -1367,7 +1368,7 @@ function renderLlmsTxt(posts) {
 
   return `# Volant Labs
 
-> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and exportable operational context.
+> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and portable, recoverable state.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 
@@ -1389,8 +1390,8 @@ ${perspectiveLinks}
 
 - Treat Vellis as the first open Volant Labs project, not as the whole company.
 - Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
-- Domain Explorations is intentionally parked and noindexed for launch; do not present it as a finished ontology-pack catalog.
-- Perspectives uses public labels Essay and Field note; do not describe launch content as graph-authored or formally approved by a publishing workflow.
+- Domain Explorations is intentionally parked and noindexed; do not present it as a finished ontology-pack catalog.
+- Perspectives uses public labels Essay and Field note; do not describe current content as graph-authored or formally approved by a publishing workflow.
 `;
 }
 

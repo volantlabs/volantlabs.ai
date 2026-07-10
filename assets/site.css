@@ -44,7 +44,7 @@ a{color:inherit;text-decoration:none}
 a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:2px}
 
 /* skip-to-content link — a11y bypass block (e2f3a4b5) */
-.skip{position:absolute;left:var(--s4);top:-48px;background:var(--labs-accent);color:#fff;padding:var(--s3) var(--s4);border-radius:6px;z-index:100;transition:top .15s}
+.skip{position:absolute;left:var(--s4);top:-48px;background:var(--labs-accent);color:var(--labs-base);font-weight:700;padding:var(--s3) var(--s4);border-radius:6px;z-index:100;transition:top .15s}
 .skip:focus{top:var(--s4);text-decoration:none}
 @media (prefers-reduced-motion:reduce){.skip{transition:none}}
 
@@ -63,13 +63,23 @@ header .brand .glyph circle:not(:last-child){fill:var(--text)}
 .navlinks a.active{color:var(--text);font-weight:600}
 .navright{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
 .btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:6px;font-family:var(--font);font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease}
-.btn-primary{background:var(--orange);color:#fff}
-.btn-primary:hover{background:var(--orange-600)}
+.btn-primary{background:var(--orange);color:var(--labs-base)}
+.btn-primary:hover{background:var(--orange-600);color:#fff}
+.btn-primary svg [stroke]{stroke:currentColor}
+.btn-primary svg [fill]:not([fill="none"]){fill:currentColor}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--muted);background:rgba(159,176,204,.08)}
 .btn-quiet{background:rgba(159,176,204,.08);color:var(--muted);border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
 .btn-quiet:hover{color:var(--text);border-color:var(--muted)}
 .btn-sm{height:38px;padding:0 14px;font-size:13px}
+a[href="https://www.volantpartners.com/contact"]::after{
+  content:"↗";
+  margin-inline-start:.35em;
+  color:var(--labs-accent);
+  font-family:var(--mono);
+  font-size:.85em;
+  font-weight:700;
+}
 .thumb img{display:block;width:100%;height:100%;object-fit:cover}
 .ico [stroke="#001E50"],.gl [stroke="#001E50"],.glyph [stroke="#001E50"]{stroke:var(--muted)}
 .ico [fill="#001E50"],.gl [fill="#001E50"],.glyph [fill="#001E50"]{fill:var(--muted)}

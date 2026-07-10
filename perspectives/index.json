@@ -139,6 +139,16 @@
             "metrics": []
           },
           {
+            "label": "ChatGPT 5.5",
+            "role": "AI drafting partner",
+            "kind": "model",
+            "summary": "drafting + refinement",
+            "detail": "Helped draft, refine, and shape the field note language without owning the final claims.",
+            "initials": "AI",
+            "avatar": null,
+            "metrics": []
+          },
+          {
             "label": "Graph snapshot",
             "role": "Context graph",
             "kind": "graph",
@@ -197,7 +207,7 @@
       "kindLabel": "Field note",
       "title": "Open data, proprietary intelligence",
       "shortTitle": "Open data, proprietary intelligence",
-      "dek": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
+      "dek": "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
       "published": "2026-05-27",
       "displayDate": "May 27, 2026",
       "readingTime": "4 min read",
@@ -218,6 +228,16 @@
               "src": "assets/images/contributors/andrew-forman.png",
               "alt": "Andrew Forman"
             },
+            "metrics": []
+          },
+          {
+            "label": "Fable 5",
+            "role": "AI drafting partner",
+            "kind": "model",
+            "summary": "drafting + refinement",
+            "detail": "Helped draft, refine, and shape the field note language without owning the final claims.",
+            "initials": "AI",
+            "avatar": null,
             "metrics": []
           },
           {

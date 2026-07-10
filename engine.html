@@ -8,12 +8,12 @@
         </title>
         <meta
             name="description"
-            content="Vellis is an Apache-licensed repo for running a typed graph engine and MCP server pattern that agents can read, traverse, write to, validate against, and export from."
+            content="Vellis is an Apache-licensed graph engine and reusable component system for local shared agent memory, with MCP tools for query, validation, migration, snapshots, restore, and replay."
         />
         <link rel="canonical" href="https://volantlabs.ai/engine.html" />
         <meta property="og:site_name" content="Volant Labs" />
         <meta property="og:title" content="Vellis Engine: typed context graph for local AI work" />
-        <meta property="og:description" content="Apache-licensed graph engine and MCP server pattern for local shared agent memory, validation, traversal, and export." />
+        <meta property="og:description" content="Apache-licensed graph engine and reusable components for local shared agent memory, validation, migration, snapshots, restore, and replay." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://volantlabs.ai/engine.html" />
         <meta property="og:image" content="https://volantlabs.ai/assets/images/social/engine-local-graph.png" />
@@ -22,7 +22,7 @@
         <meta property="og:image:alt" content="A local engine panel connected to a typed graph." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Vellis Engine: typed context graph for local AI work" />
-        <meta name="twitter:description" content="Apache-licensed graph engine and MCP server pattern for local shared agent memory, validation, traversal, and export." />
+        <meta name="twitter:description" content="Apache-licensed graph engine and reusable components for local shared agent memory, validation, migration, snapshots, restore, and replay." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/engine-local-graph.png" />
         <meta name="twitter:image:alt" content="A local engine panel connected to a typed graph." />
         <meta name="theme-color" content="#041026" />
@@ -110,6 +110,9 @@
                 background: rgba(255, 255, 255, 0.06);
             }
             /* terminal device */
+            .quickstart-anchor {
+                scroll-margin-top: 96px;
+            }
             .term {
                 background: var(--surface);
                 border: 1px solid rgba(245, 245, 245, 0.14);
@@ -139,7 +142,7 @@
                 margin-left: 8px;
                 font-family: var(--mono);
                 font-size: 12px;
-                color: #7f90ad;
+                font-weight: bold;
             }
             .term-body {
                 padding: var(--s6);
@@ -158,7 +161,7 @@
             }
             /* comment */
             .term-body .p {
-                color: var(--orange);
+                color: var(--text);
             }
             /* prompt $ */
             .term-body .k {
@@ -185,11 +188,22 @@
             }
             @media (max-width: 880px) {
                 .hero .wrap {
-                    grid-template-columns: 1fr;
+                    grid-template-columns: minmax(0, 1fr);
                     gap: var(--s8);
+                }
+                .hero-copy,
+                .quickstart-anchor {
+                    min-width: 0;
                 }
                 .term {
                     order: 2;
+                    max-width: 100%;
+                }
+                .term-body {
+                    overflow-x: auto;
+                }
+                .quickstart-anchor {
+                    scroll-margin-top: 240px;
                 }
             }
             /* ---- What it is strip ---- */
@@ -295,7 +309,7 @@
                 margin-top: var(--s3);
                 font-weight: 600;
                 font-size: 14px;
-                color: var(--orange);
+                color: var(--text);
                 display: inline-flex;
                 gap: 6px;
                 align-items: center;
@@ -389,7 +403,7 @@
                 height: 30px;
                 border: 1px solid rgba(209, 91, 33, 0.72);
                 border-radius: 999px;
-                color: var(--orange);
+                color: var(--text);
                 display: inline-grid;
                 place-items: center;
                 font-family: var(--mono);
@@ -399,7 +413,7 @@
             .model-kicker,
             .model-label,
             .model-flow {
-                color: var(--orange);
+                color: var(--text);
                 font-family: var(--mono);
                 font-size: 11px;
                 letter-spacing: 0.06em;
@@ -541,6 +555,779 @@
                     white-space: normal;
                 }
             }
+            /* ---- Concrete memory example ---- */
+            .memory-example {
+                position: relative;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(4, 16, 38, 0.98) 0%,
+                        rgba(4, 16, 38, 0.94) 100%
+                    ),
+                    repeating-linear-gradient(
+                        0deg,
+                        rgba(245, 245, 245, 0.026) 0,
+                        rgba(245, 245, 245, 0.026) 1px,
+                        transparent 1px,
+                        transparent 96px
+                    ),
+                    repeating-linear-gradient(
+                        90deg,
+                        rgba(245, 245, 245, 0.022) 0,
+                        rgba(245, 245, 245, 0.022) 1px,
+                        transparent 1px,
+                        transparent 96px
+                    ),
+                    var(--labs-base);
+                border-bottom: 1px solid var(--line);
+                border-top: 1px solid rgba(209, 91, 33, 0.22);
+                overflow: hidden;
+                scroll-margin-top: 84px;
+            }
+            .memory-example::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(4, 16, 38, 0.08),
+                        rgba(4, 16, 38, 0.38)
+                    ),
+                    repeating-linear-gradient(
+                        45deg,
+                        rgba(245, 245, 245, 0.012) 0,
+                        rgba(245, 245, 245, 0.012) 1px,
+                        transparent 1px,
+                        transparent 18px
+                    );
+                pointer-events: none;
+            }
+            .memory-example .wrap {
+                position: relative;
+                z-index: 1;
+            }
+            .example-gallery {
+                display: grid;
+                gap: var(--s4);
+            }
+            .example-tabs {
+                display: inline-grid;
+                width: fit-content;
+                max-width: 100%;
+                grid-template-columns: repeat(3, minmax(0, auto));
+                gap: 4px;
+                padding: 4px;
+                border: 1px solid rgba(159, 176, 204, 0.18);
+                border-radius: 8px;
+                background: rgba(4, 16, 38, 0.44);
+            }
+            .example-tab {
+                appearance: none;
+                min-height: 44px;
+                border: 0;
+                border-radius: 6px;
+                background: transparent;
+                color: var(--text);
+                cursor: pointer;
+                padding: 8px 14px;
+                text-align: center;
+                transition:
+                    background 0.16s ease,
+                    color 0.16s ease;
+            }
+            .example-tab:hover,
+            .example-tab:focus-visible,
+            .example-tab.is-active {
+                background: rgba(209, 91, 33, 0.13);
+                outline: none;
+            }
+            .example-tab:focus-visible {
+                outline: 2px solid var(--orange);
+                outline-offset: 3px;
+            }
+            .example-tab strong {
+                display: block;
+                font-size: 13px;
+                line-height: 1.2;
+            }
+            .domain-route {
+                max-width: 760px;
+            }
+            .domain-route p {
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.45;
+                margin: 0;
+            }
+            .example-grid {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
+                justify-items: start;
+            }
+            .memory-map {
+                --diagram-ink: #13213a;
+                position: relative;
+                width: min(100%, 1040px);
+                min-height: 360px;
+                border: 1px solid rgba(159, 176, 204, 0.24);
+                border-radius: 8px;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(4, 16, 38, 0.16),
+                        rgba(4, 16, 38, 0.52)
+                    ),
+                    rgba(4, 16, 38, 0.76);
+                box-shadow:
+                    inset 0 0 0 1px rgba(245, 245, 245, 0.04),
+                    inset 0 -72px 120px rgba(4, 16, 38, 0.74);
+                isolation: isolate;
+                overflow: hidden;
+            }
+            .memory-map::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        rgba(245, 245, 245, 0.018) 0,
+                        rgba(245, 245, 245, 0.018) 1px,
+                        transparent 1px,
+                        transparent 46px
+                    ),
+                    repeating-linear-gradient(
+                        90deg,
+                        rgba(245, 245, 245, 0.014) 0,
+                        rgba(245, 245, 245, 0.014) 1px,
+                        transparent 1px,
+                        transparent 46px
+                    );
+                mix-blend-mode: screen;
+                pointer-events: none;
+            }
+            .memory-edges {
+                position: absolute;
+                inset: 0;
+                z-index: 5;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+            .memory-edges path {
+                fill: none;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            .memory-edges .relationship-edge {
+                stroke: rgba(209, 91, 33, 0.86);
+                stroke-width: 0.82;
+                filter: drop-shadow(0 0 9px rgba(209, 91, 33, 0.42));
+            }
+            .memory-edges .attachment-edge {
+                stroke: rgba(245, 245, 245, 0.38);
+                stroke-dasharray: 1.8 2.8;
+                stroke-width: 0.5;
+            }
+            .plate-label {
+                position: absolute;
+                left: 24px;
+                top: 22px;
+                z-index: 6;
+                color: rgba(245, 245, 245, 0.72);
+                font-family: var(--mono);
+                font-size: 11px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+            .structure-toggle {
+                appearance: none;
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                z-index: 14;
+                min-height: 44px;
+                border: 1px solid rgba(159, 176, 204, 0.28);
+                border-radius: 999px;
+                background: rgba(4, 16, 38, 0.72);
+                color: rgba(245, 245, 245, 0.72);
+                cursor: pointer;
+                font-family: var(--mono);
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                line-height: 1;
+                padding: 6px 10px;
+                text-transform: uppercase;
+                touch-action: manipulation;
+                transition:
+                    background 0.16s ease,
+                    border-color 0.16s ease,
+                    color 0.16s ease,
+                    box-shadow 0.16s ease;
+            }
+            .structure-toggle:hover,
+            .structure-toggle:focus-visible,
+            .structure-toggle[aria-pressed="true"] {
+                border-color: rgba(209, 91, 33, 0.68);
+                background: rgba(209, 91, 33, 0.16);
+                color: #fff;
+                outline: none;
+                box-shadow:
+                    0 0 0 1px rgba(209, 91, 33, 0.18),
+                    0 0 22px rgba(209, 91, 33, 0.2);
+            }
+            .structure-overlay {
+                position: absolute;
+                inset: 0;
+                z-index: 12;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(3px);
+                transition:
+                    opacity 0.16s ease,
+                    transform 0.16s ease;
+            }
+            .memory-map.is-structure-visible .structure-overlay {
+                opacity: 1;
+                transform: none;
+            }
+            .memory-map.is-structure-visible .domain-anchor,
+            .memory-map.is-structure-visible .edge-label,
+            .memory-map.is-structure-visible .domain-fact-card {
+                border-color: rgba(209, 91, 33, 0.62);
+            }
+            .structure-ray,
+            .structure-tag {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+            }
+            .structure-ray {
+                border: 1px dashed rgba(209, 91, 33, 0.42);
+                background: rgba(209, 91, 33, 0.04);
+                box-shadow:
+                    0 0 0 1px rgba(209, 91, 33, 0.08),
+                    0 0 24px rgba(209, 91, 33, 0.12);
+                transform: translate(-50%, -50%);
+            }
+            .structure-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                max-width: 180px;
+                border: 1px solid rgba(209, 91, 33, 0.44);
+                border-radius: 999px;
+                background: rgba(4, 16, 38, 0.9);
+                color: rgba(245, 245, 245, 0.88);
+                font-family: var(--mono);
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                line-height: 1;
+                padding: 5px 7px;
+                text-transform: uppercase;
+                transform: translate(-50%, -50%);
+                white-space: nowrap;
+            }
+            .structure-tag::before {
+                content: "";
+                width: 5px;
+                height: 5px;
+                border-radius: 999px;
+                background: var(--orange);
+                box-shadow: 0 0 10px rgba(209, 91, 33, 0.54);
+                flex: none;
+            }
+            .structure-tag em {
+                color: rgba(159, 176, 204, 0.86);
+                font-style: normal;
+                letter-spacing: 0;
+                text-transform: none;
+            }
+            .ray-anchor-source,
+            .ray-anchor-target {
+                width: 150px;
+                height: 54px;
+                border-radius: 12px;
+            }
+            .ray-link {
+                width: 258px;
+                height: 32px;
+                border-radius: 999px;
+            }
+            .ray-facts-source,
+            .ray-facts-target {
+                width: 224px;
+                height: 124px;
+                border-radius: 12px;
+            }
+            .ray-anchor-source,
+            .pin-structure-anchor-source,
+            .ray-facts-source,
+            .pin-structure-source-facts {
+                left: 31%;
+            }
+            .ray-anchor-target,
+            .pin-structure-anchor-target,
+            .ray-facts-target,
+            .pin-structure-target-facts {
+                left: 69%;
+            }
+            .ray-link,
+            .pin-structure-link {
+                left: 50%;
+            }
+            .ray-anchor-source,
+            .ray-anchor-target,
+            .ray-link {
+                top: 41%;
+            }
+            .ray-facts-source,
+            .ray-facts-target {
+                top: 72%;
+            }
+            .pin-structure-anchor-source,
+            .pin-structure-link,
+            .pin-structure-anchor-target {
+                top: 29%;
+            }
+            .pin-structure-source-facts,
+            .pin-structure-target-facts {
+                top: 50%;
+            }
+            .example-item {
+                position: absolute;
+                z-index: 8;
+                display: inline-grid;
+                width: auto;
+                min-width: 0;
+                min-height: 34px;
+                grid-template-columns: 24px auto;
+                align-items: center;
+                gap: 8px;
+                border: 1px solid rgba(159, 176, 204, 0.34);
+                border-radius: 8px;
+                background: rgba(4, 16, 38, 0.82);
+                color: var(--text);
+                font-family: var(--font);
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 1.15;
+                padding: 7px 11px 7px 7px;
+                text-align: left;
+                user-select: none;
+                box-shadow:
+                    0 12px 22px rgba(4, 16, 38, 0.38),
+                    0 2px 0 rgba(4, 16, 38, 0.42);
+            }
+            .item-icon {
+                display: inline-grid;
+                position: relative;
+                width: 24px;
+                height: 24px;
+                place-items: center;
+                border-radius: 7px;
+                background: rgba(245, 245, 245, 0.9);
+                color: var(--diagram-ink);
+                overflow: hidden;
+            }
+            .domain-anchor {
+                width: 132px;
+                min-height: 40px;
+                border-color: rgba(248, 197, 170, 0.48);
+                background: rgba(209, 91, 33, 0.18);
+                color: #fff;
+                box-shadow:
+                    0 14px 26px rgba(4, 16, 38, 0.44),
+                    0 2px 0 rgba(4, 16, 38, 0.42),
+                    0 0 18px rgba(209, 91, 33, 0.26);
+            }
+            .domain-fact-card {
+                position: absolute;
+                z-index: 7;
+                width: 202px;
+                min-height: 0;
+                align-items: start;
+                grid-template-columns: 1fr;
+                gap: 7px;
+                padding: 10px;
+                border-color: rgba(159, 176, 204, 0.24);
+                border-radius: 8px;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(245, 245, 245, 0.052),
+                        rgba(4, 16, 38, 0.56)
+                    ),
+                    rgba(4, 16, 38, 0.9);
+                box-shadow:
+                    0 12px 22px rgba(4, 16, 38, 0.34),
+                    inset 0 0 0 1px rgba(245, 245, 245, 0.02);
+                isolation: isolate;
+            }
+            .domain-fact-card::before {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: -15px;
+                width: 1px;
+                height: 15px;
+                background: rgba(245, 245, 245, 0.28);
+                transform: translateX(-50%);
+            }
+            .fact-card-head {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                color: rgba(245, 245, 245, 0.72);
+                font-family: var(--mono);
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: 0.06em;
+                line-height: 1.1;
+                margin-bottom: 1px;
+                text-transform: uppercase;
+            }
+            .domain-fact-card .item-copy {
+                line-height: 1.14;
+                white-space: normal;
+            }
+            .fact-card-head .item-copy {
+                white-space: nowrap;
+            }
+            .domain-fact-card--source {
+                opacity: 0.9;
+            }
+            .fact-fields {
+                display: grid;
+                gap: 6px;
+            }
+            .fact-field {
+                display: grid;
+                grid-template-columns: 14px minmax(0, 1fr);
+                gap: 7px;
+                align-items: center;
+                min-height: 25px;
+                padding: 5px 7px;
+                border: 1px solid rgba(159, 176, 204, 0.18);
+                border-radius: 6px;
+                background: rgba(245, 245, 245, 0.04);
+                color: rgba(245, 245, 245, 0.7);
+                font-size: 10px;
+                font-weight: 600;
+                line-height: 1.2;
+            }
+            .fact-mark {
+                display: inline-block;
+                position: relative;
+                width: 10px;
+                height: 10px;
+                border: 1px solid rgba(209, 91, 33, 0.74);
+                border-radius: 3px;
+                background: rgba(209, 91, 33, 0.18);
+                box-shadow: 0 0 12px rgba(209, 91, 33, 0.16);
+            }
+            .fact-mark::after {
+                content: "";
+                position: absolute;
+                left: 3px;
+                top: 3px;
+                width: 2px;
+                height: 2px;
+                border-radius: 999px;
+                background: rgba(245, 245, 245, 0.8);
+                box-shadow: 3px 0 0 rgba(245, 245, 245, 0.56);
+            }
+            .fact-field:nth-child(2) .fact-mark {
+                border-color: rgba(159, 176, 204, 0.62);
+                border-radius: 999px;
+                background: rgba(159, 176, 204, 0.16);
+                box-shadow: none;
+            }
+            .fact-field:nth-child(3) .fact-mark {
+                border-color: rgba(245, 245, 245, 0.42);
+                border-radius: 2px;
+                background: rgba(245, 245, 245, 0.08);
+                box-shadow: none;
+            }
+            .fact-field b {
+                color: rgba(245, 245, 245, 0.92);
+                font-weight: 800;
+            }
+            .fact-field b::after {
+                content: ":";
+                color: rgba(159, 176, 204, 0.72);
+            }
+            .fact-field em {
+                color: rgba(159, 176, 204, 0.86);
+                font-style: normal;
+            }
+            .edge-label {
+                position: absolute;
+                z-index: 9;
+                min-height: 24px;
+                padding: 5px 10px;
+                border-radius: 999px;
+                background: rgba(245, 245, 245, 0.9);
+                color: var(--diagram-ink);
+                font-family: var(--font);
+                font-size: 11px;
+                font-weight: 800;
+                line-height: 1;
+                box-shadow:
+                    0 8px 16px rgba(4, 16, 38, 0.28),
+                    0 0 0 1px rgba(209, 91, 33, 0.12);
+                transform: translate(-50%, -50%);
+            }
+            .icon-domain-source,
+            .icon-domain-target {
+                background: rgba(245, 245, 245, 0.92);
+            }
+            .domain-glyph {
+                display: block;
+                width: 18px;
+                height: 18px;
+            }
+            .domain-glyph [stroke] {
+                vector-effect: non-scaling-stroke;
+            }
+            .domain-glyph .glyph-accent {
+                stroke: var(--orange);
+            }
+            .domain-glyph .glyph-soft {
+                opacity: 0.58;
+            }
+            .pin-anchor-source {
+                left: 31%;
+                top: 41%;
+                transform: translate(-50%, -50%);
+            }
+            .pin-anchor-target {
+                left: 69%;
+                top: 41%;
+                transform: translate(-50%, -50%);
+            }
+            .pin-link {
+                left: 50%;
+                top: 41%;
+            }
+            .pin-source-facts {
+                left: 31%;
+                top: 55%;
+                transform: translateX(-50%);
+            }
+            .pin-target-facts {
+                left: 69%;
+                top: 55%;
+                transform: translateX(-50%);
+            }
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+            @media (max-width: 900px) {
+                .example-tabs {
+                    width: 100%;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+                .example-tab {
+                    padding: 8px 7px;
+                }
+                .domain-route {
+                    max-width: none;
+                }
+            }
+            @media (max-width: 680px) {
+                .model,
+                .memory-example {
+                    scroll-margin-top: 228px;
+                }
+                .memory-example {
+                    background:
+                        repeating-linear-gradient(
+                            0deg,
+                            rgba(245, 245, 245, 0.026) 0,
+                            rgba(245, 245, 245, 0.026) 1px,
+                            transparent 1px,
+                            transparent 78px
+                        ),
+                        repeating-linear-gradient(
+                            90deg,
+                            rgba(245, 245, 245, 0.02) 0,
+                            rgba(245, 245, 245, 0.02) 1px,
+                            transparent 1px,
+                            transparent 78px
+                        ),
+                        var(--labs-base);
+                }
+                .memory-example .band-head {
+                    display: block;
+                    margin-bottom: var(--s5);
+                }
+                .memory-map {
+                    min-height: 300px;
+                }
+                .plate-label {
+                    left: 18px;
+                    right: 82px;
+                    top: 18px;
+                }
+                .structure-toggle {
+                    right: 12px;
+                    top: 13px;
+                    min-height: 44px;
+                    padding: 8px 10px;
+                    font-size: 9px;
+                }
+                .structure-tag {
+                    gap: 4px;
+                    max-width: 116px;
+                    padding: 4px 6px;
+                    font-size: 7.5px;
+                    letter-spacing: 0.04em;
+                }
+                .structure-tag em {
+                    display: none;
+                }
+                .ray-anchor-source,
+                .ray-anchor-target {
+                    width: 112px;
+                    height: 44px;
+                }
+                .ray-link {
+                    width: 174px;
+                    height: 28px;
+                }
+                .ray-facts-source,
+                .ray-facts-target {
+                    width: 148px;
+                    height: 116px;
+                }
+                .ray-anchor-source,
+                .pin-structure-anchor-source,
+                .ray-facts-source,
+                .pin-structure-source-facts {
+                    left: 28%;
+                }
+                .ray-anchor-target,
+                .pin-structure-anchor-target,
+                .ray-facts-target,
+                .pin-structure-target-facts {
+                    left: 72%;
+                }
+                .ray-anchor-source,
+                .ray-anchor-target,
+                .ray-link {
+                    top: 40%;
+                }
+                .ray-facts-source,
+                .ray-facts-target {
+                    top: 73%;
+                }
+                .pin-structure-anchor-source,
+                .pin-structure-link,
+                .pin-structure-anchor-target {
+                    top: 27%;
+                }
+                .pin-structure-source-facts,
+                .pin-structure-target-facts {
+                    top: 50%;
+                }
+                .example-item {
+                    min-height: 30px;
+                    grid-template-columns: 20px minmax(0, 1fr);
+                    gap: 6px;
+                    padding: 5px 7px 5px 5px;
+                    font-family: var(--mono);
+                    font-size: 10px;
+                }
+                .example-item .item-icon {
+                    width: 20px;
+                    height: 20px;
+                    background: rgba(245, 245, 245, 0.92);
+                }
+                .domain-anchor {
+                    width: 96px;
+                }
+                .domain-fact-card {
+                    width: 132px;
+                    grid-template-columns: 1fr;
+                    gap: 5px;
+                    padding: 7px;
+                    opacity: 1;
+                }
+                .fact-card-head {
+                    font-size: 8.5px;
+                    letter-spacing: 0.02em;
+                }
+                .fact-field {
+                    grid-template-columns: 10px minmax(0, 1fr);
+                    gap: 5px;
+                    min-height: 20px;
+                    padding: 4px 5px;
+                    font-size: 8px;
+                }
+                .fact-mark {
+                    width: 7px;
+                    height: 7px;
+                }
+                .fact-mark::after {
+                    left: 2px;
+                    top: 2px;
+                    width: 2px;
+                    height: 2px;
+                    box-shadow: none;
+                }
+                .edge-label {
+                    min-height: 20px;
+                    padding: 4px 8px;
+                    font-size: 9px;
+                }
+                .example-item .item-copy {
+                    position: static;
+                    width: auto;
+                    height: auto;
+                    padding: 0;
+                    margin: 0;
+                    overflow: visible;
+                    clip: auto;
+                    white-space: normal;
+                    border: 0;
+                }
+                .fact-card-head .item-copy {
+                    white-space: nowrap;
+                }
+                .pin-anchor-source {
+                    left: 28%;
+                    top: 40%;
+                }
+                .pin-anchor-target {
+                    left: 72%;
+                    top: 40%;
+                }
+                .pin-link {
+                    left: 50%;
+                    top: 40%;
+                }
+                .pin-source-facts {
+                    left: 28%;
+                    top: 56%;
+                }
+                .pin-target-facts {
+                    left: 72%;
+                    top: 56%;
+                }
+            }
             /* ---- License / why-open band ---- */
             .license {
                 background: var(--labs-base);
@@ -666,6 +1453,7 @@
                         <a
                             class="btn btn-ghost btn-sm"
                             href="https://www.volantpartners.com/contact"
+                            aria-label="Contact Volant Partners — opens volantpartners.com"
                             >Contact</a
                         >
                         <a class="btn btn-quiet" href="platform.html"
@@ -689,14 +1477,19 @@
                             memory.
                         </h1>
                         <p class="sub">
-                            Clone the repo, run a typed context graph locally,
-                            and connect MCP-capable agents to memory they can
-                            read, traverse, write to, propose changes against,
-                            validate, and export.
+                            Clone the repository and run a local RTG knowledge
+                            system for shared agent memory. Vellis ships as a
+                            turnkey MCP app and the reusable storage, graph,
+                            schema, migration, validation, query, and controller
+                            components beneath it.
                         </p>
                         <div class="cta-row">
-                            <a class="btn btn-primary" href="#quickstart"
-                                >Run locally
+                            <a
+                                class="btn btn-primary"
+                                href="https://github.com/volantlabs/vellis"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >View Vellis on GitHub
                                 <svg
                                     width="16"
                                     height="16"
@@ -718,40 +1511,32 @@
                             >
                         </div>
                     </div>
-                    <div
-                        class="term"
-                        id="quickstart"
-                        role="region"
-                        aria-label="Quickstart path for Vellis."
-                    >
-                        <div class="term-bar">
-                            <i></i><i></i><i class="r"></i
-                            ><span>~/vellis — local quick start</span>
-                        </div>
-                        <div class="term-body">
-                            <span class="c"># local start</span><br />
-                            <span class="p">›</span> git clone
-                            https://github.com/volantlabs/vellis.git<br />
-                            <span class="p">›</span> cd vellis<br />
-                            <span class="p">›</span> follow the README to run
-                            the graph engine and MCP server<br />
-                            <span class="p">›</span> load your first typed nodes
-                            and edges<br />
-                            <span class="o"
-                                >→ the final repository URL lands here at
-                                launch</span
-                            ><br />
-                            <br />
-                            <span class="c"># what Vellis covers</span><br />
-                            <span class="p">›</span> typed graph storage<br />
-                            <span class="p">›</span> schema-enforced writes<br />
-                            <span class="p">›</span> read / traverse / write /
-                            propose / validate operations<br />
-                            <span class="p">›</span> snapshots / restore /
-                            ledger replay<br />
-                            <span class="p">›</span> Apache 2.0 license<span
-                                class="cursor"
-                            ></span>
+                    <div class="quickstart-anchor" id="quickstart">
+                        <div
+                            class="term"
+                            role="region"
+                            aria-label="Quickstart path for Vellis."
+                        >
+                            <div class="term-bar">
+                                <i></i><i></i><i class="r"></i><span>~/vellis — quick start</span>
+                            </div>
+                            <div class="term-body">
+                                <span class="c"># macOS prerequisites</span><br />
+                                <span class="p">›</span> brew install uv just<br /><br />
+                                <span class="c"># clone and set up Vellis</span><br />
+                                <span class="p">›</span> git clone https://github.com/volantlabs/vellis.git<br />
+                                <span class="p">›</span> cd vellis<br />
+                                <span class="p">›</span> just setup<br /><br />
+                                <span class="c"># create a storage root and print MCP client config</span><br />
+                                <span class="p">›</span> just rtg-eval-info /tmp/vellis-beta-001<br />
+                                <span class="c"># copy that config into your MCP client, then start Vellis</span><br />
+                                <span class="p">›</span> just rtg<span class="cursor"></span><br /><br />
+                                <span class="c"># first MCP calls</span><br />
+                                <span class="o">{"tool":"rtg_validate_graph","arguments":{}}</span><br />
+                                <span class="o">{"tool":"rtg_get_system_state","arguments":{}}</span><br /><br />
+                                <span class="c"># then give your agent the documented beta prompt</span><br />
+                                <a href="https://github.com/volantlabs/vellis/blob/main/docs/evals/rtg-individual-life-graph-beta-prompt.md">docs/evals/rtg-individual-life-graph-beta-prompt.md</a><br />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -842,8 +1627,8 @@
                         </svg>
                         <h4>Storage</h4>
                         <p>
-                            Runs on your machine or your infrastructure. Your
-                            data stays yours.
+                            Runs locally with filesystem and SQLite-backed
+                            operational state. Your data stays on your machine.
                         </p>
                     </div>
                     <div class="wi">
@@ -895,7 +1680,7 @@
                                 stroke-linecap="round"
                             />
                         </svg>
-                        <h4>Export</h4>
+                        <h4>Recovery &amp; portability</h4>
                         <p>
                             JSON-safe snapshots, restore paths, and ledger
                             replay keep graph state portable and auditable.
@@ -923,11 +1708,10 @@
                             />
                             <circle cx="24" cy="24" r="2.2" fill="#D15B21" />
                         </svg>
-                        <h4>Launch kit</h4>
+                        <h4>Starter guides</h4>
                         <p>
-                            Starter prompts, AGENTS.md guidance, schema
-                            references, and traversal notes live close to the
-                            code.
+                            Usage guides, beta prompts, component specs, and a
+                            known-good walkthrough live beside the code.
                         </p>
                     </div>
                 </div>
@@ -1035,7 +1819,7 @@
                                         >fact records</span
                                     >
                                 </span>
-                                <strong>typed data objects</strong>
+                                <strong>typed fact records</strong>
                                 <p>
                                     Fact records associated with anchors; zero,
                                     one, or many.
@@ -1075,8 +1859,264 @@
                                     memory into loose notes.
                                 </p>
                             </span>
-                            <code>anchor | data_object | link</code>
+                            <code>anchor | fact records | link</code>
                         </aside>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ MEMORY EXAMPLE ============ -->
+            <section class="band memory-example" id="memory-example">
+                <div class="wrap">
+                    <div class="band-head">
+                        <div>
+                            <h2>What this looks like in memory</h2>
+                            <p class="lead">
+                                Vellis keeps the same graph skeleton across very
+                                different kinds of work: stable things, typed
+                                relationships, and attached fact records.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="example-gallery">
+                        <div
+                            class="example-tabs"
+                            aria-label="Graph specimen domains"
+                        >
+                            <button
+                                class="example-tab is-active"
+                                type="button"
+                                aria-pressed="true"
+                                data-domain-key="project"
+                            >
+                                <strong>Project memory</strong>
+                            </button>
+                            <button
+                                class="example-tab"
+                                type="button"
+                                aria-pressed="false"
+                                data-domain-key="customer"
+                            >
+                                <strong>Customer context</strong>
+                            </button>
+                            <button
+                                class="example-tab"
+                                type="button"
+                                aria-pressed="false"
+                                data-domain-key="research"
+                            >
+                                <strong>Research notes</strong>
+                            </button>
+                        </div>
+                        <div
+                            class="domain-route"
+                            id="domain-route"
+                            aria-live="polite"
+                        >
+                            <p id="domain-summary">
+                                A teammate owns a task. Both things keep small
+                                typed fact records; the relationship stays
+                                separate.
+                            </p>
+                        </div>
+
+                        <div class="example-grid">
+                            <div
+                                id="memory-map"
+                                class="memory-map"
+                                aria-label="Annotated Vellis memory specimen"
+                                data-domain="project"
+                            >
+                                <svg
+                                    class="memory-edges"
+                                    viewBox="0 0 100 100"
+                                    preserveAspectRatio="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        class="relationship-edge"
+                                        d="M38 41 L62 41"
+                                    />
+                                    <path
+                                        class="attachment-edge"
+                                        d="M31 46 L31 55"
+                                    />
+                                    <path
+                                        class="attachment-edge"
+                                        d="M69 46 L69 55"
+                                    />
+                                </svg>
+                                <span class="plate-label" id="plate-label"
+                                    >Project memory / work update</span
+                                >
+                                <button
+                                    class="structure-toggle"
+                                    id="structure-toggle"
+                                    type="button"
+                                    aria-pressed="false"
+                                    aria-controls="structure-overlay"
+                                >
+                                    <span aria-hidden="true">X-ray</span>
+                                    <span class="sr-only"
+                                        >Show graph structure labels</span
+                                    >
+                                </button>
+                                <div
+                                    class="structure-overlay"
+                                    id="structure-overlay"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="structure-ray ray-anchor-source"
+                                    ></span>
+                                    <span
+                                        class="structure-ray ray-link"
+                                    ></span>
+                                    <span
+                                        class="structure-ray ray-anchor-target"
+                                    ></span>
+                                    <span
+                                        class="structure-ray ray-facts-source"
+                                    ></span>
+                                    <span
+                                        class="structure-ray ray-facts-target"
+                                    ></span>
+                                    <span
+                                        class="structure-tag pin-structure-anchor-source"
+                                        >anchor</span
+                                    >
+                                    <span
+                                        class="structure-tag pin-structure-link"
+                                        >link record</span
+                                    >
+                                    <span
+                                        class="structure-tag pin-structure-anchor-target"
+                                        >anchor</span
+                                    >
+                                    <span
+                                        class="structure-tag pin-structure-source-facts"
+                                        >fact records <em>0..n</em></span
+                                    >
+                                    <span
+                                        class="structure-tag pin-structure-target-facts"
+                                        >fact records <em>0..n</em></span
+                                    >
+                                </div>
+
+                                <span
+                                    class="example-item domain-anchor pin-anchor-source"
+                                >
+                                    <span
+                                        id="anchor-source-icon"
+                                        class="item-icon icon-domain-source"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="item-copy"
+                                        id="anchor-source-label"
+                                        >Teammate</span
+                                    >
+                                </span>
+
+                                <span
+                                    class="example-item domain-anchor pin-anchor-target"
+                                >
+                                    <span
+                                        id="anchor-target-icon"
+                                        class="item-icon icon-domain-target"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="item-copy"
+                                        id="anchor-target-label"
+                                        >Task</span
+                                    >
+                                </span>
+
+                                <span class="edge-label pin-link">
+                                    <span class="item-copy" id="link-label"
+                                        >owns</span
+                                    >
+                                </span>
+
+                                <span
+                                    class="example-item domain-fact-card domain-fact-card--source pin-source-facts"
+                                >
+                                    <span class="fact-card-head">
+                                        <span
+                                            class="item-copy"
+                                            id="source-fact-label"
+                                            >Teammate facts</span
+                                        >
+                                    </span>
+                                    <span
+                                        class="fact-fields"
+                                        id="source-fact-fields"
+                                    >
+                                        <span class="fact-field">
+                                            <span class="fact-mark"></span>
+                                            <span
+                                                ><b>role</b>
+                                                <em>PM</em></span
+                                            >
+                                        </span>
+                                        <span class="fact-field">
+                                            <span class="fact-mark"></span>
+                                            <span
+                                                ><b>team</b>
+                                                <em>Platform</em></span
+                                            >
+                                        </span>
+                                        <span class="fact-field">
+                                            <span class="fact-mark"></span>
+                                            <span
+                                                ><b>access</b>
+                                                <em>write</em></span
+                                            >
+                                        </span>
+                                    </span>
+                                </span>
+
+                                <span
+                                    class="example-item domain-fact-card pin-target-facts"
+                                >
+                                    <span class="fact-card-head">
+                                        <span
+                                            class="item-copy"
+                                            id="target-fact-label"
+                                            >Task facts</span
+                                        >
+                                    </span>
+                                    <span
+                                        class="fact-fields"
+                                        id="target-fact-fields"
+                                    >
+                                        <span class="fact-field">
+                                            <span class="fact-mark"></span>
+                                            <span
+                                                ><b>status</b>
+                                                <em>review</em></span
+                                            >
+                                        </span>
+                                        <span class="fact-field">
+                                            <span class="fact-mark"></span>
+                                            <span
+                                                ><b>priority</b>
+                                                <em>P1</em></span
+                                            >
+                                        </span>
+                                        <span class="fact-field">
+                                            <span class="fact-mark"></span>
+                                            <span
+                                                ><b>due</b>
+                                                <em>Jul 15</em></span
+                                            >
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1130,9 +2170,9 @@
                             <h3>No rug-pull</h3>
                             <p>
                                 Vellis remains a standalone path you can run,
-                                inspect, and export from. A production path is
-                                available when teams want help operationalizing
-                                it.
+                                inspect, snapshot, restore, and replay. A
+                                production path is available when teams want
+                                help operationalizing it.
                             </p>
                         </div>
                     </div>
@@ -1213,6 +2253,7 @@
                             <a href="feed.xml">RSS feed</a
                             ><a href="perspectives.html#subscribe">Subscribe</a
                             ><a href="https://www.volantpartners.com/contact"
+                                aria-label="Contact Volant Partners — opens volantpartners.com"
                                 >Contact</a
                             ><a href="platform.html">Platform</a>
                         </div>
@@ -1239,7 +2280,7 @@
                 schema: {
                     title: "1. Schema rules",
                     body: "Schema defines valid anchor, fact, and link types; validation gates writes.",
-                    code: "anchor | data_object | link",
+                    code: "anchor | fact records | link",
                 },
                 links: {
                     title: "2. Link records",
@@ -1253,7 +2294,7 @@
                 },
                 facts: {
                     title: "4. Fact records",
-                    body: "Fact records are typed data objects associated with anchors. The raw graph allows zero, one, or many fact records; schema can require them.",
+                    body: "Fact records are typed records associated with anchors. The raw graph allows zero, one, or many fact records; schema can require them.",
                     code: "anchor_data_index[anchor_uuid] -> data_uuid[]",
                 },
                 snapshot: {
@@ -1292,6 +2333,275 @@
                     renderModelDetail(modelDetails[object.dataset.modelKey]);
                 });
             });
+
+            const domainExamples = {
+                project: {
+                    plate: "Project memory / work update",
+                    summary:
+                        "A teammate owns a task. Both things keep small typed fact records; the relationship stays separate.",
+                    visual: {
+                        anchorSource: "Teammate",
+                        anchorTarget: "Task",
+                        sourceIcon: "teammate",
+                        targetIcon: "task",
+                        link: "owns",
+                        sourceFactsTitle: "Teammate facts",
+                        sourceFacts: [
+                            ["role", "PM"],
+                            ["team", "Platform"],
+                            ["access", "write"],
+                        ],
+                        targetFactsTitle: "Task facts",
+                        targetFacts: [
+                            ["status", "review"],
+                            ["priority", "P1"],
+                            ["due", "Jul 15"],
+                        ],
+                    },
+                },
+                customer: {
+                    plate: "Customer context / account update",
+                    summary:
+                        "An account has a contact. Both things keep small typed fact records; the relationship stays separate.",
+                    visual: {
+                        anchorSource: "Account",
+                        anchorTarget: "Contact",
+                        sourceIcon: "account",
+                        targetIcon: "contact",
+                        link: "has contact",
+                        sourceFactsTitle: "Account facts",
+                        sourceFacts: [
+                            ["tier", "enterprise"],
+                            ["region", "NA"],
+                            ["renewal", "Q3"],
+                        ],
+                        targetFactsTitle: "Contact facts",
+                        targetFacts: [
+                            ["role", "buyer"],
+                            ["next", "renewal"],
+                            ["channel", "email"],
+                        ],
+                    },
+                },
+                research: {
+                    plate: "Research notes / evidence update",
+                    summary:
+                        "A claim cites a source. Both things keep small typed fact records; the relationship stays separate.",
+                    visual: {
+                        anchorSource: "Claim",
+                        anchorTarget: "Source",
+                        sourceIcon: "claim",
+                        targetIcon: "source",
+                        link: "cites",
+                        sourceFactsTitle: "Claim facts",
+                        sourceFacts: [
+                            ["confidence", "high"],
+                            ["status", "review"],
+                            ["topic", "memory"],
+                        ],
+                        targetFactsTitle: "Source facts",
+                        targetFacts: [
+                            ["type", "paper"],
+                            ["retrieved", "Jul 2026"],
+                            ["license", "open"],
+                        ],
+                    },
+                },
+            };
+
+            const domainIconTemplates = {
+                teammate: `
+                    <svg class="domain-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="8" r="3"></circle>
+                        <path d="M4.5 17.5c.9-3.1 2.4-4.6 4.5-4.6s3.6 1.5 4.5 4.6"></path>
+                        <path class="glyph-accent" d="M15.5 7.2l1.6 1.6 3-3.3"></path>
+                        <path class="glyph-soft" d="M16.5 14h3.5"></path>
+                    </svg>
+                `,
+                task: `
+                    <svg class="domain-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="4" y="5" width="16" height="14" rx="2.2"></rect>
+                        <path class="glyph-accent" d="M7.5 10l1.4 1.4 2.8-3"></path>
+                        <path d="M13.5 9.5h3.8"></path>
+                        <path class="glyph-soft" d="M7.5 15h9.8"></path>
+                    </svg>
+                `,
+                account: `
+                    <svg class="domain-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3.5 18.5h17"></path>
+                        <path d="M5 18.5v-8.2l4.4-2.2v10.4"></path>
+                        <path d="M9.4 18.5V6.7l5.2 2.4v9.4"></path>
+                        <path d="M14.6 18.5v-7.2l4.4 1.9v5.3"></path>
+                        <path class="glyph-accent" d="M7 12h.1M7 15h.1M11.7 11.3h.1M11.7 14.3h.1M16.8 15.1h.1"></path>
+                    </svg>
+                `,
+                contact: `
+                    <svg class="domain-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3.5" y="5.5" width="17" height="13" rx="2"></rect>
+                        <circle cx="8.5" cy="11" r="2"></circle>
+                        <path d="M5.8 16c.6-1.9 1.5-2.7 2.7-2.7s2.1.8 2.7 2.7"></path>
+                        <path class="glyph-accent" d="M13.5 10h4.1"></path>
+                        <path class="glyph-soft" d="M13.5 13.6h3.2"></path>
+                    </svg>
+                `,
+                claim: `
+                    <svg class="domain-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4.5 7.5h15v10h-15z"></path>
+                        <path class="glyph-accent" d="M7.2 11.2h2.5M7.2 14h7.8"></path>
+                        <path d="M16.4 10.5l1.5 1.5-1.5 1.5"></path>
+                        <path class="glyph-soft" d="M4.5 7.5l2-2M19.5 17.5l-2 2"></path>
+                    </svg>
+                `,
+                source: `
+                    <svg class="domain-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 4.5h8.5l3.5 3.5v11.5H6z"></path>
+                        <path d="M14.5 4.5v4h3.5"></path>
+                        <path class="glyph-accent" d="M8.8 12h6.2"></path>
+                        <path class="glyph-soft" d="M8.8 15h4.8"></path>
+                        <path d="M8.7 18.2h2.2"></path>
+                    </svg>
+                `,
+            };
+
+            const memoryMap = document.querySelector("#memory-map");
+            const domainSummary = document.querySelector("#domain-summary");
+            const plateLabel = document.querySelector("#plate-label");
+            const structureToggle =
+                document.querySelector("#structure-toggle");
+            const structureOverlay =
+                document.querySelector("#structure-overlay");
+            const anchorSourceLabel = document.querySelector(
+                "#anchor-source-label",
+            );
+            const anchorTargetLabel = document.querySelector(
+                "#anchor-target-label",
+            );
+            const anchorSourceIcon = document.querySelector(
+                "#anchor-source-icon",
+            );
+            const anchorTargetIcon = document.querySelector(
+                "#anchor-target-icon",
+            );
+            const linkLabel = document.querySelector("#link-label");
+            const sourceFactLabel =
+                document.querySelector("#source-fact-label");
+            const targetFactLabel =
+                document.querySelector("#target-fact-label");
+            const sourceFactFields =
+                document.querySelector("#source-fact-fields");
+            const targetFactFields =
+                document.querySelector("#target-fact-fields");
+            const domainTabs = Array.from(
+                document.querySelectorAll(".example-tab"),
+            );
+            let activeDomainKey = "project";
+            let structurePinned = false;
+            let structurePeek = false;
+
+            function renderFactFields(container, facts) {
+                const rows = facts.map(([label, value]) => {
+                    const row = document.createElement("span");
+                    const mark = document.createElement("span");
+                    const copy = document.createElement("span");
+                    const key = document.createElement("b");
+                    const text = document.createElement("em");
+
+                    row.className = "fact-field";
+                    mark.className = "fact-mark";
+                    key.textContent = label;
+                    text.textContent = value;
+                    copy.append(key, document.createTextNode(" "), text);
+                    row.append(mark, copy);
+                    return row;
+                });
+                container.replaceChildren(...rows);
+            }
+
+            function renderDomainIcon(container, iconKey) {
+                container.innerHTML =
+                    domainIconTemplates[iconKey] ||
+                    domainIconTemplates.task;
+            }
+
+            function updateStructureOverlay() {
+                const isVisible = structurePinned || structurePeek;
+                memoryMap.classList.toggle("is-structure-visible", isVisible);
+                memoryMap.classList.toggle(
+                    "is-structure-pinned",
+                    structurePinned,
+                );
+                structureToggle.setAttribute(
+                    "aria-pressed",
+                    String(structurePinned),
+                );
+                structureOverlay.setAttribute(
+                    "aria-hidden",
+                    String(!isVisible),
+                );
+            }
+
+            function setStructurePeek(isPeeking) {
+                structurePeek = isPeeking;
+                updateStructureOverlay();
+            }
+
+            function isStructurePeeking() {
+                return structureToggle.matches(":hover");
+            }
+
+            function setActiveDomain(key) {
+                activeDomainKey = key;
+                const domain = domainExamples[activeDomainKey];
+
+                domainTabs.forEach((tab) => {
+                    const isActive = tab.dataset.domainKey === activeDomainKey;
+                    tab.classList.toggle("is-active", isActive);
+                    tab.setAttribute("aria-pressed", String(isActive));
+                });
+                memoryMap.dataset.domain = activeDomainKey;
+                plateLabel.textContent = domain.plate;
+                domainSummary.textContent = domain.summary;
+                anchorSourceLabel.textContent = domain.visual.anchorSource;
+                anchorTargetLabel.textContent = domain.visual.anchorTarget;
+                renderDomainIcon(anchorSourceIcon, domain.visual.sourceIcon);
+                renderDomainIcon(anchorTargetIcon, domain.visual.targetIcon);
+                linkLabel.textContent = domain.visual.link;
+                sourceFactLabel.textContent = domain.visual.sourceFactsTitle;
+                targetFactLabel.textContent = domain.visual.targetFactsTitle;
+                renderFactFields(sourceFactFields, domain.visual.sourceFacts);
+                renderFactFields(targetFactFields, domain.visual.targetFacts);
+            }
+
+            domainTabs.forEach((tab) => {
+                tab.addEventListener("click", () => {
+                    setActiveDomain(tab.dataset.domainKey);
+                });
+            });
+            ["mouseenter", "pointerenter"].forEach((eventName) => {
+                structureToggle.addEventListener(eventName, () => {
+                    setStructurePeek(true);
+                });
+            });
+            ["mouseleave", "pointerleave"].forEach((eventName) => {
+                structureToggle.addEventListener(eventName, () => {
+                    setStructurePeek(false);
+                });
+            });
+            structureToggle.addEventListener("click", () => {
+                structurePinned = !structurePinned;
+                structurePeek = !structurePinned && isStructurePeeking();
+                updateStructureOverlay();
+            });
+            structureToggle.addEventListener("keydown", (event) => {
+                if (event.key === "Escape" && structurePinned) {
+                    structurePinned = false;
+                    structurePeek = false;
+                    updateStructureOverlay();
+                    structureToggle.blur();
+                }
+            });
+            setActiveDomain(activeDomainKey);
+            updateStructureOverlay();
         </script>
     </body>
 </html>

@@ -50,11 +50,17 @@ window.PERSPECTIVE_POSTS = [
           "The point is not to automate judgment away. The point is to make the system legible enough that judgment can happen at the right moment. When the graph knows what a thing is, what it depends on, and what policies attach to it, a human can review the meaningful decision instead of auditing the rubble afterward.",
           "That is why the graph is more than storage. It is a compact theory of the domain: partial, revisable, and powerful precisely because the system can run it."
         ]
+      },
+      {
+        "heading": "A year in, the constraint moved",
+        "paragraphs": [
+          "A year of actually running the graph this way only reinforced part of the argument. Individual work got easier and faster than expected: the same task now moves with a person from a desk to a phone in a waiting room without losing quality, and a problem that used to take days to notice and fix can get caught and corrected in the same sitting. What hasn't kept up is coordination across a team. When one person can move this fast, staying right on your own stops being the hard part. Staying aligned with everyone else becomes it."
+        ]
       }
     ],
     "provenance": {
       "source": "Human-written essay for volantlabs.ai Perspectives.",
-      "reasoningLayer": "No graph synthesis layer; the graph is referenced as the subject of the essay.",
+      "reasoningLayer": "Agent-facilitated revision: interviewed by an agent; the added section was drafted from the author's interview answers, then edited directly by the author. No automated synthesis from graph node data.",
       "humanRatifier": "Byline accountability: Eddie Austin.",
       "status": "Published essay.",
       "knownUncertainty": "The claim is directional, not a benchmark: it argues for legibility as the wedge rather than proving it is the only wedge.",
@@ -173,7 +179,7 @@ window.PERSPECTIVE_POSTS = [
     ],
     "provenance": {
       "source": "Drawn from Volant Labs governance and site architecture notes.",
-      "reasoningLayer": "Edited from internal positioning notes for public launch copy.",
+      "reasoningLayer": "Edited from internal positioning notes for public site copy.",
       "humanRatifier": "Editorial review by Volant Labs.",
       "status": "Published field note.",
       "knownUncertainty": "This dispatch states the operating model but does not yet name a production customer implementation.",
@@ -199,6 +205,16 @@ window.PERSPECTIVE_POSTS = [
             "src": "assets/images/contributors/matthew-lou-magnuson.png",
             "alt": "Matthew Lou-Magnuson"
           },
+          "metrics": []
+        },
+        {
+          "label": "ChatGPT 5.5",
+          "role": "AI drafting partner",
+          "kind": "model",
+          "summary": "drafting + refinement",
+          "detail": "Helped draft, refine, and shape the field note language without owning the final claims.",
+          "initials": "AI",
+          "avatar": null,
           "metrics": []
         },
         {
@@ -238,7 +254,7 @@ window.PERSPECTIVE_POSTS = [
     "kindLabel": "Field note",
     "title": "Open data, proprietary intelligence",
     "shortTitle": "Open data, proprietary intelligence",
-    "dek": "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
+    "dek": "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
     "published": "2026-05-27",
     "displayDate": "May 27, 2026",
     "readingTime": "4 min read",
@@ -259,10 +275,16 @@ window.PERSPECTIVE_POSTS = [
     ],
     "body": [
       {
+        "heading": "The question an open engine invites",
+        "paragraphs": [
+          "Vellis is an open graph engine: anyone can run it, inspect it, and export from it in full. That openness invites a fair question from both directions. Skeptics ask what stops the open promise from being quietly revoked once adoption is deep. Adopters ask what is actually theirs if the machinery is shared. The answer is a line, and this note is about where it sits."
+        ]
+      },
+      {
         "heading": "Open does not mean undifferentiated",
         "paragraphs": [
-          "The useful boundary is not open versus proprietary. It is substrate versus accumulated intelligence. Vellis can stay open because the substrate is the shared machinery: schema, graph operations, export paths, and the basic affordances that let a team model its world.",
-          "The proprietary value lives in the work an organization does with it. Their domain model, policy choices, operating history, reviewed decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
+          "The line is not open versus proprietary. It is substrate versus accumulated intelligence. The substrate — schema, graph operations, export paths, and the basic affordances that let a team model its world — is shared machinery, and Vellis keeps it open.",
+          "The proprietary value lives in the work an organization does with that machinery. Their domain model, policy choices, operating history, reviewed decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
         ]
       },
       {
@@ -282,7 +304,7 @@ window.PERSPECTIVE_POSTS = [
     ],
     "provenance": {
       "source": "Drawn from Volant Labs site architecture and open/governed boundary notes.",
-      "reasoningLayer": "Edited from internal positioning notes for public launch copy.",
+      "reasoningLayer": "Edited from internal positioning notes for public site copy.",
       "humanRatifier": "Editorial review by Volant Labs.",
       "status": "Published field note.",
       "knownUncertainty": "The boundary will need sharper examples as real deployments create edge cases.",
@@ -308,6 +330,16 @@ window.PERSPECTIVE_POSTS = [
             "src": "assets/images/contributors/andrew-forman.png",
             "alt": "Andrew Forman"
           },
+          "metrics": []
+        },
+        {
+          "label": "Fable 5",
+          "role": "AI drafting partner",
+          "kind": "model",
+          "summary": "drafting + refinement",
+          "detail": "Helped draft, refine, and shape the field note language without owning the final claims.",
+          "initials": "AI",
+          "avatar": null,
           "metrics": []
         },
         {

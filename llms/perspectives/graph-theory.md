@@ -30,11 +30,12 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - A graph is not a filing cabinet
 - Theory becomes executable when the system can test it
 - Legibility is what lets judgment stay human
+- A year in, the constraint moved
 
 ## Editorial Context
 
 - Source: Human-written essay for volantlabs.ai Perspectives.
-- Editorial layer: No graph synthesis layer; the graph is referenced as the subject of the essay.
+- Editorial layer: Agent-facilitated revision: interviewed by an agent; the added section was drafted from the author's interview answers, then edited directly by the author. No automated synthesis from graph node data.
 - Owner: Byline accountability: Eddie Austin.
 - Status: Published essay.
 - Open question: The claim is directional, not a benchmark: it argues for legibility as the wedge rather than proving it is the only wedge.

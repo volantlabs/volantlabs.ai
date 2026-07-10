@@ -15,7 +15,7 @@ const cards = [
     filename: "home-vellis-shared-memory.png",
     title: "Vellis: open-source shared memory for AI agents",
     description:
-      "Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and exportable.",
+      "Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and recoverable.",
     kicker: "Vellis",
     shortTitle: "Shared\nmemory",
     alt: "A large orange Vellis memory node connecting AI agents and tools.",
@@ -26,7 +26,7 @@ const cards = [
     filename: "engine-local-graph.png",
     title: "Vellis Engine: typed context graph for local AI work",
     description:
-      "Apache-licensed graph engine and MCP server pattern for local shared agent memory, validation, traversal, and export.",
+      "Apache-licensed graph engine and reusable components for local shared agent memory, validation, migration, snapshots, restore, and replay.",
     kicker: "Engine",
     shortTitle: "Local graph\nengine",
     alt: "A local engine panel connected to a typed graph.",
@@ -68,9 +68,9 @@ const cards = [
   {
     page: "/platform.html",
     filename: "platform-governed-operations.png",
-    title: "Vellis in governed production",
+    title: "From Vellis to Kesher",
     description:
-      "Carry the open Vellis substrate into production with operating controls, audit paths, and approval workflows.",
+      "Carry open Vellis patterns into governed production with Kesher and Volant Partners.",
     kicker: "Platform",
     shortTitle: "Governed operations",
     alt: "A Vellis graph passing through a governance gate into an audit record.",
@@ -81,7 +81,7 @@ const cards = [
     filename: "domain-explorations-worked-models.png",
     title: "Domain Explorations: worked Vellis models",
     description:
-      "A parked fast-follow page for reference graph packs, public-standard mappings, narrow workflow examples, and community builds.",
+      "A parked exploration of reference graph packs, public-standard mappings, narrow workflow examples, and community builds.",
     kicker: "Domain Explorations",
     shortTitle: "Worked models",
     alt: "Four domain model panels connected to a shared graph substrate.",
@@ -114,7 +114,7 @@ const cards = [
     filename: "perspective-open-data.png",
     title: "Open data, proprietary intelligence",
     description:
-      "The line that lets Vellis stay open while proprietary operational intelligence compounds inside each organization.",
+      "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
     kicker: "Perspective",
     shortTitle: "Open substrate",
     alt: "Private intelligence nodes growing from an open Vellis substrate.",

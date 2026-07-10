@@ -6,12 +6,12 @@ Primary audience: engineers and technical evaluators.
 
 ## Summary
 
-Vellis is a typed context graph for AI-native work. It separates stable anchors, typed data/fact records, UUID link records, schema validation, and snapshots with ledger replay so agents can share durable operational context without locking the organization into a closed memory layer.
+Vellis is both a reusable AI-native component library and a local RTG knowledge-system application for humans and agents. It separates stable anchors, typed data/fact records, UUID link records, schema validation, and snapshots with ledger replay so agents can share durable operational context without locking the organization into a closed memory layer.
 
 ## Use This Page For
 
 - Explaining what Vellis is and what it does.
-- Routing users to the current local-start path.
+- Routing users through the documented clone, setup, MCP configuration, validation, state-check, and beta-prompt path.
 - Distinguishing typed graph infrastructure from generic document storage or chat memory.
 
 ## Key Claims
@@ -21,7 +21,8 @@ Vellis is a typed context graph for AI-native work. It separates stable anchors,
 - Fact records are typed data objects associated with anchors; the raw graph allows zero, one, or many fact records.
 - Vellis uses UUID link identity with source and target UUIDs.
 - Agents can reason over shared context instead of each holding private fragments.
-- Public clone/install commands are not yet shown; the page routes users to request the current path from Volant.
+- The public quickstart mirrors the Vellis README: `just setup`, `just rtg-eval-info`, `just rtg`, `rtg_validate_graph`, `rtg_get_system_state`, then the named life-graph beta prompt.
+- Current operation is local. Filesystem and SQLite-backed state, snapshots, restore, and ledger replay provide the documented portability and recovery path.
 
 ## Related Pages
 

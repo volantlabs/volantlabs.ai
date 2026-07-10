@@ -1,6 +1,6 @@
 # volantlabs.ai — Site Architecture (Sitemap)
 
-**Status:** rebuilt 2026-06-16 · Vellis/FileDrive hygiene refreshed 2026-06-24
+**Status:** rebuilt 2026-06-16 · public copy and quickstart refreshed 2026-07-10
 **Spec:** `392e552b-5858-475e-a716-31d8f05bc5a6` (volant_base)
 **Source of truth for this rebuild:** the 7 wireframes on disk + `volantlabs-sitemap-v2.svg` + Vellis handoff IA. Where v1 detail was unrecoverable, structure is re-derived from the wireframes, not invented.
 
@@ -60,15 +60,15 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 **Job:** get an engineer from landing to local evaluation.
 - **Hero** — "Vellis is the open-source graph engine for agent memory"; CTAs *Run locally*, *Read the thesis*.
 - **Two-column** — *What it is* (typed graph · schema language · storage · export) | terminal-style local quick start.
-- **Capabilities** — Schema language · MCP server pattern · open-format export (exact formats confirmed before final launch) · starter docs/prompts.
+- **Capabilities** — Schema language · MCP server · local storage · documented snapshots, restore, and ledger replay · starter docs/prompts. Do not name additional export formats until they are documented in the public repo.
 - **Why open · promise** — portability + no-rug-pull covenant, stated up front as a trust signal.
 
 ### 3.2 Domain Explorations  *(wireframe-3)* — proof by worked models
-**Job:** show what Vellis can model once example boundaries are ready; keep it from blocking launch.
-- **Header** — reference-graph framing; domain examples are useful proof, not a launch gate.
+**Job:** show what Vellis can model once example boundaries are ready; remain parked until then.
+- **Header** — reference-graph framing; domain examples are useful proof, but not part of the current supported path.
 - **Reference concepts** — personal project management, jobs/search, business operating graph, and other starter domains once the example format is ready.
 - **Boundary note** — publish examples only when the schema, seed data, and review path are clear enough for builders to reuse.
-- **Propose a domain** — optional signal capture after launch.
+- **Propose a domain** — optional signal capture once a reusable example format exists.
 
 ### 3.3 Thesis  *(story page — reworked 2026-06-17)* — Volant's point of view
 **Job:** carry the big story — for the "thinker" lane — in plain language, with a more cinematic landing-page feel.
@@ -83,11 +83,11 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 **Job:** hold the growing body of essays and field notes without turning Thesis into a blog index.
 
 - **Header** — essays and field notes; calls out that Thesis is the story and Perspectives is the library.
-- **Kind filter** — simple launch views:
+- **Kind filter** — simple public views:
   - *All*
   - *Essays*
   - *Field notes*
-- **Provenance line** — byline and update status only for launch. Graph-drafted provenance can return once the workflow is real.
+- **Provenance line** — byline and update status only. Graph-drafted provenance can return once the workflow is real.
 - **Subscribe band** — email + RSS.
 
 ### 3.5 Community  *(wireframe-5)* — lightweight builder path
@@ -98,9 +98,9 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 
 ### 3.6 Platform  *(wireframe-6)* — the quiet graduation path
 **Job:** for the "champion," name the one thing Vellis should not pretend to solve alone, and offer a calm exit to Kesher.
-- **Hero** — "When AI context work needs governed operations"; names Kesher as Volant Partners' governed platform.
+- **Hero** — "When shared agent memory becomes production infrastructure"; names Kesher as Volant Partners' governed platform.
 - **Before / after** — *On Vellis* (agents write · graphs run real ops · no audit answer) vs *On Kesher* (write-back gates · audit traces · approval policies · accumulated intelligence).
-- **Single CTA** — "Ready for governed operations? → Book a conversation" (links out to the commercial site). One calm CTA only.
+- **Single CTA** — "Ready for governed operations? → Book a conversation" (links directly to the Volant Partners contact form). One calm CTA only.
 
 ---
 
@@ -141,7 +141,7 @@ Home  (/)
 1. **Middle story section name** → **Thesis** (kept; not renamed).
 2. **Graphcasting** → **cut entirely for v1.** No public-facing use anywhere. Revisit only if the term lands internally.
 3. **Growing content library** → **Perspectives**.
-4. **Perspective Kind filters** → *All · Essays · Field notes* for launch. Graph-drafted provenance is future-state.
+4. **Perspective Kind filters** → *All · Essays · Field notes*. Graph-drafted provenance is future-state.
 
 ---
 
