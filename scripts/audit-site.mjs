@@ -2,7 +2,10 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { ga4TrackingFailures } from "./audit-site-rules.mjs";
+import {
+  externalContactLinkFailures,
+  ga4TrackingFailures,
+} from "./audit-site-rules.mjs";
 
 const siteRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -589,21 +592,7 @@ function assertVolantPartnersFooterLinks(page, html) {
 }
 
 function assertExternalContactSignals(page, html) {
-  const contactLinks = extractAnchors(html).filter(
-    (anchor) =>
-      anchor.attributes.href === "https://www.volantpartners.com/contact",
-  );
-  for (const contact of contactLinks) {
-    const label = contact.attributes["aria-label"] ?? "";
-    if (
-      !/\bVolant Partners\b/.test(label) ||
-      !/\bvolantpartners\.com\b/.test(label)
-    ) {
-      failures.push(
-        `${page} Contact link should identify Volant Partners and the volantpartners.com domain`,
-      );
-    }
-  }
+  failures.push(...externalContactLinkFailures(page, html));
 }
 
 function assertFirstViewportRhythm(page, html) {

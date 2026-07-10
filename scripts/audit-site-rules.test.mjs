@@ -1,7 +1,10 @@
 import { deepEqual } from "node:assert/strict";
 import test from "node:test";
 
-import { ga4TrackingFailures } from "./audit-site-rules.mjs";
+import {
+  externalContactLinkFailures,
+  ga4TrackingFailures,
+} from "./audit-site-rules.mjs";
 
 test("GA4 audit accepts formatted guarded initialization", () => {
   const html = `
@@ -46,5 +49,31 @@ test("GA4 audit rejects unguarded async loader", () => {
   deepEqual(ga4TrackingFailures("index.html", html), [
     "index.html loads GA4 before checking the production host",
     "index.html is missing the GA4 production-host guard",
+  ]);
+});
+
+test("external Contact audit accepts safe new-tab links", () => {
+  const html = `
+    <a
+      href="https://www.volantpartners.com/contact"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contact Volant Partners — opens volantpartners.com"
+    >Contact</a>
+  `;
+
+  deepEqual(externalContactLinkFailures("index.html", html), []);
+});
+
+test("external Contact audit rejects same-tab links", () => {
+  const html = `
+    <a
+      href="https://www.volantpartners.com/contact"
+      aria-label="Contact Volant Partners — opens volantpartners.com"
+    >Contact</a>
+  `;
+
+  deepEqual(externalContactLinkFailures("index.html", html), [
+    "index.html Contact link should open in a new tab with noopener and noreferrer",
   ]);
 });

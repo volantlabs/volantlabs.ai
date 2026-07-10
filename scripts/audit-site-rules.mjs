@@ -1,4 +1,6 @@
 export const ga4MeasurementId = "G-VNXWVPERBQ";
+export const volantPartnersContactUrl =
+  "https://www.volantpartners.com/contact";
 
 const ga4ScriptUrl = `https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`;
 
@@ -38,6 +40,38 @@ export function ga4TrackingFailures(page, html) {
   return failures;
 }
 
+export function externalContactLinkFailures(page, html) {
+  const failures = [];
+  const contactLinks = extractAnchors(html).filter(
+    (anchor) => anchor.attributes.href === volantPartnersContactUrl,
+  );
+
+  for (const contact of contactLinks) {
+    const label = contact.attributes["aria-label"] ?? "";
+    if (
+      !/\bVolant Partners\b/.test(label) ||
+      !/\bvolantpartners\.com\b/.test(label)
+    ) {
+      failures.push(
+        `${page} Contact link should identify Volant Partners and the volantpartners.com domain`,
+      );
+    }
+
+    const relTokens = (contact.attributes.rel ?? "").split(/\s+/);
+    if (
+      contact.attributes.target !== "_blank" ||
+      !relTokens.includes("noopener") ||
+      !relTokens.includes("noreferrer")
+    ) {
+      failures.push(
+        `${page} Contact link should open in a new tab with noopener and noreferrer`,
+      );
+    }
+  }
+
+  return failures;
+}
+
 function hasUnguardedAsyncGa4Loader(html) {
   return new RegExp(
     `<script\\b(?=[^>]*\\basync\\b)(?=[^>]*\\bsrc\\s*=\\s*["']${escapeRegExp(ga4ScriptUrl)}["'])[^>]*>`,
@@ -57,4 +91,24 @@ function hasProductionHostGuard(html) {
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function extractAnchors(html) {
+  const anchors = [];
+  const anchorPattern = /<a\b([^>]*)>([\s\S]*?)<\/a\s*>/gi;
+  let match;
+  while ((match = anchorPattern.exec(html))) {
+    anchors.push({ attributes: parseAttributes(match[1]) });
+  }
+  return anchors;
+}
+
+function parseAttributes(rawAttributes) {
+  const attributes = {};
+  const attributePattern = /([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+  let match;
+  while ((match = attributePattern.exec(rawAttributes))) {
+    attributes[match[1].toLowerCase()] = match[2] ?? match[3] ?? "";
+  }
+  return attributes;
 }
