@@ -1,14 +1,14 @@
 # Volant Labs
 
-> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and portable, recoverable state.
+> Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 
 ## Primary Pages
 
-- [Home](https://volantlabs.ai/llms/pages/home.md): Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory.
-- [Vellis Engine](https://volantlabs.ai/llms/pages/engine.md): The product overview and verified local quickstart for Vellis as an open-source graph engine, RTG knowledge system, and reusable component library.
-- [Thesis](https://volantlabs.ai/llms/pages/thesis.md): The narrative point of view behind Vellis: graph memory, model reasoning, and human review.
+- [Home](https://volantlabs.ai/llms/pages/home.md): Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents.
+- [Vellis Engine](https://volantlabs.ai/llms/pages/engine.md): The product overview and local quickstart for Vellis as structured, recoverable knowledge infrastructure for AI agents.
+- [Thesis](https://volantlabs.ai/llms/pages/thesis.md): The narrative point of view behind Vellis: explicit meaning, model reasoning, and human review.
 - [Perspectives](https://volantlabs.ai/llms/pages/perspectives.md): The library of essays and field notes behind Vellis.
 - [Community](https://volantlabs.ai/llms/pages/community.md): The lightweight builder path for running Vellis, following releases, sharing examples, and asking questions.
 - [Platform](https://volantlabs.ai/llms/pages/platform.md): The Volant Partners path from open Vellis patterns to governed production operations.

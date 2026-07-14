@@ -182,6 +182,7 @@
         <h2>Controls that live after execution become paperwork</h2>
         <p>A policy that appears only after the system has changed state is not controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.</p>
         <p>Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for review, or stops.</p>
+        <p>In the Volant Labs stack, this marks the boundary between Vellis and the governed production layer. Vellis keeps knowledge explicit, schema-validated, and recoverable. The production layer adds tenant policy, approval paths, and governed audit controls when that knowledge becomes operational infrastructure.</p>
         <h2>The graph gives policy something to inspect</h2>
         <p>Rules become more useful when they can ask graph-shaped questions. What tenant owns this record? Which schema governs this edge? Has a human reviewed this source? Does this write cross a boundary that requires explicit approval?</p>
         <p>Those questions are not security theater. They are domain questions. The graph makes them available at the moment of action, which is where governance stops being a ceremony and becomes a substrate.</p>
@@ -262,7 +263,7 @@
         <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact" target="_blank" rel="noopener noreferrer" aria-label="Contact Volant Partners — opens volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">Apache 2.0 · runnable locally · recoverable by design.</span></div>
   </div>
 </footer>
 </body>

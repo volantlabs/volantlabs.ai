@@ -29,7 +29,7 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 
 - The question an open engine invites
 - Open does not mean undifferentiated
-- Portability is the trust signal
+- Recoverability is the trust signal
 - The line makes both sides stronger
 
 ## Editorial Context
@@ -40,7 +40,7 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - Status: Published field note.
 - Open question: The boundary will need sharper examples as real deployments create edge cases.
 - Counterpoint: Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.
-- What would change this: A platform path that requires proprietary lock-in or lossy export would invalidate the promise.
+- What would change this: A platform path that requires a proprietary service to run or recover Vellis state would invalidate the promise.
 
 ## Related Pages
 

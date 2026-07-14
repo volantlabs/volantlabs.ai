@@ -6,12 +6,12 @@
         <title>Perspectives — essays and field notes · volantlabs.ai</title>
         <meta
             name="description"
-            content="Essays and field notes behind Vellis, the open-source graph engine for shared agent memory."
+            content="Essays and field notes on explicit knowledge models, controlled change, recoverable systems, and governed operations."
         />
         <link rel="canonical" href="https://volantlabs.ai/perspectives.html" />
         <meta property="og:site_name" content="Volant Labs" />
         <meta property="og:title" content="Perspectives from Volant Labs" />
-        <meta property="og:description" content="Essays and field notes on typed context graphs, open agent memory, provenance, controls, and governed operations." />
+        <meta property="og:description" content="Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations." />
         <meta property="og:type" content="website" />
         <meta
             property="og:url"
@@ -23,7 +23,7 @@
         <meta property="og:image:alt" content="A stack of perspective cards connected to a central graph node." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Perspectives from Volant Labs" />
-        <meta name="twitter:description" content="Essays and field notes on typed context graphs, open agent memory, provenance, controls, and governed operations." />
+        <meta name="twitter:description" content="Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/perspectives-library.png" />
         <meta name="twitter:image:alt" content="A stack of perspective cards connected to a central graph node." />
         <meta name="theme-color" content="#041026" />
@@ -210,7 +210,7 @@
                 padding-top: var(--s16);
                 padding-bottom: var(--s16);
                 display: grid;
-                grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+                grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
                 gap: var(--s12);
                 align-items: end;
             }
@@ -242,19 +242,20 @@
                 color: var(--muted);
                 max-width: 58ch;
             }
-            .library-note {
+            .library-visual {
+                width: 100%;
+                max-width: 420px;
+                margin: 0;
+                justify-self: end;
+                overflow: hidden;
                 border: 1px solid var(--line);
-                border-radius: 8px;
+                border-radius: 12px;
                 background: var(--surface);
-                padding: var(--s4);
-                font-size: 13px;
-                color: var(--muted);
             }
-            .library-note strong {
+            .library-visual img {
                 display: block;
-                color: var(--text);
-                font-size: 14px;
-                margin-bottom: 4px;
+                width: 100%;
+                height: auto;
             }
             @media (max-width: 840px) {
                 .pagehead .wrap {
@@ -263,6 +264,10 @@
                 }
                 .pagehead h1 {
                     font-size: 36px;
+                }
+                .library-visual {
+                    justify-self: start;
+                    max-width: 420px;
                 }
             }
             .filters {
@@ -592,16 +597,19 @@
                         >
                         <h1>Essays and field notes.</h1>
                         <p class="sub">
-                            The growing library for Vellis: authored essays,
-                            product notes, and field observations behind the open
-                            graph engine.
+                            The growing library around Vellis and the broader
+                            Volant Labs thesis: authored essays, product notes,
+                            and field observations.
                         </p>
                     </div>
-                    <aside class="library-note">
-                        <strong>The Thesis is the story.</strong>
-                        Perspectives is the library. The thinking can grow here
-                        without turning the Thesis page back into a blog index.
-                    </aside>
+                    <figure class="library-visual">
+                        <img
+                            src="assets/images/routes/perspectives-library.webp"
+                            alt="A curated shelf of navy folios and glass volumes with orange and warm-white accents."
+                            width="1200"
+                            height="560"
+                        />
+                    </figure>
                 </div>
             </section>
 
@@ -821,7 +829,7 @@
                             >Volant Partners</a
                         ></span
                     ><span class="nrp"
-                        >No rug-pull: Vellis stays runnable.</span
+                        >Apache 2.0 · runnable locally · recoverable by design.</span
                     >
                 </div>
             </div>
