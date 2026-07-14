@@ -159,7 +159,8 @@ window.PERSPECTIVE_POSTS = [
         "heading": "Controls that live after execution become paperwork",
         "paragraphs": [
           "A policy that appears only after the system has changed state is not controlling the operation. It is documentation. Documentation matters, but it cannot stop the wrong write, route a risky change for approval, or explain why an agent was allowed to act in the first place.",
-          "Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for review, or stops."
+          "Runtime-native control means the policy is close enough to the execution path to shape what happens. It can inspect the proposed operation, read the graph context, and decide whether the action proceeds, degrades, queues for review, or stops.",
+          "In the Volant Labs stack, this marks the boundary between Vellis and the governed production layer. Vellis keeps knowledge explicit, schema-validated, and recoverable. The production layer adds tenant policy, approval paths, and governed audit controls when that knowledge becomes operational infrastructure."
         ]
       },
       {
@@ -260,7 +261,7 @@ window.PERSPECTIVE_POSTS = [
     "readingTime": "4 min read",
     "image": {
       "src": "assets/images/perspectives/open-data.webp",
-      "alt": "Layered graph stack showing private organization graphs above an open substrate with open-format export rails.",
+      "alt": "Layered graph stack showing private organization knowledge above an open substrate with snapshot, restore, and replay paths.",
       "width": 1672,
       "height": 941
     },
@@ -277,20 +278,20 @@ window.PERSPECTIVE_POSTS = [
       {
         "heading": "The question an open engine invites",
         "paragraphs": [
-          "Vellis is an open graph engine: anyone can run it, inspect it, and export from it in full. That openness invites a fair question from both directions. Skeptics ask what stops the open promise from being quietly revoked once adoption is deep. Adopters ask what is actually theirs if the machinery is shared. The answer is a line, and this note is about where it sits."
+          "Vellis is an open graph engine: anyone can run it, inspect it, and keep its state under local control. That openness invites a fair question from both directions. Skeptics ask what stops the open foundation from becoming a dependency once adoption is deep. Adopters ask what is actually theirs if the machinery is shared. The answer is a line, and this note is about where it sits."
         ]
       },
       {
         "heading": "Open does not mean undifferentiated",
         "paragraphs": [
-          "The line is not open versus proprietary. It is substrate versus accumulated intelligence. The substrate — schema, graph operations, export paths, and the basic affordances that let a team model its world — is shared machinery, and Vellis keeps it open.",
+          "The line is not open versus proprietary. It is substrate versus accumulated intelligence. The substrate — schema, graph operations, snapshot and recovery paths, and the basic affordances that let a team model its world — is shared machinery, and Vellis keeps it open.",
           "The proprietary value lives in the work an organization does with that machinery. Their domain model, policy choices, operating history, reviewed decisions, and learned patterns are not generic infrastructure. They are the compounding record of how that organization thinks and acts."
         ]
       },
       {
-        "heading": "Portability is the trust signal",
+        "heading": "Recoverability is the trust signal",
         "paragraphs": [
-          "A system that promises compounding intelligence has to answer a simple fear: what happens if we leave? Vellis answers by keeping the substrate runnable and the export path visible. Full-fidelity export is not a footnote; it is the condition that makes adoption rational.",
+          "A system that promises compounding intelligence has to answer a simple fear: can we reconstruct the state we depend on? Vellis answers by keeping the substrate locally runnable and making snapshots, restore, ledger replay, and rebuilt-state verification part of the operating model. Recoverability is not a footnote; it is how ownership becomes testable.",
           "That is why production support should not compete with Vellis. Services can add write gates, audit traces, approvals, and enterprise controls. They should not make the open substrate feel like bait."
         ]
       },
@@ -298,7 +299,7 @@ window.PERSPECTIVE_POSTS = [
         "heading": "The line makes both sides stronger",
         "paragraphs": [
           "When the open layer is real, more people can inspect, run, and extend the basic model. When the proprietary layer is respected, organizations can invest in their own operational graph without worrying that their intelligence is being laundered into a vendor moat.",
-          "The result is a healthier bargain: open data mechanics, proprietary intelligence where it belongs, and a graduation path that adds governance without rewriting the organization's world."
+          "The result is a healthier bargain: open knowledge mechanics, proprietary intelligence where it belongs, and a graduation path that adds governance without rewriting the organization's world."
         ]
       }
     ],
@@ -309,7 +310,7 @@ window.PERSPECTIVE_POSTS = [
       "status": "Published field note.",
       "knownUncertainty": "The boundary will need sharper examples as real deployments create edge cases.",
       "dissent": "Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.",
-      "nextFalsifier": "A platform path that requires proprietary lock-in or lossy export would invalidate the promise."
+      "nextFalsifier": "A platform path that requires a proprietary service to run or recover Vellis state would invalidate the promise."
     },
     "related": [
       "runtime-controls",

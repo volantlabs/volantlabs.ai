@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   externalContactLinkFailures,
+  forbiddenPatternFailures,
   ga4TrackingFailures,
 } from "./audit-site-rules.mjs";
 
@@ -76,4 +77,21 @@ test("external Contact audit rejects same-tab links", () => {
   deepEqual(externalContactLinkFailures("index.html", html), [
     "index.html Contact link should open in a new tab with noopener and noreferrer",
   ]);
+});
+
+test("forbidden copy audit scans LLM Markdown", () => {
+  deepEqual(
+    forbiddenPatternFailures(
+      [
+        {
+          name: "llms/pages/engine.md",
+          content: "Install from the sysml-foundation branch.",
+        },
+      ],
+      [/sysml-foundation/i],
+    ),
+    [
+      "Forbidden pattern /sysml-foundation/i found in llms/pages/engine.md",
+    ],
+  );
 });

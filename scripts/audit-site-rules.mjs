@@ -72,6 +72,23 @@ export function externalContactLinkFailures(page, html) {
   return failures;
 }
 
+export function forbiddenPatternFailures(files, patterns) {
+  const failures = [];
+
+  for (const pattern of patterns) {
+    const offenders = files
+      .filter(({ content }) => pattern.test(content))
+      .map(({ name }) => name);
+    if (offenders.length) {
+      failures.push(
+        `Forbidden pattern ${pattern} found in ${offenders.join(", ")}`,
+      );
+    }
+  }
+
+  return failures;
+}
+
 function hasUnguardedAsyncGa4Loader(html) {
   return new RegExp(
     `<script\\b(?=[^>]*\\basync\\b)(?=[^>]*\\bsrc\\s*=\\s*["']${escapeRegExp(ga4ScriptUrl)}["'])[^>]*>`,

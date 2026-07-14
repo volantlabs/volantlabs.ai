@@ -51,8 +51,8 @@ Each hand-authored page is a single self-contained HTML file with page-specific 
 
 - **Type:** Montserrat (300–800).
 - **Color:** navy `#001E50` (headers/trust/dark surfaces), orange `#D15B21` (emphasis/active nodes), orange-600 `#A8491A` (hover fills and small orange text on light surfaces), orange-50 `#FEF3ED` (tints and dark-footer accents), warm white `#F5F5F5`, charcoal `#333333`, blue-50 `#E6EAF2`. Filled orange controls use the dark Base token for AA text contrast; on dark cards, textual calls to action use warm white while orange remains a border, underline, icon, or other non-text accent.
-- **Motif:** node-and-edge graph visuals only. No pie/donut/3D/clipart/stock photos.
-- **Generated imagery:** site-local WebP assets in `assets/images/` follow the `Flat Design Knowledge Graph` prompt template, `Infographic Dark` visual style, and Volant imagery/color/data-viz guidelines from `volant_base`.
+- **Motif:** graph visuals carry product and system concepts; route cards may use established logo lockups and restrained editorial metaphors to keep navigation distinct. No pie/donut/3D/clipart/stock photos.
+- **Generated imagery:** site-local WebP assets in `assets/images/` use restrained editorial CGI for route and library imagery, while system visuals retain the graph-native treatment. Both follow Volant imagery, color, and data-viz guidance from `volant_base`.
 - **Spacing:** 4px scale, 12-col grid, 1200px max content width.
 - **Accessibility:** WCAG AA contrast, visible focus states, ≥44px touch targets, skip-to-content links, one `<main>` landmark per page, `aria-current="page"` on the active nav link, and a global `prefers-reduced-motion` rule (all in `assets/site.css`).
 

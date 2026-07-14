@@ -6,12 +6,12 @@ Primary audience: thinkers, technical leaders, and people evaluating the point o
 
 ## Summary
 
-The Thesis explains the Volant Labs point of view: the graph remembers, the model reasons, and you ratify meaningful changes. It argues that agentic systems need a substrate where memory, schema, governance, and human judgment remain legible.
+The Thesis explains the Volant Labs point of view: the graph remembers, the model reasons, and you ratify meaningful changes. It argues that agentic systems need a substrate where meaning, schema, controlled change, and human judgment remain legible.
 
 ## Use This Page For
 
 - Understanding why Vellis exists.
-- Explaining the relationship between graph memory, model reasoning, and human review.
+- Explaining the relationship between explicit graph meaning, model reasoning, and human review.
 - Routing readers from narrative context into Perspectives or the Vellis quick start.
 
 ## Key Claims

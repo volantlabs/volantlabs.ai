@@ -3,17 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Vellis Engine — open-source typed context graph · volantlabs.ai
-        </title>
+        <title>Vellis Engine — structured knowledge for AI agents · volantlabs.ai</title>
         <meta
             name="description"
-            content="Vellis is an Apache-licensed graph engine and reusable component system for local shared agent memory, with MCP tools for query, validation, migration, snapshots, restore, and replay."
+            content="Vellis gives AI agents one typed, locally owned knowledge system with explicit semantics, validated change, deterministic query, replay, and recovery."
         />
         <link rel="canonical" href="https://volantlabs.ai/engine.html" />
         <meta property="og:site_name" content="Volant Labs" />
-        <meta property="og:title" content="Vellis Engine: typed context graph for local AI work" />
-        <meta property="og:description" content="Apache-licensed graph engine and reusable components for local shared agent memory, validation, migration, snapshots, restore, and replay." />
+        <meta property="og:title" content="Vellis Engine: structured knowledge for AI agents" />
+        <meta property="og:description" content="Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://volantlabs.ai/engine.html" />
         <meta property="og:image" content="https://volantlabs.ai/assets/images/social/engine-local-graph.png" />
@@ -21,8 +19,8 @@
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="A local engine panel connected to a typed graph." />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Vellis Engine: typed context graph for local AI work" />
-        <meta name="twitter:description" content="Apache-licensed graph engine and reusable components for local shared agent memory, validation, migration, snapshots, restore, and replay." />
+        <meta name="twitter:title" content="Vellis Engine: structured knowledge for AI agents" />
+        <meta name="twitter:description" content="Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/engine-local-graph.png" />
         <meta name="twitter:image:alt" content="A local engine panel connected to a typed graph." />
         <meta name="theme-color" content="#041026" />
@@ -50,6 +48,7 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/engine-hero.css" />
         <style>
             /* ---- Hero ---- */
             .hero {
@@ -108,450 +107,534 @@
                 border-color: #fff;
                 background: rgba(255, 255, 255, 0.06);
             }
-            /* terminal device */
-            .quickstart-anchor {
-                scroll-margin-top: 96px;
-            }
-            .term {
-                background: var(--surface);
-                border: 1px solid rgba(245, 245, 245, 0.14);
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-            }
-            .term-bar {
-                display: flex;
-                align-items: center;
-                gap: 7px;
-                padding: 11px var(--s4);
-                background: rgba(255, 255, 255, 0.04);
-                border-bottom: 1px solid rgba(245, 245, 245, 0.1);
-            }
-            .term-bar i {
-                width: 11px;
-                height: 11px;
-                border-radius: 50%;
-                display: block;
-                background: #3a4c70;
-            }
-            .term-bar i.r {
-                background: var(--orange);
-            }
-            .term-bar span {
-                margin-left: 8px;
-                font-family: var(--mono);
-                font-size: 12px;
-                font-weight: bold;
-            }
-            .term-body {
-                padding: var(--s6);
-                font-family: var(--mono);
-                font-size: 13.5px;
-                line-height: 1.8;
-                color: #dce4f1;
-            }
-            .term-body a {
-                color: #fff;
-                text-decoration: underline;
-                text-underline-offset: 3px;
-            }
-            .term-body .c {
-                color: #7f90ad;
-            }
-            /* comment */
-            .term-body .p {
-                color: var(--text);
-            }
-            /* prompt $ */
-            .term-body .k {
-                color: #9fd0ff;
-            }
-            /* command keyword */
-            .term-body .o {
-                color: #aeb9cf;
-            }
-            /* output */
-            .cursor {
-                display: inline-block;
-                width: 8px;
-                height: 16px;
-                background: var(--orange);
-                vertical-align: -2px;
-                margin-left: 2px;
-                animation: blink 1.1s step-end infinite;
-            }
-            @keyframes blink {
-                50% {
-                    opacity: 0;
-                }
-            }
             @media (max-width: 880px) {
                 .hero .wrap {
                     grid-template-columns: minmax(0, 1fr);
                     gap: var(--s8);
                 }
                 .hero-copy,
-                .quickstart-anchor {
+                .hero-preview {
                     min-width: 0;
                 }
-                .term {
-                    order: 2;
-                    max-width: 100%;
-                }
-                .term-body {
-                    overflow-x: auto;
-                }
-                .quickstart-anchor {
+            }
+            /* ---- Quickstart ---- */
+            .quickstart-section {
+                position: relative;
+                overflow: hidden;
+                background:
+                    radial-gradient(
+                        circle at 16% 50%,
+                        rgba(209, 91, 33, 0.16),
+                        transparent 34%
+                    ),
+                    linear-gradient(
+                        112deg,
+                        rgba(7, 26, 59, 0.98),
+                        rgba(4, 16, 38, 0.98)
+                    );
+                color: var(--text);
+                border-top: 1px solid rgba(159, 176, 204, 0.22);
+                border-bottom: 1px solid rgba(159, 176, 204, 0.2);
+                scroll-margin-top: 96px;
+            }
+            .quickstart-section::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    repeating-linear-gradient(
+                        0deg,
+                        rgba(245, 245, 245, 0.026) 0,
+                        rgba(245, 245, 245, 0.026) 1px,
+                        transparent 1px,
+                        transparent 48px
+                    ),
+                    repeating-linear-gradient(
+                        90deg,
+                        rgba(245, 245, 245, 0.022) 0,
+                        rgba(245, 245, 245, 0.022) 1px,
+                        transparent 1px,
+                        transparent 48px
+                    );
+                pointer-events: none;
+            }
+            .quickstart-section .wrap {
+                position: relative;
+                z-index: 1;
+                display: grid;
+                grid-template-columns: minmax(260px, 0.52fr) minmax(0, 1fr);
+                gap: var(--s8);
+                align-items: center;
+                padding-top: var(--s8);
+                padding-bottom: var(--s8);
+            }
+            .quickstart-art {
+                position: relative;
+                width: min(430px, 100%);
+                aspect-ratio: 430 / 156;
+            }
+            .quickstart-lines {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+            .quickstart-asset {
+                position: absolute;
+                top: 6%;
+                display: block;
+                width: 39%;
+                height: auto;
+                user-select: none;
+            }
+            .quickstart-asset--terminal {
+                left: 0;
+            }
+            .quickstart-asset--agent {
+                left: 30.5%;
+            }
+            .quickstart-asset--health {
+                left: 61%;
+            }
+            .quickstart-kicker {
+                color: #f2b293;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+            }
+            .quickstart-copy h2 {
+                color: var(--text);
+                font-size: 30px;
+                letter-spacing: 0;
+                margin-top: 4px;
+            }
+            .quickstart-copy p {
+                color: var(--muted);
+                font-size: 14px;
+                max-width: 64ch;
+                margin-top: var(--s2);
+            }
+            .quickstart-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--s3);
+                align-items: center;
+                margin-top: var(--s4);
+            }
+            .quickstart-actions .btn {
+                height: 40px;
+                font-size: 13px;
+            }
+            .quickstart-icon {
+                width: 15px;
+                height: 15px;
+                flex: none;
+                fill: none;
+                stroke: currentColor;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 2;
+            }
+            .quickstart-secondary {
+                color: var(--text);
+                border-color: rgba(159, 176, 204, 0.38);
+                background: rgba(159, 176, 204, 0.08);
+            }
+            .quickstart-secondary:hover {
+                border-color: var(--muted);
+                background: rgba(159, 176, 204, 0.14);
+            }
+            .quickstart-readme {
+                color: var(--muted);
+                border-color: transparent;
+                background: transparent;
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+            .quickstart-readme:hover {
+                color: var(--orange-600);
+            }
+            .quickstart-note {
+                color: var(--muted);
+                font-size: 12px;
+                margin-top: var(--s3);
+            }
+            .quickstart-status {
+                min-height: 18px;
+                color: #f2b293;
+                font-size: 12px;
+                font-weight: 700;
+                margin-top: var(--s2);
+            }
+            @media (max-width: 900px) {
+                .quickstart-section {
                     scroll-margin-top: 240px;
                 }
-            }
-            /* ---- What it is strip ---- */
-            .whatis {
-                background: var(--surface-soft);
-                border-bottom: 1px solid var(--line);
-            }
-            .whatis .wrap {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: var(--s6);
-                padding: var(--s12) var(--s12);
-            }
-            .wi {
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
-                background: var(--surface);
-                border: 1px solid var(--line);
-                border-radius: 12px;
-                padding: var(--s6);
-            }
-            .wi .ico {
-                width: 34px;
-                height: 34px;
-            }
-            .wi h4 {
-                font-size: 15px;
-                font-weight: 600;
-                color: var(--text);
-            }
-            .wi p {
-                font-size: 13px;
-                color: var(--muted);
-            }
-            @media (max-width: 880px) {
-                .whatis .wrap {
-                    grid-template-columns: 1fr 1fr;
-                    gap: var(--s6);
-                }
-            }
-            @media (max-width: 620px) {
-                .whatis .wrap {
+                .quickstart-section .wrap {
                     grid-template-columns: 1fr;
                     gap: var(--s4);
                 }
             }
-            /* ---- Section scaffolding ---- */
-            /* capabilities cards */
-            .caps {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: var(--s6);
-            }
-            @media (max-width: 880px) {
-                .caps {
-                    grid-template-columns: 1fr;
+            @media (max-width: 520px) {
+                .quickstart-section .wrap {
+                    padding-top: var(--s6);
+                    padding-bottom: var(--s6);
+                }
+                .quickstart-actions {
+                    align-items: stretch;
+                    flex-direction: column;
+                }
+                .quickstart-actions .btn {
+                    justify-content: center;
+                    width: 100%;
                 }
             }
-            .cap {
-                border: 1px solid var(--line);
-                border-radius: 12px;
-                padding: var(--s6);
-                background: var(--surface);
-                transition:
-                    transform 0.18s ease,
-                    box-shadow 0.18s ease;
+            /* ---- Capability baseline ---- */
+            .capability-ribbon {
+                background: var(--surface-soft);
+                border-bottom: 1px solid var(--line);
             }
-            .cap:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+            .capability-ribbon .wrap {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                padding: 0 var(--s12);
             }
-            .cap .ico {
-                width: 40px;
-                height: 40px;
-                margin-bottom: var(--s3);
+            .capability-group {
+                min-width: 0;
+                padding: var(--s6) var(--s6) var(--s6) 0;
+                border-right: 1px solid var(--line);
             }
-            .cap h3 {
-                font-size: 18px;
-                font-weight: 600;
-                margin-bottom: 6px;
+            .capability-group + .capability-group {
+                padding-left: var(--s6);
             }
-            .cap p {
-                font-size: 14px;
+            .capability-group:last-child {
+                border-right: 0;
+                padding-right: 0;
+            }
+            .capability-group strong {
+                color: var(--text);
+                display: block;
+                font-size: 16px;
+                line-height: 1.25;
+            }
+            .capability-group p {
                 color: var(--muted);
+                font-size: 13px;
+                line-height: 1.55;
+                margin-top: 7px;
             }
-            .chips {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                margin-top: var(--s3);
+            .coherence {
+                background: var(--surface);
+                border-bottom: 1px solid var(--line);
             }
-            .chip {
+            .coherence .wrap {
+                display: grid;
+                grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+                gap: var(--s8);
+                align-items: start;
+                padding: var(--s8) var(--s12);
+            }
+            .coherence-kicker {
+                color: var(--orange-600);
                 font-family: var(--mono);
                 font-size: 12px;
-                font-weight: 500;
-                color: var(--text);
-                background: var(--blue-50);
-                padding: 5px 10px;
-                border-radius: 6px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
             }
-            .cap .more {
+            .coherence h2 {
+                color: var(--text);
+                font-size: clamp(24px, 3vw, 38px);
+                line-height: 1.06;
                 margin-top: var(--s3);
-                font-weight: 600;
-                font-size: 14px;
-                color: var(--text);
-                display: inline-flex;
-                gap: 6px;
-                align-items: center;
             }
-            .cap:hover .more .arr {
-                transform: translateX(3px);
+            .coherence-copy p {
+                color: var(--muted);
+                font-size: 15px;
+                line-height: 1.65;
+                margin-top: var(--s4);
+                max-width: 48ch;
             }
-            .more .arr {
-                transition: transform 0.15s ease;
-            }
-            /* ---- RTG model diagram ---- */
-            .model {
-                background: var(--labs-base);
+            .coherence-rail {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
                 border-top: 1px solid var(--line);
                 border-bottom: 1px solid var(--line);
             }
-            .model .band-head {
-                align-items: end;
+            .coherence-step {
+                min-width: 0;
+                padding: var(--s4) var(--s4) var(--s4) 0;
+                border-right: 1px solid var(--line);
             }
-            .model-tag {
+            .coherence-step + .coherence-step {
+                padding-left: var(--s4);
+            }
+            .coherence-step:last-child {
+                border-right: 0;
+            }
+            .coherence-step span {
+                color: var(--orange-600);
+                font-family: var(--mono);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+            .coherence-step strong {
+                color: var(--text);
+                display: block;
+                font-size: 18px;
+                line-height: 1.2;
+                margin-top: 8px;
+            }
+            .coherence-step p {
                 color: var(--muted);
+                font-size: 13px;
+                line-height: 1.5;
+                margin-top: 7px;
+            }
+            @media (max-width: 880px) {
+                .capability-ribbon .wrap {
+                    grid-template-columns: 1fr;
+                }
+                .capability-group,
+                .capability-group + .capability-group {
+                    border-right: 0;
+                    border-bottom: 1px solid var(--line);
+                    padding: var(--s4) 0;
+                }
+                .capability-group:last-child {
+                    border-bottom: 0;
+                }
+                .coherence .wrap {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (max-width: 620px) {
+                .capability-ribbon .wrap {
+                    padding: 0 var(--s6);
+                }
+                .coherence .wrap {
+                    padding: var(--s8) var(--s6);
+                }
+                .coherence-rail {
+                    grid-template-columns: 1fr;
+                }
+                .coherence-step,
+                .coherence-step + .coherence-step {
+                    border-right: 0;
+                    padding: var(--s4) 0;
+                }
+                .coherence-step + .coherence-step {
+                    border-top: 1px solid var(--line);
+                }
+            }
+            /* ---- RTG model rail ---- */
+            section.model-lite {
+                background: var(--labs-base);
+                border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line);
+                padding: var(--s16) 0;
+            }
+            .model-head {
+                display: grid;
+                grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+                gap: var(--s8);
+                align-items: end;
+                margin-bottom: var(--s6);
+            }
+            .model-head h2 {
+                font-size: clamp(28px, 3.4vw, 42px);
+                line-height: 1.08;
+                margin-top: var(--s3);
+            }
+            .model-head > p {
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.65;
+                max-width: 58ch;
+            }
+            .model-kicker {
+                color: var(--orange);
                 font-family: var(--mono);
                 font-size: 12px;
-                white-space: nowrap;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
             }
-            .model-stage {
+            .model-map {
                 display: grid;
-                gap: 18px;
+                gap: var(--s4);
+                position: relative;
             }
-            .model-rail,
-            .model-node {
-                appearance: none;
-                width: 100%;
-                color: inherit;
-                cursor: pointer;
-                font: inherit;
-                text-align: left;
-                background: transparent;
-                transition:
-                    background 0.16s ease,
-                    border-color 0.16s ease;
-            }
-            .model-rail {
+            .model-governance {
                 display: grid;
-                grid-template-columns: 42px 190px minmax(0, 1fr);
-                gap: 14px;
-                align-items: center;
-                border: 0;
-                border-top: 1px solid rgba(159, 176, 204, 0.22);
-                border-bottom: 1px solid rgba(159, 176, 204, 0.12);
-                padding: 11px 0 11px 8px;
+                grid-template-columns:
+                    36px minmax(180px, 0.65fr)
+                    minmax(0, 1.35fr);
+                gap: var(--s3);
+                align-items: baseline;
+                position: relative;
+                padding: 11px 0;
+            }
+            .model-governance--schema {
+                border-top: 1px solid rgba(159, 176, 204, 0.3);
+            }
+            .model-governance--ledger {
+                border-bottom: 1px solid rgba(159, 176, 204, 0.3);
+            }
+            .model-governance::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                width: 1px;
+                height: 17px;
+                background: rgba(209, 91, 33, 0.56);
+            }
+            .model-governance--schema::after {
+                bottom: -17px;
+            }
+            .model-governance--ledger::after {
+                top: -17px;
+            }
+            .model-number {
+                width: 28px;
+                height: 28px;
+                border: 1px solid rgba(209, 91, 33, 0.68);
+                border-radius: 999px;
+                color: var(--orange);
+                display: inline-grid;
+                place-items: center;
+                font-family: var(--mono);
+                font-size: 10px;
+                font-weight: 700;
+            }
+            .model-governance strong {
+                font-size: 15px;
+                line-height: 1.25;
+            }
+            .model-governance p,
+            .model-node p {
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.5;
             }
             .model-core {
                 display: grid;
                 grid-template-columns:
-                    minmax(0, 1fr) 92px minmax(0, 1fr) 92px
+                    minmax(0, 1fr) minmax(72px, 0.34fr)
+                    minmax(0, 1.08fr) minmax(72px, 0.34fr)
                     minmax(0, 1fr);
+                gap: var(--s3);
                 align-items: center;
+                padding: 3px 0;
             }
             .model-node {
-                height: 178px;
-                border: 1px solid rgba(159, 176, 204, 0.24);
-                border-radius: 8px;
-                background: rgba(7, 26, 59, 0.46);
-                display: grid;
-                align-content: start;
-                gap: 7px;
+                min-width: 0;
+                padding: var(--s3) 0;
+            }
+            .model-node--anchor {
+                border-left: 2px solid rgba(209, 91, 33, 0.8);
+                background: linear-gradient(
+                    90deg,
+                    rgba(209, 91, 33, 0.13),
+                    transparent 78%
+                );
                 padding: var(--s4);
             }
-            .model-node.anchor {
-                border-color: rgba(209, 91, 33, 0.62);
-                background: rgba(209, 91, 33, 0.1);
-            }
-            .model-rail:hover,
-            .model-rail:focus-visible,
-            .model-rail.is-selected,
-            .model-node:hover,
-            .model-node:focus-visible,
-            .model-node.is-selected {
-                border-color: var(--orange);
-                background: rgba(209, 91, 33, 0.18);
-                outline: none;
-            }
-            .model-rail:focus-visible,
-            .model-node:focus-visible {
-                outline: 2px solid var(--orange);
-                outline-offset: 3px;
-            }
-            .model-number {
-                width: 30px;
-                height: 30px;
-                border: 1px solid rgba(209, 91, 33, 0.72);
-                border-radius: 999px;
-                color: var(--text);
-                display: inline-grid;
-                place-items: center;
-                font-family: var(--mono);
-                font-size: 12px;
-                font-weight: 600;
-            }
-            .model-kicker,
-            .model-label,
-            .model-flow {
-                color: var(--text);
-                font-family: var(--mono);
-                font-size: 11px;
-                letter-spacing: 0.06em;
-                text-transform: uppercase;
-            }
-            .model-meta {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            .model-copy strong,
             .model-node strong {
                 display: block;
-                font-weight: 700;
-            }
-            .model-copy strong {
-                font-size: 15px;
-            }
-            .model-copy span,
-            .model-node p,
-            .model-detail p {
-                color: var(--muted);
-            }
-            .model-copy span {
-                display: block;
-                margin-top: 2px;
-                font-size: 12px;
-            }
-            .model-node strong {
-                font-size: clamp(18px, 2vw, 24px);
-                line-height: 1.05;
+                font-size: clamp(17px, 1.7vw, 21px);
+                line-height: 1.18;
+                margin-top: 9px;
             }
             .model-node p {
-                margin: 0;
-                font-size: 12.5px;
-                line-height: 1.4;
+                margin-top: 6px;
             }
             .model-flow {
-                min-width: 0;
-                display: grid;
-                justify-items: center;
-                gap: 7px;
                 color: var(--muted);
+                display: grid;
+                gap: 7px;
+                font-family: var(--mono);
+                font-size: 9px;
+                letter-spacing: 0.05em;
+                min-width: 0;
+                position: relative;
                 text-align: center;
+                text-transform: uppercase;
             }
-            .model-line {
+            .model-flow::before {
+                content: "";
                 width: 100%;
                 height: 1px;
                 background: linear-gradient(
                     90deg,
-                    transparent,
-                    rgba(245, 245, 245, 0.66),
-                    transparent
+                    rgba(159, 176, 204, 0.14),
+                    rgba(245, 245, 245, 0.62)
                 );
-                position: relative;
             }
-            .model-line::after {
+            .model-flow::after {
                 content: "";
                 position: absolute;
-                right: 2px;
-                top: -4px;
-                width: 8px;
-                height: 8px;
-                border-right: 1px solid rgba(245, 245, 245, 0.7);
-                border-top: 1px solid rgba(245, 245, 245, 0.7);
+                right: 1px;
+                top: -3px;
+                width: 7px;
+                height: 7px;
+                border-top: 1px solid rgba(245, 245, 245, 0.68);
+                border-right: 1px solid rgba(245, 245, 245, 0.68);
                 transform: rotate(45deg);
             }
-            .model-detail {
-                border-top: 1px solid rgba(159, 176, 204, 0.18);
-                display: grid;
-                grid-template-columns: minmax(0, 1fr) auto;
-                gap: 14px;
-                align-items: end;
-                padding-top: 14px;
-            }
-            .model-detail h3 {
-                margin-bottom: 5px;
-                font-size: 17px;
-            }
-            .model-detail p {
-                margin: 0;
-                font-size: 13px;
-                line-height: 1.4;
-            }
-            .model-detail code {
-                color: #f8c5aa;
-                font-family: var(--mono);
-                font-size: 12px;
-                white-space: nowrap;
-            }
             @media (max-width: 900px) {
-                .model-core {
+                section.model-lite {
+                    padding: var(--s12) 0;
+                }
+                .model-head {
                     grid-template-columns: 1fr;
-                    gap: 8px;
+                    gap: var(--s4);
+                    align-items: start;
                 }
-                .model-node,
-                .model-node.anchor {
-                    height: auto;
-                    min-height: 0;
+                .model-map {
+                    gap: 0;
                 }
-                .model-flow {
-                    justify-items: start;
-                    text-align: left;
-                    padding-left: 13px;
-                    border-left: 1px dashed rgba(209, 91, 33, 0.72);
+                .model-governance {
+                    grid-template-columns: 36px 1fr;
+                    gap: 4px var(--s3);
                 }
-                .model-line {
-                    display: none;
-                }
-            }
-            @media (max-width: 680px) {
-                .model .band-head {
-                    display: block;
-                }
-                .model-tag {
-                    display: block;
-                    margin-top: var(--s3);
-                    white-space: normal;
-                }
-                .model-rail {
-                    grid-template-columns: 38px 1fr;
-                    gap: 10px 12px;
-                    padding: 11px;
-                }
-                .model-copy {
+                .model-governance p {
                     grid-column: 2;
                 }
-                .model-node {
-                    padding: 14px;
+                .model-governance::after {
+                    left: 14px;
                 }
-                .model-node strong {
-                    font-size: 24px;
-                }
-                .model-detail {
+                .model-core {
                     grid-template-columns: 1fr;
-                    gap: 8px;
+                    gap: 0;
+                    padding: 0 0 0 14px;
                 }
-                .model-detail code {
-                    white-space: normal;
+                .model-node,
+                .model-node--anchor {
+                    border-left: 1px solid rgba(159, 176, 204, 0.3);
+                    padding: var(--s3) 0 var(--s3) var(--s4);
+                }
+                .model-node--anchor {
+                    border-left: 2px solid rgba(209, 91, 33, 0.8);
+                }
+                .model-flow {
+                    height: 30px;
+                    border-left: 1px dashed rgba(209, 91, 33, 0.56);
+                    display: block;
+                    text-align: left;
+                }
+                .model-flow::before,
+                .model-flow::after {
+                    display: none;
+                }
+                .model-flow span {
+                    position: absolute;
+                    left: var(--s4);
+                    top: 7px;
                 }
             }
             /* ---- Concrete memory example ---- */
@@ -1327,74 +1410,53 @@
                     top: 56%;
                 }
             }
-            /* ---- License / why-open band ---- */
-            .license {
+            /* ---- Compact open-source promise ---- */
+            .license-compact {
                 background: var(--labs-base);
+                border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line);
             }
-            .license .panel {
-                background: var(--surface);
-                border: 1px solid var(--line);
-                border-radius: 16px;
-                overflow: hidden;
+            .license-compact .wrap {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-            @media (max-width: 760px) {
-                .license .panel {
-                    grid-template-columns: 1fr;
-                }
-            }
-            .lic {
-                padding: var(--s12);
-            }
-            .lic + .lic {
-                border-left: 1px solid var(--line);
-            }
-            @media (max-width: 760px) {
-                .lic + .lic {
-                    border-left: 0;
-                    border-top: 1px solid var(--line);
-                }
-            }
-            .lic .kicker {
-                display: inline-flex;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: var(--s8);
                 align-items: center;
-                gap: 8px;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            .license-kicker {
+                color: var(--white);
+                font-family: var(--mono);
                 font-size: 12px;
                 font-weight: 700;
-                letter-spacing: 0.1em;
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
-                color: var(--white);
-                margin-bottom: var(--s3);
             }
-            .lic h3 {
-                font-size: 22px;
-                font-weight: 700;
-                margin-bottom: var(--s2);
-            }
-            .lic p {
-                font-size: 15px;
-                color: var(--muted);
-                max-width: 46ch;
-            }
-            .lic code {
-                font-family: var(--mono);
-                font-size: 13px;
-                background: var(--blue-50);
-                color: var(--text);
-                padding: 2px 7px;
-                border-radius: 5px;
-            }
-            .lic-head {
-                text-align: center;
-                margin-bottom: var(--s8);
-            }
-            .lic-head h2 {
+            .license-compact h2 {
                 font-size: clamp(24px, 3vw, 32px);
-            }
-            .lic-head p {
-                color: var(--muted);
                 margin-top: var(--s2);
+            }
+            .license-compact p {
+                color: var(--muted);
+                font-size: 14px;
+                line-height: 1.6;
+                margin-top: var(--s2);
+                max-width: 72ch;
+            }
+            .license-compact .btn {
+                white-space: nowrap;
+            }
+            @media (max-width: 760px) {
+                .license-compact .wrap {
+                    grid-template-columns: 1fr;
+                    gap: var(--s4);
+                    padding-top: var(--s8);
+                    padding-bottom: var(--s8);
+                }
+                .license-compact .btn {
+                    justify-content: center;
+                    width: 100%;
+                }
             }
         </style>
         <script>
@@ -1481,23 +1543,18 @@
                             project</span
                         >
                         <h1 class="headline">
-                            Vellis is the open-source graph engine for agent
-                            memory.
+                            The knowledge system agents can share, change, and
+                            recover.
                         </h1>
                         <p class="sub">
-                            Clone the repository and run a local RTG knowledge
-                            system for shared agent memory. Vellis ships as a
-                            turnkey MCP app and the reusable storage, graph,
-                            schema, migration, validation, query, and controller
-                            components beneath it.
+                            Vellis gives MCP-capable agents one typed, locally
+                            owned knowledge system with explicit semantics,
+                            validated change, deterministic query, and
+                            recoverable state.
                         </p>
                         <div class="cta-row">
-                            <a
-                                class="btn btn-primary"
-                                href="https://github.com/volantlabs/vellis"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                >View Vellis on GitHub
+                            <a class="btn btn-primary" href="#quickstart"
+                                >Agent Quickstart
                                 <svg
                                     width="16"
                                     height="16"
@@ -1514,371 +1571,281 @@
                                     />
                                 </svg>
                             </a>
-                            <a class="btn btn-ghost" href="thesis.html"
-                                >Read the thesis</a
+                            <a
+                                class="btn btn-ghost"
+                                href="https://github.com/volantlabs/vellis"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >View on GitHub</a
                             >
                         </div>
                     </div>
-                    <div class="quickstart-anchor" id="quickstart">
-                        <div
-                            class="term"
-                            role="region"
-                            aria-label="Quickstart path for Vellis."
-                        >
-                            <div class="term-bar">
-                                <i></i><i></i><i class="r"></i><span>~/vellis — quick start</span>
-                            </div>
-                            <div class="term-body">
-                                <span class="c"># macOS prerequisites</span><br />
-                                <span class="p">›</span> brew install uv just<br /><br />
-                                <span class="c"># clone and set up Vellis</span><br />
-                                <span class="p">›</span> git clone https://github.com/volantlabs/vellis.git<br />
-                                <span class="p">›</span> cd vellis<br />
-                                <span class="p">›</span> just setup<br /><br />
-                                <span class="c"># create a storage root and print MCP client config</span><br />
-                                <span class="p">›</span> just rtg-eval-info /tmp/vellis-beta-001<br />
-                                <span class="c"># copy that config into your MCP client, then start Vellis</span><br />
-                                <span class="p">›</span> just rtg<span class="cursor"></span><br /><br />
-                                <span class="c"># first MCP calls</span><br />
-                                <span class="o">{"tool":"rtg_validate_graph","arguments":{}}</span><br />
-                                <span class="o">{"tool":"rtg_get_system_state","arguments":{}}</span><br /><br />
-                                <span class="c"># then give your agent the documented beta prompt</span><br />
-                                <a href="https://github.com/volantlabs/vellis/blob/main/docs/evals/rtg-individual-life-graph-beta-prompt.md">docs/evals/rtg-individual-life-graph-beta-prompt.md</a><br />
-                            </div>
+                    <div
+                        class="hero-preview"
+                        role="img"
+                        aria-label="A proposed fact launches from Codex, docks with a circular port on the Vellis verification ring, is scanned and decomposed into structured pieces, then locks into the graph as a typed node. Structured graph context launches from the opposite port and docks with Claude Web. The sequence repeats from local MCP to a team app while the graph accumulates both accepted facts."
+                    >
+                        <div class="surface-card surface-card--codex">
+                            <img
+                                src="assets/images/engine/surface-codex.png"
+                                alt=""
+                                decoding="async"
+                            />
+                            <span class="surface-dock" aria-hidden="true"></span>
+                            <span class="surface-label">Codex</span>
                         </div>
+                        <div class="surface-card surface-card--claude">
+                            <img
+                                src="assets/images/engine/surface-claude-web.png"
+                                alt=""
+                                decoding="async"
+                            />
+                            <span class="surface-dock" aria-hidden="true"></span>
+                            <span class="surface-label">Claude Web</span>
+                        </div>
+                        <div class="surface-card surface-card--local">
+                            <img
+                                src="assets/images/engine/surface-local-mcp.png"
+                                alt=""
+                                decoding="async"
+                            />
+                            <span class="surface-dock" aria-hidden="true"></span>
+                            <span class="surface-label">Local MCP</span>
+                        </div>
+                        <div class="surface-card surface-card--team">
+                            <img
+                                src="assets/images/engine/surface-team-app.png"
+                                alt=""
+                                decoding="async"
+                            />
+                            <span class="surface-dock" aria-hidden="true"></span>
+                            <span class="surface-label">Team app</span>
+                        </div>
+
+                        <div class="knowledge-core" aria-hidden="true">
+                            <span class="validation-scan"></span>
+                            <span
+                                class="verification-dock verification-dock--in-one"
+                            ></span>
+                            <span
+                                class="verification-dock verification-dock--out-one"
+                            ></span>
+                            <span
+                                class="verification-dock verification-dock--in-two"
+                            ></span>
+                            <span
+                                class="verification-dock verification-dock--out-two"
+                            ></span>
+                            <span class="core-edge core-edge--a"></span>
+                            <span class="core-edge core-edge--b"></span>
+                            <span class="core-edge core-edge--c"></span>
+                            <span
+                                class="accepted-edge accepted-edge--one"
+                            ></span>
+                            <span
+                                class="accepted-edge accepted-edge--two"
+                            ></span>
+                            <span class="core-node core-node--a"></span>
+                            <span class="core-node core-node--b"></span>
+                            <span class="core-node core-node--c"></span>
+                            <span
+                                class="accepted-node accepted-node--one"
+                            ></span>
+                            <span
+                                class="accepted-node accepted-node--two"
+                            ></span>
+                            <span class="core-mark">
+                                <img
+                                    src="assets/logos/vellis-symbol-white.svg"
+                                    alt=""
+                                />
+                            </span>
+                        </div>
+                        <span class="core-name" aria-hidden="true"
+                            >Vellis graph</span
+                        >
+                        <span class="core-ledger" aria-hidden="true">
+                            <span></span>
+                            <span class="ledger-tick--one"></span>
+                            <span class="ledger-tick--two"></span>
+                        </span>
+                        <span class="fact-packet" aria-hidden="true">fact</span>
+                        <span
+                            class="ingestion-fragments"
+                            aria-hidden="true"
+                        ></span>
+                        <span class="query-result" aria-hidden="true"></span>
                     </div>
                 </div>
             </section>
 
-            <!-- ============ FEATURE BENEFITS ============ -->
-            <section class="whatis">
+            <!-- ============ CAPABILITY BASELINE ============ -->
+            <section
+                class="capability-ribbon"
+                aria-label="Vellis capability baseline"
+            >
                 <div class="wrap">
-                    <div class="wi">
-                        <svg
-                            class="ico"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <circle cx="9" cy="10" r="3" fill="#001E50" />
-                            <circle cx="27" cy="9" r="3" fill="#001E50" />
-                            <circle cx="18" cy="26" r="3" fill="#D15B21" />
-                            <path
-                                d="M9 10l9 16M27 9L18 26M9 10h18"
-                                stroke="#001E50"
-                                stroke-width="1.4"
-                                stroke-opacity=".55"
-                            />
-                        </svg>
-                        <h4>Typed graph</h4>
+                    <div class="capability-group">
+                        <strong>Explicit knowledge</strong>
                         <p>
-                            Nodes and edges with enforced types — meaning agents
-                            can reason with them, not just store them.
+                            Stable anchors, typed facts, explicit relationships,
+                            and schemas keep meaning inspectable.
                         </p>
                     </div>
-                    <div class="wi">
-                        <svg
-                            class="ico"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <rect
-                                x="7"
-                                y="7"
-                                width="22"
-                                height="22"
-                                rx="3"
-                                stroke="#001E50"
-                                stroke-width="1.6"
-                            />
-                            <path
-                                d="M12 14h12M12 18h12M12 22h7"
-                                stroke="#001E50"
-                                stroke-width="1.6"
-                                stroke-linecap="round"
-                            />
-                            <circle cx="25" cy="22" r="2" fill="#D15B21" />
-                        </svg>
-                        <h4>Schema language</h4>
+                    <div class="capability-group">
+                        <strong>Agent operating surface</strong>
                         <p>
-                            Declare types, links, and constraints in a readable
-                            schema the graph enforces at write time.
+                            MCP workflows and setup guidance keep agents on
+                            known, inspectable paths through the engine.
                         </p>
                     </div>
-                    <div class="wi">
-                        <svg
-                            class="ico"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <ellipse
-                                cx="18"
-                                cy="11"
-                                rx="11"
-                                ry="4"
-                                stroke="#001E50"
-                                stroke-width="1.6"
-                            />
-                            <path
-                                d="M7 11v14c0 2.2 4.9 4 11 4s11-1.8 11-4V11"
-                                stroke="#001E50"
-                                stroke-width="1.6"
-                            />
-                            <path
-                                d="M7 18c0 2.2 4.9 4 11 4s11-1.8 11-4"
-                                stroke="#001E50"
-                                stroke-width="1.6"
-                                stroke-opacity=".5"
-                            />
-                        </svg>
-                        <h4>Storage</h4>
+                    <div class="capability-group">
+                        <strong>Recoverable state</strong>
                         <p>
-                            Runs locally with filesystem and SQLite-backed
-                            operational state. Your data stays on your machine.
+                            Local filesystem and SQLite state can be
+                            snapshotted, restored, replayed, and verified.
                         </p>
                     </div>
-                    <div class="wi">
-                        <svg
-                            class="ico"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M10 11h16M10 18h16M10 25h10"
-                                stroke="#001E50"
-                                stroke-width="1.7"
-                                stroke-linecap="round"
-                            />
-                            <circle cx="26" cy="25" r="3" fill="#D15B21" />
-                        </svg>
-                        <h4>Agent tooling</h4>
+                </div>
+            </section>
+
+
+            <!-- ============ COHERENCE ============ -->
+            <section
+                class="coherence"
+                aria-labelledby="coherence-heading"
+            >
+                <div class="wrap">
+                    <div class="coherence-copy">
+                        <div class="coherence-kicker">Why it holds together</div>
+                        <h2 id="coherence-heading">More than a graph server</h2>
                         <p>
-                            The repo gives builders the MCP server pattern so
-                            Claude, Codex, and other MCP-capable tools can work
-                            against graph operations after setup.
+                            Vellis is not generic storage or retrieval. It gives
+                            agents one explicit knowledge model, a shaped
+                            operating surface, and a controlled lifecycle for
+                            change and recovery.
                         </p>
                     </div>
-                    <div class="wi">
-                        <svg
-                            class="ico"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M18 6v16"
-                                stroke="#D15B21"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                            />
-                            <path
-                                d="M12 16l6 6 6-6"
-                                stroke="#D15B21"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M8 28h20"
-                                stroke="#001E50"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                            />
-                        </svg>
-                        <h4>Recovery &amp; portability</h4>
-                        <p>
-                            JSON-safe snapshots, restore paths, and ledger
-                            replay keep graph state portable and auditable.
-                        </p>
-                    </div>
-                    <div class="wi">
-                        <svg
-                            class="ico"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M11 7h10l5 5v17H11z"
-                                stroke="#001E50"
-                                stroke-width="1.7"
-                                stroke-linejoin="round"
-                            />
-                            <path
-                                d="M21 7v6h5M15 20h8M15 24h5"
-                                stroke="#001E50"
-                                stroke-width="1.7"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-                            <circle cx="24" cy="24" r="2.2" fill="#D15B21" />
-                        </svg>
-                        <h4>Starter guides</h4>
-                        <p>
-                            Usage guides, beta prompts, component specs, and a
-                            known-good walkthrough live beside the code.
-                        </p>
+                    <div class="coherence-rail" aria-label="Vellis differentiators">
+                        <div class="coherence-step">
+                            <span>01</span>
+                            <strong>Explicit semantics</strong>
+                            <p>
+                                Stable anchors, typed fact objects, and explicit
+                                link records make meaning inspectable.
+                            </p>
+                        </div>
+                        <div class="coherence-step">
+                            <span>02</span>
+                            <strong>Controlled change</strong>
+                            <p>
+                                Validate proposed writes, inspect projected
+                                state, and evolve schemas deliberately.
+                            </p>
+                        </div>
+                        <div class="coherence-step">
+                            <span>03</span>
+                            <strong>Verifiable recovery</strong>
+                            <p>
+                                Snapshot, restore, and replay knowledge state,
+                                then verify the rebuilt result.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- ============ RTG MODEL ============ -->
-            <section class="band model" id="rtg-model">
+            <section class="band model-lite" id="rtg-model">
                 <div class="wrap">
-                    <div class="band-head">
+                    <div class="model-head">
                         <div>
-                            <h2>A graph memory engine in five parts</h2>
-                            <p class="lead">
-                                Stable anchors preserve identity, associated
-                                facts hold properties, and UUID links carry
-                                relationships. Schema and snapshots keep the
-                                system valid and portable.
+                            <div class="model-kicker">Engine model</div>
+                            <h2>Five parts, one explicit knowledge contract.</h2>
+                        </div>
+                        <p>
+                            RTG separates identity, fact state, and
+                            relationships. Schema gates change; ledger and
+                            snapshots make the resulting graph auditable,
+                            recoverable, and rebuildable. Human-owned textual
+                            SysML v2 models define reusable component contracts
+                            and Vellis application composition; generated
+                            references and validation keep that engineering
+                            authority inspectable as implementations evolve.
+                        </p>
+                    </div>
+                    <div
+                        class="model-map"
+                        role="group"
+                        aria-label="Vellis RTG five-part model"
+                    >
+                        <div
+                            class="model-governance model-governance--schema"
+                        >
+                            <span class="model-number">01</span>
+                            <strong>Schema + constraints</strong>
+                            <p>
+                                Define valid anchor, fact, and link types;
+                                validation gates live writes and staged changes.
                             </p>
                         </div>
-                        <span class="model-tag">Vellis RTG model</span>
-                    </div>
 
-                    <div class="model-stage">
-                        <button
-                            class="model-rail model-object"
-                            type="button"
-                            data-model-key="schema"
-                            aria-controls="model-detail"
-                            aria-pressed="false"
-                        >
-                            <span class="model-number">1</span>
-                            <span class="model-label">schema rules</span>
-                            <span class="model-copy">
-                                <strong
-                                    >defines valid anchor, fact, and link
-                                    types</strong
-                                >
-                                <span>validation gates writes</span>
-                            </span>
-                        </button>
-
-                        <div
-                            class="model-core"
-                            aria-label="Vellis RTG object model"
-                        >
-                            <button
-                                class="model-node model-object"
-                                type="button"
-                                data-model-key="links"
-                                aria-controls="model-detail"
-                                aria-pressed="false"
-                            >
-                                <span class="model-meta">
-                                    <span class="model-number">2</span>
-                                    <span class="model-kicker"
-                                        >link records</span
-                                    >
-                                </span>
-                                <strong>relationships between objects</strong>
+                        <div class="model-core">
+                            <div class="model-node">
+                                <span class="model-number">02</span>
+                                <strong>Link records</strong>
                                 <p>
-                                    Each relationship has its own UUID plus
-                                    source and target UUIDs.
+                                    Independently identified, typed
+                                    relationships carry explicit source and
+                                    target UUIDs.
                                 </p>
-                            </button>
-
-                            <div class="model-flow" aria-hidden="true">
-                                <div class="model-line"></div>
-                                <span>points to source + target</span>
                             </div>
-
-                            <button
-                                class="model-node anchor model-object"
-                                type="button"
-                                data-model-key="anchors"
-                                aria-controls="model-detail"
-                                aria-pressed="false"
-                            >
-                                <span class="model-meta">
-                                    <span class="model-number">3</span>
-                                    <span class="model-kicker"
-                                        >anchor objects</span
-                                    >
-                                </span>
-                                <strong>stable things to remember</strong>
-                                <p>
-                                    People, areas, projects, tasks, events,
-                                    notes, and resources.
-                                </p>
-                            </button>
-
                             <div class="model-flow" aria-hidden="true">
-                                <div class="model-line"></div>
-                                <span>has associated facts</span>
+                                <span>source + target</span>
                             </div>
-
-                            <button
-                                class="model-node model-object"
-                                type="button"
-                                data-model-key="facts"
-                                aria-controls="model-detail"
-                                aria-pressed="false"
-                            >
-                                <span class="model-meta">
-                                    <span class="model-number">4</span>
-                                    <span class="model-kicker"
-                                        >fact records</span
-                                    >
-                                </span>
-                                <strong>typed fact records</strong>
+                            <div class="model-node model-node--anchor">
+                                <span class="model-number">03</span>
+                                <strong>Anchors</strong>
                                 <p>
-                                    Fact records associated with anchors; zero,
-                                    one, or many.
+                                    Stable identities survive changes to the
+                                    facts and descriptions associated with them.
                                 </p>
-                            </button>
+                            </div>
+                            <div class="model-flow" aria-hidden="true">
+                                <span>associated facts</span>
+                            </div>
+                            <div class="model-node">
+                                <span class="model-number">04</span>
+                                <strong>Fact records</strong>
+                                <p>
+                                    Typed JSON bundles stay separately
+                                    addressable and can describe one or many
+                                    anchors.
+                                </p>
+                            </div>
                         </div>
 
-                        <button
-                            class="model-rail model-object"
-                            type="button"
-                            data-model-key="snapshot"
-                            aria-controls="model-detail"
-                            aria-pressed="false"
+                        <div
+                            class="model-governance model-governance--ledger"
                         >
-                            <span class="model-number">5</span>
-                            <span class="model-label">ledger + snapshots</span>
-                            <span class="model-copy">
-                                <strong>audits and restores the graph</strong>
-                                <span
-                                    >record writes; restore and replay system
-                                    state</span
-                                >
-                            </span>
-                        </button>
-
-                        <aside
-                            class="model-detail"
-                            id="model-detail"
-                            aria-live="polite"
-                        >
-                            <span>
-                                <h3>Vellis RTG model</h3>
-                                <p>
-                                    Vellis keeps identity, facts, and
-                                    relationships as separate typed objects so
-                                    agents can write context without turning
-                                    memory into loose notes.
-                                </p>
-                            </span>
-                            <code>anchor | fact records | link</code>
-                        </aside>
+                            <span class="model-number">05</span>
+                            <strong>Ledger + snapshots</strong>
+                            <p>
+                                Record operations, restore state, replay
+                                history, and verify rebuilt equivalence.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
+
 
             <!-- ============ MEMORY EXAMPLE ============ -->
             <section class="band memory-example" id="memory-example">
                 <div class="wrap">
                     <div class="band-head">
                         <div>
-                            <h2>What this looks like in memory</h2>
+                            <h2>What this looks like as structured knowledge</h2>
                             <p class="lead">
                                 Vellis keeps the same graph skeleton across very
                                 different kinds of work: stable things, typed
@@ -1898,7 +1865,7 @@
                                 aria-pressed="true"
                                 data-domain-key="project"
                             >
-                                <strong>Project memory</strong>
+                                <strong>Project knowledge</strong>
                             </button>
                             <button
                                 class="example-tab"
@@ -1933,7 +1900,7 @@
                             <div
                                 id="memory-map"
                                 class="memory-map"
-                                aria-label="Annotated Vellis memory specimen"
+                                aria-label="Annotated Vellis knowledge specimen"
                                 data-domain="project"
                             >
                                 <svg
@@ -1956,7 +1923,7 @@
                                     />
                                 </svg>
                                 <span class="plate-label" id="plate-label"
-                                    >Project memory / work update</span
+                                    >Project knowledge / work update</span
                                 >
                                 <button
                                     class="structure-toggle"
@@ -2129,60 +2096,186 @@
                 </div>
             </section>
 
-            <!-- ============ WHY OPEN · PROMISE ============ -->
-            <section class="band license" id="open-promise">
+            <!-- ============ OPEN-SOURCE PROMISE ============ -->
+            <section
+                class="license-compact"
+                id="open-promise"
+                aria-labelledby="open-promise-heading"
+            >
                 <div class="wrap">
-                    <div class="lic-head">
-                        <h2>Why open — and what that promise is worth</h2>
+                    <div>
+                        <div class="license-kicker">Open by design</div>
+                        <h2 id="open-promise-heading">
+                            Apache 2.0. Runnable, inspectable, portable.
+                        </h2>
                         <p>
-                            The portability promise, stated up front. No
-                            surprises later.
+                            Vellis remains a standalone local path you can run,
+                            snapshot, restore, and replay—without depending on a
+                            closed hosted service.
                         </p>
                     </div>
-                    <div class="panel">
-                        <div class="lic">
-                            <span class="kicker"
-                                ><span
-                                    class="dot"
-                                    style="
-                                        width: 7px;
-                                        height: 7px;
-                                        border-radius: 50%;
-                                        background: var(--orange);
-                                        display: inline-block;
-                                    "
-                                ></span
-                                >License</span
+                    <a
+                        class="btn btn-ghost"
+                        href="https://github.com/volantlabs/vellis/blob/main/LICENSE"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Read the Vellis Apache License 2.0 — opens GitHub"
+                        >Read the license</a
+                    >
+                </div>
+            </section>
+
+            <!-- ============ QUICKSTART ============ -->
+            <section
+                class="quickstart-section"
+                id="quickstart"
+                aria-labelledby="quickstart-heading"
+            >
+                <div class="wrap">
+                    <div class="quickstart-art" aria-hidden="true">
+                        <svg
+                            class="quickstart-lines"
+                            viewBox="0 0 430 156"
+                            role="img"
+                        >
+                            <defs>
+                                <marker
+                                    id="quickstart-arrow"
+                                    markerHeight="8"
+                                    markerWidth="8"
+                                    orient="auto"
+                                    refX="7"
+                                    refY="4"
+                                >
+                                    <path
+                                        d="M0,0 L8,4 L0,8 Z"
+                                        fill="#d15b21"
+                                    />
+                                </marker>
+                            </defs>
+                            <path
+                                d="M134 76 C146 76, 154 76, 166 76"
+                                fill="none"
+                                marker-end="url(#quickstart-arrow)"
+                                stroke="#d15b21"
+                                stroke-width="2.5"
+                            />
+                            <path
+                                d="M270 76 C282 76, 290 76, 302 76"
+                                fill="none"
+                                marker-end="url(#quickstart-arrow)"
+                                stroke="#d15b21"
+                                stroke-width="2.5"
+                            />
+                        </svg>
+                        <img
+                            class="quickstart-asset quickstart-asset--terminal"
+                            src="assets/images/quickstart/agent-quickstart-terminal.png"
+                            alt=""
+                            width="1024"
+                            height="768"
+                            loading="eager"
+                            decoding="async"
+                        />
+                        <img
+                            class="quickstart-asset quickstart-asset--agent"
+                            src="assets/images/quickstart/agent-quickstart-inspection.png"
+                            alt=""
+                            width="1024"
+                            height="768"
+                            loading="eager"
+                            decoding="async"
+                        />
+                        <img
+                            class="quickstart-asset quickstart-asset--health"
+                            src="assets/images/quickstart/agent-quickstart-health.png"
+                            alt=""
+                            width="1024"
+                            height="768"
+                            loading="eager"
+                            decoding="async"
+                        />
+                    </div>
+                    <div class="quickstart-copy">
+                        <div class="quickstart-kicker">Local setup</div>
+                        <h2 id="quickstart-heading">Quickstart</h2>
+                        <p>
+                            Copy one prompt into your coding agent. It explains
+                            Vellis, asks a few setup-shaping questions, and
+                            verifies the local path before changing anything.
+                        </p>
+                        <div class="quickstart-actions">
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                data-quickstart-copy="agent"
                             >
-                            <h3>Apache 2.0 by design</h3>
-                            <p>
-                                Source, local run paths, and starter agent
-                                instructions are part of the Vellis promise: the
-                                graph stays runnable, portable, and yours.
-                            </p>
-                        </div>
-                        <div class="lic">
-                            <span class="kicker"
-                                ><span
-                                    class="dot"
-                                    style="
-                                        width: 7px;
-                                        height: 7px;
-                                        border-radius: 50%;
-                                        background: var(--orange);
-                                        display: inline-block;
-                                    "
-                                ></span
-                                >The covenant</span
+                                <svg
+                                    class="quickstart-icon"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="9"
+                                        y="9"
+                                        width="11"
+                                        height="11"
+                                        rx="2"
+                                    />
+                                    <path
+                                        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                                    />
+                                </svg>
+                                Agent Quick Start
+                            </button>
+                            <button
+                                class="btn quickstart-secondary"
+                                type="button"
+                                data-quickstart-copy="manual"
                             >
-                            <h3>No rug-pull</h3>
-                            <p>
-                                Vellis remains a standalone path you can run,
-                                inspect, snapshot, restore, and replay. A
-                                production path is available when teams want
-                                help operationalizing it.
-                            </p>
+                                <svg
+                                    class="quickstart-icon"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="9"
+                                        y="9"
+                                        width="11"
+                                        height="11"
+                                        rx="2"
+                                    />
+                                    <path
+                                        d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                                    />
+                                </svg>
+                                Manual commands
+                            </button>
+                            <a
+                                class="btn quickstart-readme"
+                                href="https://github.com/volantlabs/vellis#start-here-use-vellis-with-an-ai-agent"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >README
+                                <svg
+                                    class="quickstart-icon"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </a>
                         </div>
+                        <p class="quickstart-note">
+                            Local-first setup. No installs, shell edits, or
+                            config changes without approval.
+                        </p>
+                        <p
+                            class="quickstart-status"
+                            id="quickstart-copy-status"
+                            aria-live="polite"
+                        ></p>
                     </div>
                 </div>
             </section>
@@ -2280,73 +2373,127 @@
                             >Volant Partners</a
                         ></span
                     ><span class="nrp"
-                        >No rug-pull: Vellis stays runnable.</span
+                        >Apache 2.0 · runnable locally · recoverable by design.</span
                     >
                 </div>
             </div>
         </footer>
         <script>
-            const modelDetails = {
-                schema: {
-                    title: "1. Schema rules",
-                    body: "Schema defines valid anchor, fact, and link types; validation gates writes.",
-                    code: "anchor | fact records | link",
-                },
-                links: {
-                    title: "2. Link records",
-                    body: "Link records represent relationships between objects. Current Vellis uses UUID link identity, not type-source-target identity.",
-                    code: "RtgLink(uuid, type, source_uuid, target_uuid)",
-                },
-                anchors: {
-                    title: "3. Anchor objects",
-                    body: "Anchor objects are the stable things being remembered. They carry identity and navigation while mutable properties live in associated fact records.",
-                    code: "RtgAnchor(uuid, type, display_name)",
-                },
-                facts: {
-                    title: "4. Fact records",
-                    body: "Fact records are typed records associated with anchors. The raw graph allows zero, one, or many fact records; schema can require them.",
-                    code: "anchor_data_index[anchor_uuid] -> data_uuid[]",
-                },
-                snapshot: {
-                    title: "5. Ledger and snapshots",
-                    body: "The ledger and snapshots make graph state auditable, restorable, and replayable.",
-                    code: "snapshot -> restore -> replay",
-                },
-            };
+            (() => {
+                const copyText = {
+                    agent: `Help me install and connect Vellis safely.
 
-            const modelDetail = document.querySelector("#model-detail");
-            const modelObjects = Array.from(
-                document.querySelectorAll(".model-object"),
-            );
+Vellis is a local, typed knowledge system for AI agents. It keeps durable, structured knowledge on this computer, but information read through Vellis may be sent to the connected AI service under that service's data policies.
 
-            function renderModelDetail(payload) {
-                const wrapper = document.createElement("span");
-                const title = document.createElement("h3");
-                const body = document.createElement("p");
-                const code = document.createElement("code");
+Please guide me through this process:
 
-                title.textContent = payload.title;
-                body.textContent = payload.body;
-                code.textContent = payload.code;
-                wrapper.append(title, body);
-                modelDetail.replaceChildren(wrapper, code);
-            }
+1. Before setup, ask these three routing questions and wait for my answer:
 
-            modelObjects.forEach((object) => {
-                object.addEventListener("click", () => {
-                    modelObjects.forEach((candidate) => {
-                        candidate.classList.remove("is-selected");
-                        candidate.setAttribute("aria-pressed", "false");
+- What do I want to do first? A) Understand or evaluate Vellis, B) install and connect it, or C) inspect or repair an existing setup.
+- Which client should Vellis connect to if setup gives us a choice? A) Detect automatically or use this client, B) Codex, C) Claude Code/Desktop, or D) something else.
+- How hands-on should you be? A) Explain before each step, B) propose commands and wait, or C) run approved commands as we go.
+
+Accept compact answers like \`1.B 2.A 3.B\`. If I choose evaluation or explanation first, answer that before cloning, installing, or editing configuration. Continue into setup only after my answers show I am ready.
+
+2. Check whether the Vellis repository is already available locally. The repository target is \`https://github.com/volantlabs/vellis.git\` on its default \`main\` branch. If it is not available locally, ask where I want the repository cloned before cloning anything. Use the repository's current README and AGENTS.md rather than setup instructions from memory.
+
+Before installing Git, uv, package managers, or other prerequisites, or changing PATH or shell profile files, show me the exact proposed change and ask for approval.
+
+3. Before setup, determine whether an \`rtg_knowledge_graph\` MCP registration already exists.
+
+- If one exists, show me its exact \`--storage-root\` and \`--sql-database-path\`. Do not replace, relocate, or delete its data. Ask for confirmation before running setup with those same paths.
+- If none exists, use the ordinary fresh-install path: \`uv run vellis setup\`.
+
+4. Let setup detect my client and show the client, data, launch, and configuration changes. Do not use \`--yes\` until I have explicitly approved the displayed change. Do not manually edit MCP JSON unless the normal setup command is unavailable.
+
+5. If setup fails, run \`uv run vellis doctor\` with the same storage arguments and explain the smallest next step. Do not reset or delete data.
+
+6. When setup succeeds, ask me to restart or reload the selected client.
+
+7. After restart, verify the connection through MCP:
+
+- call \`rtg_validate_graph({})\`;
+- call \`rtg_get_system_state({})\`;
+- read \`rtg_get_usage_guide({"topic":"everyday_life_schema"})\`.
+
+   If MCP tools are unavailable, say that client connectivity is not yet verified. \`vellis doctor\` may diagnose local setup, but it is not a substitute for confirming the restarted client can reach the MCP server.
+
+8. Once everything is healthy, ask one ordinary question: "What would you like Vellis to help you remember or organize first?"
+
+Start with a small, truthful proposal based on my answer. Ask before assuming missing details or making a large initial write. Do not create a custom schema, snapshot, migration, or evaluation workflow unless my use case actually requires one.
+
+Do not modify or remove repository instructions as part of onboarding.`,
+                    manual: `# macOS with Homebrew
+brew install git uv
+
+git clone https://github.com/volantlabs/vellis.git
+cd vellis
+uv run vellis setup
+
+# Restart or reload the selected MCP client, then check:
+uv run vellis doctor
+
+# First MCP tool calls:
+# rtg_validate_graph({})
+# rtg_get_system_state({})
+# rtg_get_usage_guide({"topic":"everyday_life_schema"})`,
+                };
+
+                const status = document.querySelector(
+                    "#quickstart-copy-status",
+                );
+                const buttons = document.querySelectorAll(
+                    "[data-quickstart-copy]",
+                );
+
+                function fallbackCopy(text) {
+                    const textarea = document.createElement("textarea");
+                    textarea.value = text;
+                    textarea.setAttribute("readonly", "");
+                    textarea.style.position = "fixed";
+                    textarea.style.left = "-9999px";
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    const didCopy = document.execCommand("copy");
+                    textarea.remove();
+                    if (!didCopy) throw new Error("Copy command failed");
+                }
+
+                async function copyToClipboard(text) {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                        return;
+                    }
+                    fallbackCopy(text);
+                }
+
+                buttons.forEach((button) => {
+                    button.addEventListener("click", async () => {
+                        const key = button.dataset.quickstartCopy;
+                        const text = copyText[key];
+                        if (!text) return;
+                        try {
+                            await copyToClipboard(text);
+                            if (status) {
+                                status.textContent =
+                                    key === "agent"
+                                        ? "Agent quick start prompt copied."
+                                        : "Manual commands copied.";
+                            }
+                        } catch {
+                            if (status) {
+                                status.textContent =
+                                    "Copy failed. Open the README for the latest setup path.";
+                            }
+                        }
                     });
-                    object.classList.add("is-selected");
-                    object.setAttribute("aria-pressed", "true");
-                    renderModelDetail(modelDetails[object.dataset.modelKey]);
                 });
-            });
+            })();
+
 
             const domainExamples = {
                 project: {
-                    plate: "Project memory / work update",
+                    plate: "Project knowledge / work update",
                     summary:
                         "A teammate owns a task. Both things keep small typed fact records; the relationship stays separate.",
                     visual: {
@@ -2407,7 +2554,7 @@
                         sourceFacts: [
                             ["confidence", "high"],
                             ["status", "review"],
-                            ["topic", "memory"],
+                            ["topic", "knowledge"],
                         ],
                         targetFactsTitle: "Source facts",
                         targetFacts: [

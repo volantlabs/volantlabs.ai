@@ -19,27 +19,27 @@ features:
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-            Vellis — open-source shared memory for AI agents · volantlabs.ai
+            Vellis — model-engineered knowledge for AI agents · volantlabs.ai
         </title>
         <meta
             name="description"
-            content="Vellis is an Apache-licensed graph engine for shared agent memory: clone the repo, run it locally, connect MCP-capable tools, and keep state portable through snapshots, restore, and replay."
+            content="Vellis is Apache-licensed knowledge infrastructure for AI agents: model meaning explicitly, validate change, connect MCP-capable tools, and recover state through snapshots and replay."
         />
         <link rel="canonical" href="https://volantlabs.ai/" />
         <meta property="og:site_name" content="Volant Labs" />
-        <meta property="og:title" content="Vellis: open-source shared memory for AI agents" />
-        <meta property="og:description" content="Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and recoverable." />
+        <meta property="og:title" content="Vellis: structured knowledge for AI agents" />
+        <meta property="og:description" content="Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://volantlabs.ai/" />
         <meta property="og:image" content="https://volantlabs.ai/assets/images/social/home-vellis-shared-memory.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="A large orange Vellis memory node connecting AI agents and tools." />
+        <meta property="og:image:alt" content="A large orange Vellis knowledge node connecting AI agents and tools." />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Vellis: open-source shared memory for AI agents" />
-        <meta name="twitter:description" content="Clone the repo, run Vellis locally, connect MCP-capable tools, and keep agent context typed, durable, and recoverable." />
+        <meta name="twitter:title" content="Vellis: structured knowledge for AI agents" />
+        <meta name="twitter:description" content="Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/home-vellis-shared-memory.png" />
-        <meta name="twitter:image:alt" content="A large orange Vellis memory node connecting AI agents and tools." />
+        <meta name="twitter:image:alt" content="A large orange Vellis knowledge node connecting AI agents and tools." />
         <meta name="theme-color" content="#041026" />
         <link
             rel="alternate"
@@ -157,9 +157,9 @@ features:
                 grid-template-columns: 1fr 1fr;
                 gap: var(--s12);
                 align-items: center;
-                padding-top: var(--s24);
-                padding-bottom: var(--s24);
-                min-height: 540px;
+                padding-top: var(--s16);
+                padding-bottom: var(--s6);
+                min-height: 500px;
             }
             .eyebrow {
                 display: inline-flex;
@@ -179,7 +179,7 @@ features:
                 box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
             }
             h1.headline {
-                font-size: clamp(34px, 4.6vw, 60px);
+                font-size: clamp(34px, 4.1vw, 52px);
                 font-weight: 800;
                 color: #fff;
                 letter-spacing: 0;
@@ -241,12 +241,6 @@ features:
                     gap: 10px;
                 }
             }
-            .trust-line {
-                margin-top: var(--s6);
-                font-size: 12.5px;
-                color: #8fa0bd;
-                letter-spacing: 0.02em;
-            }
             .cta-row {
                 display: flex;
                 gap: var(--s4);
@@ -277,11 +271,12 @@ features:
             .figcap {
                 position: absolute;
                 bottom: -6px;
-                left: 0;
+                inset-inline: 0;
                 z-index: 2;
                 font-size: 12px;
                 color: #7f90ad;
                 font-weight: 300;
+                text-align: center;
             }
             @media (max-width: 880px) {
                 .hero .wrap {
@@ -294,6 +289,9 @@ features:
                 }
             }
             /* ---- Featured trio ---- */
+            section.band.start-here {
+                padding-top: var(--s12);
+            }
             .trio {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -319,15 +317,14 @@ features:
                 transform: translateY(-3px);
                 box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
             }
-            .card.flagship {
-                border-color: rgba(209, 91, 33, 0.38);
-                box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-            }
             .card .thumb {
                 height: 150px;
                 position: relative;
                 background: var(--navy);
                 overflow: hidden;
+            }
+            .route-card .thumb {
+                height: 176px;
             }
             .card .body {
                 padding: var(--s6);
@@ -335,21 +332,6 @@ features:
                 flex-direction: column;
                 gap: var(--s2);
                 flex: 1;
-            }
-            .tag {
-                align-self: flex-start;
-                font-size: 11px;
-                font-weight: 700;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                padding: 4px 10px;
-                border-radius: 999px;
-                background: var(--orange-50);
-                color: #f2b293;
-            }
-            .tag.flag {
-                background: var(--blue-50);
-                color: var(--text);
             }
             .card h3 {
                 font-size: 18px;
@@ -688,25 +670,26 @@ features:
                     <div class="hero-copy">
                         <span class="eyebrow"
                             ><span class="dot"></span>Vellis · Apache-licensed
-                            graph engine</span
+                            knowledge infrastructure</span
                         >
                         <h1 class="headline">
-                            One memory your agents share — and you own.
+                            Structured knowledge. Controlled change. Durable
+                            systems.
                         </h1>
                         <p class="sub">
-                            Vellis is an Apache-licensed typed graph engine that
-                            turns scattered context into a living model your AI
-                            can reason over. Define and evolve your domain
-                            explicitly; let locally configured MCP-capable
-                            agents build on the same graph.
+                            Vellis is model-engineered knowledge infrastructure
+                            for AI agents: a typed, locally owned system for
+                            knowledge that must be shared, changed, and
+                            recovered without losing meaning. MCP-capable agents
+                            operate against the same explicit graph contract.
                         </p>
                         <ul class="cap-strip">
                             <li>
                                 Clone the repo and run the graph engine locally
                             </li>
                             <li>
-                                Connect Claude, Codex, and other locally
-                                configured MCP-capable tools
+                                Connect Claude, Codex, and other MCP-capable
+                                tools
                             </li>
                             <li>
                                 Model schemas, provenance, and decisions as a
@@ -742,15 +725,11 @@ features:
                                 >See the engine</a
                             >
                         </div>
-                        <p class="trust-line">
-                            Apache 2.0 · maintained by Volant Partners ·
-                            portable snapshots and replayable state.
-                        </p>
                     </div>
                     <div class="hero-figure">
                         <canvas
                             id="graph"
-                            aria-label="Animated typed context graph for one shared memory your agents can read and write"
+                            aria-label="Animated typed knowledge graph that agents can read, change, and recover"
                         ></canvas>
                         <span class="figcap"
                             >One typed graph that agents can read, write, and
@@ -761,92 +740,93 @@ features:
             </section>
 
             <!-- ============ FEATURED TRIO ============ -->
-            <section class="band" id="engine">
+            <section class="band start-here" id="engine">
                 <div class="wrap">
                     <div class="band-head">
                         <h2>Start here</h2>
                         <span class="lane"
-                            >Engineer · builder · thinker · production
-                            champion</span
+                            >Run it · understand it · build with us</span
                         >
                     </div>
                     <div class="trio">
-                        <!-- flagship -->
-                        <article class="card flagship">
+                        <a class="card card-link route-card" href="engine.html">
                             <div class="thumb">
                                 <img
-                                    src="assets/images/vellis-context-graph.webp"
-                                    alt="Abstract typed context graph with schema, storage, and export paths around an active orange node."
-                                    width="960"
-                                    height="540"
+                                    src="assets/images/routes/engine-vellis.webp"
+                                    alt="Abstract V-shaped Vellis engine assembly with layered glass plates and an orange core."
+                                    width="1200"
+                                    height="560"
                                     loading="lazy"
                                     decoding="async"
                                 />
                             </div>
                             <div class="body">
-                                <span class="tag flag">Engineer · first project</span>
-                                <h3>Vellis</h3>
+                                <h3>Vellis Engine</h3>
                                 <p>
-                                    The Apache-licensed graph engine, schema
-                                    language, MCP server, and snapshot/restore
-                                    path: visible, runnable, and yours to
-                                    inspect.
+                                    Run and inspect the Apache-licensed typed
+                                    graph engine, its MCP surface, and its
+                                    snapshot-and-replay workflow.
                                 </p>
-                                <a class="more" href="engine.html#quickstart"
-                                    >Run locally <span class="arr">→</span></a
+                                <span class="more"
+                                    >Explore the engine
+                                    <span class="arr">→</span></span
                                 >
                             </div>
-                        </article>
-                        <!-- satellite 1 -->
-                        <article class="card">
+                        </a>
+                        <a
+                            class="card card-link route-card"
+                            href="thesis.html"
+                        >
                             <div class="thumb">
                                 <img
-                                    src="assets/images/graph-theory-thesis.webp"
-                                    alt="Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters."
-                                    width="960"
-                                    height="540"
+                                    src="assets/images/routes/thesis-editorial.webp"
+                                    alt="Sculptural navy folios with an orange spine and one lifted page."
+                                    width="1200"
+                                    height="560"
                                     loading="lazy"
                                     decoding="async"
                                 />
                             </div>
                             <div class="body">
-                                <span class="tag">Builder · engine</span>
-                                <h3>How Vellis works</h3>
+                                <h3>Thesis</h3>
                                 <p>
-                                    Understand the typed graph, schema language,
-                                    storage model, and recovery path behind the
-                                    first Volant Labs project.
+                                    Read why durable AI systems need explicit
+                                    models, governed change, and recoverable
+                                    state.
                                 </p>
-                                <a class="more" href="engine.html"
-                                    >Learn more <span class="arr">→</span></a
+                                <span class="more"
+                                    >Read the thesis
+                                    <span class="arr">→</span></span
                                 >
                             </div>
-                        </article>
-                        <!-- satellite 2 -->
-                        <article class="card">
+                        </a>
+                        <a
+                            class="card card-link route-card"
+                            href="community.html"
+                        >
                             <div class="thumb">
                                 <img
-                                    src="assets/images/platform-governance-gate.webp"
-                                    alt="Abstract graph clusters converging through a clear review gate along an orange path."
-                                    width="960"
-                                    height="540"
+                                    src="assets/images/routes/community-open-lab.webp"
+                                    alt="Circular arrangement of varied crafted modules surrounding an orange center."
+                                    width="1200"
+                                    height="560"
                                     loading="lazy"
                                     decoding="async"
                                 />
                             </div>
                             <div class="body">
-                                <span class="tag">Thinker · perspectives</span>
-                                <h3>Thinking in public</h3>
+                                <h3>Community</h3>
                                 <p>
-                                    Essays and field notes on why agents need a
-                                    substrate that carries meaning, not just
-                                    text.
+                                    Clone Vellis, follow releases, ask
+                                    questions, and share what you are learning
+                                    with the lab.
                                 </p>
-                                <a class="more" href="perspectives.html"
-                                    >Browse notes <span class="arr">→</span></a
+                                <span class="more"
+                                    >Join the community
+                                    <span class="arr">→</span></span
                                 >
                             </div>
-                        </article>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -887,7 +867,7 @@ features:
                 <div class="wrap">
                     <div class="flywheel">
                         <div class="fly-title">
-                            How it works — from clone to shared context
+                            How it works — from clone to shared knowledge
                         </div>
                         <div class="steps">
                             <div class="step">
@@ -912,8 +892,8 @@ features:
                                 <div class="num">3</div>
                                 <h4>Connect</h4>
                                 <p>
-                                    Point MCP-capable agents at one shared
-                                    graph-backed context.
+                                    Point MCP-capable agents at one shared,
+                                    graph-backed knowledge model.
                                 </p>
                                 <span class="conn">→</span>
                             </div>
@@ -930,8 +910,8 @@ features:
                                 <div class="num">5</div>
                                 <h4>Reuse</h4>
                                 <p>
-                                    Each pass leaves better context for the next
-                                    one.
+                                    Each pass leaves explicit, durable knowledge
+                                    for the next one.
                                 </p>
                             </div>
                         </div>
@@ -1126,7 +1106,7 @@ features:
                             >Volant Partners</a
                         ></span
                     ><span class="nrp"
-                        >No rug-pull: Vellis stays runnable.</span
+                        >Apache 2.0 · runnable locally · recoverable by design.</span
                     >
                 </div>
             </div>
@@ -1160,7 +1140,7 @@ features:
 
                 const nodes = [
                     {
-                        id: "memory",
+                        id: "knowledge",
                         ax: 0.5,
                         ay: 0.51,
                         bx: 0.43,
@@ -1197,7 +1177,7 @@ features:
                         seed: 5.6,
                     },
                     {
-                        id: "export",
+                        id: "recovery",
                         ax: 0.73,
                         ay: 0.68,
                         bx: 0.8,
@@ -1300,25 +1280,25 @@ features:
                 ];
 
                 const edges = [
-                    ["memory", "schema"],
-                    ["memory", "policy"],
-                    ["memory", "agent"],
-                    ["memory", "export"],
-                    ["memory", "human"],
+                    ["knowledge", "schema"],
+                    ["knowledge", "policy"],
+                    ["knowledge", "agent"],
+                    ["knowledge", "recovery"],
+                    ["knowledge", "human"],
                     ["schema", "domain"],
                     ["schema", "session"],
                     ["policy", "trace"],
                     ["agent", "runtime"],
-                    ["export", "runtime"],
+                    ["recovery", "runtime"],
                     ["human", "policy"],
                     ["session", "agent"],
                     ["ingest", "schema"],
-                    ["ingest", "memory"],
+                    ["ingest", "knowledge"],
                     ["draft", "runtime"],
                     ["draft", "agent"],
                     ["ratify", "policy"],
                     ["ratify", "human"],
-                    ["stale", "export"],
+                    ["stale", "recovery"],
                     ["stale", "trace"],
                 ];
 

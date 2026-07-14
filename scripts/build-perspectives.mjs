@@ -88,25 +88,25 @@ const editorialRubric = {
 
 const defaultSocialImage = "assets/images/graph-theory-thesis.webp";
 const defaultSocialImageAlt =
-  "Radial graph theory diagram with one orange thesis node connecting memory, schema, and governance clusters.";
+  "Radial graph theory diagram with one orange thesis node connecting meaning, schema, and control clusters.";
 const summaryPages = [
   {
     title: "Home",
     path: "",
     summaryPath: "llms/pages/home.md",
-    description: "Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory."
+    description: "Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents."
   },
   {
     title: "Vellis Engine",
     path: "engine.html",
     summaryPath: "llms/pages/engine.md",
-    description: "The product overview and verified local quickstart for Vellis as an open-source graph engine, RTG knowledge system, and reusable component library."
+    description: "The product overview and local quickstart for Vellis as structured, recoverable knowledge infrastructure for AI agents."
   },
   {
     title: "Thesis",
     path: "thesis.html",
     summaryPath: "llms/pages/thesis.md",
-    description: "The narrative point of view behind Vellis: graph memory, model reasoning, and human review."
+    description: "The narrative point of view behind Vellis: explicit meaning, model reasoning, and human review."
   },
   {
     title: "Perspectives",
@@ -887,7 +887,7 @@ function renderFooter() {
         <div class="foot-col"><h5>Stay close</h5><a href="../feed.xml">RSS feed</a><a href="../perspectives.html#subscribe">Subscribe</a><a href="https://www.volantpartners.com/contact" target="_blank" rel="noopener noreferrer" aria-label="Contact Volant Partners — opens volantpartners.com">Contact</a><a href="../platform.html">Platform</a></div>
       </div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">No rug-pull: Vellis stays runnable.</span></div>
+    <div class="foot-bottom"><span>&copy; 2026 <a class="volant-partners-link" href="https://www.volantpartners.com/" target="_blank" rel="noopener noreferrer">Volant Partners</a></span><span class="nrp">Apache 2.0 · runnable locally · recoverable by design.</span></div>
   </div>
 </footer>`;
 }
@@ -1368,7 +1368,7 @@ function renderLlmsTxt(posts) {
 
   return `# Volant Labs
 
-> Volant Labs publishes Vellis, an Apache-licensed typed graph engine for shared agent memory, schema-enforced writes, MCP-capable tooling, and portable, recoverable state.
+> Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 

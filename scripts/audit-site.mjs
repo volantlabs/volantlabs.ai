@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   externalContactLinkFailures,
+  forbiddenPatternFailures,
   ga4TrackingFailures,
 } from "./audit-site-rules.mjs";
 
@@ -70,6 +71,8 @@ const forbiddenPatterns = [
   new RegExp("request the current " + "local-start path", "i"),
   new RegExp("Local " + "start"),
   new RegExp("Production " + "support"),
+  new RegExp("sysml-" + "foundation", "i"),
+  new RegExp("knowledge layer agents can " + "share", "i"),
   new RegExp("https://kesher\\.volantpartners\\.ai/files/" + "download"),
   new RegExp('<line x1=\\"6\\" y1=\\"6\\" x2=\\"18\\" y2=\\"18\\"'),
   new RegExp(
@@ -117,16 +120,15 @@ for (const needle of requiredStrings) {
     failures.push(`Missing required public string: ${needle}`);
 }
 
-for (const pattern of forbiddenPatterns) {
-  const offenders = publicFiles.filter((file) =>
-    pattern.test(readFileSync(file, "utf8")),
-  );
-  if (offenders.length) {
-    failures.push(
-      `Forbidden pattern ${pattern} found in ${offenders.map(relative).join(", ")}`,
-    );
-  }
-}
+failures.push(
+  ...forbiddenPatternFailures(
+    publicCopyFiles.map((file) => ({
+      name: relative(file),
+      content: readFileSync(file, "utf8"),
+    })),
+    forbiddenPatterns,
+  ),
+);
 
 const kesherCopyAllowlist = new Set([
   path.join(siteRoot, "platform.html"),
@@ -461,7 +463,7 @@ if (/\.tagline span\s*\{[^}]*border\s*:/i.test(thesis)) {
 }
 
 const engine = readFileSync(path.join(siteRoot, "engine.html"), "utf8");
-if (!/\.lic \.kicker\s*\{[^}]*color\s*:\s*var\(--white\)/i.test(engine)) {
+if (!/\.license-kicker\s*\{[^}]*color\s*:\s*var\(--white\)/i.test(engine)) {
   failures.push("engine.html license kicker text should be white");
 }
 

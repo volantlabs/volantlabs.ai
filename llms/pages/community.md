@@ -19,6 +19,7 @@ The Community page presents practical support and signal paths around Vellis. It
 - The easiest way in is to clone, run, and learn by building.
 - The site surfaces support and signal rather than broad community theater.
 - Release notes are positioned as a cadence and freshness signal.
+- The current test path emphasizes explicit modeling, controlled change, and recoverable state instead of speculative roadmap promises.
 
 ## Related Pages
 
