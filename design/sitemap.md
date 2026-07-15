@@ -40,7 +40,7 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 | **Engineer** | "Can I evaluate it?" | Home hero → **Engine** (local run path + terminal-style access model) → clone and run |
 | **Curious / builder** | "What can it model?" | Home featured trio → **Community** → run locally or share an example |
 | **Thinker** | "What's the idea here?" | Home → **Thesis** (story) → **Perspectives** (library) → subscribe |
-| **Champion** | "When do we need governance?" | **Thesis / Engine** → **Platform** (Kesher graduation) → book a conversation |
+| **Champion** | "When do we need governance?" | **Thesis / Engine** → **Platform** (governed production) → book a conversation |
 
 ---
 
@@ -97,9 +97,9 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 - **Future directions** — likely next / exploring / later, framed explicitly as candidates rather than dated commitments.
 
 ### 3.6 Platform  *(wireframe-6)* — the quiet graduation path
-**Job:** for the "champion," name the one thing Vellis should not pretend to solve alone, and offer a calm exit to Kesher.
-- **Hero** — "When shared agent memory becomes production infrastructure"; names Kesher as Volant Partners' governed platform.
-- **Before / after** — *On Vellis* (agents write · graphs run real ops · no audit answer) vs *On Kesher* (write-back gates · audit traces · approval policies · accumulated intelligence).
+**Job:** for the "champion," name the one thing Vellis should not pretend to solve alone, and offer a calm path to governed production with Volant Partners.
+- **Hero** — "When shared agent memory becomes production infrastructure"; names the governance, controls, and operating support required in production.
+- **Before / after** — *In Vellis* (agents write · graphs run real ops · production readiness remains the builder's responsibility) vs *With Volant Partners* (write-back gates · audit traces · approval policies · accumulated intelligence).
 - **Single CTA** — "Ready for governed operations? → Book a conversation" (links directly to the Volant Partners contact form). One calm CTA only.
 
 ---
@@ -128,9 +128,9 @@ Home  (/)
 ├─ Community  (/community)
 │   ├─ Run locally · Share an example · Follow releases · Questions
 │   └─ Future directions
-└─ Platform  (/platform)                      ← quiet Kesher graduation path
+└─ Platform  (/platform)                      ← quiet governed-production path
     ├─ the governance question
-    ├─ Vellis vs Kesher
+    ├─ Vellis in governed production
     └─ Book a conversation  → commercial site
 ```
 

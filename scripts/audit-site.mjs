@@ -47,6 +47,10 @@ const publicCopyFiles = listFiles(siteRoot)
   .filter((file) => !file.includes(`${path.sep}design${path.sep}`))
   .filter((file) => !file.includes(`${path.sep}scripts${path.sep}`))
   .filter((file) => path.basename(file) !== "README.md");
+const exportableTextFiles = listFiles(siteRoot)
+  .filter((file) => /\.(css|html|js|json|md|mjs|svg|txt|xml)$/.test(file))
+  .filter((file) => !file.includes(`${path.sep}content${path.sep}`))
+  .filter((file) => !file.includes(`${path.sep}node_modules${path.sep}`));
 
 const requiredStrings = [
   "https://github.com/volantlabs/vellis",
@@ -73,7 +77,10 @@ const forbiddenPatterns = [
   new RegExp("Production " + "support"),
   new RegExp("sysml-" + "foundation", "i"),
   new RegExp("knowledge layer agents can " + "share", "i"),
-  new RegExp("https://kesher\\.volantpartners\\.ai/files/" + "download"),
+  new RegExp(
+    "https://[a-z0-9.-]+\\.volantpartners\\.ai/files/" + "download",
+    "i",
+  ),
   new RegExp('<line x1=\\"6\\" y1=\\"6\\" x2=\\"18\\" y2=\\"18\\"'),
   new RegExp(
     '<circle cx=\\"6\\" cy=\\"18\\" r=\\"2\\\\.4\\" fill=\\"#D15B21\\"',
@@ -130,21 +137,19 @@ failures.push(
   ),
 );
 
-const kesherCopyAllowlist = new Set([
-  path.join(siteRoot, "platform.html"),
-  path.join(siteRoot, "llms", "pages", "platform.md"),
-  socialPreviewManifestPath,
-]);
-const kesherCopyOffenders = publicCopyFiles.filter(
-  (file) =>
-    !kesherCopyAllowlist.has(file) &&
-    /\bkesher\b/i.test(readFileSync(file, "utf8")),
+const retiredPlatformBrandPattern = new RegExp(
+  "\\b" + "Kes" + "her" + "\\b",
+  "i",
 );
-if (kesherCopyOffenders.length) {
-  failures.push(
-    `Public site copy mentions Kesher outside the approved Platform path in ${kesherCopyOffenders.map(relative).join(", ")}`,
-  );
-}
+failures.push(
+  ...forbiddenPatternFailures(
+    exportableTextFiles.map((file) => ({
+      name: relative(file),
+      content: readFileSync(file, "utf8"),
+    })),
+    [retiredPlatformBrandPattern],
+  ),
+);
 
 for (const file of publicHtmlFiles) {
   const html = readFileSync(file, "utf8");

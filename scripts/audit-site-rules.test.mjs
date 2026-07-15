@@ -95,3 +95,27 @@ test("forbidden copy audit scans LLM Markdown", () => {
     ],
   );
 });
+
+test("forbidden copy audit catches the retired platform brand in exported staging files", () => {
+  const retiredName = "Kes" + "her";
+  const retiredPattern = new RegExp(`\\b${retiredName}\\b`, "i");
+
+  deepEqual(
+    forbiddenPatternFailures(
+      [
+        {
+          name: "design/sitemap.md",
+          content: `Route builders from Vellis to ${retiredName}.`,
+        },
+        {
+          name: "README.md",
+          content: "Describe the source repository generically.",
+        },
+      ],
+      [retiredPattern],
+    ),
+    [
+      `Forbidden pattern ${retiredPattern} found in design/sitemap.md`,
+    ],
+  );
+});

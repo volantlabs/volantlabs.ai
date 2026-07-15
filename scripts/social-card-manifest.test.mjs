@@ -46,3 +46,9 @@ test("open-data social card source matches checked-in manifest metadata", () => 
 
   deepEqual(sourceCardForPage(page), manifestCardForPage(page));
 });
+
+test("platform social card source matches checked-in manifest metadata", () => {
+  const page = "/platform.html";
+
+  deepEqual(sourceCardForPage(page), manifestCardForPage(page));
+});
