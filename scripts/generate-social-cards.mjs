@@ -68,9 +68,9 @@ const cards = [
   {
     page: "/platform.html",
     filename: "platform-governed-operations.png",
-    title: "From Vellis to Kesher",
+    title: "From Vellis to governed operations",
     description:
-      "Carry open Vellis patterns into governed production with Kesher and Volant Partners.",
+      "Carry open Vellis patterns into governed production with Volant Partners.",
     kicker: "Platform",
     shortTitle: "Governed operations",
     alt: "A Vellis graph passing through a governance gate into an audit record.",

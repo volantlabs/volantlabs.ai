@@ -145,7 +145,7 @@ This is the strongest unmade argument on the site and the most direct answer to 
 ## 8. Implementation notes for Codex
 
 **File & workflow**
-- Edit the canonical site bundle in the Kesher repository at `client_packs/volant/published_apps/volantlabs.ai/`. The public `volantlabs/volantlabs.ai` repository is a deployment mirror.
+- Edit the canonical site bundle in the source repository at `client_packs/volant/published_apps/volantlabs.ai/`. The public `volantlabs/volantlabs.ai` repository is a deployment mirror.
 - Keep product-posture changes synchronized across Home, Engine, Domain Explorations, Community, Platform, machine-readable summaries, and supporting docs.
 
 **Exact edit points in `index.html`**
