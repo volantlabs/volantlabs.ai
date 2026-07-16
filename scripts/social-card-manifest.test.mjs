@@ -23,8 +23,10 @@ function sourceCardForPage(page) {
   };
 
   return {
+    filename: field("filename"),
     title: field("title"),
     description: field("description"),
+    alt: field("alt"),
   };
 }
 
@@ -36,19 +38,19 @@ function manifestCardForPage(page) {
   if (!card) throw new Error(`No social card manifest entry found for ${page}`);
 
   return {
+    filename: path.basename(card.image),
     title: card.title,
     description: card.description,
+    alt: card.alt,
   };
 }
 
-test("open-data social card source matches checked-in manifest metadata", () => {
-  const page = "/perspectives/open-data.html";
+test("every social card source entry matches the checked-in manifest", () => {
+  const manifest = JSON.parse(
+    readFileSync(path.join(siteRoot, "assets", "images", "social", "manifest.json"), "utf8"),
+  );
 
-  deepEqual(sourceCardForPage(page), manifestCardForPage(page));
-});
-
-test("platform social card source matches checked-in manifest metadata", () => {
-  const page = "/platform.html";
-
-  deepEqual(sourceCardForPage(page), manifestCardForPage(page));
+  for (const { page } of manifest) {
+    deepEqual(sourceCardForPage(page), manifestCardForPage(page), page);
+  }
 });

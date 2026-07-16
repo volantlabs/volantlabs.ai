@@ -5,10 +5,10 @@
     "description": "Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces.",
     "twitterTitle": "Vellis: structured knowledge for AI agents",
     "twitterDescription": "Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces.",
-    "image": "assets/images/social/home-vellis-shared-memory.png",
+    "image": "assets/images/social/home-vellis-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A large orange Vellis knowledge node connecting AI agents and tools."
+    "alt": "Volant Labs and Vellis typography beside an illuminated topographic knowledge network."
   },
   {
     "page": "/engine.html",
@@ -16,10 +16,10 @@
     "description": "Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces.",
     "twitterTitle": "Vellis Engine: structured knowledge for AI agents",
     "twitterDescription": "Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces.",
-    "image": "assets/images/social/engine-local-graph.png",
+    "image": "assets/images/social/engine-vellis-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A local engine panel connected to a typed graph."
+    "alt": "Vellis with a Volant Labs endorsement beside precise topographic strata and an illuminated knowledge core."
   },
   {
     "page": "/thesis.html",
@@ -27,10 +27,10 @@
     "description": "Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
     "twitterTitle": "The Vellis thesis: meaning, reasoning, review",
     "twitterDescription": "Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
-    "image": "assets/images/social/thesis-memory-reasoning-review.png",
+    "image": "assets/images/social/thesis-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "Three large connected nodes representing meaning, reasoning, and review."
+    "alt": "Volant Labs typography beside three connected topographic basins representing memory, reasoning, and review."
   },
   {
     "page": "/perspectives.html",
@@ -38,10 +38,10 @@
     "description": "Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
     "twitterTitle": "Perspectives from Volant Labs",
     "twitterDescription": "Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
-    "image": "assets/images/social/perspectives-library.png",
+    "image": "assets/images/social/perspectives-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A stack of perspective cards connected to a central graph node."
+    "alt": "Volant Labs typography beside layered topographic folios connected as a knowledge network."
   },
   {
     "page": "/community.html",
@@ -49,10 +49,10 @@
     "description": "Run Vellis, follow releases, share examples, and ask direct questions as the open graph engine takes shape.",
     "twitterTitle": "Build with Vellis",
     "twitterDescription": "Run Vellis, follow releases, share examples, and ask direct questions as the open graph engine takes shape.",
-    "image": "assets/images/social/community-builder-path.png",
+    "image": "assets/images/social/community-vellis-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A bold path of connected builder nodes."
+    "alt": "Vellis with a Volant Labs endorsement beside topographic paths converging into a shared builder network."
   },
   {
     "page": "/platform.html",
@@ -60,10 +60,10 @@
     "description": "Carry open Vellis patterns into governed production with Volant Partners.",
     "twitterTitle": "From Vellis to governed operations",
     "twitterDescription": "Carry open Vellis patterns into governed production with Volant Partners.",
-    "image": "assets/images/social/platform-governed-operations.png",
+    "image": "assets/images/social/platform-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A Vellis graph passing through a governance gate into an audit record."
+    "alt": "Volant Labs typography beside a topographic flow crossing into governed production infrastructure."
   },
   {
     "page": "/domain-explorations.html",
@@ -71,10 +71,10 @@
     "description": "A parked exploration of reference graph packs, public-standard mappings, narrow workflow examples, and community builds.",
     "twitterTitle": "Domain Explorations: worked Vellis models",
     "twitterDescription": "A parked exploration of reference graph packs, public-standard mappings, narrow workflow examples, and community builds.",
-    "image": "assets/images/social/domain-explorations-worked-models.png",
+    "image": "assets/images/social/domain-explorations-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "Four domain model panels connected to a shared graph substrate."
+    "alt": "Volant Labs typography beside several exploratory topographic domain regions on a shared substrate."
   },
   {
     "page": "/perspectives/graph-theory.html",
@@ -82,10 +82,10 @@
     "description": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view.",
     "twitterTitle": "The graph is a theory",
     "twitterDescription": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view.",
-    "image": "assets/images/social/perspective-graph-theory.png",
+    "image": "assets/images/social/perspective-graph-theory-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A central theory node connected to four evidence neighborhoods."
+    "alt": "Volant Labs typography beside a topographic theory core connected to evidence neighborhoods."
   },
   {
     "page": "/perspectives/runtime-controls.html",
@@ -93,10 +93,10 @@
     "description": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
     "twitterTitle": "Runtime-native controls: policy where execution happens",
     "twitterDescription": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
-    "image": "assets/images/social/perspective-runtime-controls.png",
+    "image": "assets/images/social/perspective-runtime-controls-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "A write path passing through a runtime policy gate."
+    "alt": "Volant Labs typography beside an illuminated runtime path crossing an abstract topographic threshold."
   },
   {
     "page": "/perspectives/open-data.html",
@@ -104,9 +104,9 @@
     "description": "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
     "twitterTitle": "Open data, proprietary intelligence",
     "twitterDescription": "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
-    "image": "assets/images/social/perspective-open-data.png",
+    "image": "assets/images/social/perspective-open-data-topographic-v2.png",
     "width": 1200,
     "height": 630,
-    "alt": "Private intelligence nodes growing from an open Vellis substrate."
+    "alt": "Volant Labs typography beside an open topographic substrate supporting a concentrated intelligence layer."
   }
 ]
