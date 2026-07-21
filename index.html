@@ -19,28 +19,28 @@ features:
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>
-            Vellis — model-engineered knowledge for AI agents · volantlabs.ai
+            Vellis — open-source context graph engine for AI agents ·
+            volantlabs.ai
         </title>
         <meta
             name="description"
-            content="Vellis is Apache-licensed knowledge infrastructure for AI agents: model meaning explicitly, validate change, connect MCP-capable tools, and recover state through snapshots and replay."
+            content="Vellis is an Apache-licensed, open-source context graph engine for AI agents: model meaning explicitly, validate change, connect MCP-capable tools, and recover state through snapshots and replay."
         />
         <link rel="canonical" href="https://volantlabs.ai/" />
         <meta property="og:site_name" content="Volant Labs" />
-        <meta property="og:title" content="Vellis: structured knowledge for AI agents" />
-        <meta property="og:description" content="Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces." />
+        <meta property="og:title" content="Vellis: the open-source context graph engine for AI agents" />
+        <meta property="og:description" content="One typed, locally owned context graph your AI agents share — model meaning explicitly, change it safely, recover it completely." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://volantlabs.ai/" />
-        <meta property="og:image" content="https://volantlabs.ai/assets/images/social/home-vellis-topographic-v2.png" />
+        <meta property="og:image" content="https://volantlabs.ai/assets/images/social/home-vellis-topographic-v3.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Volant Labs and Vellis typography beside an illuminated topographic knowledge network." />
+        <meta property="og:image:alt" content="Volant Labs typography beside one illuminated topographic context graph with shared agent pathways." />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Vellis: structured knowledge for AI agents" />
-        <meta name="twitter:description" content="Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces." />
-        <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/home-vellis-topographic-v2.png" />
-        <meta name="twitter:image:alt" content="Volant Labs and Vellis typography beside an illuminated topographic knowledge network." />
-        <meta name="theme-color" content="#041026" />
+        <meta name="twitter:title" content="Vellis: the open-source context graph engine for AI agents" />
+        <meta name="twitter:description" content="One typed, locally owned context graph your AI agents share — model meaning explicitly, change it safely, recover it completely." />
+        <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/home-vellis-topographic-v3.png" />
+        <meta name="twitter:image:alt" content="Volant Labs typography beside one illuminated topographic context graph with shared agent pathways." />
         <link
             rel="alternate"
             type="application/rss+xml"
@@ -81,11 +81,32 @@ features:
                         "name": "Volant Labs",
                         "url": "https://volantlabs.ai/",
                         "description": "Open graph-native infrastructure for AI-native work.",
+                        "sameAs": ["https://github.com/volantlabs"],
                         "parentOrganization": {
                             "@type": "Organization",
                             "name": "Volant Partners",
                             "url": "https://www.volantpartners.com/"
                         }
+                    },
+                    {
+                        "@type": "SoftwareApplication",
+                        "@id": "https://volantlabs.ai/#vellis",
+                        "name": "Vellis",
+                        "url": "https://volantlabs.ai/engine.html",
+                        "description": "An open-source context graph engine for AI agents: a typed, locally owned knowledge system with explicit schema, validated change, deterministic query, migration, snapshots, replay, and audit, operated through MCP-capable tools.",
+                        "applicationCategory": "DeveloperApplication",
+                        "operatingSystem": "macOS, Linux, Windows",
+                        "license": "https://www.apache.org/licenses/LICENSE-2.0",
+                        "sameAs": ["https://github.com/volantlabs/vellis"],
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "0",
+                            "priceCurrency": "USD"
+                        },
+                        "author": {
+                            "@id": "https://volantlabs.ai/#organization"
+                        },
+                        "keywords": "context graph, personal context graph, AI agent memory, knowledge graph, MCP, reified typed graph"
                     },
                     {
                         "@type": "WebSite",
@@ -176,7 +197,7 @@ features:
                 height: 7px;
                 border-radius: 50%;
                 background: var(--orange);
-                box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
+                box-shadow: 0 0 0 4px color-mix(in srgb, var(--labs-accent) 18%, transparent);
             }
             h1.headline {
                 font-size: clamp(34px, 4.1vw, 52px);
@@ -197,7 +218,7 @@ features:
                 gap: var(--s6);
                 margin-top: var(--s6);
                 font-size: 13px;
-                color: #9fb0cc;
+                color: var(--labs-muted);
             }
             .meta-row span {
                 display: inline-flex;
@@ -249,7 +270,7 @@ features:
             }
             .hero .btn-ghost {
                 color: #fff;
-                border-color: rgba(245, 245, 245, 0.32);
+                border-color: color-mix(in srgb, var(--labs-text) 32%, transparent);
             }
             .hero .btn-ghost:hover {
                 border-color: #fff;
@@ -375,7 +396,7 @@ features:
                 border-bottom: 0;
             }
             .feed a.row:hover {
-                background: rgba(159, 176, 204, 0.08);
+                background: color-mix(in srgb, var(--labs-muted) 8%, transparent);
             }
             .feed .pill {
                 font-size: 11px;
@@ -677,8 +698,8 @@ features:
                             systems.
                         </h1>
                         <p class="sub">
-                            Vellis is model-engineered knowledge infrastructure
-                            for AI agents: a typed, locally owned system for
+                            Vellis is an open-source context graph engine for
+                            AI agents: a typed, locally owned system for
                             knowledge that must be shared, changed, and
                             recovered without losing meaning. MCP-capable agents
                             operate against the same explicit graph contract.
@@ -937,7 +958,7 @@ features:
                                     y1="60"
                                     x2="130"
                                     y2="40"
-                                    stroke="#F5F5F5"
+                                    stroke="var(--labs-text)"
                                     stroke-opacity=".25"
                                 />
                                 <line
@@ -945,7 +966,7 @@ features:
                                     y1="40"
                                     x2="180"
                                     y2="120"
-                                    stroke="#F5F5F5"
+                                    stroke="var(--labs-text)"
                                     stroke-opacity=".25"
                                 />
                                 <line
@@ -953,29 +974,29 @@ features:
                                     y1="40"
                                     x2="90"
                                     y2="140"
-                                    stroke="#F5F5F5"
+                                    stroke="var(--labs-text)"
                                     stroke-opacity=".25"
                                 />
                                 <circle
                                     cx="40"
                                     cy="60"
                                     r="6"
-                                    fill="#E6EAF2"
+                                    fill="var(--labs-node)"
                                     fill-opacity=".7"
                                 />
                                 <circle
                                     cx="180"
                                     cy="120"
                                     r="6"
-                                    fill="#E6EAF2"
+                                    fill="var(--labs-node)"
                                     fill-opacity=".7"
                                 />
-                                <circle cx="90" cy="140" r="6" fill="#D15B21" />
+                                <circle cx="90" cy="140" r="6" fill="var(--labs-accent)" />
                                 <circle
                                     cx="130"
                                     cy="40"
                                     r="9"
-                                    fill="#E6EAF2"
+                                    fill="var(--labs-node)"
                                     fill-opacity=".7"
                                 />
                             </svg>
@@ -1120,6 +1141,13 @@ features:
                 const canvas = document.getElementById("graph");
                 if (!canvas) return;
                 const ctx = canvas.getContext("2d");
+                const theme = getComputedStyle(document.documentElement);
+                const accentColor =
+                    theme.getPropertyValue("--labs-accent").trim() ||
+                    "currentColor";
+                const nodeColor =
+                    theme.getPropertyValue("--labs-node").trim() ||
+                    "currentColor";
                 let W = 0,
                     H = 0,
                     DPR = 1,
@@ -1360,7 +1388,7 @@ features:
                     };
                     const pulseAlpha =
                         alpha * (0.18 + 0.42 * Math.sin(Math.PI * phase));
-                    line(p0, p1, pulseAlpha, 2.1, "#D15B21");
+                    line(p0, p1, pulseAlpha, 2.1, accentColor);
                 }
 
                 function render(elapsed) {
@@ -1388,7 +1416,7 @@ features:
                             b,
                             alpha * (isWrite ? 0.2 : 0.14),
                             isWrite ? 1.25 : 1,
-                            "#E6EAF2",
+                            nodeColor,
                         );
                         if (!reduce && alpha > 0.46)
                             drawPulse(
@@ -1405,11 +1433,11 @@ features:
                         const transient = node.enter !== undefined;
                         const scale = transient ? 0.78 + 0.22 * alpha : 1;
                         const r = node.r * scale;
-                        const glow = node.accent
-                            ? "rgba(209,91,33,"
-                            : "rgba(230,234,242,";
-                        ctx.globalAlpha = alpha * (node.accent ? 0.2 : 0.11);
-                        ctx.fillStyle = `${glow}${node.retire ? 0.06 : 0.16})`;
+                        ctx.globalAlpha =
+                            alpha *
+                            (node.accent ? 0.2 : 0.11) *
+                            (node.retire ? 0.06 : 0.16);
+                        ctx.fillStyle = node.accent ? accentColor : nodeColor;
                         ctx.beginPath();
                         ctx.arc(
                             x,
@@ -1423,8 +1451,8 @@ features:
                         if (transient && !node.retire) {
                             ctx.globalAlpha = alpha * 0.45;
                             ctx.strokeStyle = node.accent
-                                ? "#D15B21"
-                                : "#E6EAF2";
+                                ? accentColor
+                                : nodeColor;
                             ctx.lineWidth = 1;
                             ctx.beginPath();
                             ctx.arc(x, y, r + 6, 0, Math.PI * 2);
@@ -1432,7 +1460,7 @@ features:
                         }
 
                         ctx.globalAlpha = alpha * (node.retire ? 0.42 : 1);
-                        ctx.fillStyle = node.accent ? "#D15B21" : "#E6EAF2";
+                        ctx.fillStyle = node.accent ? accentColor : nodeColor;
                         ctx.beginPath();
                         ctx.arc(x, y, r, 0, Math.PI * 2);
                         ctx.fill();

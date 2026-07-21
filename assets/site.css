@@ -1,3 +1,5 @@
+@import url("./design-system.generated.css");
+
 /* ============================================================
    volantlabs.ai — shared shell (design system)
    Single source of truth for tokens + chrome (nav, buttons, section
@@ -11,22 +13,22 @@
 
 /* ---- Brand tokens ---- */
 :root{
-  --labs-base:#041026;
-  --labs-surface:#071A3B;
-  --labs-elevated:#001E50;
-  --labs-accent:#D15B21;
-  --labs-accent-hover:#A8491A;
-  --labs-text:#F5F5F5;
-  --labs-muted:#9FB0CC;
-  --labs-line:#1C3057;
+  --labs-base:var(--bg-base);
+  --labs-surface:var(--bg-surface);
+  --labs-elevated:var(--bg-elevated);
+  --labs-accent:var(--accent);
+  --labs-accent-hover:var(--accent-hover);
+  --labs-text:var(--text);
+  --labs-muted:var(--text-muted);
+  --labs-line:var(--line);
+  --labs-node:color-mix(in srgb,var(--labs-text) 90%,var(--labs-muted));
   --surface:var(--labs-surface);
-  --surface-soft:rgba(7,26,59,.72);
+  --surface-soft:color-mix(in srgb,var(--labs-surface) 72%,transparent);
   --surface-elevated:var(--labs-elevated);
-  --surface-accent:rgba(209,91,33,.14);
-  --text:var(--labs-text);
+  --surface-accent:color-mix(in srgb,var(--labs-accent) 14%,transparent);
   --muted:var(--labs-muted);
-  --navy:var(--labs-elevated); --orange:var(--labs-accent); --orange-600:var(--labs-accent-hover); --orange-50:rgba(209,91,33,.16);
-  --white:var(--labs-text); --charcoal:var(--labs-text); --blue-50:rgba(159,176,204,.16); --line:var(--labs-line);
+  --navy:var(--labs-elevated); --orange:var(--labs-accent); --orange-600:var(--labs-accent-hover); --orange-50:color-mix(in srgb,var(--labs-accent) 16%,transparent);
+  --white:var(--labs-text); --charcoal:var(--labs-text); --blue-50:color-mix(in srgb,var(--labs-muted) 16%,transparent);
   --font:"Montserrat",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s12:48px;--s16:64px;--s24:96px;
@@ -49,7 +51,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-off
 @media (prefers-reduced-motion:reduce){.skip{transition:none}}
 
 /* ---- Nav ---- */
-header{position:sticky;top:0;z-index:50;background:rgba(4,16,38,.9);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--labs-base) 90%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
 nav{display:flex;align-items:center;gap:var(--s8);height:64px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text);font-size:18px;letter-spacing:0}
 .brand .glyph{width:22px;height:22px;flex:none}
@@ -68,8 +70,8 @@ header .brand .glyph circle:not(:last-child){fill:var(--text)}
 .btn-primary svg [stroke]{stroke:currentColor}
 .btn-primary svg [fill]:not([fill="none"]){fill:currentColor}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--muted);background:rgba(159,176,204,.08)}
-.btn-quiet{background:rgba(159,176,204,.08);color:var(--muted);border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
+.btn-ghost:hover{border-color:var(--muted);background:color-mix(in srgb,var(--labs-muted) 8%,transparent)}
+.btn-quiet{background:color-mix(in srgb,var(--labs-muted) 8%,transparent);color:var(--muted);border:1px solid var(--line);height:38px;font-size:13px;font-weight:500}
 .btn-quiet:hover{color:var(--text);border-color:var(--muted)}
 .btn-sm{height:38px;padding:0 14px;font-size:13px}
 a[href="https://www.volantpartners.com/contact"]::after{
@@ -81,10 +83,10 @@ a[href="https://www.volantpartners.com/contact"]::after{
   font-weight:700;
 }
 .thumb img{display:block;width:100%;height:100%;object-fit:cover}
-.ico [stroke="#001E50"],.gl [stroke="#001E50"],.glyph [stroke="#001E50"]{stroke:var(--muted)}
-.ico [fill="#001E50"],.gl [fill="#001E50"],.glyph [fill="#001E50"]{fill:var(--muted)}
-header .brand .glyph [stroke="#001E50"],header .brand .glyph [stroke="#9FB0CC"]{stroke:var(--text)}
-header .brand .glyph [fill="#001E50"],header .brand .glyph [fill="#9FB0CC"]{fill:var(--text)}
+.ico [stroke="var(--labs-elevated)"],.gl [stroke="var(--labs-elevated)"],.glyph [stroke="var(--labs-elevated)"]{stroke:var(--muted)}
+.ico [fill="var(--labs-elevated)"],.gl [fill="var(--labs-elevated)"],.glyph [fill="var(--labs-elevated)"]{fill:var(--muted)}
+header .brand .glyph [stroke="var(--labs-elevated)"],header .brand .glyph [stroke="var(--labs-muted)"]{stroke:var(--text)}
+header .brand .glyph [fill="var(--labs-elevated)"],header .brand .glyph [fill="var(--labs-muted)"]{fill:var(--text)}
 @media(max-width:880px){
   nav{height:auto;min-height:64px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
   .navlinks{order:3;width:100%;margin-left:0;gap:var(--s4);overflow-x:auto;padding-bottom:4px}

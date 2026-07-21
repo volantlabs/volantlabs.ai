@@ -48,7 +48,9 @@ Open by Design · Quickstart · RSS / subscribe · Contact · Platform
 
 ### 3.0 Home  *(wireframe-1)*
 **Job:** answer "what is it / can I evaluate it" in one screen; route the four lanes.
-- **Hero** — headline "One memory your agents share — and you own."; subhead: Apache-licensed typed graph engine, harness-agnostic shared AI context, and exportable ownership; CTAs: *Run Vellis locally* (primary), *See the engine*; animated node-edge graph.
+- **Hero** — headline "Structured knowledge. Controlled change. Durable systems."; subhead: Vellis as an open-source context graph engine for AI agents — typed, locally owned, recoverable, MCP-capable; CTAs: *Run Vellis locally* (primary), *See the engine*; animated node-edge graph.
+
+> Vocabulary update 2026-07-21: public copy bridges brand language to the searchable category vocabulary. Titles, meta descriptions, and first body sentences name Vellis as an "open-source context graph engine" (with "personal context graph" and "agent memory" as secondary terms in structured data and llms.txt). Brand headlines stay; the category terms carry discovery.
 - **Featured trio** — flagship (Vellis) + 2 satellites (engine details, Thesis/Perspectives).
 - **Latest perspectives** — feed strip of recent essays and field notes linking to the Perspectives library.
 - **Flywheel (5 steps)** — clone → model → connect → iterate → reuse.

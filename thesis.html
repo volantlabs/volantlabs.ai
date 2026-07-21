@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://volantlabs.ai/thesis.html" />
         <meta property="og:site_name" content="Volant Labs" />
         <meta property="og:title" content="The Vellis thesis: meaning, reasoning, review" />
-        <meta property="og:description" content="Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop." />
+        <meta property="og:description" content="Why a context graph preserves meaning, gives models explicit structure, and keeps human judgment in the loop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://volantlabs.ai/thesis.html" />
         <meta property="og:image" content="https://volantlabs.ai/assets/images/social/thesis-topographic-v2.png" />
@@ -20,10 +20,9 @@
         <meta property="og:image:alt" content="Volant Labs typography beside three connected topographic basins representing memory, reasoning, and review." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="The Vellis thesis: meaning, reasoning, review" />
-        <meta name="twitter:description" content="Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop." />
+        <meta name="twitter:description" content="Why a context graph preserves meaning, gives models explicit structure, and keeps human judgment in the loop." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/thesis-topographic-v2.png" />
         <meta name="twitter:image:alt" content="Volant Labs typography beside three connected topographic basins representing memory, reasoning, and review." />
-        <meta name="theme-color" content="#041026" />
         <link
             rel="alternate"
             type="application/rss+xml"
@@ -81,7 +80,7 @@
                 position: sticky;
                 top: 0;
                 z-index: 60;
-                background: rgba(4, 16, 38, 0.9);
+                background: color-mix(in srgb, var(--labs-base) 90%, transparent);
                 backdrop-filter: saturate(140%) blur(10px);
                 border-bottom: 1px solid var(--line);
             }
@@ -150,11 +149,11 @@
             }
             .btn-ghost:hover {
                 border-color: var(--muted);
-                background: rgba(159, 176, 204, 0.08);
+                background: color-mix(in srgb, var(--labs-muted) 8%, transparent);
             }
             .btn-dark {
                 color: #fff;
-                border-color: rgba(245, 245, 245, 0.36);
+                border-color: color-mix(in srgb, var(--labs-text) 36%, transparent);
                 background: rgba(255, 255, 255, 0.04);
             }
             .btn-dark:hover {
@@ -162,7 +161,7 @@
                 background: rgba(255, 255, 255, 0.08);
             }
             .btn-quiet {
-                background: rgba(159, 176, 204, 0.08);
+                background: color-mix(in srgb, var(--labs-muted) 8%, transparent);
                 color: var(--muted);
                 border: 1px solid var(--line);
                 min-height: 38px;
@@ -245,18 +244,18 @@
                 background:
                     linear-gradient(
                         90deg,
-                        rgba(4, 16, 38, 0.98) 0%,
-                        rgba(4, 16, 38, 0.83) 46%,
-                        rgba(4, 16, 38, 0.58) 100%
+                        color-mix(in srgb, var(--labs-base) 98%, transparent) 0%,
+                        color-mix(in srgb, var(--labs-base) 83%, transparent) 46%,
+                        color-mix(in srgb, var(--labs-base) 58%, transparent) 100%
                     ),
                     radial-gradient(
                         circle at 80% 20%,
-                        rgba(209, 91, 33, 0.16),
+                        color-mix(in srgb, var(--labs-accent) 16%, transparent),
                         transparent 34%
                     ),
                     radial-gradient(
                         circle at 20% 80%,
-                        rgba(230, 234, 242, 0.1),
+                        color-mix(in srgb, var(--labs-node) 10%, transparent),
                         transparent 32%
                     );
                 z-index: 1;
@@ -295,7 +294,7 @@
                 height: 7px;
                 border-radius: 50%;
                 background: var(--orange);
-                box-shadow: 0 0 0 5px rgba(209, 91, 33, 0.2);
+                box-shadow: 0 0 0 5px color-mix(in srgb, var(--labs-accent) 20%, transparent);
             }
             h1.headline {
                 font-size: 64px;
@@ -372,17 +371,17 @@
                 overflow: visible;
             }
             .marker-edge {
-                stroke: rgba(230, 234, 242, 0.46);
+                stroke: color-mix(in srgb, var(--labs-node) 46%, transparent);
                 stroke-width: 1.5;
                 fill: none;
                 stroke-linecap: round;
             }
             .marker-edge.hot {
-                stroke: rgba(209, 91, 33, 0.74);
+                stroke: color-mix(in srgb, var(--labs-accent) 74%, transparent);
                 stroke-width: 1.8;
             }
             .marker-spoke {
-                stroke: rgba(230, 234, 242, 0.18);
+                stroke: color-mix(in srgb, var(--labs-node) 18%, transparent);
                 stroke-width: 1;
                 fill: none;
                 stroke-linecap: round;
@@ -394,10 +393,10 @@
                 fill: var(--orange);
             }
             .marker-node-ring {
-                fill: rgba(230, 234, 242, 0.08);
+                fill: color-mix(in srgb, var(--labs-node) 8%, transparent);
             }
             .marker-node-ring.hot {
-                fill: rgba(209, 91, 33, 0.16);
+                fill: color-mix(in srgb, var(--labs-accent) 16%, transparent);
             }
             .marker-satellite {
                 fill: #6e7890;
@@ -444,7 +443,7 @@
                 position: sticky;
                 top: 64px;
                 z-index: 40;
-                background: rgba(4, 16, 38, 0.94);
+                background: color-mix(in srgb, var(--labs-base) 94%, transparent);
                 border-bottom: 1px solid var(--line);
             }
             .story-nav .wrap {
@@ -601,7 +600,7 @@
                 background:
                     radial-gradient(
                         circle at 12% 22%,
-                        rgba(209, 91, 33, 0.18),
+                        color-mix(in srgb, var(--labs-accent) 18%, transparent),
                         transparent 28%
                     ),
                     linear-gradient(
@@ -649,7 +648,7 @@
             }
             .loop-track {
                 fill: none;
-                stroke: rgba(245, 245, 245, 0.16);
+                stroke: color-mix(in srgb, var(--labs-text) 16%, transparent);
                 stroke-width: 1.2;
             }
             .loop-flow {
@@ -662,7 +661,7 @@
                 animation: loopTravel 8s linear infinite;
             }
             .loop-spoke {
-                stroke: rgba(245, 245, 245, 0.13);
+                stroke: color-mix(in srgb, var(--labs-text) 13%, transparent);
                 stroke-width: 1;
             }
             .loop-center {
@@ -670,14 +669,14 @@
                 z-index: 2;
                 width: min(260px, 48%);
                 min-height: 220px;
-                border: 1px solid rgba(245, 245, 245, 0.22);
+                border: 1px solid color-mix(in srgb, var(--labs-text) 22%, transparent);
                 border-radius: 999px;
                 padding: var(--s8) var(--s6);
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 text-align: center;
-                background: rgba(4, 16, 38, 0.78);
+                background: color-mix(in srgb, var(--labs-base) 78%, transparent);
                 box-shadow: 0 22px 70px rgba(0, 0, 0, 0.26);
             }
             .loop-center span {
@@ -701,7 +700,7 @@
                 width: 144px;
                 min-height: 94px;
                 transform: translate(-50%, -50%);
-                border: 1px solid rgba(245, 245, 245, 0.18);
+                border: 1px solid color-mix(in srgb, var(--labs-text) 18%, transparent);
                 border-radius: 8px;
                 background: rgba(255, 255, 255, 0.06);
                 color: #fff;
@@ -736,8 +735,8 @@
             .loop-node:hover,
             .loop-node:focus-visible,
             .loop-node.is-active {
-                border-color: rgba(209, 91, 33, 0.78);
-                background: rgba(209, 91, 33, 0.16);
+                border-color: color-mix(in srgb, var(--labs-accent) 78%, transparent);
+                background: color-mix(in srgb, var(--labs-accent) 16%, transparent);
                 box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2);
                 transform: translate(-50%, -50%) scale(1.03);
             }
@@ -928,7 +927,7 @@
                 top: -100px;
                 width: 280px;
                 height: 280px;
-                border: 1px solid rgba(245, 245, 245, 0.14);
+                border: 1px solid color-mix(in srgb, var(--labs-text) 14%, transparent);
                 transform: rotate(26deg);
             }
             .endcap-panel h2 {
@@ -1665,6 +1664,10 @@
                 let rafId = 0;
                 const canvas = document.getElementById("thesis-field");
                 const ctx = canvas && canvas.getContext("2d");
+                const nodeColor =
+                    getComputedStyle(document.documentElement)
+                        .getPropertyValue("--labs-node")
+                        .trim() || "currentColor";
                 let width = 0;
                 let height = 0;
                 let points = [];
@@ -1711,7 +1714,7 @@
                                 ctx.globalAlpha =
                                     (1 - dist / 150) *
                                     (p.active || q.active ? 0.18 : 0.1);
-                                ctx.strokeStyle = "#E6EAF2";
+                                ctx.strokeStyle = nodeColor;
                                 ctx.lineWidth = 1;
                                 ctx.beginPath();
                                 ctx.moveTo(p.x, p.y);
@@ -1720,7 +1723,7 @@
                             }
                         }
                         ctx.globalAlpha = p.active ? 0.45 : 0.28;
-                        ctx.fillStyle = "#E6EAF2";
+                        ctx.fillStyle = nodeColor;
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                         ctx.fill();

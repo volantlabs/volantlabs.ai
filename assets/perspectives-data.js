@@ -8,6 +8,7 @@ window.PERSPECTIVE_POSTS = [
     "shortTitle": "The graph is a theory",
     "dek": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.",
     "published": "2026-06-11",
+    "modified": null,
     "displayDate": "June 11, 2026",
     "readingTime": "4 min read",
     "image": {
@@ -137,6 +138,7 @@ window.PERSPECTIVE_POSTS = [
     "shortTitle": "Runtime-native controls",
     "dek": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
     "published": "2026-06-04",
+    "modified": null,
     "displayDate": "June 4, 2026",
     "readingTime": "3 min read",
     "image": {
@@ -257,6 +259,7 @@ window.PERSPECTIVE_POSTS = [
     "shortTitle": "Open data, proprietary intelligence",
     "dek": "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
     "published": "2026-05-27",
+    "modified": null,
     "displayDate": "May 27, 2026",
     "readingTime": "4 min read",
     "image": {

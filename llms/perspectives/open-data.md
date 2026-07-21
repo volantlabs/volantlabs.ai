@@ -23,7 +23,7 @@ Vellis is an open graph engine. This field note draws the line that keeps it ope
 
 ## What This Page Is For
 
-This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, graph-native AI infrastructure, provenance, governance, and operational adoption.
+This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, context graphs, graph-native AI infrastructure, provenance, governance, and operational adoption.
 
 ## Main Sections
 
