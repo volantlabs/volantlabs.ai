@@ -1,32 +1,32 @@
 [
   {
     "page": "/",
-    "title": "Vellis: structured knowledge for AI agents",
-    "description": "Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces.",
-    "twitterTitle": "Vellis: structured knowledge for AI agents",
-    "twitterDescription": "Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces.",
-    "image": "assets/images/social/home-vellis-topographic-v2.png",
+    "title": "Vellis: the open-source context graph engine for AI agents",
+    "description": "One typed, locally owned context graph your AI agents share — model meaning explicitly, change it safely, recover it completely.",
+    "twitterTitle": "Vellis: the open-source context graph engine for AI agents",
+    "twitterDescription": "One typed, locally owned context graph your AI agents share — model meaning explicitly, change it safely, recover it completely.",
+    "image": "assets/images/social/home-vellis-topographic-v3.png",
     "width": 1200,
     "height": 630,
-    "alt": "Volant Labs and Vellis typography beside an illuminated topographic knowledge network."
+    "alt": "Volant Labs typography beside one illuminated topographic context graph with shared agent pathways."
   },
   {
     "page": "/engine.html",
-    "title": "Vellis Engine: structured knowledge for AI agents",
+    "title": "Vellis Engine: an open-source context graph for AI agents",
     "description": "Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces.",
-    "twitterTitle": "Vellis Engine: structured knowledge for AI agents",
+    "twitterTitle": "Vellis Engine: an open-source context graph for AI agents",
     "twitterDescription": "Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces.",
-    "image": "assets/images/social/engine-vellis-topographic-v2.png",
+    "image": "assets/images/social/engine-vellis-topographic-v3.png",
     "width": 1200,
     "height": 630,
-    "alt": "Vellis with a Volant Labs endorsement beside precise topographic strata and an illuminated knowledge core."
+    "alt": "Vellis with a Volant Labs endorsement beside a layered topographic context graph and recovery loop."
   },
   {
     "page": "/thesis.html",
     "title": "The Vellis thesis: meaning, reasoning, review",
-    "description": "Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
+    "description": "Why a context graph preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
     "twitterTitle": "The Vellis thesis: meaning, reasoning, review",
-    "twitterDescription": "Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
+    "twitterDescription": "Why a context graph preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
     "image": "assets/images/social/thesis-topographic-v2.png",
     "width": 1200,
     "height": 630,
@@ -35,9 +35,9 @@
   {
     "page": "/perspectives.html",
     "title": "Perspectives from Volant Labs",
-    "description": "Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
+    "description": "Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
     "twitterTitle": "Perspectives from Volant Labs",
-    "twitterDescription": "Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
+    "twitterDescription": "Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
     "image": "assets/images/social/perspectives-topographic-v2.png",
     "width": 1200,
     "height": 630,

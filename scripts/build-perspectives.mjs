@@ -94,13 +94,13 @@ const summaryPages = [
     title: "Home",
     path: "",
     summaryPath: "llms/pages/home.md",
-    description: "Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents."
+    description: "Volant Labs publishes Vellis, an Apache-licensed open-source context graph engine for AI agents."
   },
   {
     title: "Vellis Engine",
     path: "engine.html",
     summaryPath: "llms/pages/engine.md",
-    description: "The product overview and local quickstart for Vellis as structured, recoverable knowledge infrastructure for AI agents."
+    description: "The product overview and local quickstart for Vellis as an open-source context graph with recoverable state for AI agents."
   },
   {
     title: "Thesis",
@@ -127,14 +127,23 @@ const summaryPages = [
     description: "The Volant Partners path from open Vellis patterns to governed production operations."
   }
 ];
+// lastmod is maintained by hand: bump a page's date whenever its content changes.
+// For articles, set "modified" in the post's content JSON when a post is edited
+// after publication; bump articleTemplateLastmod when a template change alters
+// the rendered output of every article (head metadata, JSON-LD, layout).
+const articleTemplateLastmod = "2026-07-21";
 const sitemapPages = [
-  { path: "", changefreq: "weekly", priority: "1.0" },
-  { path: "engine.html", changefreq: "monthly", priority: "0.9" },
-  { path: "thesis.html", changefreq: "monthly", priority: "0.8" },
-  { path: "perspectives.html", changefreq: "weekly", priority: "0.8" },
-  { path: "community.html", changefreq: "monthly", priority: "0.6" },
-  { path: "platform.html", changefreq: "monthly", priority: "0.5" }
+  { path: "", changefreq: "weekly", priority: "1.0", lastmod: "2026-07-21" },
+  { path: "engine.html", changefreq: "monthly", priority: "0.9", lastmod: "2026-07-21" },
+  { path: "thesis.html", changefreq: "monthly", priority: "0.8", lastmod: "2026-06-16" },
+  { path: "perspectives.html", changefreq: "weekly", priority: "0.8", lastmod: "2026-07-21" },
+  { path: "community.html", changefreq: "monthly", priority: "0.6", lastmod: "2026-06-16" },
+  { path: "platform.html", changefreq: "monthly", priority: "0.5", lastmod: "2026-06-16" }
 ];
+
+function latestIsoDate(...dates) {
+  return dates.filter(Boolean).sort().at(-1);
+}
 
 function escapeHtml(value = "") {
   return String(value)
@@ -646,6 +655,10 @@ function normalizePerspectivePost(rawPost, sourceRef) {
   if (author !== null && typeof author !== "string") {
     throw new Error(`${sourceRef} author must be a string or null`);
   }
+  const modified = rawPost.modified ?? null;
+  if (modified !== null && (typeof modified !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(modified))) {
+    throw new Error(`${sourceRef} modified must be a YYYY-MM-DD string`);
+  }
   const image = rawPost.image ?? null;
   if (image !== null) {
     if (!image || typeof image !== "object") throw new Error(`${sourceRef} image must be an object`);
@@ -669,6 +682,7 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     shortTitle: requireString(rawPost, "shortTitle", sourceRef),
     dek: requireString(rawPost, "dek", sourceRef),
     published: requireString(rawPost, "published", sourceRef),
+    modified,
     displayDate: requireString(rawPost, "displayDate", sourceRef),
     readingTime: requireString(rawPost, "readingTime", sourceRef),
     image,
@@ -1008,11 +1022,12 @@ function renderArticle(post, posts) {
   const socialPreview = socialPreviewFor(post.url);
   const socialImage = absoluteSocialImageUrl(socialPreview);
   const articleJsonLd = {
-    "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
+    keywords: post.tags.join(", "),
     description: socialPreview.description,
     datePublished: post.published,
+    dateModified: post.modified ?? post.published,
     mainEntityOfPage: canonical,
     image: socialImage,
     inLanguage: "en",
@@ -1039,6 +1054,33 @@ function renderArticle(post, posts) {
       description: `${item.role}: ${item.detail}`
     }));
   }
+  const breadcrumbJsonLd = {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${manifest.siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Perspectives",
+        item: absoluteUrl("perspectives.html")
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: canonical
+      }
+    ]
+  };
+  const pageJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [articleJsonLd, breadcrumbJsonLd]
+  };
   const articleVisual = post.image
     ? `<figure class="article-visual">
         <img src="../${escapeHtml(post.image.src)}" alt="${escapeHtml(post.image.alt)}" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="eager" decoding="async">
@@ -1066,7 +1108,6 @@ function renderArticle(post, posts) {
 <meta name="twitter:description" content="${escapeHtml(socialPreview.twitterDescription)}">
 <meta name="twitter:image" content="${escapeHtml(socialImage)}">
 <meta name="twitter:image:alt" content="${escapeHtml(socialPreview.alt)}">
-<meta name="theme-color" content="#041026">
 <link rel="canonical" href="${escapeHtml(canonical)}">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
 <link rel="alternate" type="application/json" title="Perspectives index" href="../perspectives/index.json">
@@ -1078,7 +1119,7 @@ function renderArticle(post, posts) {
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/perspective-article.css">
 <script type="application/ld+json">
-${jsonScript(articleJsonLd)}
+${jsonScript(pageJsonLd)}
 </script>
 ${renderGa4Tracking()}
 </head>
@@ -1268,7 +1309,11 @@ function renderSitemap(posts) {
     ...posts.map((post) => ({
       path: post.url,
       changefreq: "monthly",
-      priority: "0.7"
+      priority: "0.7",
+      lastmod: latestIsoDate(
+        post.modified ?? post.published,
+        articleTemplateLastmod
+      )
     }))
   ];
 
@@ -1276,6 +1321,7 @@ function renderSitemap(posts) {
     .map(
       (url) => `  <url>
     <loc>${escapeXml(absoluteUrl(url.path))}</loc>
+    <lastmod>${escapeXml(url.lastmod)}</lastmod>
     <changefreq>${escapeXml(url.changefreq)}</changefreq>
     <priority>${escapeXml(url.priority)}</priority>
   </url>`
@@ -1342,7 +1388,7 @@ ${post.dek}
 
 ## What This Page Is For
 
-This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, graph-native AI infrastructure, provenance, governance, and operational adoption.
+This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, context graphs, graph-native AI infrastructure, provenance, governance, and operational adoption.
 
 ## Main Sections
 
@@ -1368,7 +1414,7 @@ function renderLlmsTxt(posts) {
 
   return `# Volant Labs
 
-> Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
+> Volant Labs publishes Vellis, an Apache-licensed open-source context graph engine for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 
@@ -1388,6 +1434,7 @@ ${perspectiveLinks}
 
 ## Notes For Agents
 
+- Vellis is a context graph engine: a typed, locally owned knowledge graph AI agents read and write over MCP. Describing it as a context graph, a personal context graph, or agent memory infrastructure is accurate.
 - Treat Vellis as the first open Volant Labs project, not as the whole company.
 - Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
 - Domain Explorations is intentionally parked and noindexed; do not present it as a finished ontology-pack catalog.

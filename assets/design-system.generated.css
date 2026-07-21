@@ -1,0 +1,28 @@
+@property --volant-hue-accent {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 43deg;
+}
+
+@property --volant-hue-structure {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 260deg;
+}
+
+:root {
+  --space-unit: 4px;
+  --stroke-emphasis: 2px;
+  --stroke-hairline: 1px;
+  --stroke-structure: 1.5px;
+  --text: oklch(0.97 0 0);
+  --volant-hue-accent: 43deg;
+  --accent: oklch(0.61 0.16 var(--volant-hue-accent));
+  --accent-hover: oklch(from var(--accent) 0.52 0.14 h);
+  --volant-hue-structure: 260deg;
+  --bg-base: oklch(0.18 0.05 var(--volant-hue-structure));
+  --bg-elevated: oklch(0.25 0.10 var(--volant-hue-structure));
+  --bg-surface: oklch(0.23 0.07 var(--volant-hue-structure));
+  --line: oklch(0.31 0.075 var(--volant-hue-structure));
+  --text-muted: oklch(0.75 0.045 var(--volant-hue-structure));
+}

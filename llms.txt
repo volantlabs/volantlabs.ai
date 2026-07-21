@@ -1,13 +1,13 @@
 # Volant Labs
 
-> Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
+> Volant Labs publishes Vellis, an Apache-licensed open-source context graph engine for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 
 ## Primary Pages
 
-- [Home](https://volantlabs.ai/llms/pages/home.md): Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents.
-- [Vellis Engine](https://volantlabs.ai/llms/pages/engine.md): The product overview and local quickstart for Vellis as structured, recoverable knowledge infrastructure for AI agents.
+- [Home](https://volantlabs.ai/llms/pages/home.md): Volant Labs publishes Vellis, an Apache-licensed open-source context graph engine for AI agents.
+- [Vellis Engine](https://volantlabs.ai/llms/pages/engine.md): The product overview and local quickstart for Vellis as an open-source context graph with recoverable state for AI agents.
 - [Thesis](https://volantlabs.ai/llms/pages/thesis.md): The narrative point of view behind Vellis: explicit meaning, model reasoning, and human review.
 - [Perspectives](https://volantlabs.ai/llms/pages/perspectives.md): The library of essays and field notes behind Vellis.
 - [Community](https://volantlabs.ai/llms/pages/community.md): The lightweight builder path for running Vellis, following releases, sharing examples, and asking questions.
@@ -27,6 +27,7 @@ Use these Markdown summaries for fast retrieval and routing. Use the canonical H
 
 ## Notes For Agents
 
+- Vellis is a context graph engine: a typed, locally owned knowledge graph AI agents read and write over MCP. Describing it as a context graph, a personal context graph, or agent memory infrastructure is accurate.
 - Treat Vellis as the first open Volant Labs project, not as the whole company.
 - Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
 - Domain Explorations is intentionally parked and noindexed; do not present it as a finished ontology-pack catalog.
