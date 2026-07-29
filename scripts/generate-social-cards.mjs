@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -38,35 +38,35 @@ const vellisPrimaryDataUri = `data:image/svg+xml;base64,${readFileSync(
 const cards = [
   {
     page: "/",
-    filename: "home-vellis-topographic-v2.png",
-    title: "Vellis: structured knowledge for AI agents",
+    filename: "home-vellis-topographic-v3.png",
+    title: "Vellis: the open-source context graph engine for AI agents",
     description:
-      "Model meaning explicitly, change it safely, and recover it completely across MCP-capable agent surfaces.",
+      "One typed, locally owned context graph your AI agents share — model meaning explicitly, change it safely, recover it completely.",
     kicker: "Vellis",
-    headline: "Structured\nknowledge\nfor AI agents.",
-    headlineSize: 78,
-    background: "home-topographic.jpg",
-    alt: "Volant Labs and Vellis typography beside an illuminated topographic knowledge network.",
+    headline: "One context graph\nyour agents share —\nand you own.",
+    headlineSize: 74,
+    background: "home-context-graph-topographic-v3.jpg",
+    alt: "Volant Labs typography beside one illuminated topographic context graph with shared agent pathways.",
   },
   {
     page: "/engine.html",
-    filename: "engine-vellis-topographic-v2.png",
+    filename: "engine-vellis-topographic-v3.png",
     brand: "vellis",
-    title: "Vellis Engine: structured knowledge for AI agents",
+    title: "Vellis Engine: an open-source context graph for AI agents",
     description:
       "Explicit semantics, validated change, deterministic query, replayable history, and recoverable state across agent surfaces.",
-    kicker: "Open Graph Engine",
-    headline: "The knowledge system\nagents can share, change,\nand recover.",
+    kicker: "Context Graph Engine",
+    headline: "The context graph\nagents can share, change,\nand recover.",
     headlineSize: 63,
-    background: "engine-topographic.jpg",
-    alt: "Vellis with a Volant Labs endorsement beside precise topographic strata and an illuminated knowledge core.",
+    background: "engine-context-graph-topographic-v3.jpg",
+    alt: "Vellis with a Volant Labs endorsement beside a layered topographic context graph and recovery loop.",
   },
   {
     page: "/thesis.html",
     filename: "thesis-topographic-v2.png",
     title: "The Vellis thesis: meaning, reasoning, review",
     description:
-      "Why graph-native infrastructure preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
+      "Why a context graph preserves meaning, gives models explicit structure, and keeps human judgment in the loop.",
     kicker: "The Thesis",
     headline: "The graph remembers.\nThe model reasons.\nYou ratify.",
     headlineSize: 68,
@@ -78,7 +78,7 @@ const cards = [
     filename: "perspectives-topographic-v2.png",
     title: "Perspectives from Volant Labs",
     description:
-      "Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
+      "Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations.",
     kicker: "Perspectives",
     headline: "Essays and\nfield notes.",
     headlineSize: 86,
@@ -157,6 +157,18 @@ const cards = [
     headlineSize: 75,
     background: "open-data-topographic.jpg",
     alt: "Volant Labs typography beside an open topographic substrate supporting a concentrated intelligence layer.",
+  },
+  {
+    page: "/perspectives/adding-my-book-collection-to-vellis.html",
+    filename: "perspective-book-collection.png",
+    title: "Adding My Book Collection to Vellis",
+    description:
+      "Andrew Forman’s first-person account of modeling and importing a Goodreads library into Vellis.",
+    kicker: "Perspective",
+    shortTitle: "Book collection",
+    alt: "Adding My Book Collection to Vellis by Andrew Forman, with books resolving into a typed graph.",
+    render: false,
+    public: false,
   },
 ];
 
@@ -255,6 +267,14 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
 
 for (const card of cards) {
+  const outputPath = path.join(outputDir, card.filename);
+  if (card.render === false) {
+    if (!existsSync(outputPath)) {
+      throw new Error(`Missing preserved social card: ${path.relative(siteRoot, outputPath)}`);
+    }
+    console.log(`preserved ${path.relative(siteRoot, outputPath)}`);
+    continue;
+  }
   await page.setContent(renderCard(card), { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
   const overflows = await page.locator(".headline span").evaluateAll((lines) =>
@@ -263,29 +283,31 @@ for (const card of cards) {
   if (overflows.length) {
     throw new Error(`${card.page} has headline lines outside the typography field: ${overflows.join(", ")}`);
   }
-  const outputPath = path.join(outputDir, card.filename);
   await page.screenshot({ path: outputPath, type: "png", fullPage: false });
   console.log(`wrote ${path.relative(siteRoot, outputPath)}`);
 }
 
 await browser.close();
 
+const manifestRecord = (card) => ({
+  page: card.page,
+  title: card.title,
+  description: card.description,
+  twitterTitle: card.title,
+  twitterDescription: card.description,
+  image: `assets/images/social/${card.filename}`,
+  width,
+  height,
+  alt: card.alt,
+});
 writeFileSync(
   path.join(outputDir, "manifest.json"),
-  `${JSON.stringify(
-    cards.map((card) => ({
-      page: card.page,
-      title: card.title,
-      description: card.description,
-      twitterTitle: card.title,
-      twitterDescription: card.description,
-      image: `assets/images/social/${card.filename}`,
-      width,
-      height,
-      alt: card.alt,
-    })),
-    null,
-    2,
-  )}\n`,
+  `${JSON.stringify(cards.filter((card) => card.public !== false).map(manifestRecord), null, 2)}\n`,
 );
 console.log(`wrote ${path.relative(siteRoot, path.join(outputDir, "manifest.json"))}`);
+const authoringManifestPath = path.join(siteRoot, "content", "perspectives.social-previews.json");
+writeFileSync(
+  authoringManifestPath,
+  `${JSON.stringify(cards.filter((card) => card.public === false).map(manifestRecord), null, 2)}\n`,
+);
+console.log(`wrote ${path.relative(siteRoot, authoringManifestPath)}`);

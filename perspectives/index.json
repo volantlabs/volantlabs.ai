@@ -10,6 +10,108 @@
   },
   "posts": [
     {
+      "slug": "adding-my-book-collection-to-vellis",
+      "url": "https://volantlabs.ai/perspectives/adding-my-book-collection-to-vellis.html",
+      "htmlPath": "perspectives/adding-my-book-collection-to-vellis.html",
+      "markdownSummaryPath": "llms/perspectives/adding-my-book-collection-to-vellis.md",
+      "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/adding-my-book-collection-to-vellis.md",
+      "kind": "essays",
+      "kindLabel": "Essay",
+      "title": "Adding My Book Collection to Vellis",
+      "shortTitle": "Adding my book collection",
+      "dek": "A first-person account of extending Vellis with Book and Collection entities, importing a Goodreads library, and turning personal context into something queryable.",
+      "published": "2026-07-29",
+      "dateModified": "2026-07-29",
+      "displayDate": "July 29, 2026",
+      "readingTime": "5 min read",
+      "author": "Andrew Forman",
+      "authorUrl": "https://www.volantpartners.com/about-us",
+      "authorSameAs": [
+        "https://www.linkedin.com/in/abforman/",
+        "https://github.com/abforman"
+      ],
+      "subjectMatter": [
+        "Personal graph",
+        "Schema design",
+        "Data import"
+      ],
+      "madeWith": {
+        "label": "Made with",
+        "explanation": "Made with separates accountability from assistance. The human author owns the argument and final judgment; models and graph context are named when they materially shaped the published piece.",
+        "items": [
+          {
+            "label": "Andrew Forman",
+            "role": "Accountable author",
+            "kind": "person",
+            "summary": "experience + final judgment",
+            "detail": "Owns the first-person account, its experiential claims, and the final publication judgment.",
+            "initials": "AF",
+            "avatar": {
+              "src": "assets/images/contributors/andrew-forman.png",
+              "alt": "Andrew Forman"
+            },
+            "metrics": []
+          },
+          {
+            "label": "OpenAI Codex",
+            "role": "AI production partner",
+            "kind": "model",
+            "summary": "page assembly + visual production",
+            "detail": "Helped turn the approved source into the site page and supporting visuals without owning the underlying experience or final claims.",
+            "initials": "AI",
+            "avatar": null,
+            "metrics": []
+          },
+          {
+            "label": "Graph snapshot",
+            "role": "Context graph",
+            "kind": "graph",
+            "summary": "23,621 nodes / 57,059 links",
+            "detail": "The structured context, schema, and relationships available around this publishing workflow. Snapshot shape: 23,621 nodes, 57,059 links, 309 node types, 716 link rules. Context: volant_base; schema tag perspective_made_with_attribution_v1; captured 2026-07-29T13:36:01Z.",
+            "initials": "KG",
+            "avatar": null,
+            "metrics": [
+              {
+                "value": "23,621",
+                "label": "nodes"
+              },
+              {
+                "value": "57,059",
+                "label": "links"
+              },
+              {
+                "value": "309",
+                "label": "node types"
+              },
+              {
+                "value": "716",
+                "label": "link rules"
+              }
+            ]
+          }
+        ]
+      },
+      "provenanceLine": "By Andrew Forman",
+      "statusLabel": "Essay",
+      "tags": [
+        "Personal graph",
+        "Schema design",
+        "Goodreads"
+      ],
+      "related": [
+        {
+          "slug": "graph-theory",
+          "url": "https://volantlabs.ai/perspectives/graph-theory.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/graph-theory.md"
+        },
+        {
+          "slug": "open-data",
+          "url": "https://volantlabs.ai/perspectives/open-data.html",
+          "markdownSummaryUrl": "https://volantlabs.ai/llms/perspectives/open-data.md"
+        }
+      ]
+    },
+    {
       "slug": "graph-theory",
       "url": "https://volantlabs.ai/perspectives/graph-theory.html",
       "htmlPath": "perspectives/graph-theory.html",
@@ -21,9 +123,12 @@
       "shortTitle": "The graph is a theory",
       "dek": "Why legibility is the wedge for agentic software, and why the graph should be treated as an executable point of view rather than passive storage.",
       "published": "2026-06-11",
+      "dateModified": "2026-07-28",
       "displayDate": "June 11, 2026",
       "readingTime": "4 min read",
       "author": "Eddie Austin",
+      "authorUrl": "https://github.com/EddieA123-ship-it",
+      "authorSameAs": [],
       "subjectMatter": [
         "Substrate",
         "Legibility",
@@ -117,9 +222,14 @@
       "shortTitle": "Runtime-native controls",
       "dek": "A field note on why governance should sit near the write path, not in a disconnected approval ritual after the fact.",
       "published": "2026-06-04",
+      "dateModified": "2026-07-28",
       "displayDate": "June 4, 2026",
       "readingTime": "3 min read",
-      "author": null,
+      "author": "Matthew Lou-Magnuson",
+      "authorUrl": "https://github.com/skagit",
+      "authorSameAs": [
+        "https://www.linkedin.com/in/matthew-lou-magnuson-08a5136b/"
+      ],
       "subjectMatter": [],
       "madeWith": {
         "label": "Made with",
@@ -209,9 +319,15 @@
       "shortTitle": "Open data, proprietary intelligence",
       "dek": "Vellis is an open graph engine. This field note draws the line that keeps it open while the operational intelligence organizations build on it stays their own.",
       "published": "2026-05-27",
+      "dateModified": "2026-07-28",
       "displayDate": "May 27, 2026",
       "readingTime": "4 min read",
-      "author": null,
+      "author": "Andrew Forman",
+      "authorUrl": "https://www.volantpartners.com/about-us",
+      "authorSameAs": [
+        "https://www.linkedin.com/in/abforman/",
+        "https://github.com/abforman"
+      ],
       "subjectMatter": [],
       "madeWith": {
         "label": "Made with",

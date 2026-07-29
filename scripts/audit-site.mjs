@@ -6,6 +6,8 @@ import {
   externalContactLinkFailures,
   forbiddenPatternFailures,
   ga4TrackingFailures,
+  jsonLdFailures,
+  seoBaselineFailures,
 } from "./audit-site-rules.mjs";
 
 const siteRoot = path.resolve(
@@ -151,13 +153,32 @@ failures.push(
   ),
 );
 
+const jsonLdRequiredPages = new Set([
+  "index.html",
+  "engine.html",
+  "perspectives.html",
+]);
+
 for (const file of publicHtmlFiles) {
   const html = readFileSync(file, "utf8");
-  assertGa4Tracking(relative(file), html);
-  assertExternalContactSignals(relative(file), html);
+  const page = relative(file);
+  assertGa4Tracking(page, html);
+  assertExternalContactSignals(page, html);
+  failures.push(...seoBaselineFailures(page, html, canonicalUrlForFile(file)));
+  failures.push(
+    ...jsonLdFailures(page, html, {
+      required:
+        jsonLdRequiredPages.has(page) ||
+        page.replaceAll(path.sep, "/").startsWith("perspectives/"),
+    }),
+  );
 }
 
 assertSocialPreviewManifest();
+assertSeoInfrastructure();
+assertSeoMetadata();
+assertSitemapFreshness();
+assertPerspectiveDeliveryImages();
 
 const handAuthoredPages = [
   "index.html",
@@ -506,6 +527,69 @@ function relative(file) {
   return path.relative(siteRoot, file);
 }
 
+function canonicalUrlForFile(file) {
+  const rel = relative(file).replaceAll(path.sep, "/");
+  return rel === "index.html"
+    ? "https://volantlabs.ai/"
+    : `https://volantlabs.ai/${rel}`;
+}
+
+function assertSeoInfrastructure() {
+  const sitemapPath = path.join(siteRoot, "sitemap.xml");
+  if (!existsSync(sitemapPath)) {
+    failures.push("Missing sitemap.xml");
+    return;
+  }
+
+  const sitemap = readFileSync(sitemapPath, "utf8");
+  const urlBlocks = sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [];
+  const sitemapLocs = new Set();
+  for (const block of urlBlocks) {
+    const loc = block.match(/<loc>([\s\S]*?)<\/loc>/)?.[1]?.trim();
+    if (!loc) {
+      failures.push("sitemap.xml has a <url> entry without a <loc>");
+      continue;
+    }
+    sitemapLocs.add(loc);
+    const lastmod = block.match(/<lastmod>([\s\S]*?)<\/lastmod>/)?.[1]?.trim();
+    if (!lastmod || !/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) {
+      failures.push(
+        `sitemap.xml entry ${loc} is missing a YYYY-MM-DD <lastmod>`,
+      );
+    }
+  }
+
+  const noindexPattern =
+    /<meta\b[^>]*name\s*=\s*["']robots["'][^>]*content\s*=\s*["'][^"']*noindex/i;
+  const indexableFiles = publicHtmlFiles.filter(
+    (file) => !noindexPattern.test(readFileSync(file, "utf8")),
+  );
+  const expectedLocs = new Set(indexableFiles.map(canonicalUrlForFile));
+  for (const file of indexableFiles) {
+    if (!sitemapLocs.has(canonicalUrlForFile(file))) {
+      failures.push(`Indexable page missing from sitemap.xml: ${relative(file)}`);
+    }
+  }
+  for (const loc of sitemapLocs) {
+    if (!expectedLocs.has(loc)) {
+      failures.push(`sitemap.xml lists a URL with no indexable page: ${loc}`);
+    }
+  }
+
+  const robotsPath = path.join(siteRoot, "robots.txt");
+  if (!existsSync(robotsPath)) {
+    failures.push("Missing robots.txt");
+  } else if (
+    !readFileSync(robotsPath, "utf8").includes(
+      "Sitemap: https://volantlabs.ai/sitemap.xml",
+    )
+  ) {
+    failures.push(
+      "robots.txt is missing the Sitemap directive for https://volantlabs.ai/sitemap.xml",
+    );
+  }
+}
+
 function assertNoNestedAnchors(page, html) {
   const anchorStack = [];
   const tagPattern = /<\/?a\b[^>]*>/gi;
@@ -688,6 +772,169 @@ function assertGa4Tracking(page, html) {
   failures.push(...ga4TrackingFailures(page, html));
 }
 
+function assertSeoMetadata() {
+  const indexHtml = readFileSync(path.join(siteRoot, "index.html"), "utf8");
+  const website = extractJsonLd(indexHtml)
+    .flatMap((item) => item["@graph"] ?? [item])
+    .find((item) => item["@type"] === "WebSite");
+  if (!website) {
+    failures.push("index.html is missing WebSite structured data");
+  } else {
+    if (website.name !== "Volant Labs") {
+      failures.push(`index.html WebSite name must be "Volant Labs", found "${website.name ?? "missing"}"`);
+    }
+    const alternateNames = Array.isArray(website.alternateName)
+      ? website.alternateName
+      : [website.alternateName];
+    if (!alternateNames.includes("volantlabs.ai")) {
+      failures.push('index.html WebSite alternateName must include "volantlabs.ai"');
+    }
+  }
+
+  const platformHtml = readFileSync(path.join(siteRoot, "platform.html"), "utf8");
+  const platformDescription = extractMetaContent(
+    platformHtml,
+    "name",
+    "description",
+  );
+  if (
+    !platformDescription ||
+    platformDescription.length < 120 ||
+    !/\bVellis\b/.test(platformDescription) ||
+    !/\bVolant Partners\b/.test(platformDescription) ||
+    !/\bproduction\b/.test(platformDescription)
+  ) {
+    failures.push(
+      "platform.html needs a complete meta description that explains the Vellis-to-production path through Volant Partners",
+    );
+  }
+
+  for (const file of publicHtmlFiles.filter((item) =>
+    item.includes(`${path.sep}perspectives${path.sep}`),
+  )) {
+    const html = readFileSync(file, "utf8");
+    if (!html.includes('data-publication-state="published"')) continue;
+
+    const page = relative(file);
+    const robots = extractMetaContent(html, "name", "robots");
+    if (robots !== "max-image-preview:large") {
+      failures.push(
+        `${page} must allow large search image previews; found "${robots ?? "missing"}"`,
+      );
+    }
+
+    const article = extractJsonLd(html)
+      .flatMap((item) => item["@graph"] ?? [item])
+      .find((item) => item["@type"] === "Article");
+    if (!article) {
+      failures.push(`${page} is missing Article structured data`);
+      continue;
+    }
+    if (
+      article.author?.["@type"] !== "Person" ||
+      !article.author.name ||
+      !/^https:\/\//.test(article.author.url ?? "")
+    ) {
+      failures.push(
+        `${page} Article author must identify the accountable Person with a public HTTPS profile URL`,
+      );
+    }
+    if (!isIsoDate(article.datePublished) || !isIsoDate(article.dateModified)) {
+      failures.push(
+        `${page} Article structured data requires ISO datePublished and dateModified values`,
+      );
+    }
+    const modifiedMeta = extractMetaContent(
+      html,
+      "property",
+      "article:modified_time",
+    );
+    if (modifiedMeta !== article.dateModified) {
+      failures.push(
+        `${page} article:modified_time must match Article dateModified`,
+      );
+    }
+  }
+}
+
+function assertSitemapFreshness() {
+  const sitemap = readFileSync(path.join(siteRoot, "sitemap.xml"), "utf8");
+  if (/<(?:changefreq|priority)>/.test(sitemap)) {
+    failures.push(
+      "sitemap.xml must omit ignored changefreq and priority elements",
+    );
+  }
+  const urls = sitemap.match(/<url>/g) ?? [];
+  const lastModified = [
+    ...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g),
+  ].map((match) => match[1]);
+  if (lastModified.length !== urls.length) {
+    failures.push(
+      `sitemap.xml needs one lastmod per URL (${lastModified.length}/${urls.length})`,
+    );
+  }
+  for (const value of lastModified) {
+    if (!isIsoDate(value)) {
+      failures.push(`sitemap.xml has invalid lastmod value: ${value}`);
+    }
+  }
+}
+
+function assertPerspectiveDeliveryImages() {
+  const contentDir = path.join(siteRoot, "content", "perspectives");
+  if (!existsSync(contentDir)) return;
+
+  for (const filename of readdirSync(contentDir).filter((item) =>
+    item.endsWith(".json"),
+  )) {
+    const post = JSON.parse(
+      readFileSync(path.join(contentDir, filename), "utf8"),
+    );
+    const images = [
+      post.image,
+      ...(post.body ?? []).map((section) => section.image),
+    ].filter(Boolean);
+    for (const image of images) {
+      if (!image.src.endsWith(".webp")) {
+        failures.push(
+          `${filename} public article image must use WebP: ${image.src}`,
+        );
+        continue;
+      }
+      const imagePath = path.join(siteRoot, image.src);
+      if (!existsSync(imagePath)) {
+        failures.push(`${filename} references missing image: ${image.src}`);
+        continue;
+      }
+      if (statSync(imagePath).size > 200 * 1024) {
+        failures.push(
+          `${filename} image exceeds the 200 KB delivery budget: ${image.src}`,
+        );
+      }
+    }
+  }
+}
+
+function extractJsonLd(html) {
+  const results = [];
+  const pattern =
+    /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+  while ((match = pattern.exec(html))) {
+    try {
+      const value = JSON.parse(match[1]);
+      results.push(...(Array.isArray(value) ? value : [value]));
+    } catch {
+      failures.push("Invalid JSON-LD block found in public HTML");
+    }
+  }
+  return results;
+}
+
+function isIsoDate(value) {
+  return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
 function normalizeWhitespace(value) {
   return value.replace(/\s+/g, " ").trim();
 }
@@ -756,9 +1003,21 @@ function readSocialPreviewManifest() {
 function assertSocialPreviewManifest() {
   const byPage = new Map();
   const images = new Set();
+  const perspectiveIndexPath = path.join(siteRoot, "perspectives", "index.json");
+  const publishedPerspectivePages = existsSync(perspectiveIndexPath)
+    ? new Set(
+        JSON.parse(readFileSync(perspectiveIndexPath, "utf8")).posts.map(
+          (post) => `/${post.htmlPath}`,
+        ),
+      )
+    : new Set();
   const htmlPages = publicFiles
     .filter((file) => file.endsWith(".html"))
-    .map((file) => htmlPageForFile(file));
+    .map((file) => htmlPageForFile(file))
+    .filter(
+      (page) =>
+        !page.startsWith("/perspectives/") || publishedPerspectivePages.has(page),
+    );
 
   for (const [index, preview] of socialPreviewManifest.entries()) {
     const sourceRef = `assets/images/social/manifest.json[${index}]`;

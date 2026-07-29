@@ -6,13 +6,13 @@ Primary audience: engineers and technical evaluators.
 
 ## Summary
 
-Vellis is structured, model-engineered knowledge infrastructure for humans and AI agents. It separates stable anchors, typed fact records, and explicit link records; validates change against schemas and constraints; and supports deterministic query, replay, and recovery without tying knowledge to one model or agent surface.
+Vellis is an open-source context graph engine for humans and AI agents — typed, locally owned agent memory built as a reified typed graph. It separates stable anchors, typed fact records, and explicit link records; validates change against schemas and constraints; and supports deterministic query, replay, and recovery without tying knowledge to one model or agent surface.
 
 ## Use This Page For
 
 - Explaining what Vellis is and what it does.
 - Routing users through either the copyable Agent Quick Start or the staged manual setup, doctor check, MCP validation, state-check, and first-use path.
-- Distinguishing typed graph infrastructure from generic document storage or chat memory.
+- Distinguishing typed context graph infrastructure from generic document storage, extract-and-embed memory layers, or chat memory.
 - Explaining why Vellis is more than a graph server: explicit semantics, controlled change, an agent-facing MCP surface, and verifiable recovery.
 
 ## Key Claims

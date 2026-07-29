@@ -6,7 +6,7 @@ Primary audience: builders, technical evaluators, and production sponsors trying
 
 ## Summary
 
-Volant Labs publishes open graph-native infrastructure for AI-native work. The homepage introduces Vellis as model-engineered knowledge infrastructure for AI agents: a typed, locally owned system that MCP-capable agents can query and change through one explicit contract.
+Volant Labs publishes open graph-native infrastructure for AI-native work. The homepage introduces Vellis as an open-source context graph engine for AI agents: a typed, locally owned system that MCP-capable agents can query and change through one explicit contract. Vellis can serve as a personal context graph, a team knowledge substrate, or agent memory infrastructure.
 Its Start Here routes lead directly to the Vellis Engine, the Volant Labs Thesis, and the open community.
 
 ## Use This Page For

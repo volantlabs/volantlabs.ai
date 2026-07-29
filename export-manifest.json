@@ -5,8 +5,8 @@
   "siteUrl": "https://volantlabs.ai",
   "generator": "scripts/build-perspectives.mjs",
   "generatorSchemaVersion": "2026-07-06.perspectives.v4",
-  "sourceCommit": "83c5a0b2802672571895867d64a9219bea896deb",
-  "contentHash": "sha256:ac1555a5f6924e595fe4cc5083a06dac87f8642709f14688848c1854b83dcd53",
+  "sourceCommit": "f80161da9170843b72b51447bbcc1f9fb925e53a",
+  "contentHash": "sha256:bbc49c2e3098533354287ab680070d97e58201d1d4815a839c7b1941b948fe76",
   "sourceSpecs": [
     {
       "id": "392e552b-5858-475e-a716-31d8f05bc5a6",
@@ -22,15 +22,27 @@
     "publishThreshold": 0.7,
     "posts": [
       {
+        "slug": "adding-my-book-collection-to-vellis",
+        "editorial": {
+          "rubricVersion": "2026-07-07.v1",
+          "stage": "pre_publish",
+          "reviewedAt": "2026-07-29",
+          "composite": 0.91,
+          "blockers": [],
+          "passed": true,
+          "publishingDecisionId": "cb96dee9-2f59-451e-a9c8-1defc9988b22"
+        }
+      },
+      {
         "slug": "graph-theory",
         "editorial": {
           "rubricVersion": "2026-07-07.v1",
           "stage": "post_publish_review",
-          "reviewedAt": "2026-07-09",
+          "reviewedAt": "2026-07-28",
           "composite": 0.91,
           "blockers": [],
           "passed": true,
-          "publishingDecisionId": "81739b40-aee4-4592-a4ff-ee5b7a4adf7d"
+          "publishingDecisionId": "04ca1cea-c688-4ca4-8b2d-5a91bec2be76"
         }
       },
       {
@@ -38,11 +50,11 @@
         "editorial": {
           "rubricVersion": "2026-07-07.v1",
           "stage": "post_publish_review",
-          "reviewedAt": "2026-07-13",
+          "reviewedAt": "2026-07-28",
           "composite": 0.8333,
           "blockers": [],
           "passed": true,
-          "publishingDecisionId": "9b7e1a60-5d8f-4c39-8e4a-7f1b3d6c9a82"
+          "publishingDecisionId": "a0141b09-4fd8-49f8-821b-591a1d5156b5"
         }
       },
       {
@@ -50,16 +62,17 @@
         "editorial": {
           "rubricVersion": "2026-07-07.v1",
           "stage": "post_publish_review",
-          "reviewedAt": "2026-07-13",
+          "reviewedAt": "2026-07-28",
           "composite": 0.91,
           "blockers": [],
           "passed": true,
-          "publishingDecisionId": "0c8f2b71-6e9a-4d40-9f5b-8a2c4e7d0b93"
+          "publishingDecisionId": "7435dbd8-f272-410d-ab82-da09e00d7b69"
         }
       }
     ]
   },
   "counts": {
-    "posts": 3
+    "posts": 4,
+    "published": 4
   }
 }
