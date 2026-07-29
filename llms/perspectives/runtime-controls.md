@@ -5,9 +5,10 @@ HTML path: /perspectives/runtime-controls.html
 Collection: Perspectives
 Kind: Field note
 Status: Field note
+Publication state: Published
 Published: 2026-06-04
 Reading time: 3 min read
-Author: Volant Labs
+Author: Matthew Lou-Magnuson
 Tags: Governance, Controls, Write path
 Subject matter: Not yet classified in the graph
 
@@ -23,7 +24,7 @@ A field note on why governance should sit near the write path, not in a disconne
 
 ## What This Page Is For
 
-This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, graph-native AI infrastructure, provenance, governance, and operational adoption.
+This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, context graphs, graph-native AI infrastructure, provenance, governance, and operational adoption.
 
 ## Main Sections
 
@@ -31,15 +32,11 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - The graph gives policy something to inspect
 - The audit trail should be a byproduct
 
-## Editorial Context
+## Questions and Counterpoints
 
-- Source: Drawn from Volant Labs governance and site architecture notes.
-- Editorial layer: Edited from internal positioning notes for public site copy.
-- Owner: Editorial review by Volant Labs.
-- Status: Published field note.
 - Open question: This dispatch states the operating model but does not yet name a production customer implementation.
 - Counterpoint: Some regulated environments may still require external approval ceremonies even when runtime controls exist.
-- What would change this: A disconnected approval process that reliably prevents unsafe agent writes at scale would weaken the argument.
+- What would change our mind: A disconnected approval process that reliably prevents unsafe agent writes at scale would weaken the argument.
 
 ## Related Pages
 

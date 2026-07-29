@@ -2,47 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://volantlabs.ai/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-07-29</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/engine.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/thesis.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-06-16</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/perspectives.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-07-29</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/community.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-06-16</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/platform.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-06-16</lastmod>
+  </url>
+  <url>
+    <loc>https://volantlabs.ai/perspectives/adding-my-book-collection-to-vellis.html</loc>
+    <lastmod>2026-07-29</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/perspectives/graph-theory.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-07-29</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/perspectives/runtime-controls.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-07-29</lastmod>
   </url>
   <url>
     <loc>https://volantlabs.ai/perspectives/open-data.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-07-29</lastmod>
   </url>
 </urlset>

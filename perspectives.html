@@ -6,12 +6,12 @@
         <title>Perspectives — essays and field notes · volantlabs.ai</title>
         <meta
             name="description"
-            content="Essays and field notes on explicit knowledge models, controlled change, recoverable systems, and governed operations."
+            content="Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, and governed operations."
         />
         <link rel="canonical" href="https://volantlabs.ai/perspectives.html" />
         <meta property="og:site_name" content="Volant Labs" />
         <meta property="og:title" content="Perspectives from Volant Labs" />
-        <meta property="og:description" content="Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations." />
+        <meta property="og:description" content="Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations." />
         <meta property="og:type" content="website" />
         <meta
             property="og:url"
@@ -23,10 +23,9 @@
         <meta property="og:image:alt" content="Volant Labs typography beside layered topographic folios connected as a knowledge network." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Perspectives from Volant Labs" />
-        <meta name="twitter:description" content="Essays and field notes on explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations." />
+        <meta name="twitter:description" content="Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, provenance, and governed operations." />
         <meta name="twitter:image" content="https://volantlabs.ai/assets/images/social/perspectives-topographic-v2.png" />
         <meta name="twitter:image:alt" content="Volant Labs typography beside layered topographic folios connected as a knowledge network." />
-        <meta name="theme-color" content="#041026" />
         <link
             rel="alternate"
             type="application/rss+xml"
@@ -57,6 +56,47 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="assets/site.css" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "CollectionPage",
+                        "@id": "https://volantlabs.ai/perspectives.html",
+                        "name": "volantlabs.ai Perspectives",
+                        "url": "https://volantlabs.ai/perspectives.html",
+                        "description": "Essays and field notes on context graphs, explicit knowledge models, controlled change, recoverable systems, and governed operations.",
+                        "inLanguage": "en",
+                        "isPartOf": {
+                            "@type": "WebSite",
+                            "@id": "https://volantlabs.ai/#website",
+                            "name": "volantlabs.ai",
+                            "url": "https://volantlabs.ai/"
+                        },
+                        "about": {
+                            "@id": "https://volantlabs.ai/#vellis"
+                        }
+                    },
+                    {
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://volantlabs.ai/"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "Perspectives",
+                                "item": "https://volantlabs.ai/perspectives.html"
+                            }
+                        ]
+                    }
+                ]
+            }
+        </script>
         <style>
             :root {
                 --paper: var(--labs-base);
@@ -136,10 +176,10 @@
             }
             .btn-ghost:hover {
                 border-color: var(--muted);
-                background: rgba(159, 176, 204, 0.08);
+                background: color-mix(in srgb, var(--labs-muted) 8%, transparent);
             }
             .btn-quiet {
-                background: rgba(159, 176, 204, 0.08);
+                background: color-mix(in srgb, var(--labs-muted) 8%, transparent);
                 color: var(--muted);
                 border: 1px solid var(--line);
                 min-height: 38px;
@@ -230,7 +270,7 @@
                 height: 7px;
                 border-radius: 50%;
                 background: var(--orange);
-                box-shadow: 0 0 0 4px rgba(209, 91, 33, 0.18);
+                box-shadow: 0 0 0 4px color-mix(in srgb, var(--labs-accent) 18%, transparent);
             }
             .pagehead h1 {
                 font-size: 44px;
@@ -375,7 +415,7 @@
                 display: block;
                 width: 100%;
                 aspect-ratio: 16/9;
-                border: 1px solid rgba(245, 245, 245, 0.14);
+                border: 1px solid color-mix(in srgb, var(--labs-text) 14%, transparent);
                 border-radius: 6px;
                 overflow: hidden;
                 background: var(--labs-base);
@@ -663,11 +703,26 @@
                     <div class="band-head">
                         <h2>Library</h2>
                         <!-- GENERATED:perspectives-count:start -->
-        <span class="lane">3 published perspectives</span>
+        <span class="lane">4 published perspectives</span>
                         <!-- GENERATED:perspectives-count:end -->
                     </div>
                     <div class="feed" id="perspective-feed">
                         <!-- GENERATED:perspectives-feed:start -->
+        <a class="post" id="adding-my-book-collection-to-vellis" data-lane="essays" href="perspectives/adding-my-book-collection-to-vellis.html" aria-label="Open perspective: Adding My Book Collection to Vellis">
+          <div class="post-media"><span class="post-thumb" aria-hidden="true">
+              <img src="assets/images/perspectives/book-collection-vellis-hero.webp" alt="" width="1672" height="941" loading="lazy" decoding="async">
+            </span></div>
+          <div>
+            <h3>Adding My Book Collection to Vellis</h3>
+            <p>A first-person account of extending Vellis with Book and Collection entities, importing a Goodreads library, and turning personal context into something queryable.</p>
+            <div class="meta">
+              <span>July 29, 2026</span>
+              <span class="prov">By Andrew Forman</span>
+            </div>
+          </div>
+          <span class="read">Open note <span class="arr">→</span></span>
+        </a>
+
         <a class="post" id="graph-theory" data-lane="essays" href="perspectives/graph-theory.html" aria-label="Open perspective: The graph is a theory">
           <div class="post-media"><span class="post-thumb" aria-hidden="true">
               <img src="assets/images/graph-theory-thesis.webp" alt="" width="960" height="540" loading="lazy" decoding="async">
@@ -680,7 +735,7 @@
               <span class="prov">By Eddie Austin</span>
             </div>
           </div>
-          <span class="read">Open note <span class="arr">-&gt;</span></span>
+          <span class="read">Open note <span class="arr">→</span></span>
         </a>
 
         <a class="post" id="runtime-controls" data-lane="notes" href="perspectives/runtime-controls.html" aria-label="Open perspective: Runtime-native controls: policy where execution happens">
@@ -695,7 +750,7 @@
               <span class="prov">Volant Labs field note</span>
             </div>
           </div>
-          <span class="read">Open note <span class="arr">-&gt;</span></span>
+          <span class="read">Open note <span class="arr">→</span></span>
         </a>
 
         <a class="post" id="open-data" data-lane="notes" href="perspectives/open-data.html" aria-label="Open perspective: Open data, proprietary intelligence">
@@ -710,7 +765,7 @@
               <span class="prov">Volant Labs field note</span>
             </div>
           </div>
-          <span class="read">Open note <span class="arr">-&gt;</span></span>
+          <span class="read">Open note <span class="arr">→</span></span>
         </a>
                         <!-- GENERATED:perspectives-feed:end -->
                     </div>
@@ -731,7 +786,7 @@
                                 href="mailto:labs@volantpartners.com?subject=Subscribe%20to%20volantlabs.ai%20Perspectives"
                                 >Request updates</a
                             >
-                            <a class="rss" href="feed.xml">RSS feed -></a>
+                            <a class="rss" href="feed.xml">RSS feed →</a>
                         </div>
                     </div>
                 </div>

@@ -72,6 +72,54 @@ export function externalContactLinkFailures(page, html) {
   return failures;
 }
 
+export function seoBaselineFailures(page, html, expectedCanonical) {
+  const failures = [];
+
+  const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const title = titleMatch ? titleMatch[1].replace(/\s+/g, " ").trim() : "";
+  if (!title) {
+    failures.push(`${page} is missing a non-empty <title>`);
+  }
+
+  const description = extractMetaContentByName(html, "description");
+  if (!description || !description.trim()) {
+    failures.push(`${page} is missing a non-empty meta description`);
+  }
+
+  const canonical = extractCanonicalHref(html);
+  if (!canonical) {
+    failures.push(`${page} is missing a canonical link`);
+  } else if (expectedCanonical && canonical !== expectedCanonical) {
+    failures.push(
+      `${page} canonical expected "${expectedCanonical}" but found "${canonical}"`,
+    );
+  }
+
+  return failures;
+}
+
+export function jsonLdFailures(page, html, { required = false } = {}) {
+  const failures = [];
+  const blockPattern =
+    /<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script\s*>/gi;
+  let match;
+  let blockCount = 0;
+  while ((match = blockPattern.exec(html))) {
+    blockCount += 1;
+    try {
+      JSON.parse(match[1]);
+    } catch {
+      failures.push(
+        `${page} JSON-LD block ${blockCount} does not parse as valid JSON`,
+      );
+    }
+  }
+  if (required && blockCount === 0) {
+    failures.push(`${page} is missing a required JSON-LD block`);
+  }
+  return failures;
+}
+
 export function forbiddenPatternFailures(files, patterns) {
   const failures = [];
 
@@ -108,6 +156,26 @@ function hasProductionHostGuard(html) {
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function extractMetaContentByName(html, name) {
+  const metaPattern = /<meta\b([^>]*)>/gi;
+  let match;
+  while ((match = metaPattern.exec(html))) {
+    const attrs = parseAttributes(match[1]);
+    if (attrs.name === name) return attrs.content ?? null;
+  }
+  return null;
+}
+
+function extractCanonicalHref(html) {
+  const linkPattern = /<link\b([^>]*)>/gi;
+  let match;
+  while ((match = linkPattern.exec(html))) {
+    const attrs = parseAttributes(match[1]);
+    if (attrs.rel === "canonical") return attrs.href ?? null;
+  }
+  return null;
 }
 
 function extractAnchors(html) {

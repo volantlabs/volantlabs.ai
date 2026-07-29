@@ -7,6 +7,13 @@
     <description>Essays and field notes behind Vellis.</description>
     <language>en-us</language>
     <item>
+      <title>Adding My Book Collection to Vellis</title>
+      <link>https://volantlabs.ai/perspectives/adding-my-book-collection-to-vellis.html</link>
+      <guid isPermaLink="true">https://volantlabs.ai/perspectives/adding-my-book-collection-to-vellis.html</guid>
+      <pubDate>Wed, 29 Jul 2026 13:00:00 GMT</pubDate>
+      <description>A first-person account of extending Vellis with Book and Collection entities, importing a Goodreads library, and turning personal context into something queryable.</description>
+    </item>
+    <item>
       <title>The graph is a theory</title>
       <link>https://volantlabs.ai/perspectives/graph-theory.html</link>
       <guid isPermaLink="true">https://volantlabs.ai/perspectives/graph-theory.html</guid>

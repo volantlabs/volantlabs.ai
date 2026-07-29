@@ -5,6 +5,8 @@ import {
   externalContactLinkFailures,
   forbiddenPatternFailures,
   ga4TrackingFailures,
+  jsonLdFailures,
+  seoBaselineFailures,
 } from "./audit-site-rules.mjs";
 
 test("GA4 audit accepts formatted guarded initialization", () => {
@@ -118,4 +120,72 @@ test("forbidden copy audit catches the retired platform brand in exported stagin
       `Forbidden pattern ${retiredPattern} found in design/sitemap.md`,
     ],
   );
+});
+
+test("SEO baseline accepts a page with title, description, and matching canonical", () => {
+  const html = `
+    <title>
+      Vellis — open-source context graph engine · volantlabs.ai
+    </title>
+    <meta name="description" content="An open-source context graph engine for AI agents." />
+    <link rel="canonical" href="https://volantlabs.ai/engine.html" />
+  `;
+
+  deepEqual(
+    seoBaselineFailures("engine.html", html, "https://volantlabs.ai/engine.html"),
+    [],
+  );
+});
+
+test("SEO baseline rejects missing title, empty description, and wrong canonical", () => {
+  const html = `
+    <title>  </title>
+    <meta name="description" content="  " />
+    <link rel="canonical" href="https://example.com/engine.html" />
+  `;
+
+  deepEqual(
+    seoBaselineFailures("engine.html", html, "https://volantlabs.ai/engine.html"),
+    [
+      "engine.html is missing a non-empty <title>",
+      "engine.html is missing a non-empty meta description",
+      'engine.html canonical expected "https://volantlabs.ai/engine.html" but found "https://example.com/engine.html"',
+    ],
+  );
+});
+
+test("SEO baseline reports a missing canonical link", () => {
+  const html = `
+    <title>Vellis</title>
+    <meta name="description" content="Context graph engine." />
+  `;
+
+  deepEqual(seoBaselineFailures("index.html", html, "https://volantlabs.ai/"), [
+    "index.html is missing a canonical link",
+  ]);
+});
+
+test("JSON-LD audit accepts valid blocks and flags invalid JSON", () => {
+  const valid = `
+    <script type="application/ld+json">
+      { "@context": "https://schema.org", "@type": "Article" }
+    </script>
+  `;
+  const invalid = `
+    <script type="application/ld+json">
+      { "@context": "https://schema.org", }
+    </script>
+  `;
+
+  deepEqual(jsonLdFailures("page.html", valid), []);
+  deepEqual(jsonLdFailures("page.html", invalid), [
+    "page.html JSON-LD block 1 does not parse as valid JSON",
+  ]);
+});
+
+test("JSON-LD audit requires a block when the page demands one", () => {
+  deepEqual(jsonLdFailures("engine.html", "<p>No structured data.</p>", { required: true }), [
+    "engine.html is missing a required JSON-LD block",
+  ]);
+  deepEqual(jsonLdFailures("thesis.html", "<p>No structured data.</p>"), []);
 });

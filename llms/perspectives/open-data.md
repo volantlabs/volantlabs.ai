@@ -5,9 +5,10 @@ HTML path: /perspectives/open-data.html
 Collection: Perspectives
 Kind: Field note
 Status: Field note
+Publication state: Published
 Published: 2026-05-27
 Reading time: 4 min read
-Author: Volant Labs
+Author: Andrew Forman
 Tags: Vellis, Portability, Compounding intelligence
 Subject matter: Not yet classified in the graph
 
@@ -23,7 +24,7 @@ Vellis is an open graph engine. This field note draws the line that keeps it ope
 
 ## What This Page Is For
 
-This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, graph-native AI infrastructure, provenance, governance, and operational adoption.
+This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, context graphs, graph-native AI infrastructure, provenance, governance, and operational adoption.
 
 ## Main Sections
 
@@ -32,15 +33,11 @@ This page is part of the Volant Labs Perspectives library. It should be used as 
 - Recoverability is the trust signal
 - The line makes both sides stronger
 
-## Editorial Context
+## Questions and Counterpoints
 
-- Source: Drawn from Volant Labs site architecture and open/governed boundary notes.
-- Editorial layer: Edited from internal positioning notes for public site copy.
-- Owner: Editorial review by Volant Labs.
-- Status: Published field note.
 - Open question: The boundary will need sharper examples as real deployments create edge cases.
 - Counterpoint: Some open-core models blur this boundary intentionally and still build trust with a different commercial bargain.
-- What would change this: A platform path that requires a proprietary service to run or recover Vellis state would invalidate the promise.
+- What would change our mind: A platform path that requires a proprietary service to run or recover Vellis state would invalidate the promise.
 
 ## Related Pages
 

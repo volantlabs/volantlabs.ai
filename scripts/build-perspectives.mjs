@@ -3,6 +3,11 @@ import { existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  perspectiveRevisionHash,
+  publishedRelationFailures,
+  publishingDecisionFailures,
+} from "./publishing-decision-rules.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const siteRoot = path.resolve(__dirname, "..");
@@ -12,6 +17,11 @@ const assetsDir = path.join(siteRoot, "assets");
 const llmsDir = path.join(siteRoot, "llms");
 const llmsPerspectivesDir = path.join(llmsDir, "perspectives");
 const defaultGraphAttributionPath = path.join(siteRoot, "content", "perspectives.graph-attribution.json");
+const publishingDecisionSnapshotPath = path.join(
+  siteRoot,
+  "content",
+  "perspectives.publishing-decisions.json",
+);
 const graphAttributionPath = process.env.PERSPECTIVES_ATTRIBUTION_PATH
   ? resolveSitePath(process.env.PERSPECTIVES_ATTRIBUTION_PATH)
   : defaultGraphAttributionPath;
@@ -23,8 +33,14 @@ const socialPreviewManifestPath = path.join(
   "social",
   "manifest.json",
 );
+const authoringSocialPreviewManifestPath = path.join(
+  siteRoot,
+  "content",
+  "perspectives.social-previews.json",
+);
 let socialPreviewByPage;
 const checkOnly = process.argv.includes("--check");
+const printRevisionHashes = process.argv.includes("--print-revision-hashes");
 const contentSourceName = process.env.PERSPECTIVES_SOURCE || "json";
 let resolvedContentSourceName = contentSourceName;
 const localContributorAvatarsByName = new Map([
@@ -45,6 +61,7 @@ const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{1
 // (From the graph, Artifact). Per the Provenance Display Model amendment
 // (2026-07-07) to Spec 9c3d7e21.
 const quietKinds = new Set(["essays", "notes"]);
+const publicationStates = new Set(["published", "preview"]);
 
 function renderKindPill(post) {
   if (quietKinds.has(post.kind)) return "";
@@ -94,13 +111,13 @@ const summaryPages = [
     title: "Home",
     path: "",
     summaryPath: "llms/pages/home.md",
-    description: "Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents."
+    description: "Volant Labs publishes Vellis, an Apache-licensed open-source context graph engine for AI agents."
   },
   {
     title: "Vellis Engine",
     path: "engine.html",
     summaryPath: "llms/pages/engine.md",
-    description: "The product overview and local quickstart for Vellis as structured, recoverable knowledge infrastructure for AI agents."
+    description: "The product overview and local quickstart for Vellis as an open-source context graph with recoverable state for AI agents."
   },
   {
     title: "Thesis",
@@ -127,14 +144,23 @@ const summaryPages = [
     description: "The Volant Partners path from open Vellis patterns to governed production operations."
   }
 ];
+// lastmod is maintained by hand: bump a page's date whenever its content changes.
+// For articles, set "modified" in the post's content JSON when a post is edited
+// after publication; bump articleTemplateLastmod when a template change alters
+// the rendered output of every article (head metadata, JSON-LD, layout).
+const articleTemplateLastmod = "2026-07-29";
 const sitemapPages = [
-  { path: "", changefreq: "weekly", priority: "1.0" },
-  { path: "engine.html", changefreq: "monthly", priority: "0.9" },
-  { path: "thesis.html", changefreq: "monthly", priority: "0.8" },
-  { path: "perspectives.html", changefreq: "weekly", priority: "0.8" },
-  { path: "community.html", changefreq: "monthly", priority: "0.6" },
-  { path: "platform.html", changefreq: "monthly", priority: "0.5" }
+  { path: "", lastmod: "2026-07-29" },
+  { path: "engine.html", lastmod: "2026-07-21" },
+  { path: "thesis.html", lastmod: "2026-06-16" },
+  { path: "perspectives.html", lastmod: "2026-07-29" },
+  { path: "community.html", lastmod: "2026-06-16" },
+  { path: "platform.html", lastmod: "2026-06-16" }
 ];
+
+function latestIsoDate(...dates) {
+  return dates.filter(Boolean).sort().at(-1);
+}
 
 function escapeHtml(value = "") {
   return String(value)
@@ -146,6 +172,22 @@ function escapeHtml(value = "") {
 
 function escapeXml(value = "") {
   return escapeHtml(value).replaceAll("'", "&apos;");
+}
+
+function renderInlineMarkdown(value = "") {
+  return escapeHtml(value)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, label, href) => {
+      if (href.startsWith("https://")) {
+        return `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+      }
+      if (/^(?:\.\.\/|\.\/|\/|#)?[A-Za-z0-9][A-Za-z0-9._~!$&'()*+,;=%/?#-]*$/.test(href)) {
+        return `<a href="${href}">${label}</a>`;
+      }
+      return match;
+    })
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
 function resolveSitePath(value) {
@@ -166,14 +208,32 @@ function normalizeSocialPage(page) {
 }
 
 async function readSocialPreviewManifest() {
-  const raw = JSON.parse(await readFile(socialPreviewManifestPath, "utf8"));
-  if (!Array.isArray(raw) || !raw.length) {
-    throw new Error("assets/images/social/manifest.json must contain preview records");
+  const sources = [
+    { filePath: socialPreviewManifestPath, required: true },
+    { filePath: authoringSocialPreviewManifestPath, required: false },
+  ];
+  const records = [];
+  for (const source of sources) {
+    if (!existsSync(source.filePath)) {
+      if (source.required) {
+        throw new Error(`${path.relative(siteRoot, source.filePath)} must contain preview records`);
+      }
+      continue;
+    }
+    const raw = JSON.parse(await readFile(source.filePath, "utf8"));
+    if (!Array.isArray(raw) || (source.required && !raw.length)) {
+      throw new Error(`${path.relative(siteRoot, source.filePath)} must contain preview records`);
+    }
+    records.push(
+      ...raw.map((preview, index) => ({
+        preview,
+        sourceRef: `${path.relative(siteRoot, source.filePath)}[${index}]`,
+      })),
+    );
   }
 
   const byPage = new Map();
-  for (const [index, preview] of raw.entries()) {
-    const sourceRef = `assets/images/social/manifest.json[${index}]`;
+  for (const { preview, sourceRef } of records) {
     for (const field of [
       "page",
       "title",
@@ -571,6 +631,10 @@ function normalizeEditorialCheck(raw, sourceRef) {
   if (publishingDecisionId !== null && !uuidPattern.test(publishingDecisionId)) {
     throw new Error(`${sourceRef} editorialCheck.publishingDecisionId must be a UUID`);
   }
+  const revisionHash = raw.revisionHash ?? null;
+  if (revisionHash !== null && (typeof revisionHash !== "string" || !/^sha256:[0-9a-f]{64}$/.test(revisionHash))) {
+    throw new Error(`${sourceRef} editorialCheck.revisionHash must be a sha256 digest`);
+  }
   return {
     rubricVersion: raw.rubricVersion,
     stage: raw.stage,
@@ -579,7 +643,40 @@ function normalizeEditorialCheck(raw, sourceRef) {
     scores: Object.fromEntries(expectedKeys.map((key) => [key, scores[key]])),
     notes,
     graphAssessmentId,
-    publishingDecisionId
+    publishingDecisionId,
+    revisionHash
+  };
+}
+
+function normalizePerspectiveImage(rawImage, sourceRef, { allowCaption = false } = {}) {
+  if (rawImage === null || rawImage === undefined) return null;
+  if (!rawImage || typeof rawImage !== "object" || Array.isArray(rawImage)) {
+    throw new Error(`${sourceRef} must be an object`);
+  }
+  if (typeof rawImage.src !== "string" || !rawImage.src) throw new Error(`${sourceRef}.src is required`);
+  if (typeof rawImage.alt !== "string" || !rawImage.alt) throw new Error(`${sourceRef}.alt is required`);
+  if (!Number.isInteger(rawImage.width) || rawImage.width < 1) {
+    throw new Error(`${sourceRef}.width must be a positive integer`);
+  }
+  if (!Number.isInteger(rawImage.height) || rawImage.height < 1) {
+    throw new Error(`${sourceRef}.height must be a positive integer`);
+  }
+  const imagePath = path.resolve(siteRoot, rawImage.src);
+  const relativeImagePath = path.relative(siteRoot, imagePath);
+  if (relativeImagePath.startsWith("..") || path.isAbsolute(relativeImagePath)) {
+    throw new Error(`${sourceRef}.src must stay inside the site root`);
+  }
+  if (!existsSync(imagePath)) throw new Error(`${sourceRef}.src does not exist: ${rawImage.src}`);
+  const caption = rawImage.caption ?? null;
+  if (caption !== null && (!allowCaption || typeof caption !== "string" || !caption)) {
+    throw new Error(`${sourceRef}.caption is not supported or must be a non-empty string`);
+  }
+  return {
+    src: rawImage.src,
+    alt: rawImage.alt,
+    width: rawImage.width,
+    height: rawImage.height,
+    ...(caption ? { caption } : {})
   };
 }
 
@@ -595,6 +692,9 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     "published",
     "displayDate",
     "readingTime",
+    "author",
+    "authorUrl",
+    "authorSameAs",
     "provenanceLine",
     "statusLabel",
     "tags",
@@ -620,7 +720,12 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     }
     return {
       heading: section.heading,
-      paragraphs: [...section.paragraphs]
+      paragraphs: [...section.paragraphs],
+      image: normalizePerspectiveImage(
+        section.image ?? null,
+        `${sourceRef} body section ${section.heading} image`,
+        { allowCaption: true }
+      )
     };
   });
 
@@ -642,24 +747,27 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     }
     normalizedProvenance[field] = provenance[field];
   }
-  const author = rawPost.author ?? null;
-  if (author !== null && typeof author !== "string") {
-    throw new Error(`${sourceRef} author must be a string or null`);
+  const author = requireString(rawPost, "author", sourceRef);
+  const authorUrl = requireString(rawPost, "authorUrl", sourceRef);
+  if (!/^https:\/\//.test(authorUrl)) {
+    throw new Error(`${sourceRef} authorUrl must be an HTTPS URL`);
   }
-  const image = rawPost.image ?? null;
-  if (image !== null) {
-    if (!image || typeof image !== "object") throw new Error(`${sourceRef} image must be an object`);
-    if (typeof image.src !== "string" || !image.src) throw new Error(`${sourceRef} image.src is required`);
-    if (typeof image.alt !== "string" || !image.alt) throw new Error(`${sourceRef} image.alt is required`);
-    if (!Number.isInteger(image.width) || image.width < 1) throw new Error(`${sourceRef} image.width must be a positive integer`);
-    if (!Number.isInteger(image.height) || image.height < 1) throw new Error(`${sourceRef} image.height must be a positive integer`);
-    const imagePath = path.resolve(siteRoot, image.src);
-    const relativeImagePath = path.relative(siteRoot, imagePath);
-    if (relativeImagePath.startsWith("..") || path.isAbsolute(relativeImagePath)) {
-      throw new Error(`${sourceRef} image.src must stay inside the site root`);
-    }
-    if (!existsSync(imagePath)) throw new Error(`${sourceRef} image.src does not exist: ${image.src}`);
+  const modified = rawPost.modified ?? null;
+  if (modified !== null && (typeof modified !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(modified))) {
+    throw new Error(`${sourceRef} modified must be a YYYY-MM-DD string`);
   }
+  const authorSameAs = rawPost.authorSameAs;
+  if (
+    !Array.isArray(authorSameAs) ||
+    authorSameAs.some((url) => typeof url !== "string" || !/^https:\/\//.test(url))
+  ) {
+    throw new Error(`${sourceRef} authorSameAs must be an array of HTTPS URLs`);
+  }
+  const publicationState = rawPost.publicationState ?? "published";
+  if (!publicationStates.has(publicationState)) {
+    throw new Error(`${sourceRef} publicationState must be one of ${[...publicationStates].join(", ")}`);
+  }
+  const image = normalizePerspectiveImage(rawPost.image ?? null, `${sourceRef} image`);
   return {
     slug: requireString(rawPost, "slug", sourceRef),
     url: requireString(rawPost, "url", sourceRef),
@@ -669,14 +777,19 @@ function normalizePerspectivePost(rawPost, sourceRef) {
     shortTitle: requireString(rawPost, "shortTitle", sourceRef),
     dek: requireString(rawPost, "dek", sourceRef),
     published: requireString(rawPost, "published", sourceRef),
+    modified,
     displayDate: requireString(rawPost, "displayDate", sourceRef),
     readingTime: requireString(rawPost, "readingTime", sourceRef),
+    publicationState,
     image,
     author,
+    authorUrl,
+    authorSameAs: [...new Set(authorSameAs)],
     subjectMatter: [],
     provenanceLine: requireString(rawPost, "provenanceLine", sourceRef),
     statusLabel: requireString(rawPost, "statusLabel", sourceRef),
     tags: requireStringArray(rawPost, "tags", sourceRef),
+    intro: normalizeOptionalStringArray(rawPost.intro ?? [], "intro", sourceRef),
     body: normalizedBody,
     provenance: normalizedProvenance,
     related: requireStringArray(rawPost, "related", sourceRef),
@@ -702,9 +815,14 @@ class JsonFilePerspectiveSource {
       })
     );
     const graphAttribution = await readGraphAttributionExport();
-    if (!graphAttribution) return posts;
-    this.name = "json+graph-attribution";
-    return posts.map((post) => applyGraphAttribution(post, graphAttribution.get(post.slug)));
+    const attributedPosts = graphAttribution
+      ? posts.map((post) => applyGraphAttribution(post, graphAttribution.get(post.slug)))
+      : posts;
+    if (graphAttribution) this.name = "json+graph-attribution";
+    return attributedPosts.map((post) => ({
+      ...post,
+      sourceRevisionHash: perspectiveRevisionHash(post),
+    }));
   }
 }
 
@@ -744,6 +862,8 @@ function validatePosts(posts, sourceName) {
       if (!slugs.has(related)) throw new Error(`${post.slug} related post ${related} not found in ${sourceName} source`);
     }
   }
+  const relationFailures = publishedRelationFailures(posts);
+  if (relationFailures.length) throw new Error(relationFailures.join("\n"));
 }
 
 function evaluateEditorialCheck(post) {
@@ -778,7 +898,7 @@ function evaluateEditorialCheck(post) {
   };
 }
 
-function evaluateEditorial(posts) {
+function evaluateEditorial(posts, publishingDecisionSnapshot) {
   const errors = [];
   const warnings = [];
   const report = [];
@@ -787,6 +907,9 @@ function evaluateEditorial(posts) {
     report.push(result);
     if (!result.editorial) {
       warnings.push(`${post.slug}: no editorialCheck (soft-enforcement transition; add rubric ${editorialRubric.rubricVersion} scores)`);
+      if (post.publicationState === "published") {
+        errors.push(`${post.slug}: published perspectives require an editorialCheck`);
+      }
       continue;
     }
     const check = post.editorialCheck;
@@ -801,11 +924,19 @@ function evaluateEditorial(posts) {
         errors.push(`${post.slug}: composite ${composite} below publish threshold ${editorialRubric.publishThreshold}`);
       }
       if (!check.publishingDecisionId) {
-        warnings.push(`${post.slug}: no publishingDecisionId (soft policy; required for publish once the gate promotes to hard)`);
+        if (post.publicationState === "published") {
+          errors.push(`${post.slug}: published perspectives require a publishingDecisionId`);
+        } else {
+          warnings.push(`${post.slug}: preview has no publishingDecisionId`);
+        }
       }
     } else if (composite < editorialRubric.ideaThreshold) {
       warnings.push(`${post.slug}: ${check.stage}-stage composite ${composite} below advisory threshold ${editorialRubric.ideaThreshold}`);
     }
+    if (post.publicationState === "published" && !["pre_publish", "post_publish_review"].includes(check.stage)) {
+      errors.push(`${post.slug}: published perspectives require a pre_publish or post_publish_review assessment`);
+    }
+    errors.push(...publishingDecisionFailures(post, publishingDecisionSnapshot));
   }
   for (const warning of warnings) console.warn(`editorial: ${warning}`);
   if (errors.length) {
@@ -815,8 +946,11 @@ function evaluateEditorial(posts) {
 }
 
 function renderExportManifest(posts, editorialReport) {
+  const publicPosts = posts.filter((post) => post.publicationState === "published");
+  const publicSlugs = new Set(publicPosts.map((post) => post.slug));
+  const publicEditorialReport = editorialReport.filter((entry) => publicSlugs.has(entry.slug));
   const contentHash = createHash("sha256")
-    .update(JSON.stringify(posts.map((post) => ({ ...post, editorialCheck: post.editorialCheck ?? null }))))
+    .update(JSON.stringify(publicPosts.map((post) => ({ ...post, editorialCheck: post.editorialCheck ?? null }))))
     .digest("hex");
   const payload = {
     schemaVersion: "2026-07-07.export-manifest.v1",
@@ -834,9 +968,12 @@ function renderExportManifest(posts, editorialReport) {
     editorial: {
       rubricVersion: editorialRubric.rubricVersion,
       publishThreshold: editorialRubric.publishThreshold,
-      posts: editorialReport
+      posts: publicEditorialReport
     },
-    counts: { posts: posts.length }
+    counts: {
+      posts: publicPosts.length,
+      published: publicPosts.length
+    }
   };
   return `${JSON.stringify(payload, null, 2)}\n`;
 }
@@ -976,19 +1113,34 @@ function renderArticle(post, posts) {
         </a>`)
     .join("\n        ");
 
-  const body = post.body
-    .map((section) => `<h2>${escapeHtml(section.heading)}</h2>
-        ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("\n        ")}`)
+  const intro = post.intro.length
+    ? `<div class="article-intro">
+        ${post.intro.map((paragraph) => `<p>${renderInlineMarkdown(paragraph)}</p>`).join("\n        ")}
+      </div>`
+    : "";
+  const sections = post.body
+    .map((section) => {
+      const sectionImage = section.image
+        ? `<figure class="article-inline-visual">
+          <img src="../${escapeHtml(section.image.src)}" alt="${escapeHtml(section.image.alt)}" width="${escapeHtml(section.image.width)}" height="${escapeHtml(section.image.height)}" loading="lazy" decoding="async">
+          ${section.image.caption ? `<figcaption>${escapeHtml(section.image.caption)}</figcaption>` : ""}
+        </figure>`
+        : "";
+      return [
+        `<h2>${escapeHtml(section.heading)}</h2>`,
+        ...section.paragraphs.map((paragraph) => `<p>${renderInlineMarkdown(paragraph)}</p>`),
+        sectionImage
+      ]
+        .filter(Boolean)
+        .join("\n        ");
+    })
     .join("\n        ");
+  const body = [intro, sections].filter(Boolean).join("\n        ");
 
   const editorialRows = [
-    ["Source", post.provenance.source],
-    ["Editorial layer", post.provenance.reasoningLayer],
-    ["Owner", post.provenance.humanRatifier],
-    ["Status", post.provenance.status],
     ["Open question", post.provenance.knownUncertainty],
     ["Counterpoint", post.provenance.dissent],
-    ["What would change this", post.provenance.nextFalsifier]
+    ["What would change our mind", post.provenance.nextFalsifier]
   ]
     .map(([term, definition]) => `<dt>${escapeHtml(term)}</dt>
           <dd>${escapeHtml(definition)}</dd>`)
@@ -1005,33 +1157,34 @@ function renderArticle(post, posts) {
           <p>${escapeHtml(post.provenanceLine)}</p>
         </div>`;
   const canonical = absoluteUrl(post.url);
+  const isPreview = post.publicationState === "preview";
   const socialPreview = socialPreviewFor(post.url);
   const socialImage = absoluteSocialImageUrl(socialPreview);
   const articleJsonLd = {
-    "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
+    keywords: post.tags.join(", "),
     description: socialPreview.description,
-    datePublished: post.published,
     mainEntityOfPage: canonical,
     image: socialImage,
     inLanguage: "en",
-    author: post.author
-      ? {
-          "@type": "Person",
-          name: post.author
-        }
-      : {
-          "@type": "Organization",
-          name: "Volant Labs",
-          url: manifest.siteUrl
-        },
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: post.authorUrl,
+      ...(post.authorSameAs.length ? { sameAs: post.authorSameAs } : {})
+    },
     publisher: {
       "@type": "Organization",
+      "@id": `${manifest.siteUrl}/#organization`,
       name: "Volant Labs",
       url: manifest.siteUrl
     }
   };
+  if (!isPreview) {
+    articleJsonLd.datePublished = post.published;
+    articleJsonLd.dateModified = post.modified ?? post.published;
+  }
   if (post.madeWith) {
     articleJsonLd.contributor = post.madeWith.items.map((item) => ({
       "@type": madeWithJsonLdType(item.kind),
@@ -1039,18 +1192,67 @@ function renderArticle(post, posts) {
       description: `${item.role}: ${item.detail}`
     }));
   }
+  const breadcrumbJsonLd = {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${manifest.siteUrl}/`
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Perspectives",
+        item: absoluteUrl("perspectives.html")
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: canonical
+      }
+    ]
+  };
+  const pageJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": isPreview
+      ? [breadcrumbJsonLd]
+      : [articleJsonLd, breadcrumbJsonLd]
+  };
   const articleVisual = post.image
     ? `<figure class="article-visual">
         <img src="../${escapeHtml(post.image.src)}" alt="${escapeHtml(post.image.alt)}" width="${escapeHtml(post.image.width)}" height="${escapeHtml(post.image.height)}" loading="eager" decoding="async">
       </figure>`
     : "";
+  const robotsMeta = isPreview
+    ? '<meta name="robots" content="noindex,follow">\n'
+    : '<meta name="robots" content="max-image-preview:large">\n';
+  const markdownAlternate = isPreview
+    ? ""
+    : `<link rel="alternate" type="text/markdown" title="LLM summary" href="../llms/perspectives/${escapeHtml(post.slug)}.md">\n`;
+  const publishedMeta = isPreview
+    ? ""
+    : `<meta property="article:published_time" content="${escapeHtml(post.published)}">
+<meta property="article:modified_time" content="${escapeHtml(post.modified ?? post.published)}">\n`;
+  const jsonLdBlock = `<script type="application/ld+json">
+${jsonScript(pageJsonLd)}
+</script>`;
+  const previewBadge = isPreview
+    ? '<span class="article-preview-badge">Editorial preview · not approved for publication</span>'
+    : "";
+  const heroBadges = [renderKindPill(post), previewBadge]
+    .filter(Boolean)
+    .map((badge) => `        ${badge}`)
+    .join("\n");
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="${escapeHtml(post.dek)}">
+${robotsMeta}<meta name="description" content="${escapeHtml(post.dek)}">
 <meta property="og:site_name" content="Volant Labs">
 <meta property="og:title" content="${escapeHtml(socialPreview.title)}">
 <meta property="og:description" content="${escapeHtml(socialPreview.description)}">
@@ -1060,37 +1262,31 @@ function renderArticle(post, posts) {
 <meta property="og:image:width" content="${escapeHtml(socialPreview.width)}">
 <meta property="og:image:height" content="${escapeHtml(socialPreview.height)}">
 <meta property="og:image:alt" content="${escapeHtml(socialPreview.alt)}">
-<meta property="article:published_time" content="${escapeHtml(post.published)}">
-<meta name="twitter:card" content="summary_large_image">
+${publishedMeta}<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeHtml(socialPreview.twitterTitle)}">
 <meta name="twitter:description" content="${escapeHtml(socialPreview.twitterDescription)}">
 <meta name="twitter:image" content="${escapeHtml(socialImage)}">
 <meta name="twitter:image:alt" content="${escapeHtml(socialPreview.alt)}">
-<meta name="theme-color" content="#041026">
 <link rel="canonical" href="${escapeHtml(canonical)}">
 <link rel="alternate" type="application/rss+xml" title="volantlabs.ai Perspectives" href="../feed.xml">
 <link rel="alternate" type="application/json" title="Perspectives index" href="../perspectives/index.json">
-<link rel="alternate" type="text/markdown" title="LLM summary" href="../llms/perspectives/${escapeHtml(post.slug)}.md">
-<title>${escapeHtml(post.title)} - Perspectives - volantlabs.ai</title>
+${markdownAlternate}<title>${escapeHtml(post.title)} — Perspectives · volantlabs.ai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="stylesheet" href="../assets/perspective-article.css">
-<script type="application/ld+json">
-${jsonScript(articleJsonLd)}
-</script>
+${jsonLdBlock}
 ${renderGa4Tracking()}
 </head>
-<body data-perspective-slug="${escapeHtml(post.slug)}">
+<body data-perspective-slug="${escapeHtml(post.slug)}" data-publication-state="${escapeHtml(post.publicationState)}">
 <a class="skip" href="#main">Skip to content</a>
 ${renderHeader()}
 <main id="main">
   <section class="article-hero">
     <div class="wrap article-hero-grid">
       <div>
-        <a class="backlink" href="../perspectives.html">Back to Perspectives</a>
-        ${renderKindPill(post)}
+        <a class="backlink" href="../perspectives.html">Back to Perspectives</a>${heroBadges ? `\n${heroBadges}` : ""}
         <h1>${escapeHtml(post.title)}</h1>
         <p class="dek">${escapeHtml(post.dek)}</p>
         <div class="article-meta">
@@ -1115,8 +1311,8 @@ ${renderHeader()}
     </article>
     <section class="provenance-panel" aria-labelledby="provenance-title">
       <div class="provenance-head">
-        <p class="article-kicker">Editorial context</p>
-        <h2 id="provenance-title">How this piece should be read</h2>
+        <p class="article-kicker">A reader’s lens</p>
+        <h2 id="provenance-title">Questions and counterpoints</h2>
       </div>
       <dl>
           ${editorialRows}
@@ -1178,9 +1374,12 @@ function renderPerspectiveIndexJson(posts) {
       shortTitle: post.shortTitle,
       dek: post.dek,
       published: post.published,
+      dateModified: post.modified ?? post.published,
       displayDate: post.displayDate,
       readingTime: post.readingTime,
       author: post.author,
+      authorUrl: post.authorUrl,
+      authorSameAs: post.authorSameAs,
       subjectMatter: post.subjectMatter,
       ...(post.madeWith ? { madeWith: post.madeWith } : {}),
       provenanceLine: post.provenanceLine,
@@ -1220,7 +1419,7 @@ function renderPerspectiveIndexFeed(posts) {
               <span class="prov">${escapeHtml(post.provenanceLine)}</span>
             </div>
           </div>
-          <span class="read">Open note <span class="arr">-&gt;</span></span>
+          <span class="read">Open note <span class="arr">→</span></span>
         </a>`;
     })
     .join("\n\n");
@@ -1267,8 +1466,10 @@ function renderSitemap(posts) {
     ...sitemapPages,
     ...posts.map((post) => ({
       path: post.url,
-      changefreq: "monthly",
-      priority: "0.7"
+      lastmod: latestIsoDate(
+        post.modified ?? post.published,
+        articleTemplateLastmod
+      )
     }))
   ];
 
@@ -1276,8 +1477,7 @@ function renderSitemap(posts) {
     .map(
       (url) => `  <url>
     <loc>${escapeXml(absoluteUrl(url.path))}</loc>
-    <changefreq>${escapeXml(url.changefreq)}</changefreq>
-    <priority>${escapeXml(url.priority)}</priority>
+    <lastmod>${escapeXml(url.lastmod)}</lastmod>
   </url>`
     )
     .join("\n");
@@ -1312,13 +1512,9 @@ ${post.madeWith.items
 `
     : "";
   const editorialRows = [
-    ["Source", post.provenance.source],
-    ["Editorial layer", post.provenance.reasoningLayer],
-    ["Owner", post.provenance.humanRatifier],
-    ["Status", post.provenance.status],
     ["Open question", post.provenance.knownUncertainty],
     ["Counterpoint", post.provenance.dissent],
-    ["What would change this", post.provenance.nextFalsifier]
+    ["What would change our mind", post.provenance.nextFalsifier]
   ]
     .map(([label, value]) => `- ${label}: ${value}`)
     .join("\n");
@@ -1330,7 +1526,8 @@ HTML path: /${post.url}
 Collection: Perspectives
 Kind: ${post.kindLabel}
 Status: ${post.statusLabel}
-Published: ${post.published}
+Publication state: ${post.publicationState === "published" ? "Published" : "Editorial preview"}
+${post.publicationState === "published" ? "Published" : "Preview date"}: ${post.published}
 Reading time: ${post.readingTime}
 Author: ${post.author || "Volant Labs"}
 Tags: ${post.tags.join(", ")}
@@ -1342,13 +1539,13 @@ ${post.dek}
 
 ## What This Page Is For
 
-This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, graph-native AI infrastructure, provenance, governance, and operational adoption.
+This page is part of the Volant Labs Perspectives library. It should be used as context for Vellis, context graphs, graph-native AI infrastructure, provenance, governance, and operational adoption.
 
 ## Main Sections
 
 ${sectionList}
 
-## Editorial Context
+## Questions and Counterpoints
 
 ${editorialRows}
 
@@ -1368,7 +1565,7 @@ function renderLlmsTxt(posts) {
 
   return `# Volant Labs
 
-> Volant Labs publishes Vellis, Apache-licensed model-engineered knowledge infrastructure for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
+> Volant Labs publishes Vellis, an Apache-licensed open-source context graph engine for AI agents, with explicit semantics, validated change, MCP-capable operation, and recoverable state.
 
 Use these Markdown summaries for fast retrieval and routing. Use the canonical HTML pages for the public presentation, visual context, and full article text.
 
@@ -1388,10 +1585,11 @@ ${perspectiveLinks}
 
 ## Notes For Agents
 
+- Vellis is a context graph engine: a typed, locally owned knowledge graph AI agents read and write over MCP. Describing it as a context graph, a personal context graph, or agent memory infrastructure is accurate.
 - Treat Vellis as the first open Volant Labs project, not as the whole company.
 - Treat Volant Partners as the production-support path for teams that need operating controls, audit paths, and implementation discipline.
 - Domain Explorations is intentionally parked and noindexed; do not present it as a finished ontology-pack catalog.
-- Perspectives uses public labels Essay and Field note; do not describe current content as graph-authored or formally approved by a publishing workflow.
+- Perspectives uses public labels Essay and Field note. Human-authored pieces should not be described as graph-authored. When a post summary names a ratified assessment or PublishingDecision, report that approval exactly as recorded; do not generalize it to other posts.
 `;
 }
 
@@ -1460,14 +1658,32 @@ async function reconcilePerspectiveMarkdownOrphans(posts) {
 
 socialPreviewByPage = await readSocialPreviewManifest();
 const posts = await readPosts();
-const editorialReport = evaluateEditorial(posts);
+if (printRevisionHashes) {
+  console.log(
+    JSON.stringify(
+      Object.fromEntries(posts.map((post) => [post.slug, post.sourceRevisionHash])),
+      null,
+      2,
+    ),
+  );
+  process.exit(0);
+}
+const publishingDecisionSnapshot = JSON.parse(
+  await readFile(publishingDecisionSnapshotPath, "utf8"),
+);
+const editorialReport = evaluateEditorial(posts, publishingDecisionSnapshot);
 // editorialCheck is internal rubric metadata: it drives the checkdown and the
 // export manifest but must never ship in public page outputs.
-const publicPosts = posts.map(({ editorialCheck, ...publicPost }) => publicPost);
-await reconcileArticleOrphans(publicPosts);
+const renderablePosts = posts.map(
+  ({ editorialCheck, sourceRevisionHash, ...renderablePost }) => renderablePost,
+);
+const publicPosts = renderablePosts.filter((post) => post.publicationState === "published");
+await reconcileArticleOrphans(renderablePosts);
 await reconcilePerspectiveMarkdownOrphans(publicPosts);
-for (const post of publicPosts) {
+for (const post of renderablePosts) {
   await writeGenerated(path.join(siteRoot, post.url), renderArticle(post, publicPosts));
+}
+for (const post of publicPosts) {
   await writeGenerated(path.join(llmsPerspectivesDir, `${post.slug}.md`), renderPerspectiveMarkdownSummary(post, publicPosts));
 }
 await writeGenerated(path.join(assetsDir, "perspectives-data.js"), renderDataBundle(publicPosts));
