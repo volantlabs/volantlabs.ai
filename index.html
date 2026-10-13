@@ -310,6 +310,30 @@ features:
                     height: 300px;
                 }
             }
+            /* ---- Overview film ---- */
+            #overview { scroll-margin-top: 96px; }
+            .overview-layout {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+                gap: var(--s8);
+                align-items: center;
+            }
+            .overview-copy h2 { margin: 0 0 var(--s4); }
+            .overview-copy p { color: var(--muted); line-height: 1.6; }
+            .overview-player { margin: 0; min-width: 0; }
+            .overview-player video {
+                display: block;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                background: #041224;
+            }
+            @media (max-width: 880px) {
+                #overview { scroll-margin-top: 240px; }
+                .overview-layout { grid-template-columns: 1fr; gap: var(--s6); }
+            }
             /* ---- Featured trio ---- */
             section.band.start-here {
                 padding-top: var(--s12);
@@ -614,6 +638,7 @@ features:
                 window.gtag("config", "G-VNXWVPERBQ");
             })();
         </script>
+        <script defer src="assets/ga4-cta.js"></script>
     </head>
     <body>
         <a class="skip" href="#main">Skip to content</a>
@@ -726,6 +751,8 @@ features:
                             <a
                                 class="btn btn-primary"
                                 href="engine.html#quickstart"
+                                data-ga-event="cta_download_run_now"
+                                data-ga-location="home_hero"
                                 >Run Vellis locally
                                 <svg
                                     width="16"
@@ -758,6 +785,32 @@ features:
                             validate against.</span
                         >
                     </div>
+                </div>
+            </section>
+
+            <!-- ============ OVERVIEW FILM ============ -->
+            <section class="band" id="overview" aria-labelledby="overview-title">
+                <div class="wrap overview-layout">
+                    <div class="overview-copy">
+                        <span class="eyebrow">Watch · 3 minutes</span>
+                        <h2 id="overview-title">The Volant Labs overview</h2>
+                        <p>See how shared context helps people and AI agents coordinate.</p>
+                    </div>
+                    <figure class="overview-player">
+                        <video
+                            controls
+                            playsinline
+                            preload="none"
+                            width="1920"
+                            height="1080"
+                            poster="assets/video/volant-labs-overview-poster.jpg"
+                            aria-label="Volant Labs overview video"
+                        >
+                            <source src="assets/video/volant-labs-overview-web-f3900e5d7565.mp4" type="video/mp4" />
+                            <track kind="captions" src="assets/video/volant-labs-overview-en-24044502d38d.vtt" srclang="en" label="English" />
+                            <p>Your browser cannot play this video. Please try a browser that supports HTML5 video.</p>
+                        </video>
+                    </figure>
                 </div>
             </section>
 

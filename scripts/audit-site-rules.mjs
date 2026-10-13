@@ -1,10 +1,21 @@
 export const ga4MeasurementId = "G-VNXWVPERBQ";
+export const ga4CtaEventNames = Object.freeze([
+  "cta_quickstart",
+  "cta_repo",
+  "cta_download_run_now",
+  "cta_worked_model",
+  "cta_feedback",
+]);
 export const volantPartnersContactUrl =
   "https://www.volantpartners.com/contact";
 
 const ga4ScriptUrl = `https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`;
 
 export function ga4TrackingFailures(page, html) {
+  if (extractMetaContentByName(html, "volant-network-policy") === "no-third-party") {
+    return thirdPartyAutoLoadFailures(page, html);
+  }
+
   const failures = [];
   if (hasUnguardedAsyncGa4Loader(html)) {
     failures.push(`${page} loads GA4 before checking the production host`);
@@ -38,6 +49,95 @@ export function ga4TrackingFailures(page, html) {
     failures.push(`${page} is missing the GA4 config call for ${ga4MeasurementId}`);
   }
   return failures;
+}
+
+export function ga4CtaPageFailures(page, html) {
+  if (extractMetaContentByName(html, "volant-network-policy") === "no-third-party") {
+    return [];
+  }
+  if (!/\bdata-ga-event\s*=/.test(html)) return [];
+
+  const depth = page.replaceAll("\\", "/").split("/").length - 1;
+  const expectedSrc = `${"../".repeat(depth)}assets/ga4-cta.js`;
+  const helperPattern = new RegExp(
+    `<script\\b(?=[^>]*\\bdefer\\b)(?=[^>]*\\bsrc\\s*=\\s*["']${escapeRegExp(expectedSrc)}["'])[^>]*>`,
+    "i",
+  );
+  return helperPattern.test(html)
+    ? []
+    : [`${page} is missing the shared GA4 CTA helper at ${expectedSrc}`];
+}
+
+export function ga4CtaCoverageFailures(files) {
+  const corpus = files.map(({ content }) => content).join("\n");
+  return ga4CtaEventNames
+    .filter(
+      (eventName) =>
+        !new RegExp(
+          `\\bdata-ga-event\\s*=\\s*["']${escapeRegExp(eventName)}["']`,
+          "i",
+        ).test(corpus),
+    )
+    .map((eventName) => `Named CTA coverage is missing ${eventName}`);
+}
+
+export function ga4CtaAssetFailures(source) {
+  const failures = ga4CtaEventNames
+    .filter((eventName) => !source.includes(eventName))
+    .map((eventName) => `GA4 CTA helper is missing ${eventName}`);
+
+  if (
+    !/document\.addEventListener\(\s*["']click["'][\s\S]*?\.closest\(\s*["']\[data-ga-event\]["']\s*\)/.test(
+      source,
+    )
+  ) {
+    failures.push(
+      "GA4 CTA helper is missing delegated data-ga-event click handling",
+    );
+  }
+  if (
+    !/typeof window\.gtag\s*!==\s*["']function["'][\s\S]*?window\.gtag\(\s*["']event["']/.test(
+      source,
+    )
+  ) {
+    failures.push("GA4 CTA helper is missing a guarded gtag event dispatch");
+  }
+
+  return failures;
+}
+
+export function thirdPartyAutoLoadFailures(page, html) {
+  const failures = new Set();
+  const tagPattern = /<(script|link|img|iframe|source|video|audio)\b([^>]*)>/gi;
+  let match;
+  while ((match = tagPattern.exec(html))) {
+    const tag = match[1].toLowerCase();
+    const attributes = parseAttributes(match[2]);
+    const relTokens = (attributes.rel ?? "").toLowerCase().split(/\s+/);
+    const linkAutoLoads = tag === "link" && relTokens.some((token) =>
+      ["stylesheet", "preconnect", "prefetch", "dns-prefetch", "preload", "modulepreload"].includes(token));
+    const url = tag === "link"
+      ? linkAutoLoads ? attributes.href : null
+      : attributes.src ?? attributes.poster ?? null;
+    if (isThirdPartyUrl(url)) {
+      failures.add(`${page} declares no-third-party network policy but auto-loads ${url}`);
+    }
+  }
+
+  const dynamicUrlPatterns = [
+    /(?:fetch|WebSocket|EventSource)\s*\(\s*["']((?:https?:)?\/\/[^"']+)/gi,
+    /\.src\s*=\s*["']((?:https?:)?\/\/[^"']+)/gi,
+  ];
+  for (const pattern of dynamicUrlPatterns) {
+    let dynamicMatch;
+    while ((dynamicMatch = pattern.exec(html))) {
+      if (isThirdPartyUrl(dynamicMatch[1])) {
+        failures.add(`${page} declares no-third-party network policy but auto-loads ${dynamicMatch[1]}`);
+      }
+    }
+  }
+
+  return [...failures];
 }
 
 export function externalContactLinkFailures(page, html) {
@@ -152,6 +252,16 @@ function hasProductionHostGuard(html) {
       html,
     )
   );
+}
+
+function isThirdPartyUrl(value) {
+  if (!value || !/^(?:https?:)?\/\//i.test(value)) return false;
+  try {
+    const hostname = new URL(value, "https://volantlabs.ai").hostname.toLowerCase();
+    return hostname !== "volantlabs.ai" && hostname !== "www.volantlabs.ai";
+  } catch {
+    return true;
+  }
 }
 
 function escapeRegExp(value) {

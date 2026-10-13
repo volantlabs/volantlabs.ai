@@ -149,3 +149,11 @@ Do not push directly to deployment `main`; `volantlabs/volantlabs.ai` requires p
 ## Status & next
 
 Status: **published static app bundle**. The public Vellis repository and verified local quickstart are live; Home, Engine, Community, and Platform copy should track that documented product surface. Next: promote reference graphs only when their reuse boundary is ready, and fold nav/footer markup into a partial when a broader build system lands.
+
+## Overview video
+
+The home page includes the uncaptioned Volant Labs overview (2:59), with native playback controls, inline mobile playback, a poster, and no automatic media preload. A compressed 1080p H.264/AAC web derivative is bundled under `assets/video/` so the client-pack preview and static export use the same permanent relative path without a signed FileDrive URL or runtime graph connection.
+
+`assets/video/volant-labs-overview-web-f3900e5d7565.mp4` is 20,698,013 bytes with SHA-256 `f3900e5d756575a33e49a6e6827cdf724124eb6ac6e0416649f93d84291e6215`. Preserve that file unchanged when exporting; the filename pins this edition. The poster is a frame from the same clean video.
+
+The web derivative preserves the original overview’s duration, frame count and encoded audio. Optional English captions use a separate WebVTT track without a default attribute; no captions are burned into the video. The original edition (SHA-256 `93fd40f2e0da18c005f7e39c7063a3c7010d7224710c625b4ab7d0a28c937fed`) stays outside the website package because the app runtime copies and hashes every bundled file for each website-app launch.

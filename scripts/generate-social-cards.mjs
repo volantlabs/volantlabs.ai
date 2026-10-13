@@ -123,6 +123,16 @@ const cards = [
     alt: "Volant Labs typography beside several exploratory topographic domain regions on a shared substrate.",
   },
   {
+    page: "/scenario-lab/",
+    filename: "scenario-lab-unlisted-preview.png",
+    title: "Vellis Scenario Lab — unlisted preview",
+    description:
+      "See the model, steer a proposed change, and recover the state in a guided Vellis product preview.",
+    alt: "Vellis Scenario Lab title beside a controlled graph showing proposed, accepted, and recoverable state.",
+    render: false,
+    public: false,
+  },
+  {
     page: "/perspectives/graph-theory.html",
     filename: "perspective-graph-theory-topographic-v2.png",
     title: "The graph is a theory",
@@ -168,7 +178,6 @@ const cards = [
     shortTitle: "Book collection",
     alt: "Adding My Book Collection to Vellis by Andrew Forman, with books resolving into a typed graph.",
     render: false,
-    public: false,
   },
 ];
 

@@ -2,12 +2,90 @@ import { deepEqual } from "node:assert/strict";
 import test from "node:test";
 
 import {
+  ga4CtaAssetFailures,
+  ga4CtaCoverageFailures,
+  ga4CtaPageFailures,
   externalContactLinkFailures,
   forbiddenPatternFailures,
   ga4TrackingFailures,
   jsonLdFailures,
   seoBaselineFailures,
+  thirdPartyAutoLoadFailures,
 } from "./audit-site-rules.mjs";
+
+test("named CTA audit requires all five conversion paths", () => {
+  const files = [
+    {
+      name: "index.html",
+      content: `
+        <a data-ga-event="cta_quickstart">Quickstart</a>
+        <a data-ga-event="cta_repo">Repository</a>
+        <button data-ga-event="cta_download_run_now">Run now</button>
+        <button data-ga-event="cta_worked_model">Worked model</button>
+        <a data-ga-event="cta_feedback">Feedback</a>
+      `,
+    },
+  ];
+
+  deepEqual(ga4CtaCoverageFailures(files), []);
+  deepEqual(ga4CtaCoverageFailures([{ name: "index.html", content: "" }]), [
+    "Named CTA coverage is missing cta_quickstart",
+    "Named CTA coverage is missing cta_repo",
+    "Named CTA coverage is missing cta_download_run_now",
+    "Named CTA coverage is missing cta_worked_model",
+    "Named CTA coverage is missing cta_feedback",
+  ]);
+});
+
+test("named CTA page audit requires the shared helper on tracked pages", () => {
+  deepEqual(
+    ga4CtaPageFailures(
+      "index.html",
+      '<a data-ga-event="cta_quickstart"></a><script defer src="assets/ga4-cta.js"></script>',
+    ),
+    [],
+  );
+  deepEqual(
+    ga4CtaPageFailures(
+      "perspectives/example.html",
+      '<a data-ga-event="cta_quickstart"></a><script defer src="../assets/ga4-cta.js"></script>',
+    ),
+    [],
+  );
+  deepEqual(ga4CtaPageFailures("index.html", "<a data-ga-event='cta_repo'></a>"), [
+    "index.html is missing the shared GA4 CTA helper at assets/ga4-cta.js",
+  ]);
+  deepEqual(ga4CtaPageFailures("perspectives.html", "<p>No named CTA.</p>"), []);
+});
+
+test("named CTA helper audit requires delegated guarded gtag dispatch", () => {
+  const source = `
+    const allowedEvents = new Set([
+      "cta_quickstart",
+      "cta_repo",
+      "cta_download_run_now",
+      "cta_worked_model",
+      "cta_feedback",
+    ]);
+    document.addEventListener("click", (event) => {
+      const cta = event.target.closest("[data-ga-event]");
+      if (!cta || typeof window.gtag !== "function") return;
+      if (!allowedEvents.has(cta.dataset.gaEvent)) return;
+      window.gtag("event", cta.dataset.gaEvent, { cta_location: "test" });
+    });
+  `;
+
+  deepEqual(ga4CtaAssetFailures(source), []);
+  deepEqual(ga4CtaAssetFailures(""), [
+    "GA4 CTA helper is missing cta_quickstart",
+    "GA4 CTA helper is missing cta_repo",
+    "GA4 CTA helper is missing cta_download_run_now",
+    "GA4 CTA helper is missing cta_worked_model",
+    "GA4 CTA helper is missing cta_feedback",
+    "GA4 CTA helper is missing delegated data-ga-event click handling",
+    "GA4 CTA helper is missing a guarded gtag event dispatch",
+  ]);
+});
 
 test("GA4 audit accepts formatted guarded initialization", () => {
   const html = `
@@ -52,6 +130,82 @@ test("GA4 audit rejects unguarded async loader", () => {
   deepEqual(ga4TrackingFailures("index.html", html), [
     "index.html loads GA4 before checking the production host",
     "index.html is missing the GA4 production-host guard",
+  ]);
+});
+
+test("GA4 audit accepts an explicit no-third-party page with no automatic external loads", () => {
+  const html = `
+    <meta name="volant-network-policy" content="no-third-party" />
+    <link rel="canonical" href="https://volantlabs.ai/scenario-lab/" />
+    <a href="https://github.com/volantlabs/vellis">Open repository</a>
+    <script src="scenario-lab.js"></script>
+  `;
+
+  deepEqual(ga4TrackingFailures("scenario-lab/index.html", html), []);
+});
+
+test("GA4 audit rejects automatic third-party loads on an exempt page", () => {
+  const html = `
+    <meta name="volant-network-policy" content="no-third-party" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat" />
+  `;
+
+  deepEqual(ga4TrackingFailures("scenario-lab/index.html", html), [
+    "scenario-lab/index.html declares no-third-party network policy but auto-loads https://fonts.googleapis.com/css2?family=Montserrat",
+  ]);
+});
+
+test("no-third-party audit rejects external absolute and protocol-relative automatic loads", () => {
+  for (const prefix of ["https://", "http://", "//"]) {
+    const url = `${prefix}example.com/demo.js`;
+    for (const html of [
+      `<script src="${url}"></script>`,
+      `<link rel="stylesheet" href="${url}" />`,
+      `<img src="${url}" />`,
+      `<script>fetch("${url}");</script>`,
+      `<script>new WebSocket("${url}");</script>`,
+      `<script>new EventSource("${url}");</script>`,
+      `<script>script.src = "${url}";</script>`,
+    ]) {
+      deepEqual(thirdPartyAutoLoadFailures("fixture.html", html), [
+        `fixture.html declares no-third-party network policy but auto-loads ${url}`,
+      ], html);
+    }
+  }
+});
+
+test("no-third-party audit preserves allowed hosts and relative assets", () => {
+  const urls = [
+    "https://volantlabs.ai/demo.js",
+    "https://www.volantlabs.ai/demo.js",
+    "//volantlabs.ai/demo.js",
+    "//www.volantlabs.ai/demo.js",
+    "//WWW.VOLANTLABS.AI/demo.js",
+    "demo.js",
+    "./demo.js",
+    "../assets/demo.js",
+    "/assets/demo.js",
+  ];
+  for (const url of urls) {
+    const html = `<script src="${url}"></script>
+      <link rel="stylesheet" href="${url}" />
+      <script>fetch("${url}"); script.src = "${url}";</script>`;
+    deepEqual(thirdPartyAutoLoadFailures("fixture.html", html), [], url);
+  }
+});
+
+test("no-third-party audit matches complete hostnames for protocol-relative URLs", () => {
+  const url = "//volantlabs.ai.example.com/demo.js";
+  deepEqual(thirdPartyAutoLoadFailures("fixture.html", `<script src="${url}"></script>`), [
+    `fixture.html declares no-third-party network policy but auto-loads ${url}`,
+  ]);
+});
+
+test("GA4 audit applies the protocol-relative rule to an exempt page", () => {
+  const html = `<meta name="volant-network-policy" content="no-third-party" />
+    <script src="//example.com/demo.js"></script>`;
+  deepEqual(ga4TrackingFailures("scenario-lab/index.html", html), [
+    "scenario-lab/index.html declares no-third-party network policy but auto-loads //example.com/demo.js",
   ]);
 });
 

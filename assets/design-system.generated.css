@@ -11,11 +11,25 @@
 }
 
 :root {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --ink-line: oklch(0.920 0.010 82);
+  --leading-body: 1.5;
+  --leading-heading: 1.2;
+  --radius: 4px;
+  --radius-lg: 8px;
   --space-unit: 4px;
   --stroke-emphasis: 2px;
   --stroke-hairline: 1px;
   --stroke-structure: 1.5px;
   --text: oklch(0.97 0 0);
+  --type-body: 1rem;
+  --type-display: 3rem;
+  --type-h1: 2.25rem;
+  --type-h2: 1.5rem;
+  --type-h3: 1.125rem;
+  --type-meta: 0.875rem;
+  --type-micro: 0.75rem;
   --volant-hue-accent: 43deg;
   --accent: oklch(0.61 0.16 var(--volant-hue-accent));
   --accent-hover: oklch(from var(--accent) 0.52 0.14 h);
@@ -25,4 +39,8 @@
   --bg-surface: oklch(0.23 0.07 var(--volant-hue-structure));
   --line: oklch(0.31 0.075 var(--volant-hue-structure));
   --text-muted: oklch(0.75 0.045 var(--volant-hue-structure));
+  --weight-body: 400;
+  --weight-display: 700;
+  --weight-heading: 600;
+  --weight-mono: 500;
 }
