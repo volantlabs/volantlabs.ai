@@ -1526,6 +1526,7 @@
                 window.gtag("config", "G-VNXWVPERBQ");
             })();
         </script>
+        <script defer src="assets/ga4-cta.js"></script>
     </head>
     <body>
         <a class="skip" href="#main">Skip to content</a>
@@ -1598,7 +1599,11 @@
                             recoverable state.
                         </p>
                         <div class="cta-row">
-                            <a class="btn btn-primary" href="#quickstart"
+                            <a
+                                class="btn btn-primary"
+                                href="#quickstart"
+                                data-ga-event="cta_quickstart"
+                                data-ga-location="engine_hero"
                                 >Agent Quickstart
                                 <svg
                                     width="16"
@@ -1619,6 +1624,8 @@
                             <a
                                 class="btn btn-ghost"
                                 href="https://github.com/volantlabs/vellis"
+                                data-ga-event="cta_repo"
+                                data-ga-location="engine_hero"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 >View on GitHub</a
@@ -1909,6 +1916,8 @@
                                 type="button"
                                 aria-pressed="true"
                                 data-domain-key="project"
+                                data-ga-event="cta_worked_model"
+                                data-ga-location="engine_example_project"
                             >
                                 <strong>Project knowledge</strong>
                             </button>
@@ -1917,6 +1926,8 @@
                                 type="button"
                                 aria-pressed="false"
                                 data-domain-key="customer"
+                                data-ga-event="cta_worked_model"
+                                data-ga-location="engine_example_customer"
                             >
                                 <strong>Customer context</strong>
                             </button>
@@ -1925,6 +1936,8 @@
                                 type="button"
                                 aria-pressed="false"
                                 data-domain-key="research"
+                                data-ga-event="cta_worked_model"
+                                data-ga-location="engine_example_research"
                             >
                                 <strong>Research notes</strong>
                             </button>
@@ -2254,6 +2267,8 @@
                                 class="btn btn-primary"
                                 type="button"
                                 data-quickstart-copy="agent"
+                                data-ga-event="cta_download_run_now"
+                                data-ga-location="engine_agent_prompt"
                             >
                                 <svg
                                     class="quickstart-icon"
@@ -2277,6 +2292,8 @@
                                 class="btn quickstart-secondary"
                                 type="button"
                                 data-quickstart-copy="manual"
+                                data-ga-event="cta_download_run_now"
+                                data-ga-location="engine_manual_commands"
                             >
                                 <svg
                                     class="quickstart-icon"
@@ -2299,6 +2316,8 @@
                             <a
                                 class="btn quickstart-readme"
                                 href="https://github.com/volantlabs/vellis#start-here-use-vellis-with-an-ai-agent"
+                                data-ga-event="cta_repo"
+                                data-ga-location="engine_quickstart_readme"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 >README

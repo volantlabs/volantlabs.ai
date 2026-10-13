@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="volant-network-policy" content="no-third-party" />
+    <meta
+      name="description"
+      content="An unlisted preview of the Vellis Scenario Lab: inspect, steer, trace, and recover a synthetic project-memory scenario."
+    />
+    <link rel="canonical" href="https://volantlabs.ai/scenario-lab/" />
+    <meta property="og:site_name" content="Volant Labs" />
+    <meta property="og:title" content="Vellis Scenario Lab — unlisted preview" />
+    <meta
+      property="og:description"
+      content="See the model, steer a proposed change, and recover the state in a guided Vellis product preview."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://volantlabs.ai/scenario-lab/" />
+    <meta
+      property="og:image"
+      content="https://volantlabs.ai/assets/images/social/scenario-lab-unlisted-preview.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Vellis Scenario Lab title beside a controlled graph showing proposed, accepted, and recoverable state."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vellis Scenario Lab — unlisted preview" />
+    <meta
+      name="twitter:description"
+      content="See the model, steer a proposed change, and recover the state in a guided Vellis product preview."
+    />
+    <meta
+      name="twitter:image"
+      content="https://volantlabs.ai/assets/images/social/scenario-lab-unlisted-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Vellis Scenario Lab title beside a controlled graph showing proposed, accepted, and recoverable state."
+    />
+    <link
+      rel="icon"
+      href="../assets/logos/volant-labs-favicon.svg"
+      type="image/svg+xml"
+    />
+    <title>Vellis Scenario Lab — unlisted preview · Volant Labs</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="site-preview">
+    <a class="skip-link" href="#scenario-lab-main">Skip to the experience</a>
+
+    <header class="prototype-header">
+      <a class="brand" href="../index.html" aria-label="Return to Volant Labs">
+        <img
+          class="brand-mark"
+          src="../assets/logos/volant-labs-flask-mark.svg"
+          alt=""
+          width="40"
+          height="40"
+        />
+        <span><strong>Volant Labs</strong><small>Vellis Scenario Lab</small></span>
+      </a>
+      <div class="prototype-meta" aria-label="Preview status">
+        <span class="preview-release">Preview release</span>
+        <span>Synthetic fixture</span>
+        <span>No live Vellis runtime</span>
+        <button class="reset-action" id="change-scenario" type="button" hidden>Scenarios</button>
+        <button class="reset-action" id="reset-scenario" type="button" hidden>Reset</button>
+      </div>
+    </header>
+
+    <aside class="unlisted-notice" aria-label="Unlisted preview notice">
+      <span class="unlisted-lock" aria-hidden="true">Direct URL</span>
+      <p>
+        <strong>This page is unlisted.</strong>
+        It is excluded from site navigation and search indexing while the experience is being
+        refined. Anyone with this URL can still open and share it.
+      </p>
+    </aside>
+
+    <main id="scenario-lab-main" class="scenario-shell">
+      <section
+        class="orientation-screen"
+        id="scenario-orientation"
+        aria-labelledby="orientation-title"
+      >
+        <div class="orientation-field" aria-hidden="true">
+          <svg viewBox="0 0 1040 760" preserveAspectRatio="xMidYMid slice">
+            <g class="field-grid">
+              <path d="M40 110H1000M40 250H1000M40 390H1000M40 530H1000M40 670H1000"></path>
+              <path d="M120 40V720M300 40V720M480 40V720M660 40V720M840 40V720"></path>
+            </g>
+            <g class="field-orbits">
+              <circle cx="520" cy="382" r="116"></circle>
+              <circle cx="520" cy="382" r="214"></circle>
+              <circle cx="520" cy="382" r="316"></circle>
+            </g>
+            <g class="field-links">
+              <path d="M520 382L334 270L198 354"></path>
+              <path d="M520 382L704 246L874 322"></path>
+              <path d="M520 382L682 526L858 590"></path>
+              <path d="M520 382L366 542L210 594"></path>
+            </g>
+            <g class="field-nodes">
+              <circle cx="520" cy="382" r="13" class="field-node field-node--core"></circle>
+              <circle cx="334" cy="270" r="8"></circle>
+              <circle cx="198" cy="354" r="5"></circle>
+              <circle cx="704" cy="246" r="8"></circle>
+              <circle cx="874" cy="322" r="5"></circle>
+              <circle cx="682" cy="526" r="8"></circle>
+              <circle cx="858" cy="590" r="5"></circle>
+              <circle cx="366" cy="542" r="8"></circle>
+              <circle cx="210" cy="594" r="5"></circle>
+            </g>
+          </svg>
+        </div>
+
+        <div class="orientation-layout">
+          <header class="orientation-intro">
+            <div class="orientation-index">
+              <span>Vellis Scenario Lab</span>
+              <span>Orientation · 00</span>
+            </div>
+            <span class="eyebrow">A guided product experience</span>
+            <h1 id="orientation-title" tabindex="-1">
+              See how explicit knowledge changes what an agent can do.
+            </h1>
+            <p>
+              Enter a bounded scenario. Inspect the model behind an answer, steer a proposed
+              change, and return to a known state—all without hiding the source or the boundary.
+            </p>
+          </header>
+
+          <ol class="control-loop" aria-label="How the Scenario Lab works">
+            <li>
+              <span>01</span>
+              <div><strong>See</strong><small>Inspect the model and its sources.</small></div>
+            </li>
+            <li>
+              <span>02</span>
+              <div><strong>Steer</strong><small>Challenge a proposal before it becomes state.</small></div>
+            </li>
+            <li>
+              <span>03</span>
+              <div><strong>Recover</strong><small>Return the model and answer together.</small></div>
+            </li>
+          </ol>
+
+          <section class="scenario-picker" id="scenario-picker" aria-labelledby="scenario-picker-title">
+            <div class="scenario-picker-heading">
+              <div>
+                <span class="eyebrow">Choose a guided proof</span>
+                <h2 id="scenario-picker-title">Two ways into the model.</h2>
+              </div>
+              <p>Each scenario isolates one intuition. The workspace stays consistent.</p>
+            </div>
+
+            <div class="scenario-choices" role="group" aria-label="Scenario selection">
+              <button
+                class="scenario-choice"
+                type="button"
+                data-scenario-id="project-memory"
+                aria-pressed="true"
+              >
+                <span class="choice-number">01</span>
+                <span class="choice-copy">
+                  <span class="choice-status">Available now · Core v1 conformant</span>
+                  <strong>Project Memory Under Change</strong>
+                  <small>
+                    Trace a blocked launch decision, challenge a proposed relationship, and
+                    recover the accepted checkpoint.
+                  </small>
+                  <span class="choice-tags"><i>Everyday Life Core</i><i>10 guided steps</i></span>
+                </span>
+                <span class="choice-visual choice-visual--project" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </span>
+              </button>
+
+              <button
+                class="scenario-choice"
+                type="button"
+                data-scenario-id="home-maintenance"
+                aria-pressed="false"
+              >
+                <span class="choice-number">02</span>
+                <span class="choice-copy">
+                  <span class="choice-status">Unpublished draft slice · Ready to explore</span>
+                  <strong>Teach Vellis Home Maintenance</strong>
+                  <small>
+                    See how optional vocabulary moves from available instructions toward
+                    runtime compatibility and governed activation.
+                  </small>
+                  <span class="choice-tags"><i>Core + draft slice</i><i>Activation boundary</i></span>
+                </span>
+                <span class="choice-visual choice-visual--home" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <div class="orientation-entry">
+            <div class="orientation-truth">
+              <span aria-hidden="true">i</span>
+              <p>
+                <strong>Truthfulness boundary.</strong> Fixtures are synthetic, important
+                outputs carry source labels, and browser-local behavior is never presented
+                as native Vellis execution.
+              </p>
+            </div>
+            <div class="entry-action">
+              <p id="scenario-status" aria-live="polite">
+                Project Memory is ready to enter. Its illustrative fixture uses the exact
+                Everyday Life Core v1 vocabulary and direction contracts.
+              </p>
+              <button class="enter-scenario" id="enter-scenario" type="button">
+                <span>Enter scenario 01</span>
+                <b aria-hidden="true">↗</b>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="workspace-screen"
+        id="scenario-workspace"
+        aria-labelledby="workspace-title"
+        hidden
+      >
+        <section class="workspace-intro">
+          <div>
+            <span class="eyebrow" id="workspace-scenario-kicker">Scenario 01 · Guided proof</span>
+            <h1 id="workspace-title" tabindex="-1">Project Memory Under Change</h1>
+          </div>
+          <p id="workspace-intro-copy">
+            Follow the highlighted step. The complete Core v1 vocabulary remains visible while
+            the model, inspector, answer, and next action stay synchronized.
+          </p>
+        </section>
+
+      <section class="question-strip" aria-labelledby="evaluator-question">
+        <div>
+          <span class="eyebrow">Evaluator question</span>
+          <h2 id="evaluator-question">
+            Why is the launch blocked, who owns the next action, and what source documents the decision?
+          </h2>
+        </div>
+        <div class="answer-state">
+          <span>Current answer</span>
+          <strong id="answer-summary">The model is incomplete. Inspect the project context.</strong>
+        </div>
+      </section>
+
+      <section class="action-bar" aria-label="Journey actions">
+        <button class="secondary-action" id="previous-action" type="button" disabled>Previous</button>
+        <div class="action-context">
+          <span id="action-step">Next · Propose</span>
+          <p id="action-context">Understand the question and inspect the accepted state.</p>
+        </div>
+        <button class="primary-action" id="primary-action" type="button">Reveal recorded proposal</button>
+      </section>
+
+      <div class="workspace">
+        <nav class="journey-panel" aria-label="Scenario journey">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">Guided proof</span>
+              <strong class="journey-phase" id="journey-phase">Understand</strong>
+            </div>
+            <strong class="journey-count"><span id="step-number">01</span> / 10</strong>
+          </div>
+          <div
+            class="journey-progress"
+            id="journey-progress"
+            role="progressbar"
+            aria-label="Scenario progress"
+            aria-valuemin="1"
+            aria-valuemax="10"
+            aria-valuenow="1"
+          ><span id="journey-progress-fill"></span></div>
+          <ol id="journey-steps"></ol>
+          <div class="journey-key">
+            <span><i class="accepted-key" aria-hidden="true"></i>Accepted state</span>
+            <span><i class="proposal-key" aria-hidden="true"></i>Proposal</span>
+          </div>
+        </nav>
+
+        <section class="model-panel" aria-labelledby="model-title">
+          <div class="panel-heading model-heading">
+            <div>
+              <span class="eyebrow" id="model-eyebrow">Accepted project state</span>
+              <h2 id="model-title">Launch readiness model</h2>
+            </div>
+            <div class="model-controls">
+              <span class="model-status" id="model-status" data-state="accepted">Accepted</span>
+              <div class="view-switcher" aria-label="Model representation">
+                <button type="button" data-model-view="graph" aria-pressed="true">Graph</button>
+                <button type="button" data-model-view="outline" aria-pressed="false">Outline</button>
+              </div>
+            </div>
+          </div>
+
+          <section class="core-schema-panel" aria-label="Everyday Life Core v1 vocabulary">
+            <header>
+              <div>
+                <span class="eyebrow">Everyday Life Core v1</span>
+                <strong>Complete vocabulary context</strong>
+              </div>
+              <span>12 anchor types · 9 link types</span>
+            </header>
+            <div class="core-schema-group">
+              <span>Anchors</span>
+              <div class="core-schema-list core-schema-list--anchors">
+                <button type="button" data-core-anchor="Person" data-core-active="true" aria-pressed="false">Person</button>
+                <button type="button" data-core-anchor="Group" data-core-active="false" aria-pressed="false">Group</button>
+                <button type="button" data-core-anchor="Area" data-core-active="false" aria-pressed="false">Area</button>
+                <button type="button" data-core-anchor="Goal" data-core-active="false" aria-pressed="false">Goal</button>
+                <button type="button" data-core-anchor="Project" data-core-active="true" aria-pressed="true">Project</button>
+                <button type="button" data-core-anchor="Task" data-core-active="true" aria-pressed="false">Task</button>
+                <button type="button" data-core-anchor="Event" data-core-active="false" aria-pressed="false">Event</button>
+                <button type="button" data-core-anchor="Routine" data-core-active="false" aria-pressed="false">Routine</button>
+                <button type="button" data-core-anchor="Decision" data-core-active="true" aria-pressed="false">Decision</button>
+                <button type="button" data-core-anchor="Note" data-core-active="false" aria-pressed="false">Note</button>
+                <button type="button" data-core-anchor="Resource" data-core-active="true" aria-pressed="false">Resource</button>
+                <button type="button" data-core-anchor="Place" data-core-active="false" aria-pressed="false">Place</button>
+              </div>
+            </div>
+            <div class="core-schema-group">
+              <span>Links</span>
+              <div class="core-schema-list core-schema-list--links">
+                <button type="button" data-core-link="belongs_to" data-core-active="false" aria-pressed="false">belongs_to</button>
+                <button type="button" data-core-link="supports" data-core-active="true" aria-pressed="false">supports</button>
+                <button type="button" data-core-link="responsible_for" data-core-active="true" aria-pressed="false">responsible_for</button>
+                <button type="button" data-core-link="member_of" data-core-active="false" aria-pressed="false">member_of</button>
+                <button type="button" data-core-link="involves" data-core-active="true" aria-pressed="false">involves</button>
+                <button type="button" data-core-link="located_at" data-core-active="false" aria-pressed="false">located_at</button>
+                <button type="button" data-core-link="documents" data-core-active="true" aria-pressed="false">documents</button>
+                <button type="button" data-core-link="mentions" data-core-active="false" aria-pressed="false">mentions</button>
+                <button type="button" data-core-link="depends_on" data-core-active="false" aria-pressed="false">depends_on</button>
+              </div>
+            </div>
+            <p><i></i>Scenario active <span></span>Available in Core, inactive here</p>
+          </section>
+
+          <section
+            class="domain-schema-panel"
+            id="domain-schema-panel"
+            aria-label="Home Maintenance draft optional slice"
+            hidden
+          >
+            <header>
+              <div>
+                <span class="eyebrow">Draft optional slice</span>
+                <strong>Home Maintenance v1</strong>
+              </div>
+              <span>Unpublished · not activated</span>
+            </header>
+            <ol class="governance-ledger" aria-label="Vocabulary governance states">
+              <li data-governance-state="core"><span>01</span><strong>Core built-in</strong><small>Installed</small></li>
+              <li data-governance-state="recipe"><span>02</span><strong>Recipe available</strong><small>Draft instructions</small></li>
+              <li data-governance-state="runtime"><span>03</span><strong>Runtime-ready evidence</strong><small>Repository tested</small></li>
+              <li data-governance-state="activation"><span>04</span><strong>Activation not performed</strong><small>Explicit decision</small></li>
+            </ol>
+            <div class="domain-schema-group">
+              <span>Draft anchors</span>
+              <div class="domain-schema-list domain-schema-list--anchors">
+                <button type="button" data-domain-anchor="HomeSystem" aria-pressed="false">HomeSystem</button>
+                <button type="button" data-domain-anchor="MaintenanceIssue" aria-pressed="false">MaintenanceIssue</button>
+              </div>
+            </div>
+            <div class="domain-schema-group">
+              <span>Directed links</span>
+              <div class="domain-schema-list domain-schema-list--links">
+                <button type="button" data-domain-link="home_system_serves_place" aria-pressed="false">home_system_serves_place</button>
+                <button type="button" data-domain-link="maintenance_issue_at_place" aria-pressed="false">maintenance_issue_at_place</button>
+                <button type="button" data-domain-link="maintenance_issue_concerns_system" aria-pressed="false">maintenance_issue_concerns_system</button>
+                <button type="button" data-domain-link="maintenance_work_concerns_system" aria-pressed="false">maintenance_work_concerns_system</button>
+                <button type="button" data-domain-link="maintenance_work_addresses_issue" aria-pressed="false">maintenance_work_addresses_issue</button>
+                <button type="button" data-domain-link="maintenance_decision_concerns_issue" aria-pressed="false">maintenance_decision_concerns_issue</button>
+              </div>
+            </div>
+            <p>
+              <strong>Schema-only:</strong> 10 definitions · 5 constraints · 1 migration ·
+              <b>0 user facts</b>. Catalog presence does not authorize activation.
+            </p>
+          </section>
+
+          <div class="model-stage" id="model-stage" data-view="graph">
+            <div class="graph-view" id="graph-view" aria-label="Synthetic project knowledge graph">
+              <svg class="graph-lines" aria-hidden="true" viewBox="0 0 800 520" preserveAspectRatio="none">
+                <defs>
+                  <marker id="core-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                    <path class="accepted-marker" d="M0 0 L8 4 L0 8 Z"></path>
+                  </marker>
+                  <marker id="proposal-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                    <path class="proposal-marker" d="M0 0 L8 4 L0 8 Z"></path>
+                  </marker>
+                </defs>
+                <path class="accepted-line" id="accepted-line-1" marker-end="url(#core-arrow)" d="M170 222 C224 148 330 142 400 92"></path>
+                <path class="accepted-line" id="accepted-line-2" marker-end="url(#core-arrow)" d="M537 450 C430 390 280 330 170 245"></path>
+                <path class="accepted-line" id="accepted-line-3" marker-end="url(#core-arrow)" d="M630 245 C650 310 620 370 580 430"></path>
+                <path class="proposal-line" id="proposal-line" marker-end="url(#proposal-arrow)" d="M630 244 C540 330 340 370 230 430"></path>
+              </svg>
+              <span class="edge-label edge-label--supports" aria-hidden="true">supports</span>
+              <span class="edge-label edge-label--responsible" aria-hidden="true">responsible_for</span>
+              <span class="edge-label edge-label--involves" aria-hidden="true">involves</span>
+
+              <button class="graph-node project-node" type="button" data-node="project">
+                <span>Project</span><strong>Aurora launch</strong><small>Blocked</small>
+              </button>
+              <button class="graph-node task-node" type="button" data-node="task">
+                <span>Task</span><strong>Security review</strong><small>Owner · Maya</small>
+              </button>
+              <button class="graph-node decision-node" type="button" data-node="decision">
+                <span>Decision</span><strong>D-17 · Hold launch</strong><small>Needs evidence</small>
+              </button>
+              <button class="graph-node resource-node" type="button" data-node="resource">
+                <span>Resource</span><strong>R-22 · Threat model</strong><small>Reviewed document</small>
+              </button>
+              <button class="graph-node person-node" type="button" data-node="person">
+                <span>Person</span><strong>Maya Chen</strong><small>Platform owner</small>
+              </button>
+
+              <button class="relationship-chip" id="relationship-chip" type="button">
+                <span id="relationship-state">Proposed</span>
+                <strong id="relationship-label">Decision → documents → Resource</strong>
+              </button>
+            </div>
+
+            <div class="outline-view" id="graph-outline" aria-label="Textual graph outline">
+              <h3>Equivalent textual model</h3>
+              <ul id="graph-outline-list">
+                <li><strong>Project:</strong> Aurora launch — blocked</li>
+                <li><strong>Task:</strong> Security review — owned by Maya Chen</li>
+                <li><strong>Decision:</strong> D-17 — hold launch pending evidence</li>
+                <li><strong>Resource:</strong> R-22 — reviewed threat model document</li>
+                <li><strong>Person:</strong> Maya Chen — platform owner</li>
+                <li><strong>Accepted:</strong> Task T-08 → supports → Project Aurora</li>
+                <li><strong>Accepted:</strong> Person Maya → responsible_for → Task T-08</li>
+                <li><strong>Accepted:</strong> Decision D-17 → involves → Person Maya</li>
+                <li id="outline-relationship"><strong>Proposal:</strong> Decision D-17 → documents → Resource R-22</li>
+              </ul>
+            </div>
+          </div>
+
+          <section class="validation-card" id="validation-card" hidden aria-live="polite">
+            <div class="validation-mark" aria-hidden="true">×</div>
+            <div>
+              <span class="eyebrow">Prototype validation result</span>
+              <h3 id="validation-title">Source type Decision is not allowed for documents.</h3>
+              <p id="validation-copy">
+                The source type Decision is not allowed. Core v1 permits <code>Note</code> or
+                <code>Resource</code> as the source.
+                Reverse the relationship so the resource documents the decision.
+              </p>
+            </div>
+            <dl>
+              <div><dt>Before</dt><dd id="checksum-before">proto:8f2c</dd></div>
+              <div><dt>After</dt><dd id="checksum-after">proto:8f2c</dd></div>
+            </dl>
+          </section>
+
+          <fieldset class="correction-card" id="correction-card" hidden>
+            <legend id="correction-legend">Choose the Core-valid direction</legend>
+            <div id="correction-options">
+              <label><input type="radio" name="correction" value="reverse" /> Resource R-22 → documents → Decision D-17 <small>Reverse direction · valid</small></label>
+              <label><input type="radio" name="correction" value="keep-direction" /> Decision D-17 → documents → Resource R-22 <small>Decision source · invalid</small></label>
+              <label><input type="radio" name="correction" value="change-link" /> Decision D-17 → involves → Resource R-22 <small>Resource target · invalid</small></label>
+            </div>
+            <p id="correction-feedback" aria-live="polite">Select one direction, then confirm the correction.</p>
+          </fieldset>
+        </section>
+
+        <aside class="inspector-panel" aria-labelledby="inspector-title">
+          <div class="panel-heading">
+            <span class="eyebrow">Inspector</span>
+            <span class="provenance-pill" id="provenance-pill">Illustrative</span>
+          </div>
+          <div class="inspector-content" aria-live="polite">
+            <span class="step-kicker" id="step-kicker">01 · Orient</span>
+            <h2 id="inspector-title">Start with the decision the evaluator needs to make.</h2>
+            <p id="inspector-copy">
+              The accepted model is visible before any proposal. The question stays fixed
+              while the state changes beneath it.
+            </p>
+          </div>
+
+          <section class="state-card" aria-labelledby="state-card-title">
+            <span class="eyebrow" id="state-card-title">State boundary</span>
+            <strong id="state-title">Accepted state</strong>
+            <p id="state-copy">The original synthetic fixture is immutable during the guided proof.</p>
+          </section>
+
+          <section class="schema-detail-card" aria-live="polite" aria-labelledby="schema-detail-title">
+            <span class="eyebrow" id="schema-detail-kind">Core anchor · Scenario active</span>
+            <strong id="schema-detail-title">Project</strong>
+            <p id="schema-detail-description">A finite coordinated effort intended to produce an outcome.</p>
+            <code id="schema-detail-contract">ProjectFacts · title · domain? · status? · priority? · desiredOutcome? · nextReview?</code>
+          </section>
+
+          <section class="audit-card" id="audit-card" hidden aria-labelledby="audit-title">
+            <div class="audit-heading">
+              <span class="eyebrow" id="audit-title">Audit preview</span>
+              <span>Illustrative</span>
+            </div>
+            <ol id="audit-events"></ol>
+          </section>
+
+          <section class="provenance-card" aria-labelledby="provenance-title">
+            <span class="eyebrow" id="provenance-title">Source classification</span>
+            <p id="provenance-copy">
+              Illustrative — composed for product-design validation, not generated by Vellis.
+            </p>
+            <button class="text-button" id="show-legend" type="button">View all classifications</button>
+          </section>
+        </aside>
+      </div>
+
+      <section class="continuation-panel" id="continuation-panel" hidden aria-labelledby="continue-title">
+        <div>
+          <span class="eyebrow">Browser-local continuation</span>
+          <h2 id="continue-title">The proof ends. Bounded exploration begins.</h2>
+          <p>
+            These controls demonstrate the intended continuation boundary. They do not call,
+            modify, or emulate a live Vellis runtime.
+          </p>
+        </div>
+        <div class="continuation-actions">
+          <button type="button" id="create-branch">Create local branch</button>
+          <button type="button" id="export-branch">Export local branch</button>
+          <a href="https://github.com/volantlabs/vellis" target="_blank" rel="noopener noreferrer">Open Vellis repository ↗</a>
+        </div>
+        <p class="continuation-status" id="continuation-status" aria-live="polite">
+          No browser-local branch has been created.
+        </p>
+      </section>
+
+      <section class="preview-edges" aria-labelledby="preview-edges-title">
+        <div class="preview-edges-heading">
+          <span class="eyebrow">Preview record</span>
+          <h2 id="preview-edges-title">What this release proves—and what it does not.</h2>
+          <p>
+            This review build is designed to test product comprehension before generated
+            Vellis evidence and broader public discovery are approved.
+          </p>
+        </div>
+        <div class="edge-grid">
+          <article>
+            <span>01</span>
+            <h3>Ready to evaluate</h3>
+            <p>The guided interaction, state distinctions, corrective choice, audit sequence, recovery, and local continuation boundary.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Still to attach</h3>
+            <p>
+              A checksum-pinned fixture generated by a named Vellis commit; the
+              contract-supported Vellis validation record has not yet been attached.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Release gate</h3>
+            <p>Technical-reader comprehension, accessibility review, responsive QA, and an explicit decision to open indexing and navigation.</p>
+          </article>
+        </div>
+        <dl class="preview-facts">
+          <div><dt>Fixture</dt><dd id="preview-fixture">project-memory-under-change · synthetic</dd></div>
+          <div><dt>Execution</dt><dd id="preview-execution">browser-local interaction only</dd></div>
+          <div><dt>Persistence</dt><dd>none · reset on reload</dd></div>
+          <div><dt>Upload</dt><dd>none · exports download locally</dd></div>
+        </dl>
+      </section>
+      </section>
+
+      <dialog id="truth-dialog" aria-labelledby="truth-dialog-title">
+        <form method="dialog">
+          <button class="dialog-close" value="close" aria-label="Close provenance legend">×</button>
+          <span class="eyebrow">Truthfulness contract</span>
+          <h2 id="truth-dialog-title">Know where every important output came from.</h2>
+          <dl class="truth-list">
+            <div><dt>Vellis-generated</dt><dd>Produced by a named Vellis commit during scenario generation. Not present in this prototype.</dd></div>
+            <div><dt>Recorded agent output</dt><dd>Created before publication under a documented scenario. Never represented as live inference.</dd></div>
+            <div><dt>Browser-local</dt><dd>Produced only in this browser. It is not native Vellis execution or shared state.</dd></div>
+            <div><dt>Illustrative</dt><dd>Product-design explanation that is not evaluated engine output.</dd></div>
+          </dl>
+          <button class="primary-action dialog-done" value="close">Done</button>
+        </form>
+      </dialog>
+    </main>
+
+    <footer class="preview-footer">
+      <div class="footer-brand">
+        <img
+          src="../assets/logos/volant-labs-flask-mark.svg"
+          alt="Volant Labs"
+          width="42"
+          height="42"
+        />
+        <div><strong>Volant Labs</strong><span>Open systems, inspectable reasoning.</span></div>
+      </div>
+      <div class="footer-actions">
+        <a href="https://github.com/volantlabs/vellis" target="_blank" rel="noopener noreferrer">View Vellis on GitHub ↗</a>
+        <a href="../index.html">Exit preview</a>
+      </div>
+    </footer>
+
+    <script src="scenario-lab.js"></script>
+  </body>
+</html>

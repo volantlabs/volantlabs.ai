@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 import {
   externalContactLinkFailures,
   forbiddenPatternFailures,
+  ga4CtaAssetFailures,
+  ga4CtaCoverageFailures,
+  ga4CtaPageFailures,
   ga4TrackingFailures,
   jsonLdFailures,
   seoBaselineFailures,
@@ -163,6 +166,7 @@ for (const file of publicHtmlFiles) {
   const html = readFileSync(file, "utf8");
   const page = relative(file);
   assertGa4Tracking(page, html);
+  failures.push(...ga4CtaPageFailures(page, html));
   assertExternalContactSignals(page, html);
   failures.push(...seoBaselineFailures(page, html, canonicalUrlForFile(file)));
   failures.push(
@@ -173,6 +177,18 @@ for (const file of publicHtmlFiles) {
     }),
   );
 }
+
+failures.push(
+  ...ga4CtaCoverageFailures(
+    publicHtmlFiles.map((file) => ({
+      name: relative(file),
+      content: readFileSync(file, "utf8"),
+    })),
+  ),
+  ...ga4CtaAssetFailures(
+    readFileSync(path.join(siteRoot, "assets", "ga4-cta.js"), "utf8"),
+  ),
+);
 
 assertSocialPreviewManifest();
 assertSeoInfrastructure();
@@ -529,9 +545,11 @@ function relative(file) {
 
 function canonicalUrlForFile(file) {
   const rel = relative(file).replaceAll(path.sep, "/");
-  return rel === "index.html"
-    ? "https://volantlabs.ai/"
-    : `https://volantlabs.ai/${rel}`;
+  if (rel === "index.html") return "https://volantlabs.ai/";
+  if (rel.endsWith("/index.html")) {
+    return `https://volantlabs.ai/${rel.slice(0, -"index.html".length)}`;
+  }
+  return `https://volantlabs.ai/${rel}`;
 }
 
 function assertSeoInfrastructure() {
@@ -1013,6 +1031,12 @@ function assertSocialPreviewManifest() {
     : new Set();
   const htmlPages = publicFiles
     .filter((file) => file.endsWith(".html"))
+    .filter(
+      (file) =>
+        !/<meta\b[^>]*name\s*=\s*["']robots["'][^>]*content\s*=\s*["'][^"']*noindex/i.test(
+          readFileSync(file, "utf8"),
+        ),
+    )
     .map((file) => htmlPageForFile(file))
     .filter(
       (page) =>
@@ -1114,12 +1138,17 @@ function normalizeSocialPage(page) {
 }
 
 function htmlFileForSocialPage(page) {
-  return path.join(siteRoot, page === "/" ? "index.html" : page.slice(1));
+  if (page === "/") return path.join(siteRoot, "index.html");
+  if (page.endsWith("/")) return path.join(siteRoot, page.slice(1), "index.html");
+  return path.join(siteRoot, page.slice(1));
 }
 
 function htmlPageForFile(file) {
   const page = `/${relative(file).replaceAll(path.sep, "/")}`;
-  return page === "/index.html" ? "/" : page;
+  if (page === "/index.html") return "/";
+  return page.endsWith("/index.html")
+    ? page.slice(0, -"index.html".length)
+    : page;
 }
 
 function assertMetaEquals(page, html, attrType, attrName, expected) {
